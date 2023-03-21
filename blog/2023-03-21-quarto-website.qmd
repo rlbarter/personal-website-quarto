@@ -1,0 +1,42 @@
+---
+title: "Thanks, Quarto, for saving my blog!"
+author: "Rebecca Barter"
+format:
+  html:
+    toc: true
+    toc-location: left
+categories: [blog]
+date: 2023-03-21
+image: img/quarto/quarto.jpg
+description: "My old blog broke so I decided to re-make my entire website using quarto, which was disturbingly easy. Welcome to my new and improved blog!"
+---
+![](img/quarto/quarto.jpg){fig-alt='Quarto logo'}
+
+
+Hello reader, it's been a minute! 
+
+I'm sure you didn't notice, but I've been kind of silent on here for the past three years. So silent, it's almost deafening (to my ears, at least). 
+
+Fear not, there are good reasons for my absence in this space. I've actually spent the past three years writing a book called "*Veridical Data Science: the practice of responsible data analysis and decision making*", together with my PhD and postdoc advisor, the Veridical Data Science pioneer, Bin Yu. And I was doing this more-or-less full-time (more on veridical data science to come). 
+
+Much to my dismay, it turns out that after a full day of book-writing^[which mostly involves writing the same paragraph in five different ways before realizing that the point I'm trying to make is irrelevant and subsequently deleting the whole thing], it's hard to summon the energy to do even more writing in the form of blog posts. Book-burnout is *real*. So what was I doing with my spare time^[I know that this implies that I only blog in my spare time, but if I'm being honest, I don't think I've ever actually blogged in my spare time. I only ever blog during work hours, like the responsible employee that I am. I'm actually at work right now. But shhhh.] if I wasn't blogging, you ask? Instead of writing blog posts, I was doing a lot of non-blogging things like weathering a pandemic, climbing dumb rocks, learning to draw, moving all around the country, and other non-blogging things like that.
+
+But now that the book is "*done*" (as in, it's been sent to the publishers, which, if you know anything about publishing, means that it's actually very far from done), and I've settled into a new job as an Assistant Research Professor at the University of Utah, I finally feel ready to start blogging again! Hooray!
+
+Except... not actually hooray. When I finally went to update my original blogdown website on my new work computer, R yelled at me. Loudly. <span style="color:red;">In red</span>. And I didn't like it one bit. The day that I had long feared had finally arrived: I didn't know how to update my own website without breaking it. Blogdown is fantastic until it's not.
+
+Fortunately, this happened at the best of possible times. Not only have substantially fewer people been following my website lately (that'll happen when you don't add anything new to it in three years...), so I'm not so afraid to make some breaking changes, but we are now living in the magical era of **Quarto**!
+
+Perhaps you're like me, and it's taken you a while to realize why this new era of **Quarto** is so magic. My first impression of Quarto was that it's pretty much R Markdown, but with a few extra features and slightly different syntax. This is true, and also not true. 
+
+After hearing so much about how much easier so many things (like making a blog, for instance) are with Quarto, I figured that I might as well give it a go and try to port my broken blogdown website over to Quarto. The alternative seems to be spending my life debugging blogdown, so what have I got to lose?
+
+Now that I'm on the other side, I have to say. Wow. Just wow. I managed to re-create my entire website using quarto without running into a single issue in just 4 hours. For reference, when I originally created my blog using blogdown 5ish years ago, it took around 5 days and I had to try several different themes before I found one that was stable and didn't break easily.
+
+If you're looking to make the transition yourself, fortunately there are already several useful resources out there, like [Albert Rapp's blog post](https://albert-rapp.de/posts/13_quarto_blog_writing_guide/13_quarto_blog_writing_guide.html) and [Nick Tierney's blog post](https://www.njtierney.com/post/2022/04/11/rmd-to-qmd/). The [Quarto documentation](https://quarto.org/docs/websites/website-blog.html) itself is also really helpful.
+
+The end result of my 4-hours of effort is what you see here. My website looks a bit different (and I got rid of some of the less-visited sections that no one cares about), but I think it's much cleaner and easier to navigate. I might do some fine-tuning down the line, but I'm in no rush.
+
+Anyway, all this is to say: Welcome to my new website! I hope to be creating a lot more content for you in the near future. I'm excited to oil to my blogging gears, and get back on the road!
+
+

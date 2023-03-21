@@ -217,5 +217,11 @@
   },
   "blog.qmd": {
     "blog.html": "bb5e4d81"
+  },
+  "blog/2023-03-21-quarto-website.qmd": {
+    "2023-03-21-quarto-website.html": "bb266dc4"
+  },
+  "blog/2023-03-22-quarto-blog-tutorial.qmd": {
+    "2023-03-22-quarto-blog-tutorial.html": "8c525941"
   }
 }

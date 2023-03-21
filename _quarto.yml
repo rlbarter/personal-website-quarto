@@ -4,8 +4,6 @@ project:
 website:
   title: "Rebecca Barter"
   navbar:
-    logo: "profile.jpg"
-    background: light
     left:
       - text: "Home"
         file: index.qmd
@@ -21,6 +19,9 @@ website:
 format:
   html:
     theme: simplex
+    linkcolor: "#6633c4"
+    code-copy: true
+    footnotes-hover: true
     css: styles.css
 
 

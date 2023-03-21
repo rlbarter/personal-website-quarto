@@ -9,5 +9,5 @@ title-block-banner: true
 
 
 comments:
-  utterances:
-    rlbarter/blog_comments
+  utterances: 
+    repo: rlbarter/blog_comments
