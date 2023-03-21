@@ -4,7 +4,7 @@ about:
   template: solana
 ---
 
-Hi I'm Rebecca, welcome to my newly re-vamped website! Below you will find my newest posts, and quick links to some of my more popular posts. 
+Hi there, I'm Rebecca, welcome to my newly re-vamped website! Below you will find my newest posts, and quick links to some of my more popular posts. 
 
 ## *New posts*
 
