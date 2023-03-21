@@ -1,0 +1,4 @@
+"0","gapminder_sample_long <- gapminder %>%"
+"0","  filter(country %in% c(""Australia"", ""United States"", ""Canada""), year > 1990) %>%"
+"0","  select(country, year, lifeExp) "
+"0","gapminder_sample_long"

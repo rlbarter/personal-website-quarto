@@ -1,0 +1,4 @@
+"0","# add a madeup grouping variable that groupes each subsequent 5 abalone together"
+"0","# filter to the first 50 abalone for simplicity"
+"0","abalone_grouped <- cbind(abalone_train[1:50, ], group = rep(1:10, each = 5))"
+"0","head(abalone_grouped, 10)"

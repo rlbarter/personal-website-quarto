@@ -1,0 +1,14 @@
+{
+  "hash": "fca2cbc4b90460e81d29227badf09909",
+  "result": {
+    "markdown": "---\ntitle:  \"Docathon: A Week of Doumentation\"\nauthor: \"Rebecca Barter\"\ncategories: [documentation, R, communication]\ndate: 2017-03-07\noutput:\n  html:\n    toc: true\ndescription: \"We're hosting a week-long docathon over at BIDS.\" \n---\n\n\nThis week is the [Docathon](https://bids.github.io/docathon/) at [BIDS](https://bids.berkeley.edu/) (a.k.a. that wonderful place that I spend all my time). \n\nA docathon is like a hackathon but is focused on developing material and tools for documentation. We have [loads of projects](https://bids.github.io/docathon/pages/projects/projects.html) signed up to receive some documentation-love and an impressive number of excited participants!\n\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![](img/docathon/docathon.jpg-large){fig-align='center'}\n:::\n:::\n\n\n\n\nWe kicked off the event with a series of tutorials for writing \"good\" documentation. I gave an R-specific tutorial where I discussed using devtools to both develop and document your package. I ended with a sneak peak into bookdown book-based documentation for complex packages. Skip ahead to 1:54:02 to hear my presentation! \n\n<center>\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ikT_xnTFHC0\" frameborder=\"0\" allowfullscreen></iframe>\n</center>\n\nThe materials for my tutorial can be found in this [github repo](https://github.com/rlbarter/R-documentation). Stay tuned for a more detailed blog post about writing documentation in R.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,3 @@
+"0","long %>% mutate(country = paste0(country, ""_lifeExp"")) %>%"
+"0","  spread(key = country, "
+"0","                value = lifeExp) "

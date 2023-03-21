@@ -1,0 +1,5 @@
+"0","# define a grid of parameter options to try"
+"0","rf_grid <- expand.grid(mtry = c(2, 3, 4, 5),"
+"0","                      splitrule = c(""gini"", ""extratrees""),"
+"0","                      min.node.size = c(1, 3, 5))"
+"0","rf_grid"

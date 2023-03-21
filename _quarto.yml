@@ -1,0 +1,28 @@
+project:
+  type: website
+
+website:
+  title: "Rebecca Barter"
+  navbar:
+    logo: "profile.jpg"
+    background: light
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "Blog archive"
+        file: blog.qmd
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/rlbarter
+      - icon: twitter
+        href: https://twitter.com/rlbarter
+  google-analytics: "UA-90929425-1"
+format:
+  html:
+    theme: simplex
+    css: styles.css
+
+
+
+

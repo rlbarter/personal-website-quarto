@@ -1,0 +1,16 @@
+{
+  "hash": "e26b28e11b922897ee0b958cb477969b",
+  "result": {
+    "markdown": "---\ntitle: \"The only reason one should ever use a pie chart\"\nauthor: \"Rebecca Barter\"\ndate: \"2016-12-10\"\noutput:\n  html:\n    toc: true\ncategories: [\"R\"]\ntags: [\"R markdown\", \"pie charts\"]\n---\n\n\n\n\n# Pie charts are terrible\n\nPie charts are notoriously terrible for data visualization. Humans are genuinely bad at comparing angles. Thus, the only reason one should ever use a pie chart is to make beautiful pie-chart-art.\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\npar(mar = c(0, 1, 0, 1))\npie(\n  c(280, 60, 20),\n  c('Sky', 'Sunny side of pyramid', 'Shady side of pyramid'),\n  col = c('#0292D8', '#F7EA39', '#C4B632'),\n  init.angle = -50, border = NA\n)\n```\n\n::: {.cell-output-display}\n![Pyramid pie chart art.](2015-07-23-pie_files/figure-html/pie-1.png){fig-align='center' width=672}\n:::\n:::\n",
+    "supporting": [
+      "2015-07-23-pie_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

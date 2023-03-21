@@ -1,0 +1,4 @@
+"0","# fit a random forest model (using ranger)"
+"0","rf_fit <- train(as.factor(old) ~ ., "
+"0","                data = abalone_train, "
+"0","                method = ""ranger"")"

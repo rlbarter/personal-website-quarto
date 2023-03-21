@@ -1,0 +1,4 @@
+"0","# to download the data directly:"
+"0","gapminder_orig <- read.csv(""https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv"")"
+"0","# define a copy of the original dataset that we will clean and play with "
+"0","gapminder <- gapminder_orig"

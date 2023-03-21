@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rebecca Barter">
+<meta name="dcterms.date" content="2019-08-05">
+<meta name="description" content="This post walks through what base R users need to know for their transition into the tidyverse. Part 2 focuses on the more specialized R packages tidyr, purrr, readr, lubridate, forcats, etc">
+
+<title>Rebecca Barter - Transitioning into the tidyverse (part 2)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../profile.jpg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Rebecca Barter</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Blog archive</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About Rebecca</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/rlbarter"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/rlbarter"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Transitioning into the tidyverse (part 2)</h1>
+                  <div>
+        <div class="description">
+          This post walks through what base R users need to know for their transition into the tidyverse. Part 2 focuses on the more specialized R packages tidyr, purrr, readr, lubridate, forcats, etc
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">tidyverse</div>
+                <div class="quarto-category">tidyr</div>
+                <div class="quarto-category">purrr</div>
+                <div class="quarto-category">readr</div>
+                <div class="quarto-category">tibbles</div>
+                <div class="quarto-category">lubridate</div>
+                <div class="quarto-category">forcats</div>
+                <div class="quarto-category">stringr</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Rebecca Barter </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 5, 2019</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-shaping-tidyr" id="toc-data-shaping-tidyr" class="nav-link active" data-scroll-target="#data-shaping-tidyr">Data shaping: tidyr</a>
+  <ul class="collapse">
+  <li><a href="#gathering-and-spreading" id="toc-gathering-and-spreading" class="nav-link" data-scroll-target="#gathering-and-spreading">Gathering and spreading</a></li>
+  <li><a href="#combining-and-separating-variables" id="toc-combining-and-separating-variables" class="nav-link" data-scroll-target="#combining-and-separating-variables">Combining and separating variables</a></li>
+  </ul></li>
+  <li><a href="#replacing-loops-purrr" id="toc-replacing-loops-purrr" class="nav-link" data-scroll-target="#replacing-loops-purrr">Replacing loops: purrr</a></li>
+  <li><a href="#loading-data-readr" id="toc-loading-data-readr" class="nav-link" data-scroll-target="#loading-data-readr">Loading data: readr</a></li>
+  <li><a href="#storing-data-tibbles" id="toc-storing-data-tibbles" class="nav-link" data-scroll-target="#storing-data-tibbles">Storing data: tibbles</a></li>
+  <li><a href="#dates-factors-and-strings-lubridate-forcats-and-stringr" id="toc-dates-factors-and-strings-lubridate-forcats-and-stringr" class="nav-link" data-scroll-target="#dates-factors-and-strings-lubridate-forcats-and-stringr">Dates, factors and strings: lubridate, forcats and stringr</a>
+  <ul class="collapse">
+  <li><a href="#handling-dates-and-times-lubridate" id="toc-handling-dates-and-times-lubridate" class="nav-link" data-scroll-target="#handling-dates-and-times-lubridate">Handling dates and times: lubridate</a></li>
+  <li><a href="#handling-factors-forcats" id="toc-handling-factors-forcats" class="nav-link" data-scroll-target="#handling-factors-forcats">Handling factors: forcats</a></li>
+  <li><a href="#handling-strings-stringr" id="toc-handling-strings-stringr" class="nav-link" data-scroll-target="#handling-strings-stringr">Handling strings: stringr</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/tidyverse_all.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you’re new to the tidyverse, I recommend that you first read <a href="http://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse/">part one</a> of this two-part series on transitioning into the tidyverse. Part 1 focuses on what I feel are the most important aspects and packages of the tidyverse: tidy thinking, piping, dplyr and ggplot2.</p>
+<p>This second part of the two-part series focuses on the remaining (less essential, but still immensely useful) packages that make up the tidyverse: tidyr, purrr, readr, tibbles, as well as some additional type-specific packages (lubridate, forcats and stringr). Additional resources include the set of tidyverse <a href="https://www.rstudio.com/resources/cheatsheets/">cheatsheets</a>, as well as the <a href="https://r4ds.had.co.nz/">R for Data Science book</a>.</p>
+<p>Start by loading the tidyverse package into your environment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then load the gapminder data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to download the data directly:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gapminder_orig <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define a copy of the original dataset that we will clean and play with </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> gapminder_orig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-shaping-tidyr" class="level1">
+<h1>Data shaping: tidyr</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/tidyr.jpg" width="180" height="200" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Tidyr aims to help you reshape your data, and is very useful if you receive data in a format that isn’t already “tidy”. I also find myself using tidyr functions to help me calculate specific types of summaries and plots.</p>
+<p>For instance, tidyr helps you convert your data between (a) long-form data where each variable is in a single column</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>         country year lifeExp
+1      Australia 1992  77.560
+2      Australia 1997  78.830
+3      Australia 2002  80.370
+4      Australia 2007  81.235
+5         Canada 1992  77.950
+6         Canada 1997  78.610
+7         Canada 2002  79.770
+8         Canada 2007  80.653
+9  United States 1992  76.090
+10 United States 1997  76.810
+11 United States 2002  77.310
+12 United States 2007  78.242</code></pre>
+</div>
+</div>
+<p>and (b) wide-form data where a single variable is separated into multiple columns based on some grouping (in this case, the life expectancy variable is separated into three columns, one for each country):</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  year Australia_lifeExp Canada_lifeExp United States_lifeExp
+1 1992            77.560         77.950                76.090
+2 1997            78.830         78.610                76.810
+3 2002            80.370         79.770                77.310
+4 2007            81.235         80.653                78.242</code></pre>
+</div>
+</div>
+<section id="gathering-and-spreading" class="level2">
+<h2 class="anchored" data-anchor-id="gathering-and-spreading">Gathering and spreading</h2>
+<p>The main tidyr functions are <code>spread()</code> and <code>gather()</code>. If you are familiar with the older reshape2 R package, you can think of tidyr as the tidyverse version, where <code>spread()</code> is the equivalent of <code>cast</code>, and <code>gather()</code> is the equivalent of <code>melt()</code>. If not… never mind!</p>
+<p>Think of <code>spread()</code> as a function that will spread a single variable’s “values” across multiple columns based on a “key”, or grouping variable. Similarly, think of <code>gather()</code> as a function that will gather a variable whose “values” are spread across multiple columns (where the “key” is the grouping variable that distinguishes the columns) into a single column.</p>
+<p>The main things you need to figure out when using <code>spread()</code> and <code>gather()</code> are what are the “key” and what are the “value” columns of your data frame. If you are spreading your data (to make it wider), then your key and value variables are existing variables in the data. If you are gathering your data (making it longer), then you will need to define key and value variables that will become variable names in your long-form data frame.</p>
+<p>Below I’ll show how this works with a small subset of the gapminder dataset, corresponding to the life expectancy for US, Australia, and Canada for each year in the data after 1990.</p>
+<p>Suppose that you started with the long-form data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_long <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Australia"</span>, <span class="st">"United States"</span>, <span class="st">"Canada"</span>), year <span class="sc">&gt;</span> <span class="dv">1990</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, year, lifeExp) </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>gapminder_sample_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         country year lifeExp
+1      Australia 1992  77.560
+2      Australia 1997  78.830
+3      Australia 2002  80.370
+4      Australia 2007  81.235
+5         Canada 1992  77.950
+6         Canada 1997  78.610
+7         Canada 2002  79.770
+8         Canada 2007  80.653
+9  United States 1992  76.090
+10 United States 1997  76.810
+11 United States 2002  77.310
+12 United States 2007  78.242</code></pre>
+</div>
+</div>
+<p>A wide-form version might have the life expectancy variable <em>spread</em> into three variables, one for each country (it would also be perfectly feasible to separate by year). So in this case, the <strong>value</strong> that you want to spread is the <code>lifeExp</code> variable, and the <strong>key</strong> that you want to spread/group by is the <code>country</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_wide <span class="ot">&lt;-</span> gapminder_sample_long <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(<span class="at">key =</span> country, <span class="at">value =</span> lifeExp)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gapminder_sample_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  year Australia Canada United States
+1 1992    77.560 77.950        76.090
+2 1997    78.830 78.610        76.810
+3 2002    80.370 79.770        77.310
+4 2007    81.235 80.653        78.242</code></pre>
+</div>
+</div>
+<p>So the columns with the country names, <code>Australia</code>, <code>Canada</code>, and <code>United States</code> contain the <code>lifeExp</code> values corresponding to those countries for each year. Note that the <code>year</code> variable has been retained in the wide form. If you had tried to do this without the <code>year</code> variable in the data frame, you would run into an error that said <code>"Error: Each row of output must be identified by a unique combination of keys."</code> Try running the following code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_long <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(<span class="at">key =</span> country, <span class="at">value =</span> lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is because when the year column is missing, there is no variable that tells purrr which values should go in the same rows together. This error message is a common source of frustration in tidyr, and Hadley has been working on replacements for <code>gather()</code> and <code>spread()</code> called <code>pivot_wider()</code> and <code>pivot_longer()</code>: https://tidyr.tidyverse.org/dev/articles/pivot.html. They haven’t been incorporated into the CRAN versions of tidyr and the tidyverse yet though, but they probably will be soon. If you understand the principles of <code>gather()</code> and <code>spread()</code> then when the new pivot functions are introduced, it will be easy to learn how to use them.</p>
+<p>If you wanted to go from the wide form to the long-form, you need to <em>gather</em> together the life expectancy values. This time, the <code>country</code> <strong>key</strong> and <code>lifeExp</code> <strong>value</strong> variable names do not currently exist in the data frame. The <code>key</code> and <code>value</code> arguments that you provide in the <code>gather()</code> function are what will be used as the names of the variables for the long-form version you’re about to create. Just so you can see that these variables did not need to exist in the original data, you will call the key <code>country_var</code> and the value <code>lifeExp_var</code> (previously unused names).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  year Australia Canada United States
+1 1992    77.560 77.950        76.090
+2 1997    78.830 78.610        76.810
+3 2002    80.370 79.770        77.310
+4 2007    81.235 80.653        78.242</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> country_var, <span class="at">value =</span> lifeExp_var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     country_var lifeExp_var
+1           year    1992.000
+2           year    1997.000
+3           year    2002.000
+4           year    2007.000
+5      Australia      77.560
+6      Australia      78.830
+7      Australia      80.370
+8      Australia      81.235
+9         Canada      77.950
+10        Canada      78.610
+11        Canada      79.770
+12        Canada      80.653
+13 United States      76.090
+14 United States      76.810
+15 United States      77.310
+16 United States      78.242</code></pre>
+</div>
+</div>
+<p>Oh no…. something went wrong! The <code>year</code> variable has been included as a key (country). Since there is no distinction between the three country columns (<code>Australia</code>, <code>Canada</code>, and <code>United States</code>) and the <code>year</code> column, the <code>year</code> column was included in the gathering process. To exclude a column from the gathering process, you can explicitly remove it using e.g.&nbsp;<code>-year</code> as an argument to the gather function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> country_var, <span class="at">value =</span> lifeExp_var, <span class="sc">-</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year   country_var lifeExp_var
+1  1992     Australia      77.560
+2  1997     Australia      78.830
+3  2002     Australia      80.370
+4  2007     Australia      81.235
+5  1992        Canada      77.950
+6  1997        Canada      78.610
+7  2002        Canada      79.770
+8  2007        Canada      80.653
+9  1992 United States      76.090
+10 1997 United States      76.810
+11 2002 United States      77.310
+12 2007 United States      78.242</code></pre>
+</div>
+</div>
+</section>
+<section id="combining-and-separating-variables" class="level2">
+<h2 class="anchored" data-anchor-id="combining-and-separating-variables">Combining and separating variables</h2>
+<p>The <code>unite()</code> function combines columns into a single column. For instance, you can combine the country and year variables into a single variable, <code>countryyear</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_united <span class="ot">&lt;-</span> gapminder_sample_long <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"countryyear"</span>, country, year, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>gapminder_sample_united</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          countryyear lifeExp
+1      Australia_1992  77.560
+2      Australia_1997  78.830
+3      Australia_2002  80.370
+4      Australia_2007  81.235
+5         Canada_1992  77.950
+6         Canada_1997  78.610
+7         Canada_2002  79.770
+8         Canada_2007  80.653
+9  United States_1992  76.090
+10 United States_1997  76.810
+11 United States_2002  77.310
+12 United States_2007  78.242</code></pre>
+</div>
+</div>
+<p>Conversely, you can separate single columns into multiple columns. Below, I undo the <code>unite()</code> that I performed above using <code>separate()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gapminder_sample_united <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(countryyear, <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"year"</span>), <span class="at">sep =</span> <span class="st">"_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         country year lifeExp
+1      Australia 1992  77.560
+2      Australia 1997  78.830
+3      Australia 2002  80.370
+4      Australia 2007  81.235
+5         Canada 1992  77.950
+6         Canada 1997  78.610
+7         Canada 2002  79.770
+8         Canada 2007  80.653
+9  United States 1992  76.090
+10 United States 1997  76.810
+11 United States 2002  77.310
+12 United States 2007  78.242</code></pre>
+</div>
+</div>
+<p>Tidyr also has some nice functions for dealing with missing values including</p>
+<ul>
+<li><p><code>drop_na()</code> that will remove every row that has a missing value (<code>NA</code>) in it.</p></li>
+<li><p><code>replace_na()</code> that will replace every missing value (<code>NA</code>) with whatever value you specify.</p></li>
+</ul>
+</section>
+</section>
+<section id="replacing-loops-purrr" class="level1">
+<h1>Replacing loops: purrr</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/purrr.jpg" width="180" height="200" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Iteration in the tidyverse is handled using <code>purrr</code>; a feline-friendly package for applying “map” functions (although it does a few other neat things too). If you are experienced in base R, then you’re probably familiar with the <code>apply()</code> functions that can be used in place of loops for iteratively applying a function. The most common apply functions are</p>
+<p><code>apply(matrix, margin, fun)</code> applies a function, <code>fun</code>, across each of the rows (if you set <code>margin = 1</code>) or each of the columns (if you set <code>margin = 2</code>) of a <code>matrix</code> (or array) and returns a vector.</p>
+<p><code>sapply(object, fun)</code> applies a function, <code>fun</code>, to each entry of an <code>object</code> (which could be a vector, a data frame or a list), and usually returns a vector, but sometimes it returns a matrix, and often it is difficult to guess what type of object it will return before you run your code.</p>
+<p><code>lapply(list, fun)</code> applies a function, <code>fun</code>, to each entry of a <code>list</code>, and returns a list. This one at least usually makes sense relative to the other apply functions.</p>
+<p>While there is nothing fundamentally wrong with the base R apply functions, the syntax is somewhat inconsistent across the different apply functions, and the expected type of the object they return is often ambiguous (at least it is for <code>sapply</code>…). Each of <code>purrr</code>’s map functions can be applied to vectors, lists and data frames.</p>
+<p>It is useful to remember that a data frame is a special type of a list where each columns of the data frame corresponds to an entry of the list. Each entry of the data frame-list is a vector of the same length (although the vectors do not need to be of the same type).</p>
+<p>One of the primary features of <code>purrr</code>’s map functions is that you need to specify the form of your output as a function suffix separated by an underscore. The first element is always the data object over which you want to iterate, and the second argument is always the function that you want to iteratively apply. For example:</p>
+<ul>
+<li><p><code>map(object, fun)</code> is the primary mapping function and returns a list</p></li>
+<li><p><code>map_df(object, fun)</code> returns a data frame</p></li>
+<li><p><code>map_dbl(object, fun)</code> returns a numeric (double) vector</p></li>
+<li><p><code>map_chr(object, fun)</code> returns a character vector</p></li>
+<li><p><code>map_lgl(object, fun)</code> returns a logical vector</p></li>
+</ul>
+<p>The <strong>input</strong> to any <code>map</code> function is always either</p>
+<ul>
+<li><p>a <strong>vector</strong> (of any type), in which case the iteration is done over the entries of the vector</p></li>
+<li><p>a <strong>list</strong>, in which case the iteration is performed over the elements of the list</p></li>
+<li><p>a <strong>data frame</strong>, in which case the iteration is performed over the columns of the data frame (which, since a data frame is a special kind of list, is technically the same as the previous point)</p></li>
+</ul>
+<p>The <strong>output</strong> of each map function is specified by the term that follows the underscore in the function name.</p>
+<p>Fundamentally, maps are for iteration. In the example below I will iterate through the vector <code>c(1, 4, 7)</code> by adding 10 to each entry. The following code is how you would do this using the base R apply functions</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), <span class="cf">function</span>(number) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(number <span class="sc">+</span> <span class="dv">10</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 11
+
+[[2]]
+[1] 14
+
+[[3]]
+[1] 17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), <span class="cf">function</span>(number) {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(number <span class="sc">+</span> <span class="dv">10</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 14 17</code></pre>
+</div>
+</div>
+<p>For the <code>purrr</code> equivalents, if you want your output to be a list, you would use <code>map()</code>, if you want it to be a numeric vector, then you would use <code>map_dbl()</code>, if you want it to be a character, then it is <code>map_chr()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), <span class="cf">function</span>(number) {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(number <span class="sc">+</span> <span class="dv">10</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 11
+
+[[2]]
+[1] 14
+
+[[3]]
+[1] 17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), <span class="cf">function</span>(number) {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(number <span class="sc">+</span> <span class="dv">10</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 14 17</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_chr</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), <span class="cf">function</span>(number) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(number <span class="sc">+</span> <span class="dv">10</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Automatic coercion from double to character was deprecated in purrr 1.0.0.
+ℹ Please use an explicit call to `as.character()` within `map_chr()` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "11.000000" "14.000000" "17.000000"</code></pre>
+</div>
+</div>
+<p>If you want to return a data frame, then you would use <code>map_df</code> (but you need to make sure that in each iteration you’re returning a data frame which has consistent column names).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_df</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>), <span class="cf">function</span>(number) {</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">data.frame</span>(<span class="at">old_number =</span> number, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">new_number =</span> number <span class="sc">+</span> <span class="dv">10</span>))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  old_number new_number
+1          1         11
+2          4         14
+3          7         17</code></pre>
+</div>
+</div>
+<p><code>map2</code> and <code>pmap</code> are versions of map functions that work over multiple data frames/lists/vectors at once. There are also fancy things that you can do with purrr that include iterating over entire lists of data as entries to columns of a tibble, but I won’t talk about those here. My next blog post will be on purrr so keep a look out if you want to learn more. For a more comprehensive look at purrr, I recommend <a href="https://jennybc.github.io/purrr-tutorial/">Jenny Bryan’s tutorial</a>.</p>
+</section>
+<section id="loading-data-readr" class="level1">
+<h1>Loading data: readr</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/readr.png" width="180" height="200" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>At face-value, readr is probably the least exciting tidyverse package. At first glance, it mostly appears to offer tidyverse equivalents to the classic base R data loading functions such as <code>read.csv()</code>. Calling a readr data loading function is usually the same as the base R versions, <em>but</em> they use an underscore <code>_</code> separator rather than a period separator <code>.</code>, as in <code>read_csv()</code>.</p>
+<p>The main advantages of the readr versions is that the data is read in directly as a <strong>tibble</strong>, and the readr loading functions do a much better job at deciding what <em>type</em> each variable should be (and it makes it easier to specify what types the columns should be at the time of loading if you have strong opinions).</p>
+<p>However, a closer look reveals that <code>readr</code> has some hidden talents that are sure to come in handy! For instance, readr has a series of <code>parse_</code> functions that convert abnormally represented data into normally represented data. For instance, <code>parse_number()</code> will extract the numeric component of strings with numbers in them. So if your collaborators give you a file with prices that have preceding “$”s or other characters in them, <code>parse_number()</code> will remove them for you without you having to do anything involving regular expressions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_number</span>(<span class="fu">c</span>(<span class="st">"$1,234.5"</span>, <span class="st">"$12.45"</span>, <span class="st">"99%"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1234.50   12.45   99.00</code></pre>
+</div>
+</div>
+<p>Tidyr can also be used to convert dates and times coded as strings to actual date-time formats.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_datetime</span>(<span class="st">"2010-10-01 21:45"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2010-10-01 21:45:00 UTC"</code></pre>
+</div>
+</div>
+<p>But to be honest, I prefer to use the <em>lubridate</em> package for doing things with dates (see below).</p>
+<p>Okay, so maybe tidyr isn’t the most exciting package, but that <code>parse_number()</code> thing is pretty neat!</p>
+</section>
+<section id="storing-data-tibbles" class="level1">
+<h1>Storing data: tibbles</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/tibble.png" width="180" height="200" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Tibbles are the tidyverse version of a data frame. You’ve probably used tibbles before without even realizing. They look and behave a LOT like a data frame. Often when you input a data frame to a tidyverse function, it comes out the other end as a tibble. The differences are minor and you’re unlikely to notice them if you’re just starting out, so I wouldn’t worry about whether your data is stored as a data frame or a tibble.</p>
+<p>The main differences that you might notice is in how they are printed to the console: tibbles are automatically truncated to 10 rows when printed into the console, and if you have too many variables, many of the variables are hidden from view. I secretly sometimes view my tibbles in the console using <code>as.data.frame(data)</code> so that it doesn’t truncate. Probably a better thing to do would be to <code>View(data)</code>, but that opens a whole new window which I sometimes find kind of annoying.</p>
+<p>Tibbles only become important much later down the tidyverse track when you want to use list columns to do fancy stuff with purrr.</p>
+</section>
+<section id="dates-factors-and-strings-lubridate-forcats-and-stringr" class="level1">
+<h1>Dates, factors and strings: lubridate, forcats and stringr</h1>
+<p>While not technically a part of the tidyverse, there are also very useful packages for manipulating type-specific variables: lubridate for dates/times, forcats for factors and stringr for strings.</p>
+<section id="handling-dates-and-times-lubridate" class="level2">
+<h2 class="anchored" data-anchor-id="handling-dates-and-times-lubridate">Handling dates and times: lubridate</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/lubridate.png" width="180" height="200" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Lubridate makes it really straightforward to deal with dates. One might say… it <em>lubricates</em> them… one might also not say that, because it’s a bit weird.</p>
+<p>Lubridate offers a simple way of converting dates/times stored as strings to dates/times stored as dates/times, and it makes it easy to do math with dates.</p>
+<p>The primary set of functions are date-time-reading functions that convert strings to dates. To decide which function to use, you will need to figure out what format your dates are in (by… looking at them…). For instance, if your date is coded as <code>"August 2nd 2019"</code> or <code>"08-05-19"</code> or <code>"08/02/19"</code>, then you would use the <code>mdy()</code> function because it is coded as “month-day-year”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"August 2nd 2019"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-08-02"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"8-2-2019"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-08-02"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"8/2/19"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-08-02"</code></pre>
+</div>
+</div>
+<p>If your dates were coded as “year-month-day” then you would use the <code>ymd()</code> function, and so on.</p>
+<p>Strings that contain times can be parsed using <code>hms()</code> for “hour-minute-second”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hms</span>(<span class="st">"8:45:12"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "8H 45M 12S"</code></pre>
+</div>
+</div>
+<p>And date-times can be parsed using <code>ymd_hms()</code>, <code>ymd_hm()</code>, <code>ymd_h()</code>, as well as for the other date versions (<code>mdy_hms()</code>, <code>dmy_hms()</code>, etc…).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hms</span>(<span class="st">"March 13th 2019 at 9:02:00"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-03-13 09:02:00 UTC"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"03-13-19, 9:02"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-03-13 09:02:00 UTC"</code></pre>
+</div>
+</div>
+<p>You can add fixed periods of time to dates easily using the <code>years()</code>, <code>months()</code>, <code>days()</code>, <code>hours()</code>, etc… functions. For instance:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"August 2nd 2019"</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-09-13"</code></pre>
+</div>
+</div>
+<p>Once your dates are in an actual date format, you can do intuitive mathematical calculations with date-times:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hms</span>(<span class="st">"August 2nd 2019, 1:21:30 pm"</span>) <span class="sc">-</span> <span class="fu">mdy_hms</span>(<span class="st">"August 1st 2019, 11:23:33 am"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 1.08191 days</code></pre>
+</div>
+</div>
+<p>Plus ggplot2 handles lubridate-dates really well.</p>
+</section>
+<section id="handling-factors-forcats" class="level2">
+<h2 class="anchored" data-anchor-id="handling-factors-forcats">Handling factors: forcats</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/forcats.png" width="180" height="200" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Factors are somehow simultaneously very useful and the worst thing ever. Fortunately, since I discovered the <code>forcats</code> package, my factors have been on their best behaviour.</p>
+<p>The forcats package has a few really useful functions. The ones I use most often are</p>
+<ul>
+<li><p><code>fct_inorder()</code> for reordering the levels of a factor so that the levels are in the order that they appear in the factor vector.</p></li>
+<li><p><code>fct_infreq()</code> for reordering the levels of a factor so that the levels are in order of most to least frequent.</p></li>
+<li><p><code>fct_rev()</code> for reversing the order of the levels of a factor.</p></li>
+<li><p><code>fct_relevel()</code> for manually reordering the levels of the factor.</p></li>
+<li><p><code>fct_reorder()</code> for reordering the levels based on their relationship to another variable.</p></li>
+</ul>
+<p>There are other functions too, but I rarely use them. Check out the forcats <a href="file:///Users/Rebecca/Downloads/factors.pdf">cheatsheet</a>!</p>
+<p>An example of how the forcats package makes my life easier is when I want to reorder the factor levels. Factor levels are usually alphabetical by default, and I often want the factor levels to be in a specific order.</p>
+<p>As an exercise both in ggplot2 and dplyr, I want to make a plot that shows the difference between life expectancy between 2007 and 1952 and arrange the countries in order of greatest difference in life expectancy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>gapminder_life_exp_diff <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter to the starting and ending years only</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span> <span class="sc">|</span> year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ensure that the data are arranged so that 1952 is first and 2007 is second </span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># within each year</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(country, year) <span class="sc">%&gt;%</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for country, add a variable corresponding to the difference between life </span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># expectency in 2007 and 1952</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lifeExp_diff =</span> lifeExp[<span class="dv">2</span>] <span class="sc">-</span> lifeExp[<span class="dv">1</span>],</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>         <span class="co"># also calculate the largest population for the country (based on the two years)</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">max_pop =</span> <span class="fu">max</span>(pop)) <span class="sc">%&gt;%</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># arrange in order of the biggest difference in life expectency</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(lifeExp_diff) <span class="sc">%&gt;%</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># restrict to countries with a population of at least 30,000 so we can fit </span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the plot in a reasonable space</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(max_pop <span class="sc">&gt;</span> <span class="dv">30000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, year, continent, lifeExp, lifeExp_diff)</span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>gapminder_life_exp_diff  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 72 × 5
+   country          year continent lifeExp lifeExp_diff
+   &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
+ 1 South Africa     1952 Africa       45.0         4.33
+ 2 South Africa     2007 Africa       49.3         4.33
+ 3 Congo Dem. Rep.  1952 Africa       39.1         7.32
+ 4 Congo Dem. Rep.  2007 Africa       46.5         7.32
+ 5 United States    1952 Americas     68.4         9.80
+ 6 United States    2007 Americas     78.2         9.80
+ 7 United Kingdom   1952 Europe       69.2        10.2 
+ 8 United Kingdom   2007 Europe       79.4        10.2 
+ 9 Nigeria          1952 Africa       36.3        10.5 
+10 Nigeria          2007 Africa       46.9        10.5 
+# … with 62 more rows</code></pre>
+</div>
+</div>
+<p>To understand what the intermediate dplyr steps are doing in the code below, I suggest printing each step out to the console (without defining a new data frame) - i.e.&nbsp;first print <code>gapminder %&gt;% filter(year == 1952 | year == 2007)</code>, then print <code>gapminder %&gt;% filter(year == 1952 | year == 2007) %&gt;% arrange(country, year)</code>, etc.</p>
+<p>The next task is to make a dot plot that shows the life expectancy in 1952 and 2007 for each country. Since the countries in our data frame is arranged in order of smallest to biggest difference in life expectancy, one would expect that the plot will be too. However, the countries in the plot still appear in alphabetical order! The problem is that ggplot2 plots factors in order of their levels, but the <code>arrange()</code> dplyr function rearranges the order of the rows in the data frame but does not change the order of the factor levels.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>gapminder_life_exp_diff <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> country, <span class="at">col =</span> <span class="fu">as.factor</span>(year)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If I tried to fix this using base R, I would undoubtedly end up messing up which country is which. Fortunately this is really, really easy to fix using forcats! The <code>fct_inorder()</code> function will automatically reorder the levels of a factor in the order in which they appear in the vector. So all I need to do is add one line of pre-processing code before I make my plot: <code>mutate(country = fct_inorder(country))</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>gapminder_life_exp_diff <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_inorder</span>(country)) <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> country, <span class="at">col =</span> <span class="fu">as.factor</span>(year)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I’m a bit pedantic about data viz, so I can’t leave this plot looking like this, so I’m just going to place some ggplot2 code here for making this plot waaaaay more badass. Try to read through the code and understand what its doing. This isn’t a lesson in forcats, it’s a lesson in EDA!</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>gapminder_life_exp_diff <span class="sc">%&gt;%</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">fct_inorder</span>(country)) <span class="sc">%&gt;%</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for each country define a varaible for min and max life expectancy</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">max_lifeExp =</span> <span class="fu">max</span>(lifeExp),</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">min_lifeExp =</span> <span class="fu">min</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot a horizontal line from min to max life expectency for each country</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> min_lifeExp, <span class="at">xend =</span> max_lifeExp, </span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> country, <span class="at">yend =</span> country,</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col =</span> continent), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a point for each life expectancy data point</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> country, <span class="at">col =</span> continent), <span class="at">size =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add text of the country name as well as the max and min life expectency </span></span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> min_lifeExp <span class="sc">+</span> <span class="fl">0.7</span>, <span class="at">y =</span> country, </span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="fu">paste</span>(country, <span class="fu">round</span>(min_lifeExp))), </span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">col =</span> <span class="st">"grey50"</span>, <span class="at">hjust =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> max_lifeExp <span class="sc">-</span> <span class="fl">0.7</span>, <span class="at">y =</span> country, </span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="fu">round</span>(max_lifeExp)), </span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">col =</span> <span class="st">"grey50"</span>, <span class="at">hjust =</span> <span class="st">"left"</span>) <span class="sc">+</span></span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ensure that the left-most text is not cut off </span></span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">85</span>)) <span class="sc">+</span></span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># choose a different colour palette</span></span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Pastel2"</span>) <span class="sc">+</span></span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set the title</span></span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in life expectancy"</span>,</span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Between 1952 and 2007"</span>,</span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Life expectancy (in 1952 and 2007)"</span>,</span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>, </span>
+<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"Continent"</span>) <span class="sc">+</span></span>
+<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove the grey background</span></span>
+<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove the axes and move the legend to the top</span></span>
+<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, </span>
+<span id="cb57-36"><a href="#cb57-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb57-37"><a href="#cb57-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb57-38"><a href="#cb57-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="handling-strings-stringr" class="level2">
+<h2 class="anchored" data-anchor-id="handling-strings-stringr">Handling strings: stringr</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidyverse/stringr.jpg" width="180" height="200" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>R used to be terrible at handling strings. Stringr has made string-handling a LOT easier. The functions all start with <code>str_</code> and end with what you want to do to the string.</p>
+<p>For instance, to return a logical that specifies whether a specific pattern exists in the string (the equivalent of <code>grepl()</code> in base R), you can use the <code>str_detect()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="st">"I like bananas"</span>, <span class="st">"banana"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>My friend Sara Stoudt <a href="https://twitter.com/sastoudt">@sastoudt</a> wrote a wrote a very useful post for the tidyverse website comparing stringr with its Base R equivalents (https://stringr.tidyverse.org/articles/from-base.html). She provides the following useful table (hers is a bit longer - I’m just showing the parts I find most useful):</p>
+<table class="table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 29%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>Base R</th>
+<th>Tidyverse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identify the location of a pattern</td>
+<td><code>gregexpr(pattern, x)</code></td>
+<td><code>str_locate_all(x, pattern)</code></td>
+</tr>
+<tr class="even">
+<td>Keep strings matching a pattern</td>
+<td><code>grep(pattern, x, value = TRUE)</code></td>
+<td><code>str_subset(x, pattern)</code></td>
+</tr>
+<tr class="odd">
+<td>Identify position matching a pattern</td>
+<td><code>grep(pattern, x)</code></td>
+<td><code>str_which(x, pattern)</code></td>
+</tr>
+<tr class="even">
+<td>Detect presence or absence of a pattern</td>
+<td><code>grepl(pattern, x)</code></td>
+<td><code>str_detect(x, pattern)</code></td>
+</tr>
+<tr class="odd">
+<td>Replace a pattern</td>
+<td><code>gsub(pattern, replacement, x)</code></td>
+<td><code>str_replace_all(x, pattern, replacement)</code></td>
+</tr>
+<tr class="even">
+<td>Calculate the number of characters in a string</td>
+<td><code>nchar(x)</code></td>
+<td><code>str_length(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Split a string into pieces</td>
+<td><code>strsplit(x, pattern)</code></td>
+<td><code>str_split(x, pattern)</code></td>
+</tr>
+<tr class="even">
+<td>Extract a subset of a string</td>
+<td><code>substr(x, start, end)</code></td>
+<td><code>str_sub(x, start, end)</code></td>
+</tr>
+<tr class="odd">
+<td>Convert a string to lowercase</td>
+<td><code>tolower(x)</code></td>
+<td><code>str_to_lower(x)</code></td>
+</tr>
+<tr class="even">
+<td>Convert a string to “Title Case”</td>
+<td><code>tools::toTitleCase(x)</code></td>
+<td><code>str_to_title(x)</code></td>
+</tr>
+<tr class="odd">
+<td>Convert a string to uppercase</td>
+<td><code>toupper(x)</code></td>
+<td><code>str_to_upper(x)</code></td>
+</tr>
+<tr class="even">
+<td>Trim white space from a string</td>
+<td><code>trimws(x)</code></td>
+<td><code>str_trim(x)</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you’d like to see a little more of stringr, check out Sara’s post!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

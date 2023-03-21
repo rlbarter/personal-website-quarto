@@ -1,0 +1,3 @@
+"0","gapminder_sample_wide <- gapminder_sample_long %>% "
+"0","  spread(key = country, value = lifeExp)"
+"0","gapminder_sample_wide"

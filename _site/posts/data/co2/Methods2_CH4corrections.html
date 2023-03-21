@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Rebecca Barter – methods2_ch4corrections</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Rebecca Barter</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html">
+ <span class="menu-text">About Rebecca</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/rlbarter"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/rlbarter"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<section id="step-2.-separate-co2-emissions-from-non-co2-ghgs-in-cdp" class="level1">
+<h1>Step 2. Separate CO2 emissions from non-CO2 GHGs in CDP</h1>
+<p>Here, we estimate the contribution of CH4 and correct it out from the CDP Scope-1 values.</p>
+<p>A region label was also assigned to CDP cities corresponding to definitions used in carbonn.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_colwidth'</span>, <span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="variables" class="level1">
+<h1>Variables</h1>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>var_city2016 <span class="op">=</span> <span class="st">'City Short Name (CDP)'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>var_pop2016 <span class="op">=</span> <span class="st">'Current Population (CDP)'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Emissions</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>var_tot2016 <span class="op">=</span> <span class="st">'Total City-wide Emissions (metric tonnes CO2e) (CDP)'</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>var_s1_2016 <span class="op">=</span> <span class="st">'Total Scope 1 Emissions (metric tonnes CO2e) (CDP)'</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>var_s2_2016 <span class="op">=</span> <span class="st">'Total Scope 2 Emissions (metric tonnes CO2e) (CDP)'</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>var_gases2016 <span class="op">=</span> <span class="st">'Gases included (CDP)'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GWP coefficient for CH4 from Table 5.2, taken from IPCC 5th Assessment Report</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># http://www.iclei.org/fileadmin/user_upload/ICLEI_WS/Documents/Climate/GPC_12-8-14_1_.pdf</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>GWP_CH4 <span class="op">=</span> <span class="dv">28</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Region labels to add for CDP using regions as defined by carbonn</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 'Europe', 'Latin America &amp; Caribbean', 'North America', 'Oceania',</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 'East Asia','South Asia', 'Southeast Asia', 'Africa',</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 'North Africa, Middle East, West Asia'</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>groupEurope <span class="op">=</span> [<span class="st">'Amsterdam'</span>,<span class="st">'Athens'</span>,<span class="st">'Barcelona'</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Barnsley, Doncaster and Rotherham'</span>,<span class="st">'Barreiro'</span>, <span class="st">'Basel'</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Bath and North East Somerset, North Somerset and South Gloucestershire'</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Bedfordshire CC'</span>,<span class="st">'Belfast'</span>,<span class="st">'Berkshire'</span>, <span class="st">'Berlin'</span>, <span class="st">'Berne'</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Birmingham'</span>, <span class="st">'Blackburn with Darwen'</span>,<span class="st">'Bologna'</span>,<span class="st">'Bournemouth'</span>, <span class="st">'Bradford'</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Bremen'</span>, <span class="st">'Bridgend and Neath Port Talbot'</span>, <span class="st">'Brighton and Hove'</span>, <span class="st">'Bristol'</span>, <span class="st">'Brussels'</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Buckinghamshire CC'</span>,<span class="st">'Calderdale, Kirklees and Wakefield'</span>,<span class="st">'Cambridgeshire CC'</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Cardiff'</span>, <span class="st">'Cascais'</span>, <span class="st">'Central Valleys (Wales)'</span>, <span class="st">'Cheshire CC'</span>, <span class="st">'Clackmannanshire and Fife'</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Darlington'</span>,<span class="st">'Derby'</span>,<span class="st">'Dublin'</span>, <span class="st">'Durham CC'</span>, <span class="st">'Dusseldorf'</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'East Ayrshire and North Ayrshire mainland'</span>, <span class="st">'East Cumbria'</span>,<span class="st">'East Derbyshire'</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'East Dunbartonshire, West Dunbartonshire and Helensburgh &amp; Lomond'</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'East Lothian and Midlothian'</span>, <span class="st">'East Merseyside'</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'East Riding of Yorkshire'</span>, <span class="st">'East Sussex CC'</span>,<span class="st">'East of Northern Ireland'</span>, <span class="st">'Edinburgh'</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Essex CC'</span>,<span class="st">'Falkirk'</span>, <span class="st">'Faro'</span>,<span class="st">'Ferrara'</span>,<span class="st">'Flintshire and Wrexham'</span>,<span class="st">'Frankfurt'</span>,<span class="st">'Geneva'</span>, </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Genova'</span>, <span class="st">'Glasgow'</span>,<span class="st">'Gloucestershire'</span>,<span class="st">'Graz'</span>,<span class="st">'Gwent Valleys'</span>,<span class="st">'Halton and Warrington'</span>, </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Hamburg'</span>,<span class="st">'Hampshire CC'</span>,<span class="st">'Hartlepool and Stockton-on-Tees'</span>,<span class="st">'Heidelberg'</span>, <span class="st">'Helsinki'</span>, </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Herefordshire, County of'</span>,<span class="st">'Hertfordshire'</span>, <span class="st">'Inverclyde, East Renfrewshire and Renfrewshire'</span>, </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Kent CC'</span>,<span class="st">'Kingston upon Hull'</span>,<span class="st">'Lancashire CC'</span>, <span class="st">'Magdeburg'</span>, </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Lausanne'</span>, <span class="st">'Leeds'</span>, <span class="st">'Leicester'</span>, <span class="st">'Leicestershire CC and Rutland'</span>,<span class="st">'Lincolnshire'</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Lisbon'</span>, <span class="st">'Liverpool'</span>,<span class="st">'London'</span>,<span class="st">'Luton'</span>, <span class="st">'Lyon'</span>, <span class="st">'Madrid'</span>,<span class="st">'Manchester'</span>,<span class="st">'Marseille'</span>,</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Medway'</span>,<span class="st">'Milano'</span>, <span class="st">'Milton Keynes'</span>,<span class="st">'Moita'</span>,<span class="st">'Monmouthshire and Newport'</span>,<span class="st">'Munich'</span>, <span class="st">'Nancy'</span>,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Nantes'</span>,<span class="st">'Newcastle'</span>, <span class="st">'Nice'</span>,<span class="st">'Norfolk'</span>,<span class="st">'North Lanarkshire'</span>, <span class="st">'North Nottinghamshire'</span>,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">'North Yorkshire CC'</span>, <span class="st">'North and North East Lincolnshire'</span>,<span class="st">'Northamptonshire'</span>, <span class="st">'Nottingham'</span>, </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Outer Belfast'</span>, <span class="st">'Oxfordshire'</span>,<span class="st">'Paris'</span>,<span class="st">'Peterborough, UK'</span>,<span class="st">'Piacenza'</span>,<span class="st">'Plymouth'</span>,<span class="st">'Porto'</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Portsmouth'</span>, <span class="st">'Prague'</span>,<span class="st">'Ravenna'</span>,<span class="st">'Roma'</span>,<span class="st">'Rotterdam'</span>,<span class="st">'Ruhr'</span>, <span class="st">'Santarém'</span>,<span class="st">'Sefton'</span>,</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Sheffield'</span>,<span class="st">'Shropshire CC'</span>,<span class="st">'Somerset'</span>,<span class="st">'South Ayrshire'</span>, <span class="st">'South Lanarkshire'</span>, <span class="st">'South Nottinghamshire'</span>,</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">'South and West Derbyshire'</span>, <span class="st">'Southampton'</span>, <span class="st">'Southend-on-Sea'</span>,<span class="st">'Staffordshire CC'</span>,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Stoke-on-Trent'</span>,<span class="st">'Stuttgart'</span>, <span class="st">'Suffolk'</span>, <span class="st">'Sunderland'</span>,<span class="st">'Surrey'</span>,<span class="st">'Swansea'</span>, <span class="st">'Swindon'</span>,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Telford and Wrekin'</span>, <span class="st">'Thurrock'</span>,<span class="st">'Torino'</span>,<span class="st">'Torres Vedras'</span>,<span class="st">'Tyneside'</span>,<span class="st">'Udine'</span>,<span class="st">'Venezia'</span>, </span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Vienna'</span>,<span class="st">'Warwickshire'</span>,<span class="st">'West Cumbria'</span>,<span class="st">'West Lothian'</span>, <span class="st">'West Sussex'</span>,<span class="st">'Wiltshire CC'</span>,</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Wirral'</span>, <span class="st">'Worcestershire'</span>,<span class="st">'York'</span>,<span class="st">'Zaragoza'</span>,<span class="st">'Zürich'</span>, <span class="st">'Águeda'</span>,</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>      <span class="st">'Belgrade'</span>,<span class="st">'Bratislava'</span>,<span class="st">'Bucharest'</span>,<span class="st">'Budapest'</span>,<span class="st">'Cracow'</span>,<span class="st">'Istanbul'</span>,</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Kiev'</span>, <span class="st">'Ljubljana'</span>,<span class="st">'Moscow'</span>,<span class="st">'Riga'</span>,<span class="st">'Sofia'</span>,<span class="st">'Tallinn'</span>,<span class="st">'Vilnius'</span>,<span class="st">'Warsaw'</span>,<span class="st">'Zagreb'</span>,</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Aarhus'</span>, <span class="st">'Aerøskøbing'</span>, <span class="st">'Copenhagen'</span>,<span class="st">'Gladsaxe Kommune'</span>,<span class="st">'Gävle'</span>,</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Halmstad'</span>, <span class="st">'Hjørring'</span>,<span class="st">'Hoeje-Taastrup Kommune'</span>,<span class="st">'Jönköping'</span>,<span class="st">'Karlstad'</span>,<span class="st">'Lahti'</span>,<span class="st">'Linköping'</span>,</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Norrköping'</span>,<span class="st">'Oslo'</span>, <span class="st">'Reykjavík'</span>,<span class="st">'Skåne county'</span>,<span class="st">'Stockholm'</span>,<span class="st">'Sundsvall'</span>,<span class="st">'Turku'</span>,<span class="st">'Umeå'</span>,</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Uppsala'</span>,<span class="st">'Västra Götaland county'</span>, <span class="st">'Växjö'</span>,<span class="st">'Örebro'</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>groupNAmer <span class="op">=</span> [<span class="st">'Abington'</span>,<span class="st">'Ajax, ON'</span>,<span class="st">'Albany'</span>,</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Alton, IL'</span>, <span class="st">'Arlington, VA'</span>, <span class="st">'Aspen and Pitkin County'</span>,<span class="st">'Atlanta'</span>, </span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Austin'</span>, <span class="st">'Baltimore'</span>,<span class="st">'Benicia'</span>,<span class="st">'Blacksburg'</span>,<span class="st">'Boston'</span>, <span class="st">'Boulder'</span>,<span class="st">'Brisbane, CA'</span>,</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Burlington'</span>,<span class="st">'Calgary'</span>, <span class="st">'Chicago'</span>,<span class="st">'Cleveland'</span>, <span class="st">'Columbus'</span>,<span class="st">'Dallas'</span>,</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Davis, CA'</span>,<span class="st">'Denver'</span>,<span class="st">'Detroit'</span>, <span class="st">'District of Columbia'</span>, <span class="st">'Durham'</span>,<span class="st">'Edmonton'</span>,</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Emeryville, CA'</span>,<span class="st">'Eugene'</span>,<span class="st">'Flagstaff'</span>,<span class="st">'Fort Collins'</span>,<span class="st">'Hamilton, ON'</span>,<span class="st">'Hayward'</span>,</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Hermosa Beach, CA'</span>,<span class="st">'Houston'</span>,<span class="st">'Indianapolis'</span>,<span class="st">'Iowa'</span>,<span class="st">'Knoxville'</span>,<span class="st">'Lake Forest, IL'</span>,<span class="st">'Lakewood'</span>,</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Lancaster, PA'</span>,<span class="st">'Las Vegas'</span>,<span class="st">'London, ON'</span>, <span class="st">'Los Altos Hills'</span>,<span class="st">'Los Angeles'</span>,</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Minneapolis'</span>,<span class="st">'Montreal'</span>,<span class="st">'Nashville and Davidson'</span>,<span class="st">'New Orleans'</span>,</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>       <span class="st">'New York City'</span>,<span class="st">'North Vancouver'</span>,<span class="st">'Oakland'</span>,<span class="st">'Ottawa'</span>,<span class="st">'Palo Alto'</span>,</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Peterborough, ON'</span>, <span class="st">'Philadelphia'</span>, <span class="st">'Phoenix'</span>,<span class="st">'Piedmont, CA'</span>,<span class="st">'Pittsburgh'</span>,</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Portland, OR'</span>,<span class="st">'Reno'</span>,<span class="st">'Richmond, VA'</span>,<span class="st">'Roanoke'</span>,<span class="st">'San Antonio'</span>, <span class="st">'San Diego'</span>,</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>       <span class="st">'San Francisco'</span>, <span class="st">'Santa Monica'</span>,<span class="st">'Savannah'</span>,<span class="st">'Seattle'</span>,<span class="st">'Somerville, MA'</span>,</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>       <span class="st">'St Louis'</span>,<span class="st">'Toronto'</span>,<span class="st">'Tucson'</span>,<span class="st">'University City, MO'</span>,<span class="st">'Vancouver'</span>,</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Washington DC'</span>, <span class="st">'West Hollywood'</span>,<span class="st">'Windsor, ON'</span>,<span class="st">'Winnipeg'</span>,</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Yonkers'</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>groupOceania <span class="op">=</span> [<span class="st">'Adelaide'</span>, <span class="st">'Auckland'</span>,<span class="st">'Brisbane'</span>,<span class="st">'Canberra'</span>,</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Melbourne'</span>,<span class="st">'Perth'</span>, <span class="st">'Sydney'</span>,<span class="st">'Wellington'</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>groupLatinAmer <span class="op">=</span>[<span class="st">'Belo Horizonte'</span>, <span class="st">'Bogotá'</span>, <span class="st">'Brasília'</span>,<span class="st">'Buenos Aires'</span>,<span class="st">'Caracas'</span>,</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Curitiba'</span>, <span class="st">'Florianópolis'</span>, <span class="st">'Goiânia'</span>, <span class="st">'Guaratinguetá'</span>,<span class="st">'La Paz'</span>,<span class="st">'Lima'</span>,<span class="st">'Mexico City'</span>,</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Palmas'</span>,<span class="st">'Porto Alegre'</span>,<span class="st">'Quito'</span>,<span class="st">'Recife'</span>,<span class="st">'Rio de Janeiro'</span>, <span class="st">'Salvador'</span>, <span class="st">'San Luis Potosí'</span>,</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>   <span class="st">'Santiago'</span>, <span class="st">'Santiago de Cali'</span>,<span class="st">'Santiago de Guayaquil'</span>, <span class="st">'Sao Paulo'</span>,<span class="st">'Sorocaba'</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="co">#for North Africa, Middle East, West Asia</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="co">#NB: Put Bornova and Kadiovacik in Turkey in this group to be consistent with carbonn Istanbul and Izmir</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>groupNorthAfrica <span class="op">=</span> [<span class="st">'Amman'</span>,<span class="st">'Bornova'</span>,<span class="st">'Kadiovacik'</span>]</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="co">#for Africa</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>groupAfrica <span class="op">=</span> [<span class="st">'Johannesburg'</span>, <span class="st">'Pretoria Tshwane'</span>, <span class="st">'Cape Town'</span>, <span class="st">'Durban'</span>, <span class="st">'Addis Ababa'</span>, <span class="st">'Lagos'</span>]</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a><span class="co">#for'East Asia' (Taiwan, South Korea, Japan, China [Hong Kong])</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>groupEastAsia <span class="op">=</span> [<span class="st">'Pingtung'</span>, <span class="st">'Yilan'</span>, <span class="st">'Taipei City'</span>, <span class="st">'New Taipei'</span>, <span class="st">'Kaohsiung'</span>, <span class="st">'Taoyuan'</span>, </span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'Suwon'</span>, <span class="st">'Incheon'</span>, <span class="st">'Seoul'</span>,</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'Tokyo'</span>, <span class="st">'Okayama'</span>, <span class="st">'Yokohama'</span>, <span class="st">'Nagoya'</span>, <span class="st">'Hiroshima'</span>, <span class="st">'Hong Kong'</span></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="co">#for Southeast Asia (Philippines, Indonesia)</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>groupSoutheastAsia <span class="op">=</span> [<span class="st">'Makati'</span>, <span class="st">'Batangas'</span>, <span class="st">'Bogor'</span>, <span class="st">'Jakarta'</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="functions" class="level1">
+<h1>Functions</h1>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tag_column_names_with_datasetname(df, tagname):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Add to column name dataset from which column was obtained"""</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    col_names <span class="op">=</span> <span class="bu">list</span>(df)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cname <span class="kw">in</span> col_names:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cname <span class="op">!=</span> <span class="st">'Account Number'</span>:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            df.rename(columns <span class="op">=</span> {cname:cname <span class="op">+</span> <span class="st">' ('</span> <span class="op">+</span> tagname <span class="op">+</span> <span class="st">')'</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bar_strDim(df, dim):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Bar plot of dimension string values in df column"""</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> df[dim]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> s.value_counts()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> counts</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> counts.iloc[:<span class="bu">len</span>(counts)].plot(kind<span class="op">=</span><span class="st">"bar"</span>, figsize<span class="op">=</span>fsize)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="estimate-co2-only-values-from-co2-eq-for-total-emissions-and-scope1" class="level1">
+<h1>Estimate CO<sub>2</sub>-only values from CO<sub>2-eq</sub> for Total Emissions and Scope1</h1>
+<p>For emissions that include gases other than CO<sub>2</sub>.</p>
+<p>For city <em>i</em> in country <em>j</em>, CO2_scope1<sub>i</sub>:</p>
+<p>Lower bound = CO2eq_scope1<sub>i</sub> - [CH4waste/cap]<sub>j</sub> x cap<sub>i</sub> x GWP_CH4</p>
+<p>Upper bound = CO2eq_scope1<sub>i</sub> - [(CH4waste + corrected_CH4natgas)/cap]<sub>j</sub> x cap<sub>i</sub> x GWP_CH4</p>
+</section>
+<section id="read-data" class="level1">
+<h1>Read data</h1>
+<section id="qaqc-checked-cdp-data-output-from-methods1_cdp2016_qaqc.ipynb" class="level2">
+<h2 class="anchored" data-anchor-id="qaqc-checked-cdp-data-output-from-methods1_cdp2016_qaqc.ipynb">QA/QC-checked CDP data output from Methods1_CDP2016_QAQC.ipynb</h2>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> <span class="st">'DATA/INTERMEDIATE_FILES/cdp_with_quality_flags.tsv'</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(fname, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'Unnamed: 0'</span>,<span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> df.shape</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(187, 31)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Account Number (CDP)</th>
+      <th>City Name (CDP)</th>
+      <th>Country (CDP)</th>
+      <th>City Short Name (CDP)</th>
+      <th>C40 (CDP)</th>
+      <th>Reporting Year (CDP)</th>
+      <th>Measurement Year (CDP)</th>
+      <th>Boundary (CDP)</th>
+      <th>Primary Methodology (CDP)</th>
+      <th>Methodology Details (CDP)</th>
+      <th>...</th>
+      <th>GDP Source (CDP)</th>
+      <th>Average annual temperature (in Celsius) (CDP)</th>
+      <th>Land area (in square km) (CDP)</th>
+      <th>Average altitude (m) (CDP)</th>
+      <th>City Location (CDP)</th>
+      <th>Country Location (CDP)</th>
+      <th>Measurement year only (CDP)</th>
+      <th>scope fraction (CDP)</th>
+      <th>CDP2016 data edited (CDP)</th>
+      <th>Emissions Quality Flag (CDP)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>57347</td>
+      <td>Pingtung County Government</td>
+      <td>Taiwan</td>
+      <td>Pingtung</td>
+      <td>NaN</td>
+      <td>2017.0</td>
+      <td>2013-01-03 03:13:00</td>
+      <td>Administrative boundary of a local government</td>
+      <td>Global Protocol for Community-Scale Greenhouse Gas Emissions Inventories (GPC), (WRI, C40 and ICLEI)</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>25.0</td>
+      <td>2775.0</td>
+      <td>750.0</td>
+      <td>(22.551976, 120.54876)</td>
+      <td>(23.69781, 120.960515)</td>
+      <td>2013.0</td>
+      <td>1.0</td>
+      <td>Replaced by CDP2017 data. Reason:  TOT &gt;&gt; s1+s2 (Case 2b) in CDP2016. Soln: Replace with CDP2017 data (no edits required).</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>31170</td>
+      <td>Metropolitan Municipality of Lima</td>
+      <td>Peru</td>
+      <td>Lima</td>
+      <td>C40</td>
+      <td>2016.0</td>
+      <td>2012-12-31 00:00:00</td>
+      <td>A metropolitan area</td>
+      <td>Global Protocol for Community-Scale Greenhouse Gas Emissions Inventories (GPC), (WRI, C40 and ICLEI)</td>
+      <td>La metodología Global Protocol for Community- scale Greenhouse Gas emissions (GPC) establece que los límites pueden definirse en cualquiera de tres niveles: Internacional, inter-ciudades/subnacional, o al interior de la ciudad.</td>
+      <td>...</td>
+      <td>INEI</td>
+      <td>18.0</td>
+      <td>2672.0</td>
+      <td>154.0</td>
+      <td>(-12.046374, -77.042793)</td>
+      <td>(-9.189967, -75.015152)</td>
+      <td>2012.0</td>
+      <td>1.0</td>
+      <td>CDP2016 TOT recalculated by summing both CDP2016 scopes.</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 31 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename 'Country (CDP)' to 'Country' to allow merge with scaling factor dataframe (see below)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df.rename(columns <span class="op">=</span> {<span class="st">'Country (CDP)'</span>:<span class="st">'Country'</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="add-in-population-for-la-paz-deleted-in-latest-version-of-online-cdp2016-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="add-in-population-for-la-paz-deleted-in-latest-version-of-online-cdp2016-dataset">Add in population for La Paz deleted in latest version of online CDP2016 dataset</h3>
+<p>Take value from previous version (no longer online).</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> df.loc[df[<span class="st">'City Short Name (CDP)'</span>] <span class="op">==</span> <span class="st">'La Paz'</span>, <span class="st">'Current Population (CDP)'</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df.loc[df[<span class="st">'City Short Name (CDP)'</span>] <span class="op">==</span> <span class="st">'La Paz'</span>, <span class="st">'Current Population (CDP)'</span>] <span class="op">=</span> <span class="dv">789541</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> df.loc[df[<span class="st">'City Short Name (CDP)'</span>] <span class="op">==</span> <span class="st">'La Paz'</span>, <span class="st">'Current Population (CDP)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>97   NaN
+Name: Current Population (CDP), dtype: float64
+97    789541.0
+Name: Current Population (CDP), dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="read-emission-scaling-factor-file" class="level2">
+<h2 class="anchored" data-anchor-id="read-emission-scaling-factor-file">Read emission scaling factor file</h2>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fcoeff <span class="op">=</span> <span class="st">'DATA/ORIGINAL_ANCILLARY_SOURCEFILES/Calculate_CH4_SF_cities_corrected_NATGAS.csv'</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df_coeff <span class="op">=</span> pd.read_csv(fcoeff, sep<span class="op">=</span><span class="st">'\,'</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> df_coeff.shape</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(df_coeff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(42, 8)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/homel/cnangini/anaconda2/lib/python2.7/site-packages/ipykernel_launcher.py:3: ParserWarning: Falling back to the 'python' engine because the 'c' engine does not support regex separators (separators &gt; 1 char and different from '\s+' are interpreted as regex); you can avoid this warning by specifying engine='python'.
+  This is separate from the ipykernel package so we can avoid doing imports until</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>['Country',
+ 'CH4_waste/person',
+ 'CH4_(waste+natgas)/person',
+ 'corrected CH4_(waste+natgas)/person',
+ 'Production (m3)',
+ 'Exports (m3)',
+ 'Export/Production',
+ 'data from CIA World Fact Book for 2014']</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="stats" class="level1">
+<h1>Stats</h1>
+<section id="gases-included" class="level2">
+<h2 class="anchored" data-anchor-id="gases-included">Gases Included</h2>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df[var_gases2016].count() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>181</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_gases2016].isnull(), var_city2016].count() <span class="co">#6 cities missing gases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>6</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df[var_gases2016].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>array(['CO2; CH4; N2O', 'CO2', 'CO2; PFCs; CH4; SF6; N2O; HFCs',
+       'CO2; PFCs; CH4; SF6; N2O; NF3; HFCs', 'CO2; CH4; N2O; HFCs',
+       'CO2; PFCs; CH4; N2O', 'CO2; PFCs; CH4; SF6; N2O', 'CO2; CH4',
+       'CO2; CH4; SF6; N2O; HFCs', 'CO2; CH4; SF6; N2O', nan,
+       'CO2; PFCs; CH4; N2O; HFCs', 'CO2; CH4; SF6'], dtype=object)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Re-order gases in order of:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'CO2; CH4; N2O; HFCs; PFCs; SF6; NF3'</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_gases2016] <span class="op">==</span> <span class="st">'CO2; PFCs; CH4; N2O'</span>, var_gases2016] <span class="op">=</span> <span class="st">'CO2; CH4; N2O; PFCs'</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_gases2016] <span class="op">==</span> <span class="st">'CO2; PFCs; CH4; SF6; N2O'</span>, var_gases2016] <span class="op">=</span> <span class="st">'CO2; CH4; N2O; PFCs; SF6'</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_gases2016] <span class="op">==</span> <span class="st">'CO2; PFCs; CH4; N2O; HFCs'</span>, var_gases2016] <span class="op">=</span> <span class="st">'CO2; CH4; N2O; PFCs; HFCs'</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_gases2016] <span class="op">==</span> <span class="st">'CO2; CH4; SF6; N2O; HFCs'</span>, var_gases2016] <span class="op">=</span> <span class="st">'CO2; CH4; N2O; HFCs; SF6'</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_gases2016] <span class="op">==</span> <span class="st">'CO2; PFCs; CH4; SF6; N2O; HFCs'</span>, var_gases2016] <span class="op">=</span> <span class="st">'CO2; CH4; N2O; HFCs; PFCs; SF6'</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_gases2016] <span class="op">==</span> <span class="st">'CO2; PFCs; CH4; SF6; N2O; NF3; HFCs'</span>, var_gases2016] <span class="op">=</span> <span class="st">'CO2; CH4; N2O; HFCs; PFCs; SF6; NF3'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>bar_strDim(df, var_gases2016)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CO2; CH4; N2O                          87
+CO2                                    44
+CO2; CH4; N2O; HFCs; PFCs; SF6         23
+CO2; CH4; N2O; HFCs; PFCs; SF6; NF3    12
+CO2; CH4; N2O; HFCs                    4 
+CO2; CH4                               4 
+CO2; CH4; SF6; N2O                     2 
+CO2; CH4; N2O; PFCs                    1 
+CO2; CH4; SF6                          1 
+CO2; CH4; N2O; HFCs; SF6               1 
+CO2; CH4; N2O; PFCs; SF6               1 
+CO2; CH4; N2O; PFCs; HFCs              1 
+Name: Gases included (CDP), dtype: int64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Methods2_CH4corrections_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="merge-emissions-scaling-factors-into-dataframe" class="level1">
+<h1>Merge emissions scaling factors into dataframe</h1>
+<p>Merge along ‘Country’ column</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>df.merge(df_coeff, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="calculate-upper-and-lower-emission-bounds-using-scaling-factors-and-compute-mean" class="level1">
+<h1>Calculate upper and lower emission bounds using scaling factors and compute mean</h1>
+<p>Exclude CO2-only values</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add in upper and lower bound</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Total emissions</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_gases2016] <span class="op">!=</span> <span class="st">'CO2'</span>), <span class="st">'TOT lower bound [tCO2]'</span>] <span class="op">=</span> df[var_tot2016] <span class="op">-</span> df[<span class="st">'corrected CH4_(waste+natgas)/person'</span>]<span class="op">*</span>df[var_pop2016]<span class="op">*</span>GWP_CH4</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_gases2016] <span class="op">!=</span> <span class="st">'CO2'</span>), <span class="st">'TOT upper bound [tCO2]'</span>] <span class="op">=</span> df[var_tot2016] <span class="op">-</span> df[<span class="st">'CH4_waste/person'</span>]<span class="op">*</span>df[var_pop2016]<span class="op">*</span>GWP_CH4</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Scope1</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_gases2016] <span class="op">!=</span> <span class="st">'CO2'</span>), <span class="st">'S1 lower bound [tCO2]'</span>] <span class="op">=</span> df[var_s1_2016] <span class="op">-</span> df[<span class="st">'corrected CH4_(waste+natgas)/person'</span>]<span class="op">*</span>df[var_pop2016]<span class="op">*</span>GWP_CH4</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_gases2016] <span class="op">!=</span> <span class="st">'CO2'</span>), <span class="st">'S1 upper bound [tCO2]'</span>] <span class="op">=</span> df[var_s1_2016] <span class="op">-</span> df[<span class="st">'CH4_waste/person'</span>]<span class="op">*</span>df[var_pop2016]<span class="op">*</span>GWP_CH4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take mean of lower and upper bounds</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'TOT mean [tCO2]'</span>] <span class="op">=</span> df[[<span class="st">'TOT lower bound [tCO2]'</span>, <span class="st">'TOT upper bound [tCO2]'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'S1 mean [tCO2]'</span>] <span class="op">=</span> df[[<span class="st">'S1 lower bound [tCO2]'</span>, <span class="st">'S1 upper bound [tCO2]'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df[[</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>   var_tot2016,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TOT lower bound [tCO2]'</span>,<span class="st">'TOT upper bound [tCO2]'</span>,<span class="st">'TOT mean [tCO2]'</span>, </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Country'</span>,var_s1_2016, <span class="st">'S1 lower bound [tCO2]'</span>, <span class="st">'S1 upper bound [tCO2]'</span>, </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'S1 mean [tCO2]'</span>, <span class="st">'corrected CH4_(waste+natgas)/person'</span>, </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    var_pop2016</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>]].sort_values(<span class="st">'Country'</span>).head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Total City-wide Emissions (metric tonnes CO2e) (CDP)</th>
+      <th>TOT lower bound [tCO2]</th>
+      <th>TOT upper bound [tCO2]</th>
+      <th>TOT mean [tCO2]</th>
+      <th>Country</th>
+      <th>Total Scope 1 Emissions (metric tonnes CO2e) (CDP)</th>
+      <th>S1 lower bound [tCO2]</th>
+      <th>S1 upper bound [tCO2]</th>
+      <th>S1 mean [tCO2]</th>
+      <th>corrected CH4_(waste+natgas)/person</th>
+      <th>Current Population (CDP)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>37</th>
+      <td>19667128.00</td>
+      <td>1.926970e+07</td>
+      <td>1.931209e+07</td>
+      <td>1.929089e+07</td>
+      <td>Argentina</td>
+      <td>15561157.00</td>
+      <td>1.516372e+07</td>
+      <td>1.520612e+07</td>
+      <td>1.518492e+07</td>
+      <td>0.004647</td>
+      <td>3054267.0</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>4003900.00</td>
+      <td>3.626654e+06</td>
+      <td>3.692614e+06</td>
+      <td>3.659634e+06</td>
+      <td>Australia</td>
+      <td>1757500.00</td>
+      <td>1.380254e+06</td>
+      <td>1.446214e+06</td>
+      <td>1.413234e+06</td>
+      <td>0.033683</td>
+      <td>400000.0</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>3556529.00</td>
+      <td>3.362871e+06</td>
+      <td>3.396731e+06</td>
+      <td>3.379801e+06</td>
+      <td>Australia</td>
+      <td>359064.00</td>
+      <td>1.654057e+05</td>
+      <td>1.992662e+05</td>
+      <td>1.823360e+05</td>
+      <td>0.033683</td>
+      <td>205339.0</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>4372420.00</td>
+      <td>4.242375e+06</td>
+      <td>4.265113e+06</td>
+      <td>4.253744e+06</td>
+      <td>Australia</td>
+      <td>785326.00</td>
+      <td>6.552808e+05</td>
+      <td>6.780188e+05</td>
+      <td>6.666498e+05</td>
+      <td>0.033683</td>
+      <td>137889.0</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>486541.00</td>
+      <td>4.646900e+05</td>
+      <td>4.685106e+05</td>
+      <td>4.666003e+05</td>
+      <td>Australia</td>
+      <td>63724.00</td>
+      <td>4.187297e+04</td>
+      <td>4.569355e+04</td>
+      <td>4.378326e+04</td>
+      <td>0.033683</td>
+      <td>23169.0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>1426533.80</td>
+      <td>6.105726e+05</td>
+      <td>1.276908e+06</td>
+      <td>9.437405e+05</td>
+      <td>Bolivia</td>
+      <td>1152922.40</td>
+      <td>3.369612e+05</td>
+      <td>1.003297e+06</td>
+      <td>6.701291e+05</td>
+      <td>0.036909</td>
+      <td>789541.0</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>1113971.00</td>
+      <td>8.109830e+05</td>
+      <td>8.409319e+05</td>
+      <td>8.259575e+05</td>
+      <td>Brazil</td>
+      <td>980290.00</td>
+      <td>6.773020e+05</td>
+      <td>7.072509e+05</td>
+      <td>6.922765e+05</td>
+      <td>0.016779</td>
+      <td>644919.0</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>3241713.00</td>
+      <td>2.065992e+06</td>
+      <td>2.182206e+06</td>
+      <td>2.124099e+06</td>
+      <td>Brazil</td>
+      <td>2804787.00</td>
+      <td>1.629066e+06</td>
+      <td>1.745280e+06</td>
+      <td>1.687173e+06</td>
+      <td>0.016779</td>
+      <td>2502557.0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>625391.59</td>
+      <td>4.972628e+05</td>
+      <td>5.099277e+05</td>
+      <td>5.035952e+05</td>
+      <td>Brazil</td>
+      <td>589055.31</td>
+      <td>4.609265e+05</td>
+      <td>4.735914e+05</td>
+      <td>4.672590e+05</td>
+      <td>0.016779</td>
+      <td>272726.0</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>2016320.00</td>
+      <td>9.953614e+05</td>
+      <td>1.096278e+06</td>
+      <td>1.045820e+06</td>
+      <td>Brazil</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.016779</td>
+      <td>2173141.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="assign-a-region-to-cdp-cities" class="level1">
+<h1>Assign a region to CDP cities</h1>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make 'city name' column to be consistent with all datasets, to be used for merges later</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>var_city <span class="op">=</span> <span class="st">'city name'</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>df[var_city] <span class="op">=</span> df[<span class="st">'City Short Name (CDP)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">u'Hamilton'</span>), [var_city]] <span class="op">=</span> <span class="st">'Hamilton, ON'</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'City of Winnipeg'</span>), [var_city]] <span class="op">=</span> <span class="st">'Winnipeg'</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Peterborough'</span>), [var_city]] <span class="op">=</span> <span class="st">'Peterborough, ON'</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Ærøskøbing'</span>), [var_city]] <span class="op">=</span> <span class="st">'Aerøskøbing'</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Distrito Metropolitano de Quito'</span>), [var_city]] <span class="op">=</span> <span class="st">'Quito'</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">"Nice"</span>), [var_city]] <span class="op">=</span> <span class="st">'Nice'</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Nancy'</span>), [var_city]] <span class="op">=</span> <span class="st">'Nancy'</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Metropolitana de Santiago'</span>), [var_city]] <span class="op">=</span> <span class="st">'Santiago'</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Stadt Heidelberg'</span>), [var_city]] <span class="op">=</span> <span class="st">'Heidelberg'</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">u'Pretoria'</span>), [var_city]] <span class="op">=</span> <span class="st">'Pretoria Tshwane'</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].<span class="bu">str</span>.contains(<span class="st">'Stadt Z'</span>)), [var_city]] <span class="op">=</span> <span class="st">'Zürich'</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Basel-Stadt'</span>), [var_city]] <span class="op">=</span> <span class="st">'Basel'</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Metropolitana de Caracas'</span>), [var_city]] <span class="op">=</span> <span class="st">'Caracas'</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">u'Windsor'</span>), [var_city]] <span class="op">=</span> <span class="st">'Windsor, ON'</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">u'Landeshauptstadt Magdeburg'</span>), [var_city]] <span class="op">=</span> <span class="st">'Magdeburg'</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Aarhus'</span>), var_city] <span class="op">=</span> <span class="st">'Aarhus'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/homel/cnangini/anaconda2/lib/python2.7/site-packages/pandas/core/ops.py:763: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  result = lib.scalar_compare(x, y, op)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'London '</span>), [var_city]] <span class="op">=</span> <span class="st">'London'</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Roma '</span>), [var_city]] <span class="op">=</span> <span class="st">'Roma'</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Pretoria - Tshwane'</span>), [var_city]] <span class="op">=</span> <span class="st">'Pretoria Tshwane'</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Vilnius '</span>), [var_city]] <span class="op">=</span> <span class="st">'Vilnius'</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Bogot</span><span class="ch">\xc3\xa1</span><span class="st"> '</span>), [var_city]] <span class="op">=</span> <span class="st">'Bogot</span><span class="ch">\xc3\xa1</span><span class="st">'</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Jakarta '</span>), [var_city]] <span class="op">=</span> <span class="st">'Jakarta'</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city] <span class="op">==</span> <span class="st">'Seoul '</span>), [var_city]] <span class="op">=</span> <span class="st">'Seoul'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Fix trailing space</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Pingtung'</span>), var_city] <span class="op">=</span> <span class="st">'Pingtung'</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Suwon'</span>), var_city] <span class="op">=</span> <span class="st">'Suwon'</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Yilan'</span>), var_city] <span class="op">=</span> <span class="st">'Yilan'</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'New Taipei'</span>), var_city] <span class="op">=</span> <span class="st">'New Taipei'</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Incheon'</span>), var_city] <span class="op">=</span> <span class="st">'Incheon'</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Abington'</span>), var_city] <span class="op">=</span> <span class="st">'Abington'</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Amman'</span>), var_city] <span class="op">=</span> <span class="st">'Amman'</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Auckland'</span>), var_city] <span class="op">=</span> <span class="st">'Auckland'</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Iowa'</span>), var_city] <span class="op">=</span> <span class="st">'Iowa'</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Taoyuan'</span>), var_city] <span class="op">=</span> <span class="st">'Taoyuan'</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Bornova'</span>), var_city] <span class="op">=</span> <span class="st">'Bornova'</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Bogor'</span>), var_city] <span class="op">=</span> <span class="st">'Bogor'</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Torres Vedras'</span>), var_city] <span class="op">=</span> <span class="st">'Torres Vedras'</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city].<span class="bu">str</span>.contains(<span class="st">'Nashville and Davidson'</span>), var_city] <span class="op">=</span> <span class="st">'Nashville and Davidson'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Small edits</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>df.loc[df[<span class="st">'Country'</span>].<span class="bu">str</span>.contains(<span class="st">'Hong Kong'</span>), <span class="st">'Country'</span>] <span class="op">=</span> <span class="st">'China'</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>df.loc[df[var_city]<span class="op">==</span><span class="st">'Hong Kong'</span>, <span class="st">'Country'</span>]</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>df.rename(columns <span class="op">=</span> {<span class="st">'Country'</span>:<span class="st">'country'</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Add CDP tags to columns missing it</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>col_list<span class="op">=</span>[<span class="st">'TOT lower bound [tCO2]'</span>,  <span class="st">'TOT upper bound [tCO2]'</span>,  <span class="st">'TOT mean [tCO2]'</span>,  <span class="st">'S1 lower bound [tCO2]'</span>,  </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">'S1 upper bound [tCO2]'</span>, <span class="st">'S1 mean [tCO2]'</span>]</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(col_list)):</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.rename(columns<span class="op">=</span>{col_list[idx]: col_list[idx] <span class="op">+</span> <span class="st">' (CDP)'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-geographic-regions" class="level1">
+<h1>Add geographic regions</h1>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupEurope)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'Europe'</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupNAmer)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'North America'</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupOceania)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'Oceania'</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupLatinAmer)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'Latin America &amp; Caribbean'</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupNorthAfrica)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'North Africa, Middle East, West Asia'</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupEastAsia)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'East Asia'</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupSoutheastAsia)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'Southeast Asia'</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>df.loc[(df[var_city].isin(groupAfrica)), <span class="st">'region (CDP)'</span>] <span class="op">=</span> <span class="st">'Africa'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="drop-unwanted-columns" class="level1">
+<h1>Drop unwanted columns</h1>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'Account Number (CDP)'</span>, <span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'City Short Name (CDP)'</span>, <span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'C40 (CDP)'</span>, <span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'Measurement Year (CDP)'</span>, <span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'Country Location (CDP)'</span>, <span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rename-columns" class="level1">
+<h1>Rename columns</h1>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Fix 'metric tonne' typo to 'metric ton'</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df.rename(columns <span class="op">=</span> {<span class="st">'Total City-wide Emissions (metric tonnes CO2e) (CDP)'</span>:<span class="st">'Total City-wide Emissions (metric ton CO2e) (CDP)'</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>df.rename(columns <span class="op">=</span> {<span class="st">'Total Scope 1 Emissions (metric tonnes CO2e) (CDP)'</span>:<span class="st">'Total Scope 1 Emissions (metric ton CO2e) (CDP)'</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>df.rename(columns <span class="op">=</span> {<span class="st">'Total Scope 2 Emissions (metric tonnes CO2e) (CDP)'</span>:<span class="st">'Total Scope 2 Emissions (metric ton CO2e) (CDP)'</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>col_order <span class="op">=</span> [</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'city name'</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'City Name (CDP)'</span>,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'country'</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a> <span class="st">'region (CDP)'</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a> <span class="st">'Boundary (CDP)'</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a> <span class="st">'Reporting Year (CDP)'</span>,</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a> <span class="st">'Measurement year only (CDP)'</span>,</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a> <span class="st">'Current Population (CDP)'</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a> <span class="st">'Current Population Year (CDP)'</span>,</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a> <span class="st">'scope fraction (CDP)'</span>,</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a> <span class="st">'Total City-wide Emissions (metric ton CO2e) (CDP)'</span>,</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a> <span class="st">'Total Scope 1 Emissions (metric ton CO2e) (CDP)'</span>,</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a> <span class="st">'Total Scope 2 Emissions (metric ton CO2e) (CDP)'</span>,</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a> <span class="st">'CDP2016 data edited (CDP)'</span>,</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a> <span class="st">'Emissions Quality Flag (CDP)'</span>,</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a> <span class="st">'Gases included (CDP)'</span>,</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a> <span class="st">'TOT lower bound [tCO2] (CDP)'</span>,</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a> <span class="st">'TOT upper bound [tCO2] (CDP)'</span>,</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a> <span class="st">'TOT mean [tCO2] (CDP)'</span>,</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a> <span class="st">'S1 lower bound [tCO2] (CDP)'</span>,</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a> <span class="st">'S1 upper bound [tCO2] (CDP)'</span>,</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a> <span class="st">'S1 mean [tCO2] (CDP)'</span>,</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a> <span class="st">'Primary Methodology (CDP)'</span>,</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a> <span class="st">'Methodology Details (CDP)'</span>,</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a> <span class="st">'Increase/Decrease from last year (CDP)'</span>,</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a> <span class="st">'Reason for increase/decrease in emissions (CDP)'</span>,</span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a> <span class="st">'Average annual temperature (in Celsius) (CDP)'</span>,</span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a> <span class="st">'Land area (in square km) (CDP)'</span>,</span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a> <span class="st">'Average altitude (m) (CDP)'</span>,</span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a> <span class="st">'CH4_waste/person'</span>,</span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a> <span class="st">'CH4_(waste+natgas)/person'</span>,</span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a> <span class="st">'corrected CH4_(waste+natgas)/person'</span>,</span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a> <span class="st">'Production (m3)'</span>,</span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a> <span class="st">'Exports (m3)'</span>,</span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a> <span class="st">'Export/Production'</span>,</span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a> <span class="st">'data from CIA World Fact Book for 2014'</span>,</span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a> <span class="st">'City Location (CDP)'</span>,</span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a> <span class="st">'City GDP (CDP)'</span>,</span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a> <span class="st">'GDP Currency (CDP)'</span>,</span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a> <span class="st">'Year of GDP (CDP)'</span>,</span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a> <span class="st">'GDP Source (CDP)'</span></span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="bu">len</span>(col_order)</span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> df.shape[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>41
+41</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>df[col_order]</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(187, 41)</code></pre>
+</div>
+</div>
+</section>
+<section id="save" class="level1">
+<h1>save</h1>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'DATA/INTERMEDIATE_FILES/cdp_correctedCO2.csv'</span>, sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="continue-to-methods3_mergeemissionsdatasets.ipynb" class="level1">
+<h1>Continue to Methods3_mergeEmissionsDatasets.ipynb</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

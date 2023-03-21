@@ -1,0 +1,221 @@
+{
+  "index.qmd": {
+    "index.html": "493e9691"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "d322589d"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "f8792428"
+  },
+  "about.qmd": {
+    "about.html": "7ba74b1e"
+  },
+  "posts/2019-08-05_base_r_to_tidyverse.qmd": {
+    "2019-08-05_base_r_to_tidyverse.html": "2560017f"
+  },
+  "posts/2020-07-30-applied-statistics-universities.qmd": {
+    "2020-07-30-applied-statistics-universities.html": "22fa80b6"
+  },
+  "posts/2020-07-09-across.qmd": {
+    "2020-07-09-across.html": "0a54ad49"
+  },
+  "posts/2020-02-05_rstudio_conf.qmd": {
+    "2020-02-05_rstudio_conf.html": "52e0ea4e"
+  },
+  "posts/2020-02-03_blogger.qmd": {
+    "2020-02-03_blogger.html": "36abbef1"
+  },
+  "posts/2020-03-25_machine_learning.qmd": {
+    "2020-03-25_machine_learning.html": "9c891d20"
+  },
+  "posts/2019-08-19_purrr.qmd": {
+    "2019-08-19_purrr.html": "f079942f"
+  },
+  "posts/2019-08-05_base_r_to_tidyverse_pt2.qmd": {
+    "2019-08-05_base_r_to_tidyverse_pt2.html": "b72a41e9"
+  },
+  "posts/2019-06-06_pre_processing.qmd": {
+    "2019-06-06_pre_processing.html": "c27c0c39"
+  },
+  "posts/2019-03-07_reproducible_pipeline.qmd": {
+    "2019-03-07_reproducible_pipeline.html": "b59b0ec9"
+  },
+  "posts/2019-01-23_scoped-verbs.qmd": {
+    "2019-01-23_scoped-verbs.html": "5463f001"
+  },
+  "posts/2019-01-21_world_happiness.qmd": {
+    "2019-01-21_world_happiness.html": "4735c43d"
+  },
+  "posts/2018-12-04_hypothesis_testing.qmd": {
+    "2018-12-04_hypothesis_testing.html": "0dc1efdb"
+  },
+  "posts/2018-06-20_bourke_gilman_trail.qmd": {
+    "2018-06-20_bourke_gilman_trail.html": "120d2fd7"
+  },
+  "posts/2018-05-29_getting_fancy_ggplot2.qmd": {
+    "2018-05-29_getting_fancy_ggplot2.html": "b8f3746c"
+  },
+  "posts/data/co2/Methods4_addAncillaryData.ipynb": {
+    "Methods4_addAncillaryData.html": "ab44c33e"
+  },
+  "posts/data/co2/Methods2_CH4corrections.ipynb": {
+    "Methods2_CH4corrections.html": "ce5e6bd9"
+  },
+  "posts/data/co2/TechnicalValidation_qualityFlags.ipynb": {
+    "TechnicalValidation_qualityFlags.html": "b2aeb805"
+  },
+  "posts/data/co2/Methods1_CDP2016_QAQC.ipynb": {
+    "Methods1_CDP2016_QAQC.html": "c460b8e3"
+  },
+  "posts/data/co2/Methods3_mergeEmissionsDatasets.ipynb": {
+    "Methods3_mergeEmissionsDatasets.html": "c5d7af63"
+  },
+  "posts/2018-05-29_alternatives_dodged_bars.qmd": {
+    "2018-05-29_alternatives_dodged_bars.html": "4a260c64"
+  },
+  "posts/2018-05-23-instrumental_variables.qmd": {
+    "2018-05-23-instrumental_variables.html": "fdcf42f1"
+  },
+  "posts/2017-11-17-ggplot2_tutorial.qmd": {
+    "2017-11-17-ggplot2_tutorial.html": "b018e118"
+  },
+  "posts/2017-11-17-caret_tutorial.qmd": {
+    "2017-11-17-caret_tutorial.html": "1d39cd82"
+  },
+  "posts/2017-08-16-data-science-workflow.qmd": {
+    "2017-08-16-data-science-workflow.html": "4c70507c"
+  },
+  "posts/2017-07-05-ip-weighting.qmd": {
+    "2017-07-05-ip-weighting.html": "a5a020e5"
+  },
+  "posts/2017-07-05-confounding.qmd": {
+    "2017-07-05-confounding.html": "a03b04d0"
+  },
+  "posts/2017-06-29-website.qmd": {
+    "2017-06-29-website.html": "02fa89e0"
+  },
+  "posts/2017-06-27-colors.qmd": {
+    "2017-06-27-colors.html": "dbe5c2a7"
+  },
+  "posts/2017-04-20-interactive.qmd": {
+    "2017-04-20-interactive.html": "8e27e6ef"
+  },
+  "posts/2017-03-7-docathon.qmd": {
+    "2017-03-7-docathon.html": "24cf649f"
+  },
+  "posts/2017-02-17-anova.qmd": {
+    "2017-02-17-anova.html": "c7e2fa2b"
+  },
+  "posts/2017-02-05-superheat-cran.qmd": {
+    "2017-02-05-superheat-cran.html": "f226419a"
+  },
+  "posts/2017-02-02-superheat-example.qmd": {
+    "2017-02-02-superheat-example.html": "f50b641c"
+  },
+  "posts/2017-02-02-how-to-present-good.qmd": {
+    "2017-02-02-how-to-present-good.html": "9ba851d6"
+  },
+  "posts/2016-12-15-gender-bias.qmd": {
+    "2016-12-15-gender-bias.html": "eed52efd"
+  },
+  "posts/2015-07-23-pie.qmd": {
+    "2015-07-23-pie.html": "9a9f5b5d"
+  },
+  "blog/2017-02-05-superheat-cran.qmd": {
+    "2017-02-05-superheat-cran.html": "59ded849"
+  },
+  "blog/2019-01-23_scoped-verbs.qmd": {
+    "2019-01-23_scoped-verbs.html": "6dd2635c"
+  },
+  "blog/2020-07-30-applied-statistics-universities.qmd": {
+    "2020-07-30-applied-statistics-universities.html": "0ad65e2a"
+  },
+  "blog/2019-08-19_purrr.qmd": {
+    "2019-08-19_purrr.html": "f17bc88d"
+  },
+  "blog/2017-02-17-anova.qmd": {
+    "2017-02-17-anova.html": "be9b2254"
+  },
+  "blog/2019-03-07_reproducible_pipeline.qmd": {
+    "2019-03-07_reproducible_pipeline.html": "72f3be32"
+  },
+  "blog/2020-02-05_rstudio_conf.qmd": {
+    "2020-02-05_rstudio_conf.html": "8128d619"
+  },
+  "blog/2017-08-16-data-science-workflow.qmd": {
+    "2017-08-16-data-science-workflow.html": "ebcdd7a3"
+  },
+  "blog/2018-05-29_alternatives_dodged_bars.qmd": {
+    "2018-05-29_alternatives_dodged_bars.html": "4abcbf1b"
+  },
+  "blog/2017-11-17-ggplot2_tutorial.qmd": {
+    "2017-11-17-ggplot2_tutorial.html": "d7a0a349"
+  },
+  "blog/2016-12-15-gender-bias.qmd": {
+    "2016-12-15-gender-bias.html": "954250fc"
+  },
+  "blog/2018-12-04_hypothesis_testing.qmd": {
+    "2018-12-04_hypothesis_testing.html": "e7076be7"
+  },
+  "blog/2017-04-20-interactive.qmd": {
+    "2017-04-20-interactive.html": "f7a9926d"
+  },
+  "blog/2019-08-05_base_r_to_tidyverse.qmd": {
+    "2019-08-05_base_r_to_tidyverse.html": "7190ae44"
+  },
+  "blog/2017-11-17-caret_tutorial.qmd": {
+    "2017-11-17-caret_tutorial.html": "b5a11e8e"
+  },
+  "blog/2015-07-23-pie.qmd": {
+    "2015-07-23-pie.html": "a753b823"
+  },
+  "blog/2020-03-25_machine_learning.qmd": {
+    "2020-03-25_machine_learning.html": "f8b122bf"
+  },
+  "blog/2020-07-09-across.qmd": {
+    "2020-07-09-across.html": "633d82c5"
+  },
+  "blog/2020-02-03_blogger.qmd": {
+    "2020-02-03_blogger.html": "9ea693bd"
+  },
+  "blog/2018-05-29_getting_fancy_ggplot2.qmd": {
+    "2018-05-29_getting_fancy_ggplot2.html": "2355f54a"
+  },
+  "blog/2019-06-06_pre_processing.qmd": {
+    "2019-06-06_pre_processing.html": "11419664"
+  },
+  "blog/2019-08-05_base_r_to_tidyverse_pt2.qmd": {
+    "2019-08-05_base_r_to_tidyverse_pt2.html": "e9dd8784"
+  },
+  "blog/2017-02-02-how-to-present-good.qmd": {
+    "2017-02-02-how-to-present-good.html": "5152775e"
+  },
+  "blog/2017-03-7-docathon.qmd": {
+    "2017-03-7-docathon.html": "d44c00ea"
+  },
+  "blog/2017-02-02-superheat-example.qmd": {
+    "2017-02-02-superheat-example.html": "c1e0b2e7"
+  },
+  "blog/2017-06-29-website.qmd": {
+    "2017-06-29-website.html": "d1d07023"
+  },
+  "blog/2017-06-27-colors.qmd": {
+    "2017-06-27-colors.html": "a47d7ffd"
+  },
+  "blog/2017-07-05-confounding.qmd": {
+    "2017-07-05-confounding.html": "b2fb74d8"
+  },
+  "blog/2018-05-23-instrumental_variables.qmd": {
+    "2018-05-23-instrumental_variables.html": "b3d406f9"
+  },
+  "blog/2017-07-05-ip-weighting.qmd": {
+    "2017-07-05-ip-weighting.html": "713b22ab"
+  },
+  "home.qmd": {
+    "home.html": "fd95a23d"
+  },
+  "blog.qmd": {
+    "blog.html": "bb5e4d81"
+  }
+}

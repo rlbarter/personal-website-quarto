@@ -1,0 +1,9 @@
+/* css styles */
+
+
+.cell-output {
+  max-height: 400px;
+  overflow: scroll;
+  background: #F5F5F5
+}
+

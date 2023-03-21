@@ -1,0 +1,4 @@
+"0","# specify that the resampling method is "
+"0","fit_control <- trainControl(## 10-fold CV"
+"0","                           method = ""cv"","
+"0","                           number = 10)"

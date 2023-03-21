@@ -1,0 +1,16 @@
+{
+  "hash": "a76be5360dec9ed4cde19bb0de40b03a",
+  "result": {
+    "markdown": "--- \nauthor: \"Rebecca Barter\" \ncategories: [R, superheat] \ndate: 2017-02-05\noutput:\n  html:\n    toc: true\ndescription: \"First version of superheat now available on CRAN.\" \ntitle: \"superheat 0.1.0\" \n---\n\n\n\nsuperheat 0.1.0 is now available on CRAN. Superheat makes it easy to create extendable, cutomizable, and most importantly, beautiful heatmaps. It has increased flexibility and user-friendliness when compared to alternatives such as `heatmap()` and `pheatmap()`.\n\nFor usage options see the [**vignette**](https://rlbarter.github.io/superheat/) and for examples see the accompanying [**paper by Barter and Yu (2017)**](https://arxiv.org/abs/1512.01524). \n\n\nYou can install the latest version with:\n\n\n::: {.cell}\n\n```{.r .cell-code}\ninstall.packages(\"superheat\")\n```\n:::\n\n\nStay tuned for new versions with added features and minor usability tweaks.\n\n## Example usage\n\nUsage is straightforward and intuitive:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nlibrary(superheat)\nset.seed(1347983)\nselected.rows <- sample(1:nrow(mtcars), 10)\n# add a space after the column names for aesthetic purposes\ncolnames(mtcars) <- paste0(colnames(mtcars), \" \")\n\n# plot the superheatmap\nsuperheat(mtcars[selected.rows,], \n          # scale columns\n          scale = T, \n          # label aesthetics\n          left.label.size = 0.5,\n          bottom.label.size = 0.15,\n          bottom.label.text.angle = 90,\n          bottom.label.text.alignment = \"right\",\n          bottom.label.col = \"white\",\n          # dendrogram\n          row.dendrogram = T,\n          # top plot\n          yt = sapply(mtcars, function(x) cor(x, mtcars$hp)),\n          yt.plot.type = \"bar\",\n          yt.axis.name = \"correlation\\nwith\\nhorsepower\",\n          # column order\n          order.cols = order(sapply(mtcars, function(x) cor(x, mtcars$hp))),\n          # grid lines\n          grid.vline.col = \"white\",\n          grid.hline.col = \"white\")\n```\n\n::: {.cell-output-display}\n![](2017-02-05-superheat-cran_files/figure-html/unnamed-chunk-2-1.png){fig-align='center' width=864}\n:::\n:::",
+    "supporting": [
+      "2017-02-05-superheat-cran_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

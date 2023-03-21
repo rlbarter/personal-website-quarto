@@ -1,0 +1,4 @@
+"0","map_df(c(1, 4, 7), function(number) {"
+"0","  return(data.frame(old_number = number, "
+"0","                    new_number = number + 10))"
+"0","})"

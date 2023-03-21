@@ -1,0 +1,5 @@
+"0","set.seed(998)"
+"0","# create a testing and training set"
+"0","in_training <- createDataPartition(abalone_train$old, p = .75, list = FALSE)"
+"0","training <- abalone_train[ in_training,]"
+"0","testing  <- abalone_train[-in_training,]"

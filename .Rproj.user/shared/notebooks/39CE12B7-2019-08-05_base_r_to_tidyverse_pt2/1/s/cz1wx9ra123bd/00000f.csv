@@ -1,0 +1,2 @@
+"0","gapminder_sample_wide %>% "
+"0","  gather(key = country_var, value = lifeExp_var, -year)"

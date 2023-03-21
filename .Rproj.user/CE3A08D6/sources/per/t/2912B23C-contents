@@ -1,0 +1,61 @@
+---
+title: "Welcome"
+about:
+  template: solana
+---
+
+Hi I'm Rebecca, welcome to my website! Below you will find my newest posts, and some quick links to some of my more popular posts. To see all of my past blogs, hit "Blog archive" in the navbar.
+
+## New posts
+
+I'm currently re-vamping my website! This is where you're going to find my newest posts. Stay tuned.
+
+
+## Popular posts
+
+
+
+::: {.grid}
+
+::: {.g-col-6}
+#### R
+
+**[Learn to purrr](https://www.rebeccabarter.com/blog/2019-08-19_purrr/)**
+
+Purrr is the tidyverse's answer to apply functions for iteration. It's one of those packages that you might have heard of, but seemed too complicated to sit down and learn. Starting with map functions, and taking you on a journey that will harness the power of the list, this post will have you purrring in no time.
+
+
+**[Tidymodels: Tidymodels: tidy machine learning in R](https://www.rebeccabarter.com/blog/2020-03-25_machine_learning/)**
+
+The tidyverse's take on machine learning is finally here. Tidymodels forms the basis of tidy machine learning, and this post provides a whirlwind tour to get you started.
+
+
+**[Across: applying dplyr functions simultaneously across multiple columns](https://www.rebeccabarter.com/blog/2020-07-09-across/)**
+
+With the introduction of dplyr 1.0.0, there are a few new features: the biggest of which is across() which supersedes the scoped versions of dplyr functions.
+:::
+
+::: {.g-col-6}
+#### Statistics
+
+**[The intuition behind inverse probability weighting in causal inference](https://www.rebeccabarter.com/blog/2017-07-05-ip-weighting/)**
+
+Removing confounding can be done via a variety methods including IP-weighting. This post provides a summary of the intuition behind IP-weighting.
+
+
+**[Confounding in causal inference: what is it, and what to do about it?](https://www.rebeccabarter.com/blog/2017-07-05-confounding/)**
+
+An introduction to the field of causal inference and the issues surrounding confounding.
+
+
+
+**[Understanding Instrumental Variables](https://www.rebeccabarter.com/blog/2018-05-23-instrumental_variables/)**
+
+Instrumental variables is one of the most mystical concepts in causal inference. For some reason, most of the existing explanations are overly complicated and focus on specific nuanced aspects of generating IV estimates without really providing the intuition for why it makes sense. In this post, you will not find too many technical details, but rather a narrative introducing instruments and why they are useful.
+
+:::
+
+:::
+
+
+

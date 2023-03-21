@@ -1,0 +1,19 @@
+---
+title:  "Which hypothesis test should I use? A flowchart"
+author: "Rebecca Barter"
+categories: [statistics, hypothesis testing]
+format: html
+date: 2018-12-04
+description: "A flowchart to decide what hypothesis test to use." 
+---
+
+Many years ago I taught a stats class for which one of the topics was hypothesis testing. Many of the students had a hard time remembering what situation each test was designed for, so I made a flowchart to help piece together the wild world of hypothesis tests.
+
+While the flowchart isn't pretty (if I made it today, it would be much more attractive), I feel like it might be useful for others, so here it is:
+
+```{r echo = FALSE, fig.align='center'}
+library(knitr)
+knitr::include_graphics("img/hypothesis_testing/Hypothesis_testing_flow_mean.png")
+```
+
+(if you all like it - I'll make a pretty version!)

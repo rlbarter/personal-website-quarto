@@ -1,0 +1,3 @@
+"0","gapminder_sample_united <- gapminder_sample_long %>%"
+"0","  unite(""countryyear"", country, year, sep = ""_"")"
+"0","gapminder_sample_united"

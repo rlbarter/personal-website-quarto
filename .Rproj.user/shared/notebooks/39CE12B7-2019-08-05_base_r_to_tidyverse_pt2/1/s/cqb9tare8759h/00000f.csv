@@ -1,0 +1,2 @@
+"0","gapminder_sample_united %>%"
+"0","  separate(countryyear, c(""country"", ""year""), sep = ""_"")"

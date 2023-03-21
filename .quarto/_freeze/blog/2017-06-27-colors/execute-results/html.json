@@ -1,0 +1,14 @@
+{
+  "hash": "88eb662352ba1f805e62c802f11d771e",
+  "result": {
+    "markdown": "---\ntitle:  \"Coolors: choosing color schemes\"\nauthor: \"Rebecca Barter\"\ncategories: [visualization, R]\ndate: 2017-06-27\noutput:\n  html:\n    toc: true\ndescription: \"A really cool website for choosing color palattes\" \n---\n\n\nChoosing a color palette for a visualization can be one of the most time consuming parts for perfectionists like me. It can be surprisingly difficult to decide on a palette that is both visually appealing and practical, but fortunately there do exist websites to help!\n\nFor example, [Coolors](https://coolors.co/704e2e-79745c-e6f8b2-cde77f-709176) shoots random, appealing, color palettes at you and you can swipe from one to the next with a hit of a space-bar.\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![](img/coolors/coolors.png){fig-align='center'}\n:::\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

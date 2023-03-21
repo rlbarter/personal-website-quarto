@@ -1,0 +1,16 @@
+{
+  "hash": "1ef3ca4949417c2e9882a2a405ad0e01",
+  "result": {
+    "markdown": "--- \nauthor: \"Rebecca Barter\" \ncategories: [R, superheat] \ndate: 2017-02-02\ndescription: \"A simple example of using superheat to create beautiful heatmaps.\" \noutput:\n  html:\n    toc: true\ntitle: \"Superheat: a simple example\" \n---\n\n\nMaking beautiful and customizable heatmaps just got way easier... Introducing the superheat R package!\n\n\nUsing superheat, it is now extremely easy to produce plots like the example below describing 10 randomly selected cars from the famous `mtcars` dataset.\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nlibrary(superheat)\nset.seed(1347983)\nselected.rows <- sample(1:nrow(mtcars), 10)\nX.col <- matrix(\"black\", ncol = ncol(mtcars), nrow = 10)\nX.col[scale(mtcars[selected.rows, ]) < 0] <- \"white\"\nsuperheat(mtcars[selected.rows,], \n          # add text\n          X.text = round(as.matrix(mtcars[selected.rows, ])),\n          X.text.col = X.col,\n          # scale columns\n          scale = T, \n          # label aesthetics\n          left.label.size = 0.5,\n          bottom.label.size = 0.15,\n          bottom.label.text.angle = 90,\n          bottom.label.text.alignment = \"right\",\n          bottom.label.col = \"white\",\n          # dendrogram\n          row.dendrogram = T,\n          # top plot\n          yt = sapply(mtcars, function(x) cor(x, mtcars$hp)),\n          yt.plot.type = \"bar\",\n          yt.axis.name = \"correlation\\nwith\\nhorsepower\",\n          # column order\n          order.cols = order(sapply(mtcars, function(x) cor(x, mtcars$hp))),\n          # grid lines\n          grid.vline.col = \"white\",\n          grid.hline.col = \"white\")\n```\n\n::: {.cell-output-display}\n![](2017-02-02-superheat-example_files/figure-html/unnamed-chunk-1-1.png){fig-align='center' width=864}\n:::\n:::\n\n\n\nTo see more details on what you can do with superheat, see the **[vignette](https://rlbarter.github.io/superheat/)**, as well as our [paper outlining case studies using Superheat currently available on arXiv](https://arxiv.org/abs/1512.01524).",
+    "supporting": [
+      "2017-02-02-superheat-example_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
