@@ -15,6 +15,8 @@ website:
         href: https://github.com/rlbarter
       - icon: twitter
         href: https://twitter.com/rlbarter
+      - icon: rss
+        href: blog.xml
   google-analytics: "UA-90929425-1"
 format:
   html:
