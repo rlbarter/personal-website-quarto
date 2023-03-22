@@ -18,6 +18,9 @@ website:
       - icon: rss
         href: index.xml
   google-analytics: "UA-90929425-1"
+  site-url: https://www.rebeccabarter.com
+  description: "Rebecca Barter's blog"
+  twitter-card: true
 format:
   html:
     theme: simplex
