@@ -135,10 +135,6 @@ For example, I recently made a presentation that included a section on "Weak lea
 
 I included an image alongside my description displaying an army of soldiers. Get it?
 
-<center>
-<img src="http://static4.businessinsider.com/image/53a05de869bedd95242e6b76-1200-667/meereen-army-game-of-thrones.jpg" alt="army" style="width:400px;height:350px;">
-</center>
-
 
 ## How to write the presentation
 
