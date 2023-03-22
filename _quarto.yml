@@ -16,7 +16,7 @@ website:
       - icon: twitter
         href: https://twitter.com/rlbarter
       - icon: rss
-        href: blog.xml
+        href: index.xml
   google-analytics: "UA-90929425-1"
 format:
   html:
