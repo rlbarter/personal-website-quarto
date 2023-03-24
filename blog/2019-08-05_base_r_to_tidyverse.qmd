@@ -11,7 +11,9 @@ description: "This post walks through what base R users need to know for their t
 ---
 
 ```{r}
+#| echo: false
 #| out-width: "70%"
+#| fig-align: "center"
 knitr::include_graphics("img/tidyverse/tidyverse_all.png")
 ```
 
@@ -39,7 +41,9 @@ It is important to remember that the tidyverse is constantly evolving. The best 
 
 
 ```{r}
-#| out-width: "70%"
+#| echo: false
+#| fig-align: "center"
+#| out-width: "50%"
 knitr::include_graphics("img/tidyverse/tidyverse.png")
 ```
 
@@ -116,7 +120,7 @@ Now that you've loaded the tidyverse and the gapminder data, you're are ready to
 
 
 <p align="center">
-<img src="/img/tidyverse/pipe.png" alt="Pipe" width="180" height="200">
+<img src="img/tidyverse/pipe.png" alt="Pipe" width="180" height="200">
 </p>
 
 Pipes are the workhorse of tidy analyses. Piping allows you to chain together many functions, eliminating the need to define multiple intermediate objects to use as the input to subsequent functions. In my eyes, pipes are also the primary reason that tidyverse code is fundamentally easier to read than base R code.
@@ -173,7 +177,7 @@ To me, the piped version is infinitely more clear, and simultaneously got rid of
 
 
 <p align="center">
-<img src="/img/tidyverse/dplyr.png" alt="dplyr" width="180" height="200">
+<img src="img/tidyverse/dplyr.png" alt="dplyr" width="180" height="200">
 </p>
 
 
@@ -431,7 +435,7 @@ Advanced dplyr practitioners will eventually want to learn about [*scoped verbs*
 
 
 <p align="center">
-<img src="/img/tidyverse/ggplot2.png" alt="ggplot" width="180" height="200">
+<img src="img/tidyverse/ggplot2.png" alt="ggplot" width="180" height="200">
 </p>
 
 
