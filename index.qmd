@@ -10,6 +10,26 @@ Hi there, I'm Rebecca, welcome to my newly re-vamped website! Below you will fin
 
 ::: card
 ::: {.card-header style="background-color: white; font-size: 18;"}
+### [A list of public data repositories](https://www.rebeccabarter.com/blog/2023-03-28-data_sources.html)
+:::
+
+
+::: {#card-img}
+[![](blog/img/data/ivo-rainha-0rzUepBXHN0-unsplash.jpg){fig-alt="A big beautiful library"}](https://www.rebeccabarter.com/blog/2023-03-28-data_sources.html)
+:::
+
+::: card-body
+Sources for lesser-known and better-known public datasets.
+:::
+
+:::
+
+
+
+
+
+::: card
+::: {.card-header style="background-color: white; font-size: 18;"}
 ### [Thanks, Quarto, for saving my blog!](https://www.rebeccabarter.com/blog/2023-03-21-quarto-website/)
 :::
 

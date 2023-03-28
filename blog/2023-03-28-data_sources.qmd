@@ -1,0 +1,165 @@
+---
+title: "A list of public data repositories"
+author: "Rebecca Barter"
+format:
+  html:
+    toc: true
+    toc-location: left
+categories: [data, datasets]
+date: 2023-03-28
+image: img/data/ivo-rainha-0rzUepBXHN0-unsplash.jpg
+description: "Sources for lesser-known and better-known public datasets."
+---
+
+![](img/data/ivo-rainha-0rzUepBXHN0-unsplash.jpg){fig-alt='A large, beautiful library'}
+
+
+I spend a lot of my time developing educational materials for data science, and since I always teach from a real-data perspective, this means that I spend a lot of my time looking for datasets. This blog post summarizes the first places I go when looking for a new dataset to play around with.
+
+While there are big data repositories like Kaggle, UCI Machine Learning repository, and data.gov, I often find more useful datasets in smaller, more curated repositories, which are often compiled by just one person, rather than being a massive repository of open datasets.
+
+
+# My go-to smaller, more curated repositories
+
+
+
+## Tidy Tuesday
+
+[![](img/data/tidy_tuesday.png){fig-alt='Tidy Tuesday logo'}](https://github.com/rfordatascience/tidytuesday)
+
+Link: [https://github.com/rfordatascience/tidytuesday](https://github.com/rfordatascience/tidytuesday)
+
+Tidy Tuesday is much more than "just a data repository". Tidy Tuesday is an entire community, originally brought together by [Tom Mock](https://themockup.blog/) to help people improve their data analysis and visualization skills using R. Tidy Tuesday provides weekly data sets and data exploration challenges, with thousands of participants from all around the world sharing their work, offering feedback, and collaborating on projects. Whether you are a seasoned data professional or just starting out, Tidy Tuesday is an excellent resource for learning and growth in the data science field.
+
+
+## Data is plural
+
+
+[![](img/data/data_is_plural.png){fig-alt='Data is plural homepage'}](https://www.data-is-plural.com/)
+
+
+Link: [https://www.data-is-plural.com/](https://www.data-is-plural.com/)
+
+"*Data is Plural*" is a weekly newsletter of "useful/curious datasets", published by [Jeremy Singer-Vine](https://www.jsvine.com/). The Data is Plural newsletter is delivered each week straight to your inbox and typically features a curated collection of recent and relevant high-quality and diverse datasets from a wide range of domains, including economics, sports, politics, science, and more.
+
+
+## FlowingData
+
+[![](img/data/flowing_data.png){fig-alt='Flowing data homepage'}](https://flowingdata.com/)
+
+Link: [https://flowingdata.com/](https://flowingdata.com/)
+
+While it is not technically a data repository, [Nathan Yau's](https://flowingdata.com/about) website [FlowingData](https://flowingdata.com/) contains a range of detailed visualizations and analyses of a range of interesting datasets, and he always provides a reference to the datasets that underlie his articles. Yau also offers a range of courses and tutorials for readers who are intersted in improving their data visualization and analysis skills
+
+## FiveThirtyEight
+
+[![](img/data/five_thirty_eight.jpg){fig-alt='FiveThirtyEight Logo'}](https://github.com/fivethirtyeight/data)
+
+Link: [https://data.fivethirtyeight.com/](https://data.fivethirtyeight.com/) (gihub repo: [https://github.com/fivethirtyeight/data](https://github.com/fivethirtyeight/data))
+
+[FiveThirtyEight](https://fivethirtyeight.com/), originally a blog created by Nate Silver, and now a large journalism site provides copies of the data that underlies their data-driven articles on [github](https://github.com/fivethirtyeight/data).  Since FiveThirtyEight's initial focus was political polls and elections (and I guess since Nate Silver is into sports), much of their data tends to be political and sports-related, but there are also other data goodies to be found in their repo too.
+
+## ProPublica
+
+[![](img/data/pro_publica.png){fig-alt='ProPublica Data Store homepage'}](https://www.propublica.org/datastore/)
+
+Link: [https://www.propublica.org/datastore/datasets](https://www.propublica.org/datastore/datasets)
+
+ProPublica, a non-profit investigative journalism outfit, provides a large number of datasets for free (and even more for a premium membership fee). I honestly haven't used this resource much myself, but I've been aware of it, and it seems to have some fairly interesting datasets at first glance!
+
+
+
+
+
+
+## Inbuilt datasets in R
+
+[![](img/data/r.png){fig-alt='The page displaying the list of datasets from the "Datasets" R package'}](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html)
+
+Link: [https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html)
+
+Sometimes, when I need something quick-and-dirty, the inbuilt datasets in R will do the job! You can look at the list of datasets available in R by typing `data()` in R. They are also listed [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html).
+
+There are also several packages that import datasets along with their functions, including ggplot2. You can look at the specific packages that are loaded with a package using the `package` argument in the `data()` function, for example:
+
+```{r}
+data(package = "ggplot2")
+```
+
+
+
+
+
+# The bigger, more obvious data repositories
+
+In addition to these smaller more curated data repositories, there are also several very large data repositories created by Google, Amazon, etc. However, due to the sheer volume of data available on these websites, I personally find these resources to be the most helpful when I already know what I'm looking for.
+
+
+
+
+## UCI Machine Learning repository
+
+[![](img/data/uci.png){fig-alt='UCI Machine Learning Repository Logo'}](https://archive.ics.uci.edu/ml/index.php)
+
+Link: [https://archive.ics.uci.edu/ml/index.php](https://archive.ics.uci.edu/ml/index.php)
+
+The UCI Machine Learning repository is a public dataset repository maintained by the Machine Learning Group at the University of California, Irvine. The datasets are typically organized into the type of machine learning problem they can be used for, but they come from various domains, including biology, finance, social sciences, and engineering. If I'm being honest, the UCI Machine Learning repository is fairly "old-school", and much of what you can find on the UCI ML repository can also now be found on Kaggle.
+
+## Kaggle
+
+[![](img/data/kaggle.png){fig-alt='Kaggle Logo'}](https://www.kaggle.com/)
+
+Link: [https://www.kaggle.com/](https://www.kaggle.com/)
+
+Kaggle began as a machine learning competition platform, and by nature of machine learning competitions, kaggle has also ended up being a place that hosts a wide range of datasets that are particularly well-suited to machine learning applications (the datasets for all past challenges can be downloaded from the Kaggle Website).
+
+
+
+## Google Dataset Search
+
+[![](img/data/google.png){fig-alt='Google Dataset Searchbar'}](https://datasetsearch.research.google.com/)
+
+Link: [https://datasetsearch.research.google.com/](https://datasetsearch.research.google.com/)
+
+Google Dataset Search is... well... Google but for datasets. As a search engine specifically designed for finding datasets, it provides access to a wide range of datasets from various sources and domains, including research publications and government databases. My issue with Google Dataset Search, however, is that you basically already need to know what you're looking for in order to search for it. It is a great resource for people looking for datasets on specific topics though.
+
+
+## Amazon Web Services Registry of Open Data
+
+
+[![](img/data/amazon.png){fig-alt='AWS logo'}](https://registry.opendata.aws/)
+
+Link: [https://registry.opendata.aws/](https://registry.opendata.aws/)
+
+
+Amazon Web Services provides access to a large collection of public datasets that can be used for research and development projects. As far as I can tell, the focus is on medical and environmental datasets. These datasets are hosted on the Amazon cloud infrastructure, and can be accessed using Amazon Web Services tools.
+
+
+
+## data.gov
+
+[![](img/data/datagov.png){fig-alt='Data.gov logo'}](https://data.gov/)
+
+Link: [https://data.gov/](https://data.gov/)
+
+data.gov is a government-owned online platform that provides public access to a vast collection of datasets from different federal agencies in the United States, which includes demographic data, weather data, environmental data, and economic data, among others. 
+
+
+<!-- # Domain-specific datasets -->
+
+<!-- ## Ecology -->
+
+
+<!-- https://www.rforecology.com/post/top-five-ish-sources-of-ecological-data/ -->
+
+
+<!-- ## Healthcare -->
+
+<!-- CDC data -->
+<!-- https://data.cdc.gov/  -->
+
+<!-- NHANES data -->
+<!-- https://wwwn.cdc.gov/nchs/nhanes/Default.aspx -->
+
+
+If you have some go-to resources for data that I haven't mentioned here, let me know by leaving a comment below!
