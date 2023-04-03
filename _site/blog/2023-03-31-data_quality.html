@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rebecca Barter">
+<meta name="dcterms.date" content="2023-03-31">
+
+<title>Rebecca Barter - The four “C”s for assessing data usefulness</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-90929425-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Rebecca Barter - The four “C”s for assessing data usefulness">
+<meta name="twitter:description" content="Every data science project starts with a real-world question and a dataset that can (hopefully!) be used to find some insights that answer the question.">
+<meta name="twitter:image" content="https://www.rebeccabarter.com/blog/img/data_usefulness/four_c.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Rebecca Barter</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">
+ <span class="menu-text">Blog archive</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About Rebecca</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/rlbarter"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/rlbarter"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">The four “C”s for assessing data usefulness</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">data science</div>
+                <div class="quarto-category">data</div>
+                <div class="quarto-category">data usefulness</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Rebecca Barter </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 31, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-data-usefulness" id="toc-what-is-data-usefulness" class="nav-link active" data-scroll-target="#what-is-data-usefulness">What is “data usefulness”?</a></li>
+  <li><a href="#the-four-cs-for-assessing-data-quality" id="toc-the-four-cs-for-assessing-data-quality" class="nav-link" data-scroll-target="#the-four-cs-for-assessing-data-quality">The four “C”s for assessing data quality</a>
+  <ul class="collapse">
+  <li><a href="#correctness" id="toc-correctness" class="nav-link" data-scroll-target="#correctness">Correctness</a></li>
+  <li><a href="#completeness" id="toc-completeness" class="nav-link" data-scroll-target="#completeness">Completeness</a></li>
+  <li><a href="#consistency" id="toc-consistency" class="nav-link" data-scroll-target="#consistency">Consistency</a></li>
+  <li><a href="#currency" id="toc-currency" class="nav-link" data-scroll-target="#currency">Currency</a></li>
+  </ul></li>
+  <li><a href="#can-data-cleaning-help" id="toc-can-data-cleaning-help" class="nav-link" data-scroll-target="#can-data-cleaning-help">Can data cleaning help?</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p><img src="img/data_usefulness/four_c.jpg" class="img-fluid" alt="A logo for the data usefulness"></p>
+<section id="what-is-data-usefulness" class="level1">
+<h1>What is “data usefulness”?</h1>
+<p>Every data science project starts with a real-world question and a dataset that can (hopefully!) be used to find some insights that answer the question. But all datasets are not made equal, and the ability of your particular dataset to lead us to a reliable and trustworthy answer depends not just on your own analysis skills, but also on the <em>usefulness</em> of the data that you’re working with.</p>
+<p>“<em>Data usefulness</em>” is a proxy for how well the data reflects the underlying reality it is supposed to represent as well as how easy it is to work with, and it should be evaluated in the context of the particular problem that you’re trying to solve or question you’re trying to answer. After all, if your data is not reflecting reality, or isn’t relevant to the problem you’re trying to solve, then it’s not going to be of much use now, is it?</p>
+<p>Examples of data that has low usefulness is data whose values <em>don’t accurately reflect</em> the quantities they are supposed to capture (e.g., measuring the temperature with a broken thermometer), data that is <em>missing relevant</em> variables or observations (e.g., a public opinion survey that was only taken by your followers on social media), data whose values are formatted <em>inconsistently</em> (e.g., state being recorded in inconsistent ways, such as “California”, “CA”, “Cali”), and data that is <em>outdated</em> (e.g., ). While the inconsistent formatting is often easy to fix, the other issues aren’t.</p>
+<p>To evaluate data quality, I use the <strong>four “C”s</strong> to assess data quality. The four “C”s are:</p>
+<ol type="1">
+<li><p><strong>Correct</strong>ness: Are the values in the data <em>correct</em>, i.e., are they accurately reflecting the real-world quantities they were designed to capture?</p></li>
+<li><p><strong>Complete</strong>ness: Does the data contain all of the relevant information needed to answer your question?</p></li>
+<li><p><strong>Consist</strong>ency: Was the data collected and formatted in a consistent way?</p></li>
+<li><p><strong>Currency</strong>: Is the data up-to-date and relevant to the situation that you plan to apply it to?</p></li>
+</ol>
+<p>These measures are more <em>qualitative</em> than they are <em>quantitative</em>, but can be really helpful for giving you a sense of your data’s potential to provide insights for your real-world problem.</p>
+</section>
+<section id="the-four-cs-for-assessing-data-quality" class="level1">
+<h1>The four “C”s for assessing data quality</h1>
+<p>By way of an example, let’s assess the usefulness of the CDC’s NHANES survey data for answering the question of whether there is any relationship between inactivity and depression.</p>
+<section id="correctness" class="level2">
+<h2 class="anchored" data-anchor-id="correctness">Correctness</h2>
+<p>Correctness is a measure of whether the values reported in the data are an accurate reflection of the real-world quantity they are designed to measure.</p>
+<p>For example, one of the primary relevant variables in the NHANES data is the <code>PAD680</code> variable, which encodes the responses to the question of “<em>How much time do you usually spend sitting on a typical day?</em>” The answers to this question are reported in minutes and range from 0 to 1200, as well as options for “don’t know” and “refused”. Around 70% of respondents have a numeric value for this variable, and around 30% of respondents have a <em>missing value</em> for this variable (less than 1% have a “don’t know” or “refused” response).</p>
+<div class="cell">
+
+</div>
+<div class="cell" data-caption="A histogram showing the distribution of responses to the NHANES question 'How much time do you usually spend sitting on a typical day?', with a ghost column added to convey the number of missing values.">
+<div class="cell-output-display">
+<p><img src="2023-03-31-data_quality_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>How well do you think this variable (<code>PAD680</code>) is reflecting reality? To answer this question, we need to first ask what is this variable trying to capture? The question being asked is “How much time do you usually spend sitting on a typical day?”, so clearly this variable is trying to capture is the amount of time each person included in the dataset spends sitting in a typical day (note that the question specifically says that this should not include time sleeping).</p>
+<p>Let’s start with the 30% of values that are missing. Do you think that these values are reflecting reality? They definitely are <em>not</em> reflecting reality: they are not at all capturing the amount of time each person spent sitting in a typical day.</p>
+<p>Presumably these values are missing because the individual didn’t have a good estimate of how much time they spent sitting on any given day, but this begs the question of why are these values are recorded as missing, rather than “refused” or “don’t know”? Fewer than 1% of answers were “refused” or “don’t know”, which implies a potential inconsistency in the way that the data are being collected by the survey takers. We’ll get to consistency below.</p>
+<p>Okay, so in this case the missing values aren’t reflecting reality, and so are not considered “correct”, but what about the non-missing values. Do you think that these values are “correct” in the sense that they are accurately reflecting the actual amount of time each person in the study spends sitting on a typical day? Since this data was not collected by <em>observing</em> how much each person sits on a typical day, and it’s really hard to actually guess exactly how much time you spend sitting on a typical day (try it for yourself), these values are, at best, vague ball-park figures that are deeply influenced by flawed self-perception and a fear of being judged on their answer.</p>
+<p>In this case, even the non-missing values are unlikely to be “correct”. Don’t lose all hope yet, however! This doesn’t mean that you can’t analyze your data, it just means that you need to be careful to remember and communicate that the results are based on self-reported measures of inactivity that are not perfectly accurate reflections of reality, which should serve as a reminder not to take any specific numeric conclusions that you arrive at too seriously (e.g., people who spend more than half of their waking hours sitting are more likely to be depressed). General trends, however, are likely to be . If you want to <em>test</em> the stability of your conclusions to your data, check out the <a href="https://www.pnas.org/doi/10.1073/pnas.1901326117"><em>Veridical Data Science</em> paper</a> (And eventually Bin Yu and my veridical data science book) for advice on how to do that.</p>
+</section>
+<section id="completeness" class="level2">
+<h2 class="anchored" data-anchor-id="completeness">Completeness</h2>
+<p>Completeness is a measure</p>
+</section>
+<section id="consistency" class="level2">
+<h2 class="anchored" data-anchor-id="consistency">Consistency</h2>
+</section>
+<section id="currency" class="level2">
+<h2 class="anchored" data-anchor-id="currency">Currency</h2>
+</section>
+</section>
+<section id="can-data-cleaning-help" class="level1">
+<h1>Can data cleaning help?</h1>
+<p>While data cleaning can address consistency (e.g., by reformatting inconsistently recorded data values) correctness to some extent (e.g., by replacing invalid or incorrect values with more correct values when they are known), data cleaning cannot fix a lack of completeness or currency.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="rlbarter/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

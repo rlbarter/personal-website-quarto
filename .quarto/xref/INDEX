@@ -235,5 +235,11 @@
   },
   "blog/2023-03-29-ai.qmd": {
     "2023-03-29-ai.html": "2f5667af"
+  },
+  "blog/2023-03-31-data_quality.qmd": {
+    "2023-03-31-data_quality.html": "0380f0c4"
+  },
+  "blog/2023-03-29-random_variables.qmd": {
+    "2023-03-29-random_variables.html": "45aabab4"
   }
 }
