@@ -241,5 +241,17 @@
   },
   "blog/2023-03-29-random_variables.qmd": {
     "2023-03-29-random_variables.html": "45aabab4"
+  },
+  "blog/drafts/2023-03-31-data_usefulness.qmd": {
+    "2023-03-31-data_usefulness.html": "bc478775"
+  },
+  "blog/drafts/2023-03-29-random_variables.qmd": {
+    "2023-03-29-random_variables.html": "7aefc059"
+  },
+  "blog/drafts/2023-03-29-ai.qmd": {
+    "2023-03-29-ai.html": "66fbd4ff"
+  },
+  "consulting.qmd": {
+    "consulting.html": "903f6dba"
   }
 }

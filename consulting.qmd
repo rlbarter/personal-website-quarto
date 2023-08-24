@@ -1,0 +1,59 @@
+---
+title: "Consulting"
+image: profile.jpg
+about:
+  template: solana
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/rlbarter
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/rebecca-barter
+    - icon: github
+      text: Github
+      href: https://github.com/rlbarter
+
+---
+
+If you're looking for some help learning data science or if you need some help with a particular data science project, I'm available for short-term consulting!
+
+The kinds of things I can help you with include:
+
+**Teaching workshops on**
+
+Programming:
+
+- R
+
+- Python
+
+- SQL
+
+- Git/GitHub
+
+- Shell/UNIX
+
+Doing data science:
+
+- Data cleaning
+
+- Data visualization
+
+- Data science workflows
+
+
+**Data science consulting**
+
+- Helping develop an impactful data visualization
+
+- Help you develop a consistent data science workflow
+
+- Help you prepare some complex data for analysis
+
+- Help you with an analysis plan
+
+- and more!
+
+
+Email me at rebecca.barter@hsc.utah.edu to see if your needs might be a good fit for my services!

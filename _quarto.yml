@@ -9,6 +9,8 @@ website:
         file: index.qmd
       - text: "Blog archive"
         file: blog.qmd
+      - text: "Consulting services"
+        file: consulting.qmd 
     right:
       - about.qmd
       - icon: github

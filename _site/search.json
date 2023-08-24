@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Welcome",
     "section": "",
-    "text": "Hi there, I’m Rebecca, welcome to my newly re-vamped website! Below you will find my newest posts as well as quick links to some of my more popular posts."
+    "text": "Hi there, I’m Rebecca, welcome to my newly re-vamped website! Below you will find my newest posts as well as quick links to some of my more popular posts.\nI’m also available for data science trainings and consulting! Click here to learn more."
   },
   {
     "objectID": "index.html#new-posts",
@@ -901,5 +901,12 @@
     "title": "A list of public data repositories",
     "section": "data.gov",
     "text": "data.gov\n\n\n\n\n\nLink: https://data.gov/\ndata.gov is a government-owned online platform that provides public access to a vast collection of datasets from different federal agencies in the United States, which includes demographic data, weather data, environmental data, and economic data, among others.\n\n\n\n\n\n\n\n\nIf you have some go-to resources for data that I haven’t mentioned here, let me know by leaving a comment below!"
+  },
+  {
+    "objectID": "consulting.html",
+    "href": "consulting.html",
+    "title": "Consulting",
+    "section": "",
+    "text": "If you’re looking for some help either learning of data science or if you need some help with a particular data science project, I’m available for short-term consulting!\nThe kinds of things I can help you with include:\nTeaching workshops on\n\nR\nPython\nData cleaning\nData visualization\nData science workflows\n\nData science consulting\n\nHelping develop a meaningful data visualization\nHelp you develop a consistent data science workflow\nHelp you prepare some complex data for analysis\nand more!\n\nEmail me at rebecca.barter@hsc.utah.edu to see if your needs might be a good fit for my services!"
   }
 ]

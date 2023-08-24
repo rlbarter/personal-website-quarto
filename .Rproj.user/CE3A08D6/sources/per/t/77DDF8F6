@@ -1,9 +1,9 @@
 {
     "id": "77DDF8F6",
-    "path": "~/Library/CloudStorage/OneDrive-UniversityofUtah/personal-webiste-quarto/blog.qmd",
+    "path": "~/Library/CloudStorage/OneDrive-UniversityofUtah/personal-website-quarto/blog.qmd",
     "project_path": "blog.qmd",
     "type": "quarto_markdown",
-    "hash": "2059773258",
+    "hash": "811318829",
     "contents": "",
     "dirty": false,
     "created": 1679347138587.0,
@@ -16,11 +16,11 @@
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1679346214,
+    "lastKnownWriteTime": 1679500751,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1679346214,
+    "last_content_update": 1679500751,
     "read_only": false,
     "read_only_alternatives": []
 }

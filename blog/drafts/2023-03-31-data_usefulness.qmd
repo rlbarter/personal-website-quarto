@@ -1,5 +1,5 @@
 ---
-title: 'The four "C"s for assessing data usefulness'
+title: 'Data usefulness as a function of "correctness and relevance"'
 author: "Rebecca Barter"
 format:
   html:
@@ -22,17 +22,17 @@ Every data science project starts with a real-world question and a dataset that 
 
 "*Data usefulness*" is a proxy for how well the data reflects the underlying reality it is intended to represent as well as how easy it is to work with. Data usefulness should always be evaluated in the context of the particular problem that you're trying to solve or question you're trying to answer. After all, if your data is not reflecting reality, or isn't relevant to the problem you're trying to solve, then it's not going to be of much use now, is it?
 
-Examples of data that has low usefulness include data whose values *don't accurately reflect* the real-world quantities they are supposed to capture (e.g., measuring the temperature with a broken thermometer), data that is *missing relevant* data points (e.g., a "public opinion" survey that was only taken by one your own followers on social media), data that is *inconsistent* (e.g., state being recorded in inconsistent ways, such as "California", "CA", "Cali"), and data that is *outdated* (e.g., using polls from 2023 to predict the outcome of an election in 2024). While the inconsistent formatting is often easy to fix, the other issues aren't.
+Examples of data that has low usefulness include data whose values are not *correct*, i.e., don't accurately reflect the real-world quantities they are supposed to capture (e.g., measuring the temperature with a broken thermometer), as well as data that is not *current*, e.g., because it is missing relevant data points (e.g., a "public opinion" survey that was only taken by one your own followers on social media) or is *outdated* (e.g., using polls from 2023 to predict the outcome of an election in 2024). While the inconsistent formatting is often easy to fix, the other issues aren't.
 
-In this blog post, I will introduce the **four "C"s** for assessing data quality. The *four "C"s* are:
+In this blog post, I will introduce a technique for assessing whether your data are useful based on whether your data is:
 
-1. **Correct**ness: Are the values in the data *correct*, i.e., are they accurately reflecting the real-world quantities they were designed to capture? 
+1. **Correct**: Are the values in the data *correct*, i.e., are they accurately reflecting the real-world quantities they were designed to capture? 
 
-1. **Complete**ness: Does the data contain all of the relevant information needed to answer your question?
+<!-- 1. **Complete**ness: Does the data contain all of the relevant information needed to answer your question? -->
 
-1. **Consist**ency: Was the data collected and formatted in a consistent way?
+<!-- 1. **Consist**ency: Was the data collected and formatted in a consistent way? -->
 
-1. **Currency**: Is the data up-to-date and relevant to the situation that you plan to apply it to? And are the observations in your data reflective of the population of interest?
+1. **Relevant**: Is the data up-to-date and relevant to the situation that you plan to apply it to? And are the observations in your data reflective of the population of interest?
 
 These measures are more *qualitative* than they are *quantitative*, but they can be really helpful for giving you a sense of your data's potential to provide insights for your real-world problem.
 
@@ -58,8 +58,8 @@ The table below shows the distribution of the types of responses for this variab
 #| message: false
 library(tidyverse)
 library(gt)
-# load in the data from my website github
-question <- read_csv("data/nhanes_data/questionnaire.csv")
+# load in the questionnaire data from my github repo
+question <- read_csv("https://raw.githubusercontent.com/rlbarter/personal-website-quarto/main/blog/data/nhanes_data/questionnaire.csv")
 # create a table for each response type
 question |> 
   summarise(dont_know = sum(PAD680 == 9999, na.rm = TRUE),
@@ -69,9 +69,10 @@ question |>
   gt()
 ```
 
+The histogram in Figure \@ref(fig:inactivity-hist) shows the distribution of the participants answers to the question "*How much time do you usually spend sitting on a typical day?*" (in minutes), for the participants whose answer was reported in the data. A 
 
 ```{r}
-#| echo: false
+#| label: inactivity-hist
 #| caption: "A histogram showing the distribution of responses to the NHANES question 'How much time do you usually spend sitting on a typical day?', with a ghost column added to convey the number of missing values."
 #| message: false
 #| warning: false
@@ -95,28 +96,39 @@ question |>
 ```
 
 
-How well do you think this variable (`PAD680`) is reflecting reality? To answer this question, we need to first ask what is this variable trying to capture? The question being asked is "How much time do you usually spend sitting on a typical day?", so clearly this variable is trying to capture is the amount of time each person included in the dataset spends sitting in a typical day (note that the question specifically says that this should not include time sleeping).
+**How well do you think this variable (`PAD680`) is reflecting reality?** 
 
-Let's start with the 30% of values that are missing. Do you think that these values are reflecting reality? They definitely are *not* reflecting reality: they are not at all capturing the amount of time each person spent sitting in a typical day.  
+To answer this question, we need to first ask what real-world quantity is this variable trying to capture? Fortunately, this is fairly clear from the question ("How much time do you usually spend sitting on a typical day?"): this variable is trying to capture is the amount of time each person spends sitting in a typical day (note that the question specifically says that this should not include time sleeping).
 
-Presumably these values are missing because the individual didn't have a good estimate of how much time they spent sitting on any given day, but this begs the question of why are these values are recorded as missing, rather than "refused" or "don't know"? Fewer than 1% of answers were "refused" or "don't know", which implies a potential inconsistency in the way that the data are being collected by the survey takers. We'll get to consistency below.
+Let's start with the 30% of values that are missing. Do you think that these values are reflecting reality? Since a missing value does not capture the amount of time each person spent sitting in a typical day, these missing values are *not* reflecting reality. Presumably these values are missing because the individual refused to or did not want to provide an estimate of how much time they spent sitting on any given day, but this begs the question of why are these values are recorded as *missing*, rather than "refused" or "don't know"? (Fewer than 1% of answers were "refused" or "don't know", which implies a potential inconsistency in the way that the data are being collected by the survey takers. We'll get to consistency below.)
 
-Okay, so in this case the missing values aren't reflecting reality, and so are not considered "correct", but what about the non-missing values. Do you think that these values are "correct" in the sense that they are accurately reflecting the actual amount of time each person in the study spends sitting on a typical day? Since this data was not collected by *observing* how much each person sits on a typical day, and it's really hard to actually guess exactly how much time you spend sitting on a typical day (try it for yourself), these values are, at best, vague ball-park figures that are deeply influenced by flawed self-perception and a fear of being judged on their answer.
+What about the non-missing values? Do you think that these values are "correct" in the sense that they are accurately reflecting the actual amount of time each person in the study spends sitting on a typical day? Let me ask you a question: **_how much time do you usually spend sitting on a typical day?_** Do you know an exact answer to this question, or did you provide a general approximation? Since this data was not collected by actually *observing* how much each person sits on a typical day, and it's really hard to actually guess exactly how much time you spend sitting on a typical day, these values are, at best, vague ball-park-figures that are deeply influenced by flawed self-perception and a fear of being judged on their answer.
 
-In this case, even the non-missing values are unlikely to be "correct". Don't lose all hope yet, however! This doesn't mean that you can't analyze your data, it just means that you need to be careful to remember and communicate that the results are based on self-reported measures of inactivity that are not perfectly accurate reflections of reality, which should serve as a reminder not to take any specific numeric conclusions that you arrive at too seriously (e.g., people who spend more than half of their waking hours sitting are more likely to be depressed). General trends, however, are likely to be . 
+In this example, even the *non-missing* values are unlikely to be "correct". Don't lose all hope yet, however! This doesn't mean that you can't analyze your data, it just means that you need to be careful to remember and communicate that the results are based on potentially inaccurate *self-reported measures* of inactivity that are not perfect reflections of reality. 
 
-If you want to *test* the stability of your conclusions to your data, check out Bin Yu's [*Veridical Data Science*](https://www.pnas.org/doi/10.1073/pnas.1901326117) framework (and keep an eye out for the "Veridical Data Science" book written by Bin Yu and myself!) for advice on how to do that.
+In terms of your downstream results, this means that you should not to take any *specific numeric* conclusions that you arrive at (e.g., people who spend more than half of their waking hours sitting are more likely to be depressed) too seriously. These results can certainly be used to indicate a general trend (although note that there is nothing *causal* about this study), but will necessarily not be proof of a real-world quantity. 
+
+Note that if you want to *test* the stability of your conclusions to your data, check out Bin Yu's [*Veridical Data Science*](https://www.pnas.org/doi/10.1073/pnas.1901326117) framework (and keep an eye out for the "Veridical Data Science" book written by Bin Yu and myself!) for some advice on how to do that.
 
 
 
 
 ## Completeness
 
-Completeness is a measure 
+**Completeness is a measure of whether the data contains all of the relevant information needed to answer your question.**
+
+
+
 
 ## Consistency
 
+**Completeness is a measure of whether the values in your data have been collected and reported in a consistent way.**
+
+
 ## Currency
+
+**Currency is a measure of whether the values in your data are current, i.e., relevant to the real-world scenario in which you plan to apply your results.**
+
 
 
 

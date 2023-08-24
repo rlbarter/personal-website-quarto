@@ -6,6 +6,8 @@ about:
 
 Hi there, I'm Rebecca, welcome to my newly re-vamped website! Below you will find my newest posts as well as quick links to some of my more popular posts. 
 
+I'm also available for data science trainings and consulting! [Click here](https://www.rebeccabarter.com/consulting) to learn more.
+
 ## *New posts*
 
 ::: card
