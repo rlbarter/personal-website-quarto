@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.rebeccabarter.com/blog.html</loc>
-    <lastmod>2023-08-24T21:31:38.094Z</lastmod>
+    <lastmod>2023-08-25T20:09:43.085Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/index.html</loc>
-    <lastmod>2023-08-24T21:38:32.625Z</lastmod>
+    <lastmod>2023-08-25T20:09:14.037Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse.html</loc>
@@ -22,6 +22,10 @@
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/consulting.html</loc>
-    <lastmod>2023-08-24T21:31:34.716Z</lastmod>
+    <lastmod>2023-08-25T20:09:26.618Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/about.html</loc>
+    <lastmod>2023-08-25T20:09:36.613Z</lastmod>
   </url>
 </urlset>

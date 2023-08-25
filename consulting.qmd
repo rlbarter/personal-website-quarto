@@ -1,5 +1,5 @@
 ---
-title: "Consulting"
+title: "Consulting and workshops"
 image: profile.jpg
 about:
   template: solana

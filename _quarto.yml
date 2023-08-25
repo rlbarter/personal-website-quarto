@@ -9,7 +9,7 @@ website:
         file: index.qmd
       - text: "Blog archive"
         file: blog.qmd
-      - text: "Consulting services"
+      - text: "Workshops and consulting"
         file: consulting.qmd 
     right:
       - about.qmd
