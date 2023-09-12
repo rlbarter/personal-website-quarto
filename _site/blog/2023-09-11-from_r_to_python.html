@@ -265,6 +265,7 @@ ga('send', {
   <li><a href="#extracting-columns" id="toc-extracting-columns" class="nav-link" data-scroll-target="#extracting-columns">Extracting columns</a></li>
   <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series">Series</a></li>
   <li><a href="#adding-columns-to-a-dataframe" id="toc-adding-columns-to-a-dataframe" class="nav-link" data-scroll-target="#adding-columns-to-a-dataframe">Adding columns to a DataFrame</a></li>
+  <li><a href="#dont-forget-to-.copy" id="toc-dont-forget-to-.copy" class="nav-link" data-scroll-target="#dont-forget-to-.copy">Don’t forget to .copy()</a></li>
   <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a></li>
   <li><a href="#grouping-data-frames" id="toc-grouping-data-frames" class="nav-link" data-scroll-target="#grouping-data-frames">Grouping data frames</a></li>
   </ul></li>
@@ -744,6 +745,9 @@ Name: a, dtype: int64</code></pre>
 </div>
 </div>
 <p><strong>This is very different from what would happen in R</strong>, where the <code>pandas_df_new</code> object would be a separate object from the original <code>pandas_df</code> object, and making modifications to the new object would not be reflected in the original one.</p>
+</section>
+<section id="dont-forget-to-.copy" class="level3">
+<h3 class="anchored" data-anchor-id="dont-forget-to-.copy">Don’t forget to .copy()</h3>
 <p>This is because in python when you define a new object to be an existing object (<code>pandas_df_new = pandas_df</code>), you are actually creating a new “pointer” to the same underlying object being pointed to by the original name <code>pandas_df</code>. <code>pandas_df_new</code> becomes like an “alias” for <code>pandas_df</code>, rather than an entirely new object.</p>
 <p>To avoid this issue, when defining a new DataFrame based on an existing DataFrame, you need to explicitly create a new object using the <code>copy()</code> method:</p>
 <div class="cell">
@@ -783,11 +787,11 @@ Name: a, dtype: int64</code></pre>
 3  4  8</code></pre>
 </div>
 </div>
-<p>This issue of unintentionally creating an alias or a “view” of an object, rather than a new object itself is another confusing thing about python. You will undoubtedly run into issues with it when you’re starting out (I certainly did).</p>
+<p>This issue of unintentionally creating an alias or a “view” of an object, rather than a new object itself is another confusing thing about python. You will undoubtedly run into issues with it when you’re starting out (I certainly did). When in doubt, just <code>copy()</code>.</p>
 </section>
 <section id="filtering" class="level3">
 <h3 class="anchored" data-anchor-id="filtering">Filtering</h3>
-<p>Pandas Series act like vectors in R in that you can ask logical questions of them (<em>side-note: this does not work with python lists, but it does with with Pandas series</em>):</p>
+<p>Pandas Series objects act like vectors in R in that you can ask logical questions of them (<em>side-note: this does not work with python lists, but it does with with pandas Series objects</em>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ask which entries in the column "a" are greater than 1</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>pandas_df[<span class="st">'a'</span>] <span class="op">&gt;</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -826,7 +830,7 @@ Name: a, dtype: bool</code></pre>
 <li><p>employ the <code>.loc</code> method and</p></li>
 <li><p>provide <code>:</code> to the column dimension (which says to “return all of the columns”),</p></li>
 </ol>
-<p>then we get the same result:</p>
+<p>then we get the expected result:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>pandas_df.loc[pandas_df.a <span class="op">&gt;</span> <span class="dv">1</span>,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -898,7 +902,7 @@ Name: b, dtype: int64</code></pre>
 </section>
 <section id="grouping-data-frames" class="level3">
 <h3 class="anchored" data-anchor-id="grouping-data-frames">Grouping data frames</h3>
-<p>One of the most powerful parts of the tidyverse is the ability to perform grouped operations on data frames. For example, if we wanted to add a categorical column to our data frame:</p>
+<p>One of the most powerful parts of the tidyverse is the ability to perform grouped operations on data frames. For example, if we wanted to add a categorical column to our R data frame:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a new categorical column to r_df</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>r_df[<span class="st">"cat"</span>] <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"yellow"</span>, <span class="st">"yellow"</span>)</span>
@@ -945,7 +949,7 @@ yellow    3.5
 Name: a, dtype: float64</code></pre>
 </div>
 </div>
-<p>The output is a Series object with the grouping variable values as the row index.</p>
+<p>The output is a Series object with the grouping variable values as the <em>row index</em>.</p>
 <p>Note that if we didn’t extract the column “a”, we would be applying grouped mean to all columns:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>pandas_df.groupby(<span class="st">'cat'</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -987,7 +991,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>pandas_df.query(<span class="st">'a &gt; 1'</span>).groupby(<span class="st">'cat'</span>)[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14f18ca90&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x127dbc940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
@@ -1000,6 +1004,7 @@ Name: b, dtype: float64</code></pre>
 dtype: object</code></pre>
 </div>
 </div>
+<p>This Series contains tuples (I can tell from the round parentheses <code>()</code>), and I’m not going to lie, I’m afraid. But at least I can see what values the grouped Series contains.</p>
 </section>
 <section id="data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualization">Data visualization</h2>

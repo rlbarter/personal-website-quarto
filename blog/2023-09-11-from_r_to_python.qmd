@@ -351,6 +351,8 @@ pandas_df
 
 **This is very different from what would happen in R**, where the `pandas_df_new` object would be a separate object from the original `pandas_df` object, and making modifications to the new object would not be reflected in the original one.
 
+### Don't forget to .copy()
+
 This is because in python when you define a new object to be an existing object (`pandas_df_new = pandas_df`), you are actually creating a new "pointer" to the same underlying object being pointed to by the original name `pandas_df`. `pandas_df_new` becomes like an "alias" for `pandas_df`, rather than an entirely new object.
 
 To avoid this issue, when defining a new DataFrame based on an existing DataFrame, you need to explicitly create a new object using the `copy()` method:
@@ -374,12 +376,12 @@ pandas_df_new
 pandas_df
 ```
 
-This issue of unintentionally creating an alias or a "view" of an object, rather than a new object itself is another confusing thing about python. You will undoubtedly run into issues with it when you're starting out (I certainly did).
+This issue of unintentionally creating an alias or a "view" of an object, rather than a new object itself is another confusing thing about python. You will undoubtedly run into issues with it when you're starting out (I certainly did). When in doubt, just `copy()`. 
 
 ### Filtering 
 
 
-Pandas Series act like vectors in R in that you can ask logical questions of them (*side-note: this does not work with python lists, but it does with with Pandas series*):
+Pandas Series objects act like vectors in R in that you can ask logical questions of them (*side-note: this does not work with python lists, but it does with with pandas Series objects*):
 
 ```{python}
 # ask which entries in the column "a" are greater than 1
@@ -405,7 +407,7 @@ This syntax doesn't work for the pandas DataFrame, however, but if we make a few
 
 1. provide `:` to the column dimension (which says to "return all of the columns"), 
 
-then we get the same result:
+then we get the expected result:
 
 ```{python}
 pandas_df.loc[pandas_df.a > 1,:]
@@ -460,7 +462,7 @@ pandas_df.query('a > @thresh')
 
 ### Grouping data frames
 
-One of the most powerful parts of the tidyverse is the ability to perform grouped operations on data frames. For example, if we wanted to add a categorical column to our data frame:
+One of the most powerful parts of the tidyverse is the ability to perform grouped operations on data frames. For example, if we wanted to add a categorical column to our R data frame:
 
 ```{r}
 # add a new categorical column to r_df
@@ -488,7 +490,7 @@ and then let's group the data frame by the new categorical column, extract the c
 pandas_df.groupby('cat')["a"].mean()
 ```
 
-The output is a Series object with the grouping variable values as the row index.
+The output is a Series object with the grouping variable values as the *row index*.
 
 Note that if we didn't extract the column "a", we would be applying grouped mean to all columns:
 
@@ -530,6 +532,7 @@ Let's try to force the grouped Series object back into a regular pandas Series o
 pd.Series(pandas_df.query('a > 1').groupby('cat')['b'])
 ```
 
+This Series contains tuples (I can tell from the round parentheses `()`), and I'm not going to lie, I'm afraid. But at least I can see what values the grouped Series contains. 
 
 ## Data visualization
 

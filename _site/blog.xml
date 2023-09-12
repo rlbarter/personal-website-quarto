@@ -481,6 +481,9 @@ Name: a, dtype: int64</code></pre>
 </div>
 </div>
 <p><strong>This is very different from what would happen in R</strong>, where the <code>pandas_df_new</code> object would be a separate object from the original <code>pandas_df</code> object, and making modifications to the new object would not be reflected in the original one.</p>
+</section>
+<section id="dont-forget-to-.copy" class="level3">
+<h3 class="anchored" data-anchor-id="dont-forget-to-.copy">Don’t forget to .copy()</h3>
 <p>This is because in python when you define a new object to be an existing object (<code>pandas_df_new = pandas_df</code>), you are actually creating a new “pointer” to the same underlying object being pointed to by the original name <code>pandas_df</code>. <code>pandas_df_new</code> becomes like an “alias” for <code>pandas_df</code>, rather than an entirely new object.</p>
 <p>To avoid this issue, when defining a new DataFrame based on an existing DataFrame, you need to explicitly create a new object using the <code>copy()</code> method:</p>
 <div class="cell">
@@ -520,11 +523,11 @@ Name: a, dtype: int64</code></pre>
 3  4  8</code></pre>
 </div>
 </div>
-<p>This issue of unintentionally creating an alias or a “view” of an object, rather than a new object itself is another confusing thing about python. You will undoubtedly run into issues with it when you’re starting out (I certainly did).</p>
+<p>This issue of unintentionally creating an alias or a “view” of an object, rather than a new object itself is another confusing thing about python. You will undoubtedly run into issues with it when you’re starting out (I certainly did). When in doubt, just <code>copy()</code>.</p>
 </section>
 <section id="filtering" class="level3">
 <h3 class="anchored" data-anchor-id="filtering">Filtering</h3>
-<p>Pandas Series act like vectors in R in that you can ask logical questions of them (<em>side-note: this does not work with python lists, but it does with with Pandas series</em>):</p>
+<p>Pandas Series objects act like vectors in R in that you can ask logical questions of them (<em>side-note: this does not work with python lists, but it does with with pandas Series objects</em>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><span class="co" style="color: #5E5E5E;"># ask which entries in the column "a" are greater than 1</span></span>
 <span id="cb74-2">pandas_df[<span class="st" style="color: #20794D;">'a'</span>] <span class="op" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span></span></code></pre></div>
@@ -563,7 +566,7 @@ Name: a, dtype: bool</code></pre>
 <li><p>employ the <code>.loc</code> method and</p></li>
 <li><p>provide <code>:</code> to the column dimension (which says to “return all of the columns”),</p></li>
 </ol>
-<p>then we get the same result:</p>
+<p>then we get the expected result:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1">pandas_df.loc[pandas_df.a <span class="op" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span>,:]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -635,7 +638,7 @@ Name: b, dtype: int64</code></pre>
 </section>
 <section id="grouping-data-frames" class="level3">
 <h3 class="anchored" data-anchor-id="grouping-data-frames">Grouping data frames</h3>
-<p>One of the most powerful parts of the tidyverse is the ability to perform grouped operations on data frames. For example, if we wanted to add a categorical column to our data frame:</p>
+<p>One of the most powerful parts of the tidyverse is the ability to perform grouped operations on data frames. For example, if we wanted to add a categorical column to our R data frame:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb92" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><span class="co" style="color: #5E5E5E;"># add a new categorical column to r_df</span></span>
 <span id="cb92-2">r_df[<span class="st" style="color: #20794D;">"cat"</span>] <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"red"</span>, <span class="st" style="color: #20794D;">"red"</span>, <span class="st" style="color: #20794D;">"yellow"</span>, <span class="st" style="color: #20794D;">"yellow"</span>)</span>
@@ -682,7 +685,7 @@ yellow    3.5
 Name: a, dtype: float64</code></pre>
 </div>
 </div>
-<p>The output is a Series object with the grouping variable values as the row index.</p>
+<p>The output is a Series object with the grouping variable values as the <em>row index</em>.</p>
 <p>Note that if we didn’t extract the column “a”, we would be applying grouped mean to all columns:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb100" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1">pandas_df.groupby(<span class="st" style="color: #20794D;">'cat'</span>).mean()</span></code></pre></div>
@@ -724,7 +727,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14f18ca90&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x127dbc940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
@@ -737,6 +740,7 @@ Name: b, dtype: float64</code></pre>
 dtype: object</code></pre>
 </div>
 </div>
+<p>This Series contains tuples (I can tell from the round parentheses <code>()</code>), and I’m not going to lie, I’m afraid. But at least I can see what values the grouped Series contains.</p>
 </section>
 <section id="data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualization">Data visualization</h2>
