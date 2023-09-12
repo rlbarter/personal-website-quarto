@@ -16,11 +16,11 @@ about:
 
 ---
 
-If you're looking for some help learning data science or if you need some help with a particular data science project, I'm available for short-term consulting!
+If you or your company are interested in to hiring me to teach data science workshops or if you need help with a particular data science project, I'm available for short-term consulting!
 
-The kinds of things I can help you with include:
+The kinds of services I offer include:
 
-**Teaching workshops on**
+**Workshops on**
 
 Programming:
 
@@ -42,18 +42,22 @@ Doing data science:
 
 - Data science workflows
 
+Workshops can be just a few hours, 1-2 days, or be split up into shorter sessions recurring over several weeks. They can also be remote or in-person, depending on location.
+
 
 **Data science consulting**
 
-- Helping develop an impactful data visualization
+I also offer short-term help with:
 
-- Help you develop a consistent data science workflow
+- Creating impactful data visualization
 
-- Help you prepare some complex data for analysis
+- Developing a consistent data science workflow
 
-- Help you with an analysis plan
+- Preparing complex data for analysis
+
+- Creating an analysis plan
 
 - and more!
 
 
-Email me at rebecca.barter@hsc.utah.edu to see if your needs might be a good fit for my services!
+Interested? Feel free to email me at rlbarter at gmail dot com to see if your needs might be a good fit for my services!
