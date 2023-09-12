@@ -366,9 +366,9 @@ dtype: int64</code></pre>
 <p>Sometimes the errors in Python are even helpful! Thanks Python!</p>
 <p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don’t be scare. You’ll get used to it. I hope.</p>
 </section>
-<section id="extracting-and-adding-columns" class="level3">
-<h3 class="anchored" data-anchor-id="extracting-and-adding-columns">Extracting and adding columns</h3>
-<p>While you can create a pandas DataFrame using a dictionary containing list entries, the columns of a DataFrame themselves, when extracted, are a “Series” type object (rather than a list).</p>
+<section id="extracting-columns" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-columns">Extracting columns</h3>
+<p>While you can create a pandas DataFrame using a dictionary containing list entries (as we did earlier), the columns of a DataFrame themselves, when extracted, are a “Series” type object (rather than a list).</p>
 <p>For example, the column <code>'a'</code> can be extracted using <code>[]</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1">pandas_df[<span class="st" style="color: #20794D;">'a'</span>]</span></code></pre></div>
@@ -411,6 +411,9 @@ Name: a, dtype: int64</code></pre>
 </div>
 </div>
 <p>which tells us that this column is a pandas “Series” object.</p>
+</section>
+<section id="series" class="level3">
+<h3 class="anchored" data-anchor-id="series">Series</h3>
 <p>A pandas <strong>Series</strong> is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there will be has two attributes printed out at the bottom: the <code>Name</code> (if indeed there is a name) and <code>dtype</code> (type).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1">pandas_df[<span class="st" style="color: #20794D;">'a'</span>]</span></code></pre></div>
@@ -435,6 +438,9 @@ Name: a, dtype: int64</code></pre>
 <pre style="color: red;"><code>'Series' object has no attribute 'columns'</code></pre>
 </div>
 </div>
+</section>
+<section id="adding-columns-to-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="adding-columns-to-a-dataframe">Adding columns to a DataFrame</h3>
 <p>You can add a column to a pandas DataFrame just as you would in base R:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb62" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1">pandas_df[<span class="st" style="color: #20794D;">'c'</span>] <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">9</span>,<span class="dv" style="color: #AD0000;">10</span>,<span class="dv" style="color: #AD0000;">11</span>,<span class="dv" style="color: #AD0000;">12</span>]</span>
@@ -447,9 +453,6 @@ Name: a, dtype: int64</code></pre>
 3  4  8  12</code></pre>
 </div>
 </div>
-</section>
-<section id="dont-forget-to-.copy" class="level3">
-<h3 class="anchored" data-anchor-id="dont-forget-to-.copy">Don’t forget to <code>.copy()</code></h3>
 <p>However, if you define a new DataFrame using an existing data frame and then modify it, e.g., by adding a new column:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><span class="co" style="color: #5E5E5E;"># define a new data frame using the original one</span></span>
@@ -721,7 +724,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1334d99d0&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14f18ca90&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>

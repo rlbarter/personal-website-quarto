@@ -267,7 +267,7 @@ Sometimes the errors in Python are even helpful! Thanks Python!
 Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don't be scare. You'll get used to it. I hope. 
 
 
-### Extracting and adding columns
+### Extracting columns
 
 While you can create a pandas DataFrame using a dictionary containing list entries (as we did earlier), the columns of a DataFrame themselves, when extracted, are a "Series" type object (rather than a list).
 
@@ -301,6 +301,8 @@ type(pandas_df['a'])
 
 which tells us that this column is a pandas "Series" object.
 
+### Series
+
 A pandas **Series** is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there will be has two attributes printed out at the bottom: the `Name` (if indeed there is a name) and `dtype` (type). 
 
 ```{python}
@@ -320,6 +322,7 @@ pandas_df['a'].index
 pandas_df['a'].columns
 ```
 
+### Adding columns to a DataFrame
 
 You can add a column to a pandas DataFrame just as you would in base R:
 
@@ -328,8 +331,6 @@ pandas_df['c'] = [9,10,11,12]
 pandas_df
 ```
 
-
-### Don't forget to `.copy()`
 
 However, if you define a new DataFrame using an existing data frame and then modify it, e.g., by adding a new column:
 
