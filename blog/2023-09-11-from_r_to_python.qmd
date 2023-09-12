@@ -209,7 +209,7 @@ pandas_df.index
 
 This is a "RangeIndex" object that spans from 0 to 2 (*not inclusive*) with a step-size of 1 and corresponds to the row index of the DataFrame. 
 
-Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using `list()`. 
+Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using `list()` (which is a function in python for creating lists). 
 
 ```{python}
 list(pandas_df.index)
@@ -219,7 +219,7 @@ list(pandas_df.index)
 list(pandas_df.columns)
 ```
 
-Whenever python objects display weirdly, I try and convert them to something simpler, like a list to see what they actually contain. Sometimes I even succeed.
+Whenever python objects display weirdly, I try and convert them to something simpler, like a list, to see what they actually contain. Sometimes I even succeed.
 
 
 ### Methods

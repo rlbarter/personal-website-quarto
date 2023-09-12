@@ -570,7 +570,7 @@ ga('send', {
 </div>
 </div>
 <p>This is a “RangeIndex” object that spans from 0 to 2 (<em>not inclusive</em>) with a step-size of 1 and corresponds to the row index of the DataFrame.</p>
-<p>Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using <code>list()</code>.</p>
+<p>Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using <code>list()</code> (which is a function in python for creating lists).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(pandas_df.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -583,7 +583,7 @@ ga('send', {
 <pre><code>['a', 'b']</code></pre>
 </div>
 </div>
-<p>Whenever python objects display weirdly, I try and convert them to something simpler, like a list to see what they actually contain. Sometimes I even succeed.</p>
+<p>Whenever python objects display weirdly, I try and convert them to something simpler, like a list, to see what they actually contain. Sometimes I even succeed.</p>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
@@ -991,7 +991,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>pandas_df.query(<span class="st">'a &gt; 1'</span>).groupby(<span class="st">'cat'</span>)[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x12280c940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x120ac8940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
