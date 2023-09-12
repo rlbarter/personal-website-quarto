@@ -316,7 +316,7 @@ ga('send', {
 </section>
 <section id="loading-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="loading-libraries">Loading libraries</h3>
-<p>One difference between R and Python is that once you have loaded a package into R, you can use the functions from the package (which is just another word for library) without having to specify which library the package comes from every time you use it like this:</p>
+<p>One difference between R and Python is that once you have loaded a package into R, you can use the functions from the package without having to specify which library the package comes from every time you use it like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -436,13 +436,13 @@ ga('send', {
 </div>
 </div>
 <p>But I don’t need to.</p>
-<p>In Python, however, you <em>do</em> need to specify which library the functions you are using come from, even after importing them. This is why every time you import a python library, you should give it a nickname so you don’t have to type out the entire library name each time you want to use a function from it. Fortunately, there are some generally agreed-upon nicknames that everyone uses. E.g. pandas’ nickname is “pd”, and NumPy’s nickname is “np”.</p>
+<p>In Python, however, you <em>do</em> need to specify which library the functions you are using come from, even after importing them. This is why every time you import a python library, you should give it a nickname so you don’t have to type out the entire library name each time you want to use a function from it. Fortunately, there are some generally agreed-upon nicknames that everyone uses. E.g. pandas’ nickname is “pd”, and NumPy’s nickname is “np”. (In Python people usually say ‘library’ instead of ‘package’.)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>So to use a function from the NumPy library, such as <code>log()</code>, you need to first specify the package nickname and then the function name, separated by a dot: <code>np.log()</code>. The following code will compute the logarithm of 7 using the <code>log()</code> function from the NumPy library whose nickname is <code>np</code>:</p>
+<p>So to use a function from the NumPy library, such as <code>log()</code>, you need to first specify the library nickname and then the function name, separated by a dot: <code>np.log()</code>. The following code will compute the logarithm of 7 using the <code>log()</code> function from the NumPy library whose nickname is <code>np</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.log(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -991,7 +991,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>pandas_df.query(<span class="st">'a &gt; 1'</span>).groupby(<span class="st">'cat'</span>)[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x127dbc940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x13e538940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>

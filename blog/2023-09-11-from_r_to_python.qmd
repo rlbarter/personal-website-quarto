@@ -61,7 +61,7 @@ which will install the pandas library, for example. You may have a different pre
 ### Loading libraries
 
 
-One difference between R and Python is that once you have loaded a package into R, you can use the functions from the package (which is just another word for library) without having to specify which library the package comes from every time you use it like this:
+One difference between R and Python is that once you have loaded a package into R, you can use the functions from the package without having to specify which library the package comes from every time you use it like this:
 
 ```{r}
 #| message: false
@@ -82,7 +82,7 @@ dplyr::filter(iris, Species == "virginica")
 
 But I don't need to.
 
-In Python, however, you *do* need to specify which library the functions you are using come from, even after importing them. This is why every time you import a python library, you should give it a nickname so you don't have to type out the entire library name each time you want to use a function from it. Fortunately, there are some generally agreed-upon nicknames that everyone uses. E.g. pandas' nickname is "pd", and NumPy's nickname is "np".
+In Python, however, you *do* need to specify which library the functions you are using come from, even after importing them. This is why every time you import a python library, you should give it a nickname so you don't have to type out the entire library name each time you want to use a function from it. Fortunately, there are some generally agreed-upon nicknames that everyone uses. E.g. pandas' nickname is "pd", and NumPy's nickname is "np". (In Python people usually say 'library' instead of 'package'.)
 
 ```{python}
 import pandas as pd
@@ -90,7 +90,7 @@ import numpy as np
 import matplotlib as plt
 ```
 
-So to use a function from the NumPy library, such as `log()`, you need to first specify the package nickname and then the function name, separated by a dot: `np.log()`. The following code will compute the logarithm of 7 using the `log()` function from the NumPy library whose nickname is `np`:
+So to use a function from the NumPy library, such as `log()`, you need to first specify the library nickname and then the function name, separated by a dot: `np.log()`. The following code will compute the logarithm of 7 using the `log()` function from the NumPy library whose nickname is `np`:
 
 ```{python}
 np.log(7)
