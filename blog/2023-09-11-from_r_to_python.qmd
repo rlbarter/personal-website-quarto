@@ -122,7 +122,7 @@ pandas_df = pd.DataFrame({'a': [1,2,3,4],
 pandas_df
 ```
 
-In the R version above we provided *two* arguments to the `data.frame()` function, each of which contained an R vector (`c(1, 2, 3, 4)` and `c(5, 6, 7, 8)`) of the values that will form a column. The syntax for the python version, however, involves a *single argument* corresponding to a type of object called a **dictionary** whose named entries each contain a python **list** (`[1,2,3,4]` and `[5,6,7,8]`) of the values that will form a column.
+In the R version above we provided *two* arguments to the `data.frame()` function, each of which contained an R vector (`c(1, 2, 3, 4)` and `c(5, 6, 7, 8)`) of the values that will form a column. The syntax for the python version, however, involves a *single argument* corresponding to a type of object called a **dictionary** (a dictionary is defined with curly brackets) whose named entries each contain a python **list** (`[1,2,3,4]` and `[5,6,7,8]`) of the values that will form a column.
 
 ### Lists in python
 

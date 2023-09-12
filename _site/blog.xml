@@ -217,7 +217,7 @@
 3  4  8</code></pre>
 </div>
 </div>
-<p>In the R version above we provided <em>two</em> arguments to the <code>data.frame()</code> function, each of which contained an R vector (<code>c(1, 2, 3, 4)</code> and <code>c(5, 6, 7, 8)</code>) of the values that will form a column. The syntax for the python version, however, involves a <em>single argument</em> corresponding to a type of object called a <strong>dictionary</strong> whose named entries each contain a python <strong>list</strong> (<code>[1,2,3,4]</code> and <code>[5,6,7,8]</code>) of the values that will form a column.</p>
+<p>In the R version above we provided <em>two</em> arguments to the <code>data.frame()</code> function, each of which contained an R vector (<code>c(1, 2, 3, 4)</code> and <code>c(5, 6, 7, 8)</code>) of the values that will form a column. The syntax for the python version, however, involves a <em>single argument</em> corresponding to a type of object called a <strong>dictionary</strong> (a dictionary is defined with curly brackets) whose named entries each contain a python <strong>list</strong> (<code>[1,2,3,4]</code> and <code>[5,6,7,8]</code>) of the values that will form a column.</p>
 <section id="lists-in-python" class="level3">
 <h3 class="anchored" data-anchor-id="lists-in-python">Lists in python</h3>
 <p>A <strong>list</strong> in python is actually a lot like a list in R, in that it can contain a variety of object types. Lists in python are created using square brackets:</p>
@@ -720,7 +720,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1566c4940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1438cc940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
