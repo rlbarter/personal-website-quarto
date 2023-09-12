@@ -244,7 +244,7 @@
 </section>
 <section id="dictionaries" class="level3">
 <h3 class="anchored" data-anchor-id="dictionaries">Dictionaries</h3>
-<p>A dictionary is kind of like a named list.</p>
+<p>A dictionary is kind of like a named list. In the example below, both of the entries in the dictionary are themselves lists:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">my_py_dict <span class="op" style="color: #5E5E5E;">=</span> {<span class="st" style="color: #20794D;">'name'</span>: [<span class="st" style="color: #20794D;">'Jane'</span>, <span class="st" style="color: #20794D;">'Joe'</span>, <span class="st" style="color: #20794D;">'Jerry'</span>],</span>
 <span id="cb20-2">              <span class="st" style="color: #20794D;">'age'</span>: [<span class="dv" style="color: #AD0000;">13</span>, <span class="dv" style="color: #AD0000;">15</span>, <span class="dv" style="color: #AD0000;">12</span>]}</span>
@@ -727,7 +727,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14b724940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x12280c940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>

@@ -146,7 +146,7 @@ my_py_list
 
 ### Dictionaries
 
-A dictionary is kind of like a named list.
+A dictionary is kind of like a named list. In the example below, both of the entries in the dictionary are themselves lists:
 
 ```{python}
 my_py_dict = {'name': ['Jane', 'Joe', 'Jerry'],
