@@ -450,7 +450,7 @@ For pandas DataFrame, the `query()` syntax looks like
 pandas_df.query('a > 1')
 ```
 
-Note that there is no "tidy eval" in python, so you need to provide a quoted character argument to the `query()` method.
+Note that there is no "tidy eval" in python, so you need to provide a quoted string ("string" is the python word for "character") argument to the `query()` method.
 
 If you want to use an external variable, you need to access it using `@` within the query argument:
 

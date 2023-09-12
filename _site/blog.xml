@@ -622,7 +622,7 @@ Name: b, dtype: int64</code></pre>
 3  4  8</code></pre>
 </div>
 </div>
-<p>Note that there is no “tidy eval” in python, so you need to provide a quoted character argument to the <code>query()</code> method.</p>
+<p>Note that there is no “tidy eval” in python, so you need to provide a quoted string (“string” is the python word for “character”) argument to the <code>query()</code> method.</p>
 <p>If you want to use an external variable, you need to access it using <code>@</code> within the query argument:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb90" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1">thresh <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span></span>
@@ -727,7 +727,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x13e538940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14b724940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
