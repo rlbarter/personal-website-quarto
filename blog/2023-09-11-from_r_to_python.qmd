@@ -6,7 +6,7 @@ format:
     toc: true
     toc-location: left
 categories: [python]
-date: 2023-03-28
+date: 2023-09-12
 image: img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg
 description: "I have a confession to make: I am now a Python user. Don't judge me, join me! In this post, I introduce Python for data analysis from the perspective of an R (tidyverse) user. This post is a must-read if you are an R user hoping to dip your toes in the Python pool."
 editor_options: 

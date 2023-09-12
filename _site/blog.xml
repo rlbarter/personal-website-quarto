@@ -10,7 +10,7 @@
 <atom:link href="https://www.rebeccabarter.com/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Rebecca Barter&#39;s blog</description>
 <generator>quarto-1.2.280</generator>
-<lastBuildDate>Tue, 28 Mar 2023 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 12 Sep 2023 06:00:00 GMT</lastBuildDate>
 <item>
   <title>An introduction to Python for R Users</title>
   <dc:creator>Rebecca Barter</dc:creator>
@@ -720,7 +720,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14e944940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1376d0940&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
@@ -817,7 +817,7 @@ Name: gdpPercap, dtype: float64</code></pre>
  ]]></description>
   <category>python</category>
   <guid>https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python.html</guid>
-  <pubDate>Tue, 28 Mar 2023 06:00:00 GMT</pubDate>
+  <pubDate>Tue, 12 Sep 2023 06:00:00 GMT</pubDate>
   <media:content url="https://www.rebeccabarter.com/blog/img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
