@@ -193,15 +193,15 @@ The output of which is an "index" type object.
 
 There are two main uses of the syntax `object.xyz`. The first, which is being used here, is used to extract an "attribute" `xyz` from an object (e.g., here we are extracting the `columns` attribute from the `pandas_df` DataFrame object).
 
-Another "attribute" that you can extract from a DataFrame is the shape:
+Another "attribute" that you can extract from a DataFrame is the shape (which is equivalent to `dim()` in R):
 
 ```{python}
 pandas_df.shape
 ```
 
-The `shape` output here has a "tuple" type (we won't go into tuples here). 
+The `shape` output here has a "tuple" type (I won't go into tuples here because I'm afraid of them). 
 
-Another important attribute of a DataFrame is its row index
+Another important attribute of a DataFrame is its row index:
 
 ```{python}
 pandas_df.index
@@ -209,7 +209,7 @@ pandas_df.index
 
 This is a "RangeIndex" object that spans from 0 to 2 (*not inclusive*) with a step-size of 1 and corresponds to the row index of the DataFrame. 
 
-As we have seen, both the column and row indexes of pandas DataFrames are special index objects that can be converted to a python list using `list()`. 
+Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using `list()`. 
 
 ```{python}
 list(pandas_df.index)
@@ -219,13 +219,14 @@ list(pandas_df.index)
 list(pandas_df.columns)
 ```
 
+Whenever python objects display weirdly, I try and convert them to something simpler, like a list to see what they actually contain. Sometimes I even succeed.
 
 
 ### Methods
 
-Now only can you extract attributes of an object using the `object.xyz` dot syntax, but you can also apply object-specific *functions* to the object using the `object.fun()` dot syntax. 
+Extracting attributes is not the only use of the `object.xyz` dot syntax. Similar syntax also lets you apply object-specific *functions* to the object using the `object.fun()` dot syntax. 
 
-Note that functions that are applied using the `object.fun()` (syntax where the function name comes after the dot) are called **methods**. These are functions that are specific to the type of object it is being applied to.
+Note that functions that are applied using the `object.fun()` (syntax where the function name comes after the dot) are called **methods**. These are functions that are specific to the type of object it is being applied to. 
 
 For example, we can apply the `mean()` and `sum()` DataFrame *methods* to our `pandas_df` DataFrame object to compute the mean and sum of each column in the data frame:
 
@@ -234,7 +235,7 @@ pandas_df.mean()
 pandas_df.sum()
 ```
 
-Note that the output of these functions are "Series" type objects, which is like a single column of a data frame. More on Series' below.
+Note that the output of these functions are pandas "Series" type objects, which is like a single column of a data frame. More on Series' objects below.
 
 It is important to note that these `mean()` and `sum()` methods are not standalone functions. If we try to apply them to our DataFrame as we would do for regular functions, we get errors:
 
@@ -250,9 +251,9 @@ mean(pandas_df)
 sum(pandas_df)
 ```
 
-These `mean()` and `sum()` methods are functions specific to the DataFrame type object and must be applied using the `pandas_df.mean()` dot syntax. 
+Since they are "methods", these `mean()` and `sum()` method functions are specific to the DataFrame type object and must be applied using the `pandas_df.fun()` dot syntax. 
 
-Moreover, since these method functions are specific to DataFrame objects, they also won't work on non-DataFrame objects, like lists:
+Moreover, since these method functions are specific to DataFrame objects, they also won't work on non-DataFrame objects, including lists:
 
 ```{python}
 #| error: true
@@ -261,14 +262,14 @@ py_list = [1, 3, 4]
 py_list.mean()
 ```
 
-Note the error says `'list' object has no attribute 'mean'`.
+Sometimes the errors in Python are even helpful! Thanks Python!
 
-Coming from R where a function is always just a function, this method vs function thing was quite confusing at first (and honestly sometimes still is).
+Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don't be scare. You'll get used to it. I hope. 
 
 
 ### Extracting and adding columns
 
-While you can create a pandas DataFrame using a dictionary containing list entries, the columns of a DataFrame themselves, when extracted, are a "Series" type object (rather than a list).
+While you can create a pandas DataFrame using a dictionary containing list entries (as we did earlier), the columns of a DataFrame themselves, when extracted, are a "Series" type object (rather than a list).
 
 For example, the column `'a'` can be extracted using `[]`:
 

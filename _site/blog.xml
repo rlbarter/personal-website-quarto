@@ -290,15 +290,15 @@
 </div>
 <p>The output of which is an “index” type object.</p>
 <p>There are two main uses of the syntax <code>object.xyz</code>. The first, which is being used here, is used to extract an “attribute” <code>xyz</code> from an object (e.g., here we are extracting the <code>columns</code> attribute from the <code>pandas_df</code> DataFrame object).</p>
-<p>Another “attribute” that you can extract from a DataFrame is the shape:</p>
+<p>Another “attribute” that you can extract from a DataFrame is the shape (which is equivalent to <code>dim()</code> in R):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1">pandas_df.shape</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(4, 2)</code></pre>
 </div>
 </div>
-<p>The <code>shape</code> output here has a “tuple” type (we won’t go into tuples here).</p>
-<p>Another important attribute of a DataFrame is its row index</p>
+<p>The <code>shape</code> output here has a “tuple” type (I won’t go into tuples here because I’m afraid of them).</p>
+<p>Another important attribute of a DataFrame is its row index:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1">pandas_df.index</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -306,7 +306,7 @@
 </div>
 </div>
 <p>This is a “RangeIndex” object that spans from 0 to 2 (<em>not inclusive</em>) with a step-size of 1 and corresponds to the row index of the DataFrame.</p>
-<p>As we have seen, both the column and row indexes of pandas DataFrames are special index objects that can be converted to a python list using <code>list()</code>.</p>
+<p>Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using <code>list()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><span class="bu" style="color: null;">list</span>(pandas_df.index)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -319,10 +319,11 @@
 <pre><code>['a', 'b']</code></pre>
 </div>
 </div>
+<p>Whenever python objects display weirdly, I try and convert them to something simpler, like a list to see what they actually contain. Sometimes I even succeed.</p>
 </section>
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>Now only can you extract attributes of an object using the <code>object.xyz</code> dot syntax, but you can also apply object-specific <em>functions</em> to the object using the <code>object.fun()</code> dot syntax.</p>
+<p>Extracting attributes is not the only use of the <code>object.xyz</code> dot syntax. Similar syntax also lets you apply object-specific <em>functions</em> to the object using the <code>object.fun()</code> dot syntax.</p>
 <p>Note that functions that are applied using the <code>object.fun()</code> (syntax where the function name comes after the dot) are called <strong>methods</strong>. These are functions that are specific to the type of object it is being applied to.</p>
 <p>For example, we can apply the <code>mean()</code> and <code>sum()</code> DataFrame <em>methods</em> to our <code>pandas_df</code> DataFrame object to compute the mean and sum of each column in the data frame:</p>
 <div class="cell">
@@ -339,7 +340,7 @@ b    26
 dtype: int64</code></pre>
 </div>
 </div>
-<p>Note that the output of these functions are “Series” type objects, which is like a single column of a data frame. More on Series’ below.</p>
+<p>Note that the output of these functions are pandas “Series” type objects, which is like a single column of a data frame. More on Series’ objects below.</p>
 <p>It is important to note that these <code>mean()</code> and <code>sum()</code> methods are not standalone functions. If we try to apply them to our DataFrame as we would do for regular functions, we get errors:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1">mean(pandas_df)</span></code></pre></div>
@@ -353,8 +354,8 @@ dtype: int64</code></pre>
 <pre style="color: red;"><code>unsupported operand type(s) for +: 'int' and 'str'</code></pre>
 </div>
 </div>
-<p>These <code>mean()</code> and <code>sum()</code> methods are functions specific to the DataFrame type object and must be applied using the <code>pandas_df.mean()</code> dot syntax.</p>
-<p>Moreover, since these method functions are specific to DataFrame objects, they also won’t work on non-DataFrame objects, like lists:</p>
+<p>Since they are “methods”, these <code>mean()</code> and <code>sum()</code> method functions are specific to the DataFrame type object and must be applied using the <code>pandas_df.fun()</code> dot syntax.</p>
+<p>Moreover, since these method functions are specific to DataFrame objects, they also won’t work on non-DataFrame objects, including lists:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1">py_list <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">3</span>, <span class="dv" style="color: #AD0000;">4</span>]</span>
 <span id="cb46-2">py_list.mean()</span></code></pre></div>
@@ -362,8 +363,8 @@ dtype: int64</code></pre>
 <pre style="color: red;"><code>'list' object has no attribute 'mean'</code></pre>
 </div>
 </div>
-<p>Note the error says <code>'list' object has no attribute 'mean'</code>.</p>
-<p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first (and honestly sometimes still is).</p>
+<p>Sometimes the errors in Python are even helpful! Thanks Python!</p>
+<p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don’t be scare. You’ll get used to it. I hope.</p>
 </section>
 <section id="extracting-and-adding-columns" class="level3">
 <h3 class="anchored" data-anchor-id="extracting-and-adding-columns">Extracting and adding columns</h3>
@@ -720,7 +721,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1438cc940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1334d99d0&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
