@@ -12,6 +12,815 @@
 <generator>quarto-1.2.280</generator>
 <lastBuildDate>Tue, 28 Mar 2023 06:00:00 GMT</lastBuildDate>
 <item>
+  <title>An introduction to Python for R Users</title>
+  <dc:creator>Rebecca Barter</dc:creator>
+  <link>https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><img src="https://www.rebeccabarter.com/blog/img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg" class="img-fluid" alt="The python logo on a floating disc"></p>
+<p>I have a confession to make: I am now a Python user. To be fair, I’ve used Python here and there over the years, but it was never my primary language (that has always been R). This year was the first time I had to actually sit down and really <em>use</em> Python for real projects. In fact, not only did I have to use Python, but I also had to <em>teach</em> Python. For those of you who teach, you’ll know that the best way to make sure you know something really well is to teach it. The end result is that I now consider myself a Python user. (But don’t worry, I’m still an R Lady at heart.)</p>
+<p>Why did I decide to learn Python? I’ve been using R my whole data science life, and while I still think that R (with the tidyverse) is still the best language for data wrangling and data visualization, there is no denying that as a data scientist these days, Python is a required skill. If you’re doing machine learning, Python is still light-years ahead of R. If you’re working with software engineers, they’re going to be much happier working with you if you use Python. If you’re looking for a job, you’re going to be much more employable if you’re already comfortable with Python.</p>
+<p>While there are certainly similarities between R and Python, don’t assume that knowing how to use one will automatically mean that you know how to use the other. That said, already knowing R does mean that the learning curve for learning Python won’t be too steep (but it will still take a few months of regular use to reach competence).</p>
+<p>In this post, I’m going to introduce you to the world of data analysis with Python from an R perspective. Obviously this post won’t be exhaustive, but if you’re a tidyverse R user who is looking to learn Python, this post can hopefully serve as a helpful launching point and will provide some relatable context on your Python journey.</p>
+<p>Note that this blog post will focus on <em>working with data</em> in Python using <strong>pandas</strong>. I won’t be talking too much about things like SciPy, arrays, or scikit-learn here.</p>
+<section id="helpful-resources" class="level2">
+<h2 class="anchored" data-anchor-id="helpful-resources">Helpful resources</h2>
+<p>There are a lot of resources out there for learning Python. The one that I found most useful was Wes McKinney’s <a href="https://wesmckinney.com/book/">Python for Data Analysis</a> book (Wes is the creator of pandas). There is a lot of information in there, and to be fair, you can skip a lot of it when you’re starting out (like the stuff about sets, tuples, and arrays). These are important things to know about to be a well-rounded Python programmer, but for just doing simple data analysis with pandas data frames, these needn’t be the focus.</p>
+</section>
+<section id="installing-python-and-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="installing-python-and-vs-code">Installing Python and VS Code</h2>
+<p>Managing Python installations on my computer used to give me a headache. While I used to use Python in Jupyter notebooks via the Jupyter notebook IDE installed using anaconda, I’ve found that the simplest approach to getting Python up and running is now to <a href="https://www.python.org/downloads/">install the latest version of Python directly from the python website</a> and <a href="https://code.visualstudio.com/">install the Visual Studio Code IDE</a>. Then you can select your preferred python installation within VS code and you’re good to go. (You might want to watch a couple of YouTube videos to get started with VS code if you’ve never seen it before. It definitely took me a minute to orient myself.)</p>
+<section id="jupyter-notebooks" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-notebooks">Jupyter notebooks</h3>
+<p>While, these days, you can use Python together with quarto within RStudio, this isn’t really what Python users do (yet…). So if you want to fit in with the cool Python kids, I’d recommend working with Jupyter notebooks (.ipynb files) <em>in the Visual Studio Code IDE</em>. You can install a jupyter notebook extension within the VS Code IDE (fortunately, there is <em>no need</em> to install jupyter notebooks or anaconda separately).</p>
+</section>
+</section>
+<section id="libraries" class="level2">
+<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
+<p>Like R, Python is mostly useful for data science because of the add-on libraries that some very smart people wrote to help us work with data. The main python libraries you’ll need to start with are <em>NumPy</em> and <em>pandas</em>.</p>
+<section id="installing-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="installing-libraries">Installing libraries</h3>
+<p>Like with R, you need to install a library before you can use it.</p>
+<p>There are many ways to install python libraries, but if you installed python in the same way that I did above, the way that I usually install libraries is in the <em>terminal on my computer</em>, where I write:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;">python3</span> <span class="at" style="color: #657422;">-m</span> pip install pandas</span></code></pre></div>
+</div>
+<p>which will install the pandas library, for example. You may have a different preferred way of installing python libraries. That’s fine. Your way is probably better than mine.</p>
+</section>
+<section id="loading-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="loading-libraries">Loading libraries</h3>
+<p>One difference between R and Python is that once you have loaded a package into R, you can use the functions from the package (which is just another word for library) without having to specify which library the package comes from every time you use it like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">library</span>(dplyr)</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># I can use `filter()` from dplyr without having to specify that it comes from dplyr</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;">filter</span>(iris, Species <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"virginica"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1           6.3         3.3          6.0         2.5 virginica
+2           5.8         2.7          5.1         1.9 virginica
+3           7.1         3.0          5.9         2.1 virginica
+4           6.3         2.9          5.6         1.8 virginica
+5           6.5         3.0          5.8         2.2 virginica
+6           7.6         3.0          6.6         2.1 virginica
+7           4.9         2.5          4.5         1.7 virginica
+8           7.3         2.9          6.3         1.8 virginica
+9           6.7         2.5          5.8         1.8 virginica
+10          7.2         3.6          6.1         2.5 virginica
+11          6.5         3.2          5.1         2.0 virginica
+12          6.4         2.7          5.3         1.9 virginica
+13          6.8         3.0          5.5         2.1 virginica
+14          5.7         2.5          5.0         2.0 virginica
+15          5.8         2.8          5.1         2.4 virginica
+16          6.4         3.2          5.3         2.3 virginica
+17          6.5         3.0          5.5         1.8 virginica
+18          7.7         3.8          6.7         2.2 virginica
+19          7.7         2.6          6.9         2.3 virginica
+20          6.0         2.2          5.0         1.5 virginica
+21          6.9         3.2          5.7         2.3 virginica
+22          5.6         2.8          4.9         2.0 virginica
+23          7.7         2.8          6.7         2.0 virginica
+24          6.3         2.7          4.9         1.8 virginica
+25          6.7         3.3          5.7         2.1 virginica
+26          7.2         3.2          6.0         1.8 virginica
+27          6.2         2.8          4.8         1.8 virginica
+28          6.1         3.0          4.9         1.8 virginica
+29          6.4         2.8          5.6         2.1 virginica
+30          7.2         3.0          5.8         1.6 virginica
+31          7.4         2.8          6.1         1.9 virginica
+32          7.9         3.8          6.4         2.0 virginica
+33          6.4         2.8          5.6         2.2 virginica
+34          6.3         2.8          5.1         1.5 virginica
+35          6.1         2.6          5.6         1.4 virginica
+36          7.7         3.0          6.1         2.3 virginica
+37          6.3         3.4          5.6         2.4 virginica
+38          6.4         3.1          5.5         1.8 virginica
+39          6.0         3.0          4.8         1.8 virginica
+40          6.9         3.1          5.4         2.1 virginica
+41          6.7         3.1          5.6         2.4 virginica
+42          6.9         3.1          5.1         2.3 virginica
+43          5.8         2.7          5.1         1.9 virginica
+44          6.8         3.2          5.9         2.3 virginica
+45          6.7         3.3          5.7         2.5 virginica
+46          6.7         3.0          5.2         2.3 virginica
+47          6.3         2.5          5.0         1.9 virginica
+48          6.5         3.0          5.2         2.0 virginica
+49          6.2         3.4          5.4         2.3 virginica
+50          5.9         3.0          5.1         1.8 virginica</code></pre>
+</div>
+</div>
+<p>I could choose to explicitly specify that <code>filter()</code> comes from dplyr using <code>::</code> like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;"># I can explicitly specify that `filter()` comes from dplyr using `::`</span></span>
+<span id="cb5-2">dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">filter</span>(iris, Species <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"virginica"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1           6.3         3.3          6.0         2.5 virginica
+2           5.8         2.7          5.1         1.9 virginica
+3           7.1         3.0          5.9         2.1 virginica
+4           6.3         2.9          5.6         1.8 virginica
+5           6.5         3.0          5.8         2.2 virginica
+6           7.6         3.0          6.6         2.1 virginica
+7           4.9         2.5          4.5         1.7 virginica
+8           7.3         2.9          6.3         1.8 virginica
+9           6.7         2.5          5.8         1.8 virginica
+10          7.2         3.6          6.1         2.5 virginica
+11          6.5         3.2          5.1         2.0 virginica
+12          6.4         2.7          5.3         1.9 virginica
+13          6.8         3.0          5.5         2.1 virginica
+14          5.7         2.5          5.0         2.0 virginica
+15          5.8         2.8          5.1         2.4 virginica
+16          6.4         3.2          5.3         2.3 virginica
+17          6.5         3.0          5.5         1.8 virginica
+18          7.7         3.8          6.7         2.2 virginica
+19          7.7         2.6          6.9         2.3 virginica
+20          6.0         2.2          5.0         1.5 virginica
+21          6.9         3.2          5.7         2.3 virginica
+22          5.6         2.8          4.9         2.0 virginica
+23          7.7         2.8          6.7         2.0 virginica
+24          6.3         2.7          4.9         1.8 virginica
+25          6.7         3.3          5.7         2.1 virginica
+26          7.2         3.2          6.0         1.8 virginica
+27          6.2         2.8          4.8         1.8 virginica
+28          6.1         3.0          4.9         1.8 virginica
+29          6.4         2.8          5.6         2.1 virginica
+30          7.2         3.0          5.8         1.6 virginica
+31          7.4         2.8          6.1         1.9 virginica
+32          7.9         3.8          6.4         2.0 virginica
+33          6.4         2.8          5.6         2.2 virginica
+34          6.3         2.8          5.1         1.5 virginica
+35          6.1         2.6          5.6         1.4 virginica
+36          7.7         3.0          6.1         2.3 virginica
+37          6.3         3.4          5.6         2.4 virginica
+38          6.4         3.1          5.5         1.8 virginica
+39          6.0         3.0          4.8         1.8 virginica
+40          6.9         3.1          5.4         2.1 virginica
+41          6.7         3.1          5.6         2.4 virginica
+42          6.9         3.1          5.1         2.3 virginica
+43          5.8         2.7          5.1         1.9 virginica
+44          6.8         3.2          5.9         2.3 virginica
+45          6.7         3.3          5.7         2.5 virginica
+46          6.7         3.0          5.2         2.3 virginica
+47          6.3         2.5          5.0         1.9 virginica
+48          6.5         3.0          5.2         2.0 virginica
+49          6.2         3.4          5.4         2.3 virginica
+50          5.9         3.0          5.1         1.8 virginica</code></pre>
+</div>
+</div>
+<p>But I don’t need to.</p>
+<p>In Python, however, you <em>do</em> need to specify which library the functions you are using come from, even after importing them. This is why every time you import a python library, you should give it a nickname so you don’t have to type out the entire library name each time you want to use a function from it. Fortunately, there are some generally agreed-upon nicknames that everyone uses. E.g. pandas’ nickname is “pd”, and NumPy’s nickname is “np”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;">import</span> pandas <span class="im" style="color: #00769E;">as</span> pd</span>
+<span id="cb7-2"><span class="im" style="color: #00769E;">import</span> numpy <span class="im" style="color: #00769E;">as</span> np</span>
+<span id="cb7-3"><span class="im" style="color: #00769E;">import</span> matplotlib <span class="im" style="color: #00769E;">as</span> plt</span></code></pre></div>
+</div>
+<p>So to use a function from the pandas library, such as <code>log()</code>, you need to first specify the package nickname and then the function name, separated by a dot: <code>np.log()</code>. The following code will compute the logarithm of 7 using the <code>log()</code> function from the NumPy library whose nickname is <code>np</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">np.log(<span class="dv" style="color: #AD0000;">7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.9459101490553132</code></pre>
+</div>
+</div>
+<p>That’s another thing about Python: common mathematical functions like <code>log()</code>, <code>sqrt()</code>, and <code>exp()</code> all need to be imported from the NumPy library (unlike in R, where “native” versions of these functions exist).</p>
+</section>
+</section>
+<section id="pandas-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-data-frames">Pandas data frames</h2>
+<p>In R, the building block of data science is the data frame. In Python, the building block of data science is also the DataFrame (but they spell it as one word with camel case). While R contains a native data frame, python’s DataFrame comes from the “pandas” library (whose nickname is “pd”).</p>
+<p>In R, we can create a toy data frame like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">r_df <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">data.frame</span>(<span class="at" style="color: #657422;">a =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">3</span>, <span class="dv" style="color: #AD0000;">4</span>),</span>
+<span id="cb10-2">                   <span class="at" style="color: #657422;">b =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">5</span>, <span class="dv" style="color: #AD0000;">6</span>, <span class="dv" style="color: #AD0000;">7</span>, <span class="dv" style="color: #AD0000;">8</span>))</span>
+<span id="cb10-3">r_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  a b
+1 1 5
+2 2 6
+3 3 7
+4 4 8</code></pre>
+</div>
+</div>
+<p>And in Python, we can create a toy DataFrame like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">pandas_df <span class="op" style="color: #5E5E5E;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;">'a'</span>: [<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">2</span>,<span class="dv" style="color: #AD0000;">3</span>,<span class="dv" style="color: #AD0000;">4</span>], </span>
+<span id="cb12-2">                          <span class="st" style="color: #20794D;">'b'</span>: [<span class="dv" style="color: #AD0000;">5</span>,<span class="dv" style="color: #AD0000;">6</span>,<span class="dv" style="color: #AD0000;">7</span>,<span class="dv" style="color: #AD0000;">8</span>]})</span>
+<span id="cb12-3">pandas_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b
+0  1  5
+1  2  6
+2  3  7
+3  4  8</code></pre>
+</div>
+</div>
+<p>In the R version above we provided <em>two</em> arguments to the <code>data.frame()</code> function, each of which contained an R vector (<code>c(1, 2, 3, 4)</code> and <code>c(5, 6, 7, 8)</code>) of the values that will form a column. The syntax for the python version, however, involves a <em>single argument</em> corresponding to a type of object called a <strong>dictionary</strong> whose named entries each contain a python <strong>list</strong> (<code>[1,2,3,4]</code> and <code>[5,6,7,8]</code>) of the values that will form a column.</p>
+<section id="lists-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="lists-in-python">Lists in python</h3>
+<p>A <strong>list</strong> in python is actually a lot like a list in R, in that it can contain a variety of object types. Lists in python are created using square brackets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">my_py_list <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">1</span>,<span class="st" style="color: #20794D;">'a'</span>,[<span class="dv" style="color: #AD0000;">3</span>,<span class="dv" style="color: #AD0000;">4</span>]]</span>
+<span id="cb14-2">my_py_list</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 'a', [3, 4]]</code></pre>
+</div>
+</div>
+<p>Note that in general, python users tend to use fewer spaces than R users, assignment is always done with <code>=</code> (there is no <code>&lt;-</code> operator in python), and there is a general preference for single quotes <code>'</code> over double quotes <code>"</code> (though I might have imagined that one).</p>
+<p>You can change the first entry of a python list similarly to how you would do it in R, except that <strong>python uses zero-indexing</strong>, which means that the first entry is in position 0, the second entry is in position 1, and so on:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">my_py_list[<span class="dv" style="color: #AD0000;">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">my_py_list[<span class="dv" style="color: #AD0000;">0</span>] <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"one"</span></span>
+<span id="cb18-2">my_py_list</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['one', 'a', [3, 4]]</code></pre>
+</div>
+</div>
+</section>
+<section id="dictionaries" class="level3">
+<h3 class="anchored" data-anchor-id="dictionaries">Dictionaries</h3>
+<p>A dictionary is kind of like a named list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">my_py_dict <span class="op" style="color: #5E5E5E;">=</span> {<span class="st" style="color: #20794D;">'name'</span>: [<span class="st" style="color: #20794D;">'Jane'</span>, <span class="st" style="color: #20794D;">'Joe'</span>, <span class="st" style="color: #20794D;">'Jerry'</span>],</span>
+<span id="cb20-2">              <span class="st" style="color: #20794D;">'age'</span>: [<span class="dv" style="color: #AD0000;">13</span>, <span class="dv" style="color: #AD0000;">15</span>, <span class="dv" style="color: #AD0000;">12</span>]}</span>
+<span id="cb20-3">my_py_dict</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'name': ['Jane', 'Joe', 'Jerry'], 'age': [13, 15, 12]}</code></pre>
+</div>
+</div>
+<p>But while you cannot extract positional entries from it (<code>my_py_dict[0]</code> won’t work), you can extract named entries:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1">my_py_dict[<span class="st" style="color: #20794D;">'name'</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Jane', 'Joe', 'Jerry']</code></pre>
+</div>
+</div>
+<p>I can extract the first (position 0) entry from the <code>name</code> dict entry of <code>my_py_dict</code> as you would expect:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1">my_py_dict[<span class="st" style="color: #20794D;">'name'</span>][<span class="dv" style="color: #AD0000;">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'Jane'</code></pre>
+</div>
+</div>
+<p>This is all super exciting, I’m sure, but I should probably point out that pretty much the only time I ever really use dictionaries is when I’m defining pandas DataFrames on the fly like I did above.</p>
+</section>
+<section id="column-and-row-indexing" class="level3">
+<h3 class="anchored" data-anchor-id="column-and-row-indexing">Column and row Indexing</h3>
+<p>While both the R and python/pandas data frame have column names, the way you extract them is different.</p>
+<p>To extract the column names from the R data frame, we would use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><span class="co" style="color: #5E5E5E;"># print the R column names</span></span>
+<span id="cb26-2"><span class="fu" style="color: #4758AB;">colnames</span>(r_df)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "b"</code></pre>
+</div>
+</div>
+<p>However, to extract the column names (or column <em>index</em>) from the pandas data frame, we use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><span class="co" style="color: #5E5E5E;"># print the pandas column names</span></span>
+<span id="cb28-2">pandas_df.columns</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['a', 'b'], dtype='object')</code></pre>
+</div>
+</div>
+<p>The output of which is an “index” type object.</p>
+<p>There are two main uses of the syntax <code>object.xyz</code>. The first, which is being used here, is used to extract an “attribute” <code>xyz</code> from an object (e.g., here we are extracting the <code>columns</code> attribute from the <code>pandas_df</code> DataFrame object).</p>
+<p>Another “attribute” that you can extract from a DataFrame is the shape:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1">pandas_df.shape</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(4, 2)</code></pre>
+</div>
+</div>
+<p>The <code>shape</code> output here has a “tuple” type (we won’t go into tuples here).</p>
+<p>Another important attribute of a DataFrame is its row index</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1">pandas_df.index</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RangeIndex(start=0, stop=4, step=1)</code></pre>
+</div>
+</div>
+<p>This is a “RangeIndex” object that spans from 0 to 2 (<em>not inclusive</em>) with a step-size of 1 and corresponds to the row index of the DataFrame.</p>
+<p>As we have seen, both the column and row indexes of pandas DataFrames are special index objects that can be converted to a python list using <code>list()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><span class="bu" style="color: null;">list</span>(pandas_df.index)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0, 1, 2, 3]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><span class="bu" style="color: null;">list</span>(pandas_df.columns)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['a', 'b']</code></pre>
+</div>
+</div>
+</section>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<p>Now only can you extract attributes of an object using the <code>object.xyz</code> dot syntax, but you can also apply object-specific <em>functions</em> to the object using the <code>object.fun()</code> dot syntax.</p>
+<p>Note that functions that are applied using the <code>object.fun()</code> (syntax where the function name comes after the dot) are called <strong>methods</strong>. These are functions that are specific to the type of object it is being applied to.</p>
+<p>For example, we can apply the <code>mean()</code> and <code>sum()</code> DataFrame <em>methods</em> to our <code>pandas_df</code> DataFrame object to compute the mean and sum of each column in the data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1">pandas_df.mean()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>a    2.5
+b    6.5
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1">pandas_df.<span class="bu" style="color: null;">sum</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>a    10
+b    26
+dtype: int64</code></pre>
+</div>
+</div>
+<p>Note that the output of these functions are “Series” type objects, which is like a single column of a data frame. More on Series’ below.</p>
+<p>It is important to note that these <code>mean()</code> and <code>sum()</code> methods are not standalone functions. If we try to apply them to our DataFrame as we would do for regular functions, we get errors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1">mean(pandas_df)</span></code></pre></div>
+<div class="cell-output cell-output-error">
+<pre style="color: red;"><code>name 'mean' is not defined</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><span class="bu" style="color: null;">sum</span>(pandas_df)</span></code></pre></div>
+<div class="cell-output cell-output-error">
+<pre style="color: red;"><code>unsupported operand type(s) for +: 'int' and 'str'</code></pre>
+</div>
+</div>
+<p>These <code>mean()</code> and <code>sum()</code> methods are functions specific to the DataFrame type object and must be applied using the <code>pandas_df.mean()</code> dot syntax.</p>
+<p>Moreover, since these method functions are specific to DataFrame objects, they also won’t work on non-DataFrame objects, like lists:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1">py_list <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">3</span>, <span class="dv" style="color: #AD0000;">4</span>]</span>
+<span id="cb46-2">py_list.mean()</span></code></pre></div>
+<div class="cell-output cell-output-error">
+<pre style="color: red;"><code>'list' object has no attribute 'mean'</code></pre>
+</div>
+</div>
+<p>Note the error says <code>'list' object has no attribute 'mean'</code>.</p>
+<p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first (and honestly sometimes still is).</p>
+</section>
+<section id="extracting-and-adding-columns" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-and-adding-columns">Extracting and adding columns</h3>
+<p>While you can create a pandas DataFrame using a dictionary containing list entries, the columns of a DataFrame themselves, when extracted, are a “Series” type object (rather than a list).</p>
+<p>For example, the column <code>'a'</code> can be extracted using <code>[]</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1">pandas_df[<span class="st" style="color: #20794D;">'a'</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0    1
+1    2
+2    3
+3    4
+Name: a, dtype: int64</code></pre>
+</div>
+</div>
+<p>which is the same as in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1">r_df[<span class="st" style="color: #20794D;">"a"</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  a
+1 1
+2 2
+3 3
+4 4</code></pre>
+</div>
+</div>
+<p>Note that the columns of a DataFrame are also “attributes” of the data frame and can be extracted using the <code>df.col</code> dot syntax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1">pandas_df.a</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0    1
+1    2
+2    3
+3    4
+Name: a, dtype: int64</code></pre>
+</div>
+</div>
+<p>The output above is the same as from the <code>pandas_df['a']</code> syntax: both outputs are a pandas Series object.</p>
+<p>We can check the type of an object in python using the <code>type()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><span class="bu" style="color: null;">type</span>(pandas_df[<span class="st" style="color: #20794D;">'a'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.series.Series'&gt;</code></pre>
+</div>
+</div>
+<p>which tells us that this column is a pandas “Series” object.</p>
+<p>A pandas <strong>Series</strong> is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there will be has two attributes printed out at the bottom: the <code>Name</code> (if indeed there is a name) and <code>dtype</code> (type).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1">pandas_df[<span class="st" style="color: #20794D;">'a'</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0    1
+1    2
+2    3
+3    4
+Name: a, dtype: int64</code></pre>
+</div>
+</div>
+<p>A series object has a row index but no columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1">pandas_df[<span class="st" style="color: #20794D;">'a'</span>].index</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RangeIndex(start=0, stop=4, step=1)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1">pandas_df[<span class="st" style="color: #20794D;">'a'</span>].columns</span></code></pre></div>
+<div class="cell-output cell-output-error">
+<pre style="color: red;"><code>'Series' object has no attribute 'columns'</code></pre>
+</div>
+</div>
+<p>You can add a column to a pandas DataFrame just as you would in base R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1">pandas_df[<span class="st" style="color: #20794D;">'c'</span>] <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">9</span>,<span class="dv" style="color: #AD0000;">10</span>,<span class="dv" style="color: #AD0000;">11</span>,<span class="dv" style="color: #AD0000;">12</span>]</span>
+<span id="cb62-2">pandas_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b   c
+0  1  5   9
+1  2  6  10
+2  3  7  11
+3  4  8  12</code></pre>
+</div>
+</div>
+</section>
+<section id="dont-forget-to-.copy" class="level3">
+<h3 class="anchored" data-anchor-id="dont-forget-to-.copy">Don’t forget to <code>.copy()</code></h3>
+<p>However, if you define a new DataFrame using an existing data frame and then modify it, e.g., by adding a new column:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><span class="co" style="color: #5E5E5E;"># define a new data frame using the original one</span></span>
+<span id="cb64-2">pandas_df_new <span class="op" style="color: #5E5E5E;">=</span> pandas_df</span>
+<span id="cb64-3"><span class="co" style="color: #5E5E5E;"># add a new column to the new data frame</span></span>
+<span id="cb64-4">pandas_df_new[<span class="st" style="color: #20794D;">'d'</span>] <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">13</span>,<span class="dv" style="color: #AD0000;">14</span>,<span class="dv" style="color: #AD0000;">15</span>,<span class="dv" style="color: #AD0000;">16</span>]</span>
+<span id="cb64-5"><span class="co" style="color: #5E5E5E;"># print out the new data frame</span></span>
+<span id="cb64-6">pandas_df_new</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b   c   d
+0  1  5   9  13
+1  2  6  10  14
+2  3  7  11  15
+3  4  8  12  16</code></pre>
+</div>
+</div>
+<p>Notice that the original DataFrame will also change:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1">pandas_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b   c   d
+0  1  5   9  13
+1  2  6  10  14
+2  3  7  11  15
+3  4  8  12  16</code></pre>
+</div>
+</div>
+<p><strong>This is very different from what would happen in R</strong>, where the <code>pandas_df_new</code> object would be a separate object from the original <code>pandas_df</code> object, and making modifications to the new object would not be reflected in the original one.</p>
+<p>This is because in python when you define a new object to be an existing object (<code>pandas_df_new = pandas_df</code>), you are actually creating a new “pointer” to the same underlying object being pointed to by the original name <code>pandas_df</code>. <code>pandas_df_new</code> becomes like an “alias” for <code>pandas_df</code>, rather than an entirely new object.</p>
+<p>To avoid this issue, when defining a new DataFrame based on an existing DataFrame, you need to explicitly create a new object using the <code>copy()</code> method:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><span class="co" style="color: #5E5E5E;"># redefine the original pandas DataFrame:</span></span>
+<span id="cb68-2">pandas_df <span class="op" style="color: #5E5E5E;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;">'a'</span>: [<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">2</span>,<span class="dv" style="color: #AD0000;">3</span>,<span class="dv" style="color: #AD0000;">4</span>], </span>
+<span id="cb68-3">                          <span class="st" style="color: #20794D;">'b'</span>: [<span class="dv" style="color: #AD0000;">5</span>,<span class="dv" style="color: #AD0000;">6</span>,<span class="dv" style="color: #AD0000;">7</span>,<span class="dv" style="color: #AD0000;">8</span>]})</span>
+<span id="cb68-4">pandas_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b
+0  1  5
+1  2  6
+2  3  7
+3  4  8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><span class="co" style="color: #5E5E5E;"># define pandas_df_new as a "copy" of pandas_df:</span></span>
+<span id="cb70-2">pandas_df_new <span class="op" style="color: #5E5E5E;">=</span> pandas_df.copy()</span>
+<span id="cb70-3">pandas_df_new[<span class="st" style="color: #20794D;">'c'</span>] <span class="op" style="color: #5E5E5E;">=</span> [<span class="dv" style="color: #AD0000;">9</span>,<span class="dv" style="color: #AD0000;">10</span>,<span class="dv" style="color: #AD0000;">11</span>,<span class="dv" style="color: #AD0000;">12</span>]</span>
+<span id="cb70-4">pandas_df_new</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b   c
+0  1  5   9
+1  2  6  10
+2  3  7  11
+3  4  8  12</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><span class="co" style="color: #5E5E5E;"># check that pandas_df did not change this time</span></span>
+<span id="cb72-2">pandas_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b
+0  1  5
+1  2  6
+2  3  7
+3  4  8</code></pre>
+</div>
+</div>
+<p>This issue of unintentionally creating an alias or a “view” of an object, rather than a new object itself is another confusing thing about python. You will undoubtedly run into issues with it when you’re starting out (I certainly did).</p>
+</section>
+<section id="filtering" class="level3">
+<h3 class="anchored" data-anchor-id="filtering">Filtering</h3>
+<p>Pandas Series act like vectors in R in that you can ask logical questions of them (<em>side-note: this does not work with python lists, but it does with with Pandas series</em>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><span class="co" style="color: #5E5E5E;"># ask which entries in the column "a" are greater than 1</span></span>
+<span id="cb74-2">pandas_df[<span class="st" style="color: #20794D;">'a'</span>] <span class="op" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0    False
+1     True
+2     True
+3     True
+Name: a, dtype: bool</code></pre>
+</div>
+</div>
+<p>Which is very similar to the R version:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><span class="co" style="color: #5E5E5E;"># ask which entries in the column "a" are greater than 1</span></span>
+<span id="cb76-2">r_df[<span class="st" style="color: #20794D;">"a"</span>] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         a
+[1,] FALSE
+[2,]  TRUE
+[3,]  TRUE
+[4,]  TRUE</code></pre>
+</div>
+</div>
+<p>In base R, we can use this to “filter” our data frame to the rows where the condition above is true (the first row):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1">r_df[r_df[<span class="st" style="color: #20794D;">"a"</span>] <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span>, ]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  a b
+2 2 6
+3 3 7
+4 4 8</code></pre>
+</div>
+</div>
+<p>This syntax doesn’t work for the pandas DataFrame, however, but if we make a few syntax modifications where we:</p>
+<ol type="1">
+<li><p>employ the <code>.loc</code> method and</p></li>
+<li><p>provide <code>:</code> to the column dimension (which says to “return all of the columns”),</p></li>
+</ol>
+<p>then we get the same result:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1">pandas_df.loc[pandas_df.a <span class="op" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span>,:]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b
+1  2  6
+2  3  7
+3  4  8</code></pre>
+</div>
+</div>
+<p>Note that <code>loc</code> isn’t a normal function per se in that it is not followed by <em>round</em> parentheses <code>()</code>, but it is followed by the square indexing parentheses <code>[]</code>.</p>
+<p>If we wanted to just return the second column, we would provide the second column’s name (<code>'b'</code>) into the second dimension of the <code>.loc[,]</code> square parentheses.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1">pandas_df.loc[pandas_df.a <span class="op" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span>,<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1    6
+2    7
+3    8
+Name: b, dtype: int64</code></pre>
+</div>
+</div>
+<p>However, <code>loc</code> expects either a Boolean series or a name in its index. The <code>iloc</code> method, on the other hand, takes <em>integer</em> index positions. The following code will extract the second, third, and fourth rows of the second column (remember zero-indexing!).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1">pandas_df.iloc[[<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">2</span>,<span class="dv" style="color: #AD0000;">3</span>],<span class="dv" style="color: #AD0000;">1</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1    6
+2    7
+3    8
+Name: b, dtype: int64</code></pre>
+</div>
+</div>
+<p>Again, the output is a pandas Series (as is almost always the case when the output of your code involves a single column).</p>
+<p>It’s a bit annoying that you can’t use the same syntax to do both named (<code>.loc</code>) and integer (<code>.iloc</code>) indexing for pandas DataFrames, but such is life.</p>
+<section id="the-query-method" class="level4">
+<h4 class="anchored" data-anchor-id="the-query-method">The query() method</h4>
+<p>Since this type of square bracket syntax for indexing feels clunky both in R and Python, you can alternatively use the <code>query()</code> method of a pandas DataFrame similar to the <code>filter()</code> dplyr function in the tidyverse.</p>
+<p>Recall that with the pipe, the <code>filter()</code> syntax in R looks like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1">r_df <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">filter</span>(a <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  a b
+1 2 6
+2 3 7
+3 4 8</code></pre>
+</div>
+</div>
+<p>For pandas DataFrame, the <code>query()</code> syntax looks like</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b
+1  2  6
+2  3  7
+3  4  8</code></pre>
+</div>
+</div>
+<p>Note that there is no “tidy eval” in python, so you need to provide a quoted character argument to the <code>query()</code> method.</p>
+<p>If you want to use an external variable, you need to access it using <code>@</code> within the query argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1">thresh <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb90-2">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; @thresh'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b
+1  2  6
+2  3  7
+3  4  8</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="grouping-data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="grouping-data-frames">Grouping data frames</h3>
+<p>One of the most powerful parts of the tidyverse is the ability to perform grouped operations on data frames. For example, if we wanted to add a categorical column to our data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><span class="co" style="color: #5E5E5E;"># add a new categorical column to r_df</span></span>
+<span id="cb92-2">r_df[<span class="st" style="color: #20794D;">"cat"</span>] <span class="ot" style="color: #003B4F;">=</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"red"</span>, <span class="st" style="color: #20794D;">"red"</span>, <span class="st" style="color: #20794D;">"yellow"</span>, <span class="st" style="color: #20794D;">"yellow"</span>)</span>
+<span id="cb92-3">r_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  a b    cat
+1 1 5    red
+2 2 6    red
+3 3 7 yellow
+4 4 8 yellow</code></pre>
+</div>
+</div>
+<p>Then we could group by this new <code>cat</code> column and compute the mean of the values in column <code>a</code> in R as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1">r_df <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">group_by</span>(cat) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">summarize</span>(<span class="at" style="color: #657422;">mean_a =</span> <span class="fu" style="color: #4758AB;">mean</span>(a))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  cat    mean_a
+  &lt;chr&gt;   &lt;dbl&gt;
+1 red       1.5
+2 yellow    3.5</code></pre>
+</div>
+</div>
+<p>We can do something very similar in Python with pandas DataFrames using the <code>groupby()</code> method. First, let’s add a column of color categories to our pandas DataFrame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><span class="co" style="color: #5E5E5E;"># add a new categorical column to pandas_df</span></span>
+<span id="cb96-2">pandas_df[<span class="st" style="color: #20794D;">"cat"</span>] <span class="op" style="color: #5E5E5E;">=</span> [<span class="st" style="color: #20794D;">"red"</span>,<span class="st" style="color: #20794D;">"red"</span>,<span class="st" style="color: #20794D;">"yellow"</span>,<span class="st" style="color: #20794D;">"yellow"</span>]</span>
+<span id="cb96-3">pandas_df</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a  b     cat
+0  1  5     red
+1  2  6     red
+2  3  7  yellow
+3  4  8  yellow</code></pre>
+</div>
+</div>
+<p>and then let’s group the data frame by the new categorical column, extract the column “a”, and then apply the mean method to the grouped column:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1">pandas_df.groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">"a"</span>].mean()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>cat
+red       1.5
+yellow    3.5
+Name: a, dtype: float64</code></pre>
+</div>
+</div>
+<p>The output is a Series object with the grouping variable values as the row index.</p>
+<p>Note that if we didn’t extract the column “a”, we would be applying grouped mean to all columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1">pandas_df.groupby(<span class="st" style="color: #20794D;">'cat'</span>).mean()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          a    b
+cat             
+red     1.5  5.5
+yellow  3.5  7.5</code></pre>
+</div>
+</div>
+<p>The output is now a DataFrame with the grouping variable values as the row index.</p>
+</section>
+</section>
+<section id="chaining-functions-together" class="level2">
+<h2 class="anchored" data-anchor-id="chaining-functions-together">Chaining functions together</h2>
+<p>Note that python methods can be chained together using the <code>.</code> similarly to how we chain methods together in R using the pipe <code>|&gt;</code>.</p>
+<p>For instance, if we wanted to filter to rows where <code>a</code> was greater than 1, then group by the ‘cat’ column, and then compute the mean of the column <code>b</code>, we would do this in R as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1">r_df <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">filter</span>(a <span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">group_by</span>(cat) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">summarize</span>(<span class="at" style="color: #657422;">mean_b =</span> <span class="fu" style="color: #4758AB;">mean</span>(b))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  cat    mean_b
+  &lt;chr&gt;   &lt;dbl&gt;
+1 red       6  
+2 yellow    7.5</code></pre>
+</div>
+</div>
+<p>In python, we do a similar thing, but using <code>.</code> instead of <code>|&gt;</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>].mean()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>cat
+red       6.0
+yellow    7.5
+Name: b, dtype: float64</code></pre>
+</div>
+</div>
+<p>Note that the code up to the <code>mean()</code> part results in a “grouped Series”. Unlike in R, many objects in python don’t always display nicely when called:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1">pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x14e944940&gt;</code></pre>
+</div>
+</div>
+<p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
+<p>Let’s try to force the grouped Series object back into a regular pandas Series object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1">pd.Series(pandas_df.query(<span class="st" style="color: #20794D;">'a &gt; 1'</span>).groupby(<span class="st" style="color: #20794D;">'cat'</span>)[<span class="st" style="color: #20794D;">'b'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0          (red, [6])
+1    (yellow, [7, 8])
+dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization">Data visualization</h2>
+<p>Unlike in R, where ggplot is the clear “best” way to create data visualizations (at least in my opinion), in python there are many different libraries for doing data visualization. The two you are most likely to have heard of include matplotlib and seaborn.</p>
+<p>Seaborn is a little prettier than matplotlib, but all I’m going to show in this tutorial is the inbuilt data visualization methods for pandas Series and DataFrame objects that are built on matplotlib.</p>
+<p>To do some more interesting visualizations, let’s load the gapminder dataset (from a URL) into a pandas DataFrame using the <code>pd.read_csv()</code> pandas function. This <code>pd.read_csv()</code> function can also be used to load a local .csv file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb110" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1">gapminder <span class="op" style="color: #5E5E5E;">=</span> pd.read_csv(<span class="st" style="color: #20794D;">"https://raw.githubusercontent.com/rlbarter/gapminder-data/main/gapminder.csv"</span>)</span></code></pre></div>
+</div>
+<p>Let’s use the <code>head()</code> DataFrame method to look at the first 6 rows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1">gapminder.head()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       country continent  year  lifeExp       pop   gdpPercap
+0  Afghanistan      Asia  1952   28.801   8425333  779.445314
+1  Afghanistan      Asia  1957   30.332   9240934  820.853030
+2  Afghanistan      Asia  1962   31.997  10267083  853.100710
+3  Afghanistan      Asia  1967   34.020  11537966  836.197138
+4  Afghanistan      Asia  1972   36.088  13079460  739.981106</code></pre>
+</div>
+</div>
+<p>Let’s practice some of our new python skills. The following code will filter to the data for Australia and compute the mean life expectancy:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb113" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1">gapminder.query(<span class="st" style="color: #20794D;">'country == "Australia"'</span>)[<span class="st" style="color: #20794D;">'lifeExp'</span>].mean()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>74.66291666666667</code></pre>
+</div>
+</div>
+<p>And the following will compute the average gdpPercap by continent:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb115" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1">gdp_by_continent <span class="op" style="color: #5E5E5E;">=</span> gapminder.groupby(<span class="st" style="color: #20794D;">'continent'</span>)[<span class="st" style="color: #20794D;">'gdpPercap'</span>].mean()</span>
+<span id="cb115-2">gdp_by_continent</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>continent
+Africa       2193.754578
+Americas     7136.110356
+Asia         7902.150428
+Europe      14469.475533
+Oceania     18621.609223
+Name: gdpPercap, dtype: float64</code></pre>
+</div>
+</div>
+<p>Notice that the output of this last piece of code is a Series object. Notice also that the (row) index is the continent:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1">gdp_by_continent.index</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'], dtype='object', name='continent')</code></pre>
+</div>
+</div>
+<p>What will happen if we apply the <code>plot()</code> method to this Series object?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1">gdp_by_continent.plot()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>By default a line plot is created and the row index is used as the x-axis labels by default. The DataFrame’s <code>plot()</code> method here acts as a wrapper for the matplotlib library’s plotting function.</p>
+<p>If I wanted a bar chart instead of a line plot, I could create one using the <code>plot.bar()</code> method (instead of just the <code>plot()</code> method):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb120" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1">gdp_by_continent.plot.bar()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-61-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Again, the row index of the Series object is used as the x-axis labels by default.</p>
+<p>We could similarly create a scatterplot of the <code>gdpPercap</code> and <code>lifeExp</code> columns from <code>gapminder</code> using the <code>plot.scatter()</code> method:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb121" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1">gapminder.plot.scatter(x<span class="op" style="color: #5E5E5E;">=</span><span class="st" style="color: #20794D;">'gdpPercap'</span>, y<span class="op" style="color: #5E5E5E;">=</span><span class="st" style="color: #20794D;">'lifeExp'</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-62-5.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>While these built-in pandas plots are fine, I personally prefer the look of the seaborn library and the workflow of the plotly express library, neither of which I’ve covered in this post (and neither of which are as good as ggplot2 in my opinion). I recommend you look into both of these libraries (and more!) to figure out the data visualization workflow you prefer!</p>
+</section>
+<section id="wrapping-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrapping-up">Wrapping up</h2>
+<p>Obviously, there’s a lot more to learn about Python, but I’ll leave it here for now. I hope this post has helped some of you R users get started on your Python journey!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <guid>https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python.html</guid>
+  <pubDate>Tue, 28 Mar 2023 06:00:00 GMT</pubDate>
+  <media:content url="https://www.rebeccabarter.com/blog/img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
   <title>A list of public data repositories</title>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2023-03-28-data_sources.html</link>
@@ -11241,1071 +12050,6 @@ The final values used for the model were mtry = 5, splitrule = gini
   <category>machine learning</category>
   <guid>https://www.rebeccabarter.com/blog/2017-11-17-caret_tutorial.html</guid>
   <pubDate>Fri, 17 Nov 2017 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>A Basic Data Science Workflow</title>
-  <dc:creator>Rebecca Barter</dc:creator>
-  <link>https://www.rebeccabarter.com/blog/2017-08-16-data-science-workflow.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Developing a seamless, clean workflow for data analysis is harder than it sounds, especially because this is something that is almost never explicitly taught. Apparently we are all just supposed to “figure it out for ourselves”. For most of us, when we start our first few analysis projects, we basically have no idea how we are going to structure all of our files, or even what files we will need to make. As we try more and more things in our analysis (perhaps generating a large number of unnecessary files called <code>analysis2.R</code>, <code>next-analysis.R</code>, <code>analysis-writeup.Rmd</code>, <code>data_clean.csv</code>, <code>regression_results.csv</code> and <code>data_all.csv</code> along the way), we find that our project folder gets jumbled and confusing. The frustration when we come back to the project 6 months later and can’t remember which file contained the code that lead to the final conclusions is all too real.</p>
-<p>This is why I have decided to describe in (possibly too much) detail the data cleaning workflow that I have somehow ended up with. I find this workflow to be particularly useful when dealing with messy (and possibly large) datasets that need several cleaning steps. Note that I did not develop this workflow in conjunction with any resources, I simply figured out what worked best for me via trial-and-error (a process which took 5 years and is definitely still ongoing). There will be several other resources out there on the internet describing “optimal workflows”, and these are definitely worth a read too (although a quick google found surprisingly few with the level of detail needed for a beginner). The key is figuring out a workflow that works best for <em>you</em>. That may be similar to mine, or it may not be.</p>
-<p>If you decide to keep reading (perhaps because you too suffer from messy-project-syndrome and want some relief), by the end of this post you will know far too much about me and how I spend my time. As you will discover, I am particularly thorough when I clean data, and can spend hours simply making sure that I know what is in the data and moulding it so that it exactly adheres precisely to the format that I consider “clean”.</p>
-<p>In this post I will describe my thought process as I download, clean and prepare for analysis the data from the 2016 <strong>American Time Use Survey (ATUS)</strong>. I have written my process in sufficient detail such that you can follow along if you’d like to.</p>
-<p>The <a href="https://www.bls.gov/tus/">American Time Use Survey</a> is a yearly survey administered by the U.S. Census Bureau and sponsored by the Bureau of Labor Statistics. As with all surveys, it is probably good practice to first get an idea of what kind of population its respondents are supposed to represent. According to their website, the survey is sent to a randomly selected individual from each household in a set of eligible households chosen so as to represent a range of demographic characteristics. The set of eligible households consist of those who have completed their final month of the <a href="https://www.bls.gov/cps/home.htm">Current Population Survey</a> (a monthly survey of households conducted by the Bureau of Census for the Bureau of Labor Statistics).</p>
-<p>This survey data has been featured heavily on Nathan Yau’s blog, <a href="https://flowingdata.com/tag/time-use/">Flowing Data</a>, which is where I became aware of it (thanks Nathan!).</p>
-<section id="obtaining-the-data-from-the-website" class="level1">
-<h1>Obtaining the data from the website</h1>
-<p>The ATUS data can be downloaded from the <a href="https://www.atusdata.org/atus/">American Time Use Survey Extract Builder</a> which is maintained by the Minnesota Population Center at the University of Minnesota.</p>
-<p>To actually obtain the data, you need to click on “Build an Extract” in the left-hand “Data” menu item (or click on “Get Data” inside the “Create an Extract” box). While I was initially confused about what to do once I got to the page with the drop-down menus asking me to “Select Variables”, I decided to just go crazy and start clicking. I soon discovered that an “extract” refers to the subset of the data corresponding to whichever variables I like. Once inside each of these drop-down menu entries I needed to click on the yellow plus symbols under “cart” to add the variables to my extract.</p>
-<p>After selecting the variables I wanted, I clicked on “Select Samples” and selected only the year 2016. I then went to my cart and clicked on “Create Data Extract” and I was taken to a page where I had to choose my data format. I <strong>changed the data format to .csv</strong> and submitted my extract by clicking on “Submit Extract”. Note that you need to create an account to download your selected data, but this only takes a second. Once your data has been created (they will email you when it is ready; this should only take about a minute), you can refresh the page and download the CSV data file!</p>
-<p>It is also a good idea to download the basic codebook by right clicking on the link and selecting “Save Link As” (which will tell us what each of the variables mean). I saved the file as a .txt file rather than whatever .cbk (the default) is.</p>
-<p>In case you’re interested, the variables I selected are listed at the end of this post.</p>
-</section>
-<section id="setting-up-the-project-directory" class="level1">
-<h1>Setting up the project directory</h1>
-<p>Now that I have successfully downloaded the data (a file called <code>atus_00002.csv.gz</code>), I am ready to set up my project directory. This involved a few quick steps.</p>
-<ol type="1">
-<li><p>I made a directory called <code>ATUS/</code>. This is where my project is going to live.</p></li>
-<li><p>Within <code>ATUS/</code>, I made two empty sub-directories <code>R/</code> and <code>data/</code></p></li>
-<li><p>In the <code>R/</code> sub-directory I make two empty .R files called <code>load.R</code> and <code>clean.R</code>.</p></li>
-<li><p>I then move the downloaded data and codebook files into <code>data/</code></p></li>
-</ol>
-<p>If you’re following along, my working directory now looks like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">data<span class="sc" style="color: #5E5E5E;">/</span></span>
-<span id="cb1-2">  atus_00002.csv.gz</span>
-<span id="cb1-3">  atus_00002.txt</span>
-<span id="cb1-4">R<span class="sc" style="color: #5E5E5E;">/</span></span>
-<span id="cb1-5">  clean.R</span>
-<span id="cb1-6">  load.R</span></code></pre></div>
-</div>
-<p>It should be pretty obvious what <code>load.R</code> and <code>clean.R</code> are going to be for: they will be for loading the data and then cleaning the data (shocking, I know!).</p>
-<p>While I will later start conducting my analysis in an <code>eda.Rmd</code> file, I usually don’t want to do the initial data cleaning in this file as it can be long and annoying to have to scroll past. Instead, I prefer to have separate scripts containing functions for loading and cleaning the data which I will later call in my <code>eda.Rmd</code> file.</p>
-</section>
-<section id="loading-the-data-load.r" class="level1">
-<h1>Loading the data: <code>load.R</code></h1>
-<p>Time to start work in the <code>load.R</code> file! The first thing I want to do is attempt to load in the data. Sometimes this is painless and easy, and sometimes this is a nightmare (prompting a session of frantic googling on how to load obscure data types into R).</p>
-<p>The first lines of code I write in <code>load.R</code> is as follows:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;"># open zipped file for reading</span></span>
-<span id="cb2-2">unz <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">gzfile</span>(<span class="st" style="color: #20794D;">"data/atus_00002.csv.gz"</span>)</span>
-<span id="cb2-3"><span class="co" style="color: #5E5E5E;"># load in the data</span></span>
-<span id="cb2-4">time_use_orig <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read.csv</span>(unz)</span></code></pre></div>
-</div>
-<p>when I run it in the console, I am pleasantly surprised to find that it works without any issue.</p>
-<p>I then take my first look at the data in the console using the <code>dim()</code> command to identify the dimension of the data and the <code>head()</code> command to view the first 6 rows.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;">dim</span>(time_use_orig)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10493    64</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">head</span>(time_use_orig)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       CASEID YEAR NUMCONTACTS_CPS8  HRHHID_CPS8 HRHHID2_CPS8 STATEFIP HH_SIZE
-1 2.01601e+13 2016                1 3.509403e+14         3011       13       3
-2 2.01601e+13 2016                1 2.025055e+14         3011       51       2
-3 2.01601e+13 2016                2 1.243705e+14         3111       11       4
-4 2.01601e+13 2016                1 2.041305e+14         3011       26       4
-5 2.01601e+13 2016                1 2.203965e+13         3011       29       2
-6 2.01601e+13 2016                0 1.021017e+13         3011       12       5
-  FAMINCOME HH_NUMKIDS HH_NUMADULTS PERNUM LINENO     WT06 AGE SEX RACE HISPAN
-1         3          0            3      1      1 24588650  62   2  100    100
-2         6          0            2      1      1  5445941  69   1  110    100
-3         4          2            2      1      1  8782622  24   2  110    100
-4         8          3            1      1      1  3035910  31   2  100    100
-5        13          0            2      1      1  6978586  59   2  100    100
-6         5          4            1      1      1  5191610  16   2  120    244
-  ASIAN MARST AGE_CPS8 SEX_CPS8 EDUC EDUCYRS SCHLCOLL SCHLCOLL_CPS8 EMPSTAT
-1   999     1       62        2   21     112       99            98       5
-2   999     1       69        1   16     111       99            98       5
-3   999     6       24        2   20     102        1             1       5
-4   999     4       31        2   30     214        1             4       1
-5   999     1       59        2   21     112       99            98       1
-6   999     6       16        2   15     110        3             1       5
-  OCC2   OCC IND2   IND FULLPART UHRSWORKT UHRSWORK1 UHRSWORK2 EARNWEEK
-1 9999 99999 9999 99999       99      9999       999       999 99999.99
-2 9999 99999 9999 99999       99      9999       999       999 99999.99
-3 9999 99999 9999 99999       99      9999       999       999 99999.99
-4  130  3600  251  8180        2        32        32       999   469.44
-5  125  2540  240  7860        2        12         6         6   302.50
-6 9999 99999 9999 99999       99      9999       999       999 99999.99
-  PAIDHOUR EARNRPT HOURWAGE HRSATRATE OTUSUAL    OTPAY UHRSWORKT_CPS8
-1       99      99   999.99       999      99 99999.99           9999
-2       99      99   999.99       999      99 99999.99           9999
-3       99      99   999.99       999      99 99999.99           9999
-4        1       1    14.67        32       0 99999.99             40
-5        1       3    17.00       999       0 99999.99             55
-6       99      99   999.99       999      99 99999.99           9999
-  UHRSWORK1_CPS8 UHRSWORK2_CPS8 HRSWORKT_CPS8 ACT_CAREHH ACT_CARENHH ACT_EDUC
-1            999            999          9999          0           0        0
-2            999            999          9999          0           0        0
-3            999            999          9999          0           0        0
-4             40            999            40         60           0        0
-5             30             25            55          0           0        0
-6            999            999          9999          0           0        0
-  ACT_FOOD ACT_GOVSERV ACT_HHACT ACT_HHSERV ACT_PCARE ACT_PHONE ACT_PROFSERV
-1       40           0       190          0       715         0            0
-2       30           0       230          0       620         0            0
-3       75           0       105          0      1060         0            0
-4      165           0       395          0       655        45            0
-5       30           0       250          0       580       120            0
-6      120           0       100          0       620         0            0
-  ACT_PURCH ACT_RELIG ACT_SOCIAL ACT_SPORTS ACT_TRAVEL ACT_VOL ACT_WORK
-1         0         0        465          0         30       0        0
-2         0         0        560          0          0       0        0
-3        60         0         20          0         60       0        0
-4         0         0        120          0          0       0        0
-5        18        60        177          0         75     130        0
-6         0         0        355         50         35       0        0
-  ERS_ASSOC ERS_PRIM
-1         0       40
-2         0       30
-3         0       75
-4         0      165
-5        15       30
-6         0      120</code></pre>
-</div>
-</div>
-<p>It is pretty clear that everything is coded numerically and the variable names are fairly meaningless to a human. Fortunately, the codebook explains all. I spend some time browsing it.</p>
-<section id="the-loaddata-function" class="level2">
-<h2 class="anchored" data-anchor-id="the-loaddata-function">The <code>loadData()</code> function</h2>
-<p>To make things simple in the long-run, I turn the above commands into a reusable function called <code>loadData()</code>. This function will have only one argument that specifies the path of the data in the local directory (relative to the <code>load.R</code> file). I usually set the default path to be the actual path for my setup.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># a function to load in the data</span></span>
-<span id="cb7-2">loadData <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(<span class="at" style="color: #657422;">path_to_data =</span> <span class="st" style="color: #20794D;">"data/atus_00002.csv.gz"</span>) {</span>
-<span id="cb7-3">  <span class="co" style="color: #5E5E5E;"># open zipped file for reading</span></span>
-<span id="cb7-4">  unz <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">gzfile</span>(path_to_data)</span>
-<span id="cb7-5">  <span class="co" style="color: #5E5E5E;"># load in the data</span></span>
-<span id="cb7-6">  <span class="fu" style="color: #4758AB;">read.csv</span>(unz)</span>
-<span id="cb7-7">}</span></code></pre></div>
-</div>
-<p>To test my function, I simply run in my console by typing</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">time_use_orig <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">loadData</span>()</span></code></pre></div>
-</div>
-<p>and look at the output of <code>head(time_use_orig)</code>.</p>
-<p>Obviously such a function is a bit redundant in this setting: it is just as easy to write <code>read.csv(gzfile("data/atus_00002.csv.gz"))</code> in my eventual <code>eda.Rmd</code> file as it is to write <code>loadData("data/atus_00002.csv.gz")</code>. The reason I keep the <code>load.R</code> file in this case is because this is just my default workflow. I always load in my data using a function called <code>loadData</code>. In some situations, there are many, many things that need to be done in order to load the data, meaning that my <code>loadData</code> function can be fairly complicated. For example, sometimes column names need to be read in separately and then attached to the data, and sometimes I need to play with the format of the data to get R to play nice.</p>
-</section>
-</section>
-<section id="cleaning-the-data-clean.r" class="level1">
-<h1>Cleaning the data: <code>clean.R</code></h1>
-<p>Next, I need to make some decisions about whether to keep the data in its raw, ugly form, or to spend some time making my life easier in the long-run by converting the column names to human-readable versions and converting the numeric codes for each variable to text descriptive characters or factors.</p>
-<p>I also need to ensure that missing values are coded as <code>NA</code>s and that the class of each variable is what I would expect. For example, when I looked at the <code>head()</code> of the data above, I noticed that the <code>CASEID</code> variable is printed as a numeric in scientific notation, which is not ideal. IDs should probably be factors or characters (I go back and forth a lot on which I prefer)!</p>
-<p>In <code>clean.R</code> I start work on a function called <code>cleanData()</code>. Like <code>loadData()</code>, the function <code>cleanData()</code> is always a part of my workflow.</p>
-<p>When I eventually start the <code>eda.Rmd</code> file, I will load and clean the data like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;"># define the loadData() function</span></span>
-<span id="cb9-2"><span class="fu" style="color: #4758AB;">source</span>(<span class="st" style="color: #20794D;">"load.R"</span>)</span>
-<span id="cb9-3"><span class="co" style="color: #5E5E5E;"># define the cleanData() function</span></span>
-<span id="cb9-4"><span class="fu" style="color: #4758AB;">source</span>(<span class="st" style="color: #20794D;">"clean.R"</span>)</span>
-<span id="cb9-5"></span>
-<span id="cb9-6"><span class="co" style="color: #5E5E5E;"># load the raw data</span></span>
-<span id="cb9-7">time_use_orig <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">loadData</span>(<span class="st" style="color: #20794D;">"data/atus_00002.csv.gz"</span>)</span>
-<span id="cb9-8"><span class="co" style="color: #5E5E5E;"># clean the data</span></span>
-<span id="cb9-9">time_use <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">cleanData</span>(time_use_orig)</span></code></pre></div>
-</div>
-<section id="the-cleandata-function" class="level2">
-<h2 class="anchored" data-anchor-id="the-cleandata-function">The <code>cleanData()</code> function</h2>
-<p>The <code>cleanData()</code> function will actually call three separate functions, each performing a single task. These functions are</p>
-<ul>
-<li><p><code>renameColumns()</code>: an optional part of my workflow that changes the column names of each of my columns so that I can actually understand what they mean.</p></li>
-<li><p><code>convertMissing()</code>: a function which converts missing values to <code>NA</code></p></li>
-<li><p><code>convertClass</code>: a function which sets factor variables to factors, sets character variables to characters, etc</p></li>
-</ul>
-<section id="making-columns-human-readable-renamecolumns" class="level3">
-<h3 class="anchored" data-anchor-id="making-columns-human-readable-renamecolumns">Making columns human-readable: <code>renameColumns()</code></h3>
-<p>I hate reading column names that are all-caps, use ridiculous abbreviations and generally don’t adhere to my definition of “aesthetically pleasing”. Thus, whenever possible, I tend to convert my column names to human-readable versions. This is fairly tedious whenever the data has more than around 10 variables or so, but the process itself of renaming the variables is a very effective way of ensuring that you have a good idea of which variables are even in the data.</p>
-<p>A word of caution: it is extremely important to check that you have correctly renamed the variables, since it is very easy to assign the wrong name to a variable, resulting in misleading conclusions.</p>
-<p>Obviously this step is not practical if you have more than 100 or so variables (although I once did it with a dataset that had around 300 variables!). In addition, if I will at some point need to present the data to people who are very familiar with the original variable names, I won’t do any renaming either.</p>
-<p>In this case, however, I have no particular allegiance to the original variable names and I want to make it as clear as possible (to myself, at least) what they mean.</p>
-<p>To change the variable names, the <code>renameColumns()</code> function will leverage the <code>dplyr</code> function, <code>select()</code>. Note that I also drop a few variables at this stage that I decided weren’t interesting.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;">library</span>(dplyr)</span>
-<span id="cb10-2">renameColumns <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data) {</span>
-<span id="cb10-3">  data <span class="ot" style="color: #003B4F;">&lt;-</span> data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">select</span>(<span class="at" style="color: #657422;">id =</span> CASEID,</span>
-<span id="cb10-4">                          <span class="at" style="color: #657422;">year =</span> YEAR,</span>
-<span id="cb10-5">                          <span class="co" style="color: #5E5E5E;"># number of attempted contacts</span></span>
-<span id="cb10-6">                          <span class="at" style="color: #657422;">num_contacts =</span> NUMCONTACTS_CPS8,</span>
-<span id="cb10-7">                          <span class="at" style="color: #657422;">state =</span> STATEFIP,</span>
-<span id="cb10-8">                          <span class="at" style="color: #657422;">household_size =</span> HH_SIZE,</span>
-<span id="cb10-9">                          <span class="at" style="color: #657422;">family_income =</span> FAMINCOME,</span>
-<span id="cb10-10">                          <span class="at" style="color: #657422;">num_children =</span> HH_NUMKIDS,</span>
-<span id="cb10-11">                          <span class="at" style="color: #657422;">num_adults =</span> HH_NUMADULTS,</span>
-<span id="cb10-12">                          <span class="at" style="color: #657422;">age =</span> AGE,</span>
-<span id="cb10-13">                          <span class="at" style="color: #657422;">sex =</span> SEX,</span>
-<span id="cb10-14">                          <span class="at" style="color: #657422;">race =</span> RACE,</span>
-<span id="cb10-15">                          <span class="at" style="color: #657422;">marital_status =</span> MARST,</span>
-<span id="cb10-16">                          <span class="at" style="color: #657422;">education_level =</span> EDUC,</span>
-<span id="cb10-17">                          <span class="at" style="color: #657422;">education_years =</span> EDUCYRS,</span>
-<span id="cb10-18">                          <span class="at" style="color: #657422;">employment_status =</span> EMPSTAT,</span>
-<span id="cb10-19">                          <span class="at" style="color: #657422;">occupation_category =</span> OCC2,</span>
-<span id="cb10-20">                          <span class="at" style="color: #657422;">occupation_industry =</span> IND2,</span>
-<span id="cb10-21">                          <span class="at" style="color: #657422;">employed_full_time =</span> FULLPART,</span>
-<span id="cb10-22">                          <span class="at" style="color: #657422;">hours_usually_worked =</span> UHRSWORKT,</span>
-<span id="cb10-23">                          <span class="at" style="color: #657422;">weekly_earning =</span> EARNWEEK,</span>
-<span id="cb10-24">                          <span class="at" style="color: #657422;">paid_hourly =</span> PAIDHOUR,</span>
-<span id="cb10-25">                          <span class="at" style="color: #657422;">hourly_wage =</span> HOURWAGE,</span>
-<span id="cb10-26">                          <span class="at" style="color: #657422;">hours_worked_hourly_rate =</span> HRSATRATE,</span>
-<span id="cb10-27">                          <span class="at" style="color: #657422;">time_spent_caring_household =</span> ACT_CAREHH,</span>
-<span id="cb10-28">                          <span class="at" style="color: #657422;">time_spent_caring_non_household =</span> ACT_CARENHH,</span>
-<span id="cb10-29">                          <span class="at" style="color: #657422;">time_spent_education =</span> ACT_EDUC,</span>
-<span id="cb10-30">                          <span class="at" style="color: #657422;">time_spent_eating =</span> ACT_FOOD,</span>
-<span id="cb10-31">                          <span class="at" style="color: #657422;">time_spent_gov =</span> ACT_GOVSERV,</span>
-<span id="cb10-32">                          <span class="at" style="color: #657422;">time_spent_household_activities =</span> ACT_HHACT,</span>
-<span id="cb10-33">                          <span class="at" style="color: #657422;">time_spent_household_services =</span> ACT_HHSERV,</span>
-<span id="cb10-34">                          <span class="at" style="color: #657422;">time_spent_personal_care =</span> ACT_PCARE,</span>
-<span id="cb10-35">                          <span class="at" style="color: #657422;">time_spent_phone =</span> ACT_PHONE,</span>
-<span id="cb10-36">                          <span class="at" style="color: #657422;">time_spent_personal_care_services =</span> ACT_PROFSERV,</span>
-<span id="cb10-37">                          <span class="at" style="color: #657422;">time_spent_shopping =</span> ACT_PURCH,</span>
-<span id="cb10-38">                          <span class="at" style="color: #657422;">time_spent_religion =</span> ACT_RELIG,</span>
-<span id="cb10-39">                          <span class="at" style="color: #657422;">time_spent_leisure =</span> ACT_SOCIAL,</span>
-<span id="cb10-40">                          <span class="at" style="color: #657422;">time_spent_sports =</span> ACT_SPORTS,</span>
-<span id="cb10-41">                          <span class="at" style="color: #657422;">time_spent_travelling =</span> ACT_TRAVEL,</span>
-<span id="cb10-42">                          <span class="at" style="color: #657422;">time_spent_volunteer =</span> ACT_VOL,</span>
-<span id="cb10-43">                          <span class="at" style="color: #657422;">time_spent_working =</span> ACT_WORK)</span>
-<span id="cb10-44">  <span class="fu" style="color: #4758AB;">return</span>(data)</span>
-<span id="cb10-45">}</span></code></pre></div>
-</div>
-<p>I then test the function out by writing</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">time_use <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">renameColumns</span>(time_use_orig)</span></code></pre></div>
-</div>
-<p>in the console, and looking at the output of <code>head(time_use)</code>.</p>
-<p>Now, I am fully aware that this function I have just written is not generalizable to alternate subsets of the data variables. This will be one of only two places where I will need to change things if I want to re-run the analysis on a different subset of variables (the second place will be when I explicitly convert numeric variables to their character counterparts). I’m facing a trade-off between generalizability of my pipeline and having human-readable data. If I were intending to repeat this analysis on different variables, I would either remove the part of the workflow where I rename the variables (as well as the part where I convert numeric variables to meaningful factors later on), or I would set the variable names as an argument in the <code>renameColumns()</code> function (but sadly, <code>select()</code> doesn’t play very nicely with variables read in as character strings, so I try to avoid this).</p>
-</section>
-<section id="recoding-missing-values-as-na-convertmissing" class="level3">
-<h3 class="anchored" data-anchor-id="recoding-missing-values-as-na-convertmissing">Recoding missing values as <code>NA</code>: <code>convertMissing()</code></h3>
-<p>If you took a look at the codebook, you will have noticed that there are many different ways to say that data is missing. This can be very problematic.</p>
-<p>The most common way to code missingness in this data is to code it as <code>99</code> <code>999</code>, <code>9999</code>, etc (depending on whether the entries for the variable are two, three, four or more digit numbers, respectively). These entries are referred to in the codebook as <code>NIU (Not in universe)</code>. Other types of missing values are recorded such as <code>996</code> corresponding to <code>Refused</code>, <code>997</code> corresponding to <code>Don't know</code> and <code>998</code> corresponding to <code>Blank</code>.</p>
-<p>I now need to decide what to convert to <code>NA</code>, keeping in mind that I need to be particularly careful for the variables with many different types of missingness (such as people who refused to answer, didn’t know or simply left the entry blank). I decide to take a look to see how widespread these types of missingness are by running the following code in the console:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="co" style="color: #5E5E5E;"># identify how many times informative missingness occurs for each variable</span></span>
-<span id="cb12-2">informative_missing <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">sapply</span>(time_use, </span>
-<span id="cb12-3">                              <span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">sum</span>(x <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">996</span>, <span class="dv" style="color: #AD0000;">997</span>, <span class="dv" style="color: #AD0000;">998</span>)))</span>
-<span id="cb12-4"><span class="co" style="color: #5E5E5E;"># print out only the non-zero values</span></span>
-<span id="cb12-5">informative_missing[informative_missing <span class="sc" style="color: #5E5E5E;">!=</span> <span class="dv" style="color: #AD0000;">0</span>]</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>          weekly_earning hours_worked_hourly_rate time_spent_personal_care 
-                       1                       12                        1 
-      time_spent_leisure       time_spent_working 
-                       1                        1 </code></pre>
-</div>
-</div>
-<p>Since these types of missingness are extremely rare, I decide to simply lump them in with all of the other <code>NA</code> values.</p>
-<p>Next, I want to identify which variables have missing values coded as a varying number of 9s. Since the missing values are always supposed to correspond to the maximum, I printed out the maximum of each variable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;"># print out the maximum of each column</span></span>
-<span id="cb14-2"><span class="fu" style="color: #4758AB;">sapply</span>(time_use, max)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                               id                              year 
-                     2.016121e+13                      2.016000e+03 
-                     num_contacts                             state 
-                     8.000000e+00                      5.600000e+01 
-                   household_size                     family_income 
-                     1.300000e+01                      1.600000e+01 
-                     num_children                        num_adults 
-                     9.000000e+00                      8.000000e+00 
-                              age                               sex 
-                     8.500000e+01                      2.000000e+00 
-                             race                    marital_status 
-                     4.000000e+02                      6.000000e+00 
-                  education_level                   education_years 
-                     4.300000e+01                      3.210000e+02 
-                employment_status               occupation_category 
-                     5.000000e+00                      9.999000e+03 
-              occupation_industry                employed_full_time 
-                     9.999000e+03                      9.900000e+01 
-             hours_usually_worked                    weekly_earning 
-                     9.999000e+03                      9.999999e+04 
-                      paid_hourly                       hourly_wage 
-                     9.900000e+01                      9.999900e+02 
-         hours_worked_hourly_rate       time_spent_caring_household 
-                     9.990000e+02                      8.800000e+02 
-  time_spent_caring_non_household              time_spent_education 
-                     9.100000e+02                      1.000000e+03 
-                time_spent_eating                    time_spent_gov 
-                     6.350000e+02                      4.700000e+02 
-  time_spent_household_activities     time_spent_household_services 
-                     1.184000e+03                      4.500000e+02 
-         time_spent_personal_care                  time_spent_phone 
-                     1.434000e+03                      4.200000e+02 
-time_spent_personal_care_services               time_spent_shopping 
-                     5.250000e+02                      6.000000e+02 
-              time_spent_religion                time_spent_leisure 
-                     7.130000e+02                      1.392000e+03 
-                time_spent_sports             time_spent_travelling 
-                     1.260000e+03                      1.265000e+03 
-             time_spent_volunteer                time_spent_working 
-                     9.200000e+02                      1.350000e+03 </code></pre>
-</div>
-</div>
-<p>I notice here that there are several variables with missing values as their maxima such as <code>occupation_industry</code> with a maximum of <code>9999</code>, and <code>hourly_wage</code> with a maximum of <code>999.99</code>. Since I don’t really want to manually convert these missing values to <code>NA</code>, I decide to automate it using the <code>mutate_if()</code> function from the <code>dplyr</code> package. First I write a few helper functions in the <code>clean.R</code> file for calculating the maximum of a vector and for identifying specific values in a vector.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="co" style="color: #5E5E5E;"># Helper function for identifying missing values equal to 99, 999, etc</span></span>
-<span id="cb16-2">equalFun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x, value) {</span>
-<span id="cb16-3">  x <span class="sc" style="color: #5E5E5E;">==</span> value</span>
-<span id="cb16-4">}</span>
-<span id="cb16-5"></span>
-<span id="cb16-6"><span class="co" style="color: #5E5E5E;"># Helper function for identifying if the max of a variable is equal to 99, ...</span></span>
-<span id="cb16-7">maxFun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x, value) {</span>
-<span id="cb16-8">  <span class="fu" style="color: #4758AB;">max</span>(x, <span class="at" style="color: #657422;">na.rm =</span> T) <span class="sc" style="color: #5E5E5E;">==</span> value</span>
-<span id="cb16-9">}</span></code></pre></div>
-</div>
-<p>The first argument of <code>mutate_if()</code> is a function which returns a Boolean value specifying which columns to select. The second argument is wrapped in <code>funs()</code> and itself is a function which specifies what to do to each column. <code>if_else(equalFun(., 99), NA_integer_, .)</code> can be read aloud as “If the value is equal to 99, convert it to a <code>NA</code> of integer type, otherwise do nothing” (the <code>.</code> serves as a placeholder for the data, like <code>x</code> in <code>function(x)</code>).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">convertMissing <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data) {</span>
-<span id="cb17-2">  <span class="co" style="color: #5E5E5E;"># convert missing values to NA</span></span>
-<span id="cb17-3">  data <span class="ot" style="color: #003B4F;">&lt;-</span> data <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb17-4">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 99 to NA</span></span>
-<span id="cb17-5">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">99</span>), </span>
-<span id="cb17-6">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">99</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb17-7">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 999 to NA</span></span>
-<span id="cb17-8">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">999</span>), </span>
-<span id="cb17-9">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">999</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb17-10">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 9999 to NA</span></span>
-<span id="cb17-11">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">9999</span>), </span>
-<span id="cb17-12">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">9999</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb17-13">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 999.99 to NA</span></span>
-<span id="cb17-14">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="fl" style="color: #AD0000;">999.99</span>), </span>
-<span id="cb17-15">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="fl" style="color: #AD0000;">999.99</span>), <span class="cn" style="color: #8f5902;">NA_real_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb17-16">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 99999.99 to NA</span></span>
-<span id="cb17-17">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="fl" style="color: #AD0000;">99999.99</span>), </span>
-<span id="cb17-18">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="fl" style="color: #AD0000;">99999.99</span>), <span class="cn" style="color: #8f5902;">NA_real_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb17-19">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 998 to NA</span></span>
-<span id="cb17-20">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">998</span>), </span>
-<span id="cb17-21">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">998</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb17-22">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 997 to NA</span></span>
-<span id="cb17-23">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">997</span>), </span>
-<span id="cb17-24">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">997</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .)))</span>
-<span id="cb17-25">  <span class="fu" style="color: #4758AB;">return</span>(data)    </span>
-<span id="cb17-26">}</span></code></pre></div>
-</div>
-<p>It took some playing around with running the body of the function in the console (with <code>data</code> defined as <code>time_use</code>) to get it to run without errors (I was getting errors to do with <code>NA</code> values and realized that I needed to add <code>na.rm = T</code> in the <code>maxFun()</code> function).</p>
-<p>Once the body runs in the console, I then check to make sure that the complete function worked as expected by running it in the console and checking out the summary of the output.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="co" style="color: #5E5E5E;"># convert the missing values to NAs</span></span>
-<span id="cb18-2">time_use <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">convertMissing</span>(time_use)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><span class="co" style="color: #5E5E5E;"># check out the summary</span></span>
-<span id="cb26-2"><span class="fu" style="color: #4758AB;">summary</span>(time_use)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       id                 year       num_contacts        state      
- Min.   :2.016e+13   Min.   :2016   Min.   :0.0000   Min.   : 1.00  
- 1st Qu.:2.016e+13   1st Qu.:2016   1st Qu.:0.0000   1st Qu.:13.00  
- Median :2.016e+13   Median :2016   Median :0.0000   Median :27.00  
- Mean   :2.016e+13   Mean   :2016   Mean   :0.2574   Mean   :27.96  
- 3rd Qu.:2.016e+13   3rd Qu.:2016   3rd Qu.:0.0000   3rd Qu.:42.00  
- Max.   :2.016e+13   Max.   :2016   Max.   :8.0000   Max.   :56.00  
-                                                                    
- household_size   family_income    num_children      num_adults   
- Min.   : 1.000   Min.   : 1.00   Min.   :0.0000   Min.   :1.000  
- 1st Qu.: 1.000   1st Qu.: 8.00   1st Qu.:0.0000   1st Qu.:1.000  
- Median : 2.000   Median :12.00   Median :0.0000   Median :2.000  
- Mean   : 2.657   Mean   :10.85   Mean   :0.7706   Mean   :1.868  
- 3rd Qu.: 4.000   3rd Qu.:14.00   3rd Qu.:1.0000   3rd Qu.:2.000  
- Max.   :13.000   Max.   :16.00   Max.   :9.0000   Max.   :8.000  
-                                                                  
-      age             sex             race       marital_status 
- Min.   :15.00   Min.   :1.000   Min.   :100.0   Min.   :1.000  
- 1st Qu.:35.00   1st Qu.:1.000   1st Qu.:100.0   1st Qu.:1.000  
- Median :49.00   Median :2.000   Median :100.0   Median :3.000  
- Mean   :49.42   Mean   :1.555   Mean   :104.5   Mean   :3.022  
- 3rd Qu.:64.00   3rd Qu.:2.000   3rd Qu.:100.0   3rd Qu.:6.000  
- Max.   :85.00   Max.   :2.000   Max.   :400.0   Max.   :6.000  
-                                                                
- education_level education_years employment_status occupation_category
- Min.   :10.00   Min.   :101.0   Min.   :1.000     Min.   :110.0      
- 1st Qu.:21.00   1st Qu.:112.0   1st Qu.:1.000     1st Qu.:122.0      
- Median :30.00   Median :214.0   Median :1.000     Median :131.0      
- Mean   :29.74   Mean   :187.8   Mean   :2.559     Mean   :138.1      
- 3rd Qu.:40.00   3rd Qu.:217.0   3rd Qu.:5.000     3rd Qu.:150.0      
- Max.   :43.00   Max.   :321.0   Max.   :5.000     Max.   :200.0      
-                                                   NA's   :4119       
- occupation_industry employed_full_time hours_usually_worked weekly_earning  
- Min.   :100.0       Min.   :1.000      Min.   :   0.0       Min.   :   0.0  
- 1st Qu.:160.0       1st Qu.:1.000      1st Qu.:  38.0       1st Qu.: 458.8  
- Median :220.0       Median :1.000      Median :  40.0       Median : 800.0  
- Mean   :210.4       Mean   :1.219      Mean   : 672.6       Mean   : 994.0  
- 3rd Qu.:251.0       3rd Qu.:1.000      3rd Qu.:  50.0       3rd Qu.:1346.2  
- Max.   :300.0       Max.   :2.000      Max.   :9995.0       Max.   :2884.6  
- NA's   :4119        NA's   :4119       NA's   :4119         NA's   :4833    
-  paid_hourly     hourly_wage    hours_worked_hourly_rate
- Min.   :1.000   Min.   : 0.00   Min.   : 1.00           
- 1st Qu.:1.000   1st Qu.:10.50   1st Qu.:28.00           
- Median :1.000   Median :15.00   Median :40.00           
- Mean   :1.444   Mean   :18.34   Mean   :33.86           
- 3rd Qu.:2.000   3rd Qu.:22.00   3rd Qu.:40.00           
- Max.   :2.000   Max.   :99.99   Max.   :90.00           
- NA's   :4833    NA's   :7348    NA's   :8438            
- time_spent_caring_household time_spent_caring_non_household
- Min.   :  0.00              Min.   :  0.000                
- 1st Qu.:  0.00              1st Qu.:  0.000                
- Median :  0.00              Median :  0.000                
- Mean   : 31.85              Mean   :  8.603                
- 3rd Qu.: 11.00              3rd Qu.:  0.000                
- Max.   :880.00              Max.   :910.000                
-                                                            
- time_spent_education time_spent_eating time_spent_gov    
- Min.   :   0.00      Min.   :  0.00    Min.   :  0.0000  
- 1st Qu.:   0.00      1st Qu.: 30.00    1st Qu.:  0.0000  
- Median :   0.00      Median : 60.00    Median :  0.0000  
- Mean   :  15.39      Mean   : 64.99    Mean   :  0.3647  
- 3rd Qu.:   0.00      3rd Qu.: 90.00    3rd Qu.:  0.0000  
- Max.   :1000.00      Max.   :635.00    Max.   :470.0000  
-                                                          
- time_spent_household_activities time_spent_household_services
- Min.   :   0.0                  Min.   :  0.0000             
- 1st Qu.:  15.0                  1st Qu.:  0.0000             
- Median :  75.0                  Median :  0.0000             
- Mean   : 121.1                  Mean   :  0.9868             
- 3rd Qu.: 180.0                  3rd Qu.:  0.0000             
- Max.   :1184.0                  Max.   :450.0000             
-                                                              
- time_spent_personal_care time_spent_phone  time_spent_personal_care_services
- Min.   :   0.0           Min.   :  0.000   Min.   :  0.000                  
- 1st Qu.: 495.0           1st Qu.:  0.000   1st Qu.:  0.000                  
- Median : 570.0           Median :  0.000   Median :  0.000                  
- Mean   : 580.3           Mean   :  6.774   Mean   :  4.747                  
- 3rd Qu.: 660.0           3rd Qu.:  0.000   3rd Qu.:  0.000                  
- Max.   :1434.0           Max.   :420.000   Max.   :525.000                  
-                                                                             
- time_spent_shopping time_spent_religion time_spent_leisure time_spent_sports
- Min.   :  0.00      Min.   :  0.0       Min.   :   0.0     Min.   :   0.00  
- 1st Qu.:  0.00      1st Qu.:  0.0       1st Qu.: 130.0     1st Qu.:   0.00  
- Median :  0.00      Median :  0.0       Median : 260.0     Median :   0.00  
- Mean   : 24.15      Mean   : 13.4       Mean   : 298.4     Mean   :  20.22  
- 3rd Qu.: 30.00      3rd Qu.:  0.0       3rd Qu.: 432.0     3rd Qu.:   0.00  
- Max.   :600.00      Max.   :713.0       Max.   :1392.0     Max.   :1260.00  
-                                                                             
- time_spent_travelling time_spent_volunteer time_spent_working
- Min.   :   0.0        Min.   :  0.000      Min.   :   0.0    
- 1st Qu.:  20.0        1st Qu.:  0.000      1st Qu.:   0.0    
- Median :  55.0        Median :  0.000      Median :   0.0    
- Mean   :  71.5        Mean   :  8.469      Mean   : 157.7    
- 3rd Qu.:  95.0        3rd Qu.:  0.000      3rd Qu.: 375.0    
- Max.   :1265.0        Max.   :920.000      Max.   :1350.0    
-                                                              </code></pre>
-</div>
-</div>
-<p>Scrolling through the summary, I notice a few peculiarities. In particular, there are several variables that have stupidly large values. For example the maximum value for <code>hours_usually_worked</code> is <code>9995</code> (this didn’t appear in the codebook!). I decided to look at a histogram of this variable to see how typical this value is. I ran the following code in the console:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
-<span id="cb28-2"><span class="fu" style="color: #4758AB;">ggplot</span>(time_use) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_histogram</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> hours_usually_worked))</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4119 rows containing non-finite values (`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-08-16-data-science-workflow_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>From the histogram, it is fairly clear that there is an additional type of missing value (405 samples have a value of <code>9995</code>) that was not mentioned in the documentation. I then go back and update my <code>convertMissing()</code> function to include this extra missing value.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1">convertMissing <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data) {</span>
-<span id="cb31-2">  <span class="co" style="color: #5E5E5E;"># convert missing values to NA</span></span>
-<span id="cb31-3">  data <span class="ot" style="color: #003B4F;">&lt;-</span> data <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-4">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 99 to NA</span></span>
-<span id="cb31-5">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">99</span>), </span>
-<span id="cb31-6">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">99</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-7">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 999 to NA</span></span>
-<span id="cb31-8">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">999</span>), </span>
-<span id="cb31-9">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">999</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-10">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 9999 to NA</span></span>
-<span id="cb31-11">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">9999</span>), </span>
-<span id="cb31-12">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">9999</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-13">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 999.99 to NA</span></span>
-<span id="cb31-14">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="fl" style="color: #AD0000;">999.99</span>), </span>
-<span id="cb31-15">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="fl" style="color: #AD0000;">999.99</span>), <span class="cn" style="color: #8f5902;">NA_real_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-16">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 99999.99 to NA</span></span>
-<span id="cb31-17">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="fl" style="color: #AD0000;">99999.99</span>), </span>
-<span id="cb31-18">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="fl" style="color: #AD0000;">99999.99</span>), <span class="cn" style="color: #8f5902;">NA_real_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-19">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 998 to NA</span></span>
-<span id="cb31-20">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">998</span>), </span>
-<span id="cb31-21">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">998</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-22">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 997 to NA</span></span>
-<span id="cb31-23">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">997</span>), </span>
-<span id="cb31-24">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">997</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb31-25">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 9995 to NA</span></span>
-<span id="cb31-26">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">9995</span>), </span>
-<span id="cb31-27">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">9995</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) </span>
-<span id="cb31-28">  <span class="fu" style="color: #4758AB;">return</span>(data)    </span>
-<span id="cb31-29">}</span></code></pre></div>
-</div>
-<p>Next, I ran the <code>convertMissing()</code> function again the data and re-made the histogram to make sure that everything was going smoothly.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><span class="co" style="color: #5E5E5E;"># re-run the renameColumns() function</span></span>
-<span id="cb32-2">time_use <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">renameColumns</span>(time_use_orig)</span>
-<span id="cb32-3"><span class="co" style="color: #5E5E5E;"># convert missing values to NA</span></span>
-<span id="cb32-4">time_use <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">convertMissing</span>(time_use)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
-ℹ Please use a list of either functions or lambdas:
-
-# Simple named list: list(mean = mean, median = median)
-
-# Auto named with `tibble::lst()`: tibble::lst(mean, median)
-
-# Using lambdas list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb41" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><span class="co" style="color: #5E5E5E;"># re-make the histogram</span></span>
-<span id="cb41-2"><span class="fu" style="color: #4758AB;">ggplot</span>(time_use) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_histogram</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> hours_usually_worked))</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 4524 rows containing non-finite values (`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-08-16-data-science-workflow_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Now that that was sorted out, it occurred to me that I wasn’t sure what kind of scale the <code>time_spent</code> variables were on (is it hours spent in the last week? In the last month? The last year? Perhaps it is minutes spent over the last day? It probably should have occurred to me to ask this earlier, but it didn’t. Whatever… I’m asking it now! After spending some time perusing the internet for a while, I found <a href="https://www.bls.gov/news.release/atus.t01.htm">this table</a> which summarised the average hours spend <em>per day</em> on a range of activities. For example, it said that on average, people spend 9.58 hours per day on “personal care activities”. The histogram below shows the distribution of values for the <code>time_spent_personal_care</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><span class="fu" style="color: #4758AB;">ggplot</span>(time_use) <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">geom_histogram</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> time_spent_personal_care))</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-08-16-data-science-workflow_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The mean value in the data is 580, which when divided by 60 gives 9.6. From this “evidence” I conclude that what the data contains is the <strong>number of minutes spent per day</strong>. Whether this is averaged over a week, or is based on one particular day, I honestly don’t know. But for my purposes, I’ll just take each value as the number of minutes spent on the activity on a “typical” day.</p>
-</section>
-<section id="ensuring-each-variable-has-the-correct-class-convertclass" class="level3">
-<h3 class="anchored" data-anchor-id="ensuring-each-variable-has-the-correct-class-convertclass">Ensuring each variable has the correct class: <code>convertClass()</code></h3>
-<p>The final cleaning task involves converting categorical values to have a categorical variable class (such as a factor), and other things along these lines involving variable classes.</p>
-<p>Recall that the person ID variable, <code>CASEID</code>, is currently coded as a numeric (which is printed in scientific notation). In general, it is good practice to code IDs as factors (or characters).</p>
-<p>There are also many other variables that should be coded as factors: state, sex, race, marital_status, education_level, family_income, employment_status, occupation_category, and occupation_industry.</p>
-<p>Now begins the part of my cleaning process that often takes the longest: I am going to convert each of these numeric variables not only to factors, but to <em>meaningful</em> factors. I don’t want to make plots for genders 1 and 2, or for states 42 and 28; I want to make plots for males and females and for states Pennsylvania and Mississippi.</p>
-<p>First, for each variable I need to define a data frame that stores the conversion from number to meaningful category. Fortunately, this information was found in the codebook, and I can copy and paste these code conversions into separate .txt files and save them in the <code>data/</code> folder: <code>states.txt</code>, <code>occupation_industry.txt</code>, <code>occupation_category.txt</code>, etc. I can then read them into R as tab-delimited text files.</p>
-<p>In case you’re interested, after copying the subsets of the codebook, my project directory now looks like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb46" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1">data<span class="sc" style="color: #5E5E5E;">/</span></span>
-<span id="cb46-2">  atus_00002.csv.gz</span>
-<span id="cb46-3">  atus_00002.txt</span>
-<span id="cb46-4">  education_level.txt</span>
-<span id="cb46-5">  employment_status.txt</span>
-<span id="cb46-6">  family_income.txt</span>
-<span id="cb46-7">  marital_status.txt</span>
-<span id="cb46-8">  occupation_category.txt</span>
-<span id="cb46-9">  occupation_industry.txt</span>
-<span id="cb46-10">  race.txt</span>
-<span id="cb46-11">  sex.txt</span>
-<span id="cb46-12">  state.txt</span>
-<span id="cb46-13">R<span class="sc" style="color: #5E5E5E;">/</span></span>
-<span id="cb46-14">  clean.R</span>
-<span id="cb46-15">  load.R</span></code></pre></div>
-</div>
-<p>I now start work on a <code>convertClass()</code> function which will be the third component of my <code>cleanData()</code> function. The first thing I do in <code>convertClass()</code> is convert the <code>id</code> variable to a factor. I then loop through each of the other factor variables to read in the code conversions from the .txt files, join the meaningful factors onto the original data frame using <code>left_join()</code> and remove the numeric version of the variable. The function that I wrote is presented below. I spent a while playing around in the console with various versions of the function below (always running code from the .R file rather than typing directly in the console itself).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1">convertClass <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data, <span class="at" style="color: #657422;">path_to_codes =</span> <span class="st" style="color: #20794D;">"data/"</span>) {</span>
-<span id="cb47-2">  <span class="co" style="color: #5E5E5E;"># convert id to a factor</span></span>
-<span id="cb47-3">  data <span class="ot" style="color: #003B4F;">&lt;-</span> data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">id =</span> <span class="fu" style="color: #4758AB;">as.factor</span>(id))</span>
-<span id="cb47-4">  <span class="co" style="color: #5E5E5E;"># loop through each of the factor variables and convert to meaningful</span></span>
-<span id="cb47-5">  <span class="co" style="color: #5E5E5E;"># factor then add to data frame</span></span>
-<span id="cb47-6">  <span class="cf" style="color: #003B4F;">for</span> (variable <span class="cf" style="color: #003B4F;">in</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"state"</span>, <span class="st" style="color: #20794D;">"occupation_industry"</span>, <span class="st" style="color: #20794D;">"occupation_category"</span>,</span>
-<span id="cb47-7">                       <span class="st" style="color: #20794D;">"education_level"</span>, <span class="st" style="color: #20794D;">"race"</span>, <span class="st" style="color: #20794D;">"marital_status"</span>, <span class="st" style="color: #20794D;">"sex"</span>,</span>
-<span id="cb47-8">                       <span class="st" style="color: #20794D;">"employment_status"</span>, <span class="st" style="color: #20794D;">"family_income"</span>)) {</span>
-<span id="cb47-9">    <span class="co" style="color: #5E5E5E;"># identify the path to the code file</span></span>
-<span id="cb47-10">    path <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">paste0</span>(path_to_codes, variable, <span class="st" style="color: #20794D;">".txt"</span>)</span>
-<span id="cb47-11">    <span class="co" style="color: #5E5E5E;"># read in the code file</span></span>
-<span id="cb47-12">    codes <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read.table</span>(path, <span class="at" style="color: #657422;">sep =</span> <span class="st" style="color: #20794D;">"</span><span class="sc" style="color: #5E5E5E;">\t</span><span class="st" style="color: #20794D;">"</span>)</span>
-<span id="cb47-13">    <span class="co" style="color: #5E5E5E;"># remove the second column (the entries are separated by two \t's)</span></span>
-<span id="cb47-14">    codes <span class="ot" style="color: #003B4F;">&lt;-</span> codes[, <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">2</span>]</span>
-<span id="cb47-15">    <span class="co" style="color: #5E5E5E;"># convert the column names</span></span>
-<span id="cb47-16">    <span class="fu" style="color: #4758AB;">colnames</span>(codes) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(variable, <span class="fu" style="color: #4758AB;">paste0</span>(variable, <span class="st" style="color: #20794D;">"_name"</span>))</span>
-<span id="cb47-17">    <span class="co" style="color: #5E5E5E;"># add the code to the original data frame</span></span>
-<span id="cb47-18">    data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">left_join</span>(data, codes, <span class="at" style="color: #657422;">by =</span> variable)</span>
-<span id="cb47-19">    <span class="co" style="color: #5E5E5E;"># remove old variable and replace with new variable</span></span>
-<span id="cb47-20">    data[, variable] <span class="ot" style="color: #003B4F;">&lt;-</span> data[, <span class="fu" style="color: #4758AB;">paste0</span>(variable, <span class="st" style="color: #20794D;">"_name"</span>)]</span>
-<span id="cb47-21">    data <span class="ot" style="color: #003B4F;">&lt;-</span> data[, <span class="sc" style="color: #5E5E5E;">!</span>(<span class="fu" style="color: #4758AB;">colnames</span>(data) <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">paste0</span>(variable, <span class="st" style="color: #20794D;">"_name"</span>))]</span>
-<span id="cb47-22">  }</span>
-<span id="cb47-23">  <span class="fu" style="color: #4758AB;">return</span>(data)</span>
-<span id="cb47-24">}</span></code></pre></div>
-</div>
-<p>After I was done, I tested out that the <code>convertClass()</code> did what I hoped by running the following code in the console:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><span class="co" style="color: #5E5E5E;"># run the convertClass() function</span></span>
-<span id="cb48-2">time_use <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">convertClass</span>(time_use)</span>
-<span id="cb48-3"><span class="co" style="color: #5E5E5E;"># compare the original variables with the meaningful versions</span></span>
-<span id="cb48-4"><span class="fu" style="color: #4758AB;">head</span>(time_use)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              id year num_contacts                state household_size
-1 20160101160045 2016            1              Georgia              3
-2 20160101160066 2016            1             Virginia              2
-3 20160101160069 2016            2 District of Columbia              4
-4 20160101160083 2016            1             Michigan              4
-5 20160101160084 2016            1             Missouri              2
-6 20160101160094 2016            0              Florida              5
-       family_income num_children num_adults age    sex
-1   $7,500 to $9,999            0          3  62 Female
-2 $15,000 to $19,999            0          2  69   Male
-3 $10,000 to $12,499            2          2  24 Female
-4 $25,000 to $29,999            3          1  31 Female
-5 $60,000 to $74,999            0          2  59 Female
-6 $12,500 to $14,999            4          1  16 Female
-                             race           marital_status
-1                      White only Married - spouse present
-2                      Black only Married - spouse present
-3                      Black only            Never married
-4                      White only                 Divorced
-5                      White only Married - spouse present
-6 American Indian, Alaskan Native            Never married
-                 education_level education_years employment_status
-1 High school graduate (diploma)             112              &lt;NA&gt;
-2                     11th grade             111              &lt;NA&gt;
-3     High school graduate (GED)             102              &lt;NA&gt;
-4     Some college but no degree             214         Full time
-5 High school graduate (diploma)             112         Full time
-6                     10th grade             110              &lt;NA&gt;
-                           occupation_category
-1                                         &lt;NA&gt;
-2                                         &lt;NA&gt;
-3                                         &lt;NA&gt;
-4               Healthcare support occupations
-5 Education, training, and library occupations
-6                                         &lt;NA&gt;
-                     occupation_industry employed_full_time
-1                                   &lt;NA&gt;                 NA
-2                                   &lt;NA&gt;                 NA
-3                                   &lt;NA&gt;                 NA
-4 Health care services, except hospitals                  2
-5                   Educational services                  2
-6                                   &lt;NA&gt;                 NA
-  hours_usually_worked weekly_earning paid_hourly hourly_wage
-1                   NA             NA          NA          NA
-2                   NA             NA          NA          NA
-3                   NA             NA          NA          NA
-4                   32         469.44           1       14.67
-5                   12         302.50           1       17.00
-6                   NA             NA          NA          NA
-  hours_worked_hourly_rate time_spent_caring_household
-1                       NA                           0
-2                       NA                           0
-3                       NA                           0
-4                       32                          60
-5                       NA                           0
-6                       NA                           0
-  time_spent_caring_non_household time_spent_education time_spent_eating
-1                               0                    0                40
-2                               0                    0                30
-3                               0                    0                75
-4                               0                    0               165
-5                               0                    0                30
-6                               0                    0               120
-  time_spent_gov time_spent_household_activities time_spent_household_services
-1              0                             190                             0
-2              0                             230                             0
-3              0                             105                             0
-4              0                             395                             0
-5              0                             250                             0
-6              0                             100                             0
-  time_spent_personal_care time_spent_phone time_spent_personal_care_services
-1                      715                0                                 0
-2                      620                0                                 0
-3                     1060                0                                 0
-4                      655               45                                 0
-5                      580              120                                 0
-6                      620                0                                 0
-  time_spent_shopping time_spent_religion time_spent_leisure time_spent_sports
-1                   0                   0                465                 0
-2                   0                   0                560                 0
-3                  60                   0                 20                 0
-4                   0                   0                120                 0
-5                  18                  60                177                 0
-6                   0                   0                355                50
-  time_spent_travelling time_spent_volunteer time_spent_working
-1                    30                    0                  0
-2                     0                    0                  0
-3                    60                    0                  0
-4                     0                    0                  0
-5                    75                  130                  0
-6                    35                    0                  0</code></pre>
-</div>
-</div>
-<p>Everything looks good! I add <code>renameColumns()</code>, <code>convertMissing()</code> and <code>convertClass()</code> to the <code>cleanData()</code> function. I’m finally done with the cleaning component of my workflow. I may have to come back and add additional steps as I make unpleasant discoveries in my analysis, but for now, I can move on.</p>
-<p>Below I print my final <code>clean.R</code> file</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><span class="co" style="color: #5E5E5E;"># filename: clean.R</span></span>
-<span id="cb50-2"></span>
-<span id="cb50-3"><span class="co" style="color: #5E5E5E;"># Main function for data cleaning stage</span></span>
-<span id="cb50-4">cleanData <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data) {</span>
-<span id="cb50-5">  <span class="co" style="color: #5E5E5E;"># rename each of the columns to be human-readable</span></span>
-<span id="cb50-6">  <span class="co" style="color: #5E5E5E;"># ignore some of the useless columns (such as alternative ID columns)</span></span>
-<span id="cb50-7">  data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">renameColumns</span>(data)</span>
-<span id="cb50-8">  <span class="co" style="color: #5E5E5E;"># convert missing data to NA</span></span>
-<span id="cb50-9">  data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">convertMissing</span>(data)</span>
-<span id="cb50-10">  <span class="co" style="color: #5E5E5E;"># convert integers to meaningful factors</span></span>
-<span id="cb50-11">  data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">convertClass</span>(data)</span>
-<span id="cb50-12">  <span class="fu" style="color: #4758AB;">return</span>(data)</span>
-<span id="cb50-13">}</span>
-<span id="cb50-14"></span>
-<span id="cb50-15"><span class="co" style="color: #5E5E5E;"># rename each of the columns to be human-readable</span></span>
-<span id="cb50-16">renameColumns <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data) {</span>
-<span id="cb50-17">  data <span class="ot" style="color: #003B4F;">&lt;-</span> data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">select</span>(<span class="at" style="color: #657422;">id =</span> CASEID,</span>
-<span id="cb50-18">                          <span class="at" style="color: #657422;">year =</span> YEAR,</span>
-<span id="cb50-19">                          <span class="co" style="color: #5E5E5E;"># number of attempted contacts</span></span>
-<span id="cb50-20">                          <span class="at" style="color: #657422;">num_contacts =</span> NUMCONTACTS_CPS8,</span>
-<span id="cb50-21">                          <span class="at" style="color: #657422;">state =</span> STATEFIP,</span>
-<span id="cb50-22">                          <span class="at" style="color: #657422;">household_size =</span> HH_SIZE,</span>
-<span id="cb50-23">                          <span class="at" style="color: #657422;">family_income =</span> FAMINCOME,</span>
-<span id="cb50-24">                          <span class="at" style="color: #657422;">num_children =</span> HH_NUMKIDS,</span>
-<span id="cb50-25">                          <span class="at" style="color: #657422;">num_adults =</span> HH_NUMADULTS,</span>
-<span id="cb50-26">                          <span class="at" style="color: #657422;">age =</span> AGE,</span>
-<span id="cb50-27">                          <span class="at" style="color: #657422;">sex =</span> SEX,</span>
-<span id="cb50-28">                          <span class="at" style="color: #657422;">race =</span> RACE,</span>
-<span id="cb50-29">                          <span class="at" style="color: #657422;">marital_status =</span> MARST,</span>
-<span id="cb50-30">                          <span class="at" style="color: #657422;">education_level =</span> EDUC,</span>
-<span id="cb50-31">                          <span class="at" style="color: #657422;">employment_status =</span> EMPSTAT,</span>
-<span id="cb50-32">                          <span class="at" style="color: #657422;">occupation_category =</span> OCC2,</span>
-<span id="cb50-33">                          <span class="at" style="color: #657422;">occupation_industry =</span> IND2,</span>
-<span id="cb50-34">                          <span class="at" style="color: #657422;">employed_full_time =</span> FULLPART,</span>
-<span id="cb50-35">                          <span class="at" style="color: #657422;">hours_usually_worked =</span> UHRSWORKT,</span>
-<span id="cb50-36">                          <span class="at" style="color: #657422;">weekly_earning =</span> EARNWEEK,</span>
-<span id="cb50-37">                          <span class="at" style="color: #657422;">paid_hourly =</span> PAIDHOUR,</span>
-<span id="cb50-38">                          <span class="at" style="color: #657422;">hourly_wage =</span> HOURWAGE,</span>
-<span id="cb50-39">                          <span class="at" style="color: #657422;">hours_worked_hourly_rate =</span> HRSATRATE,</span>
-<span id="cb50-40">                          <span class="at" style="color: #657422;">time_spent_caring_household =</span> ACT_CAREHH,</span>
-<span id="cb50-41">                          <span class="at" style="color: #657422;">time_spent_caring_non_household =</span> ACT_CARENHH,</span>
-<span id="cb50-42">                          <span class="at" style="color: #657422;">time_spent_education =</span> ACT_EDUC,</span>
-<span id="cb50-43">                          <span class="at" style="color: #657422;">time_spent_eating =</span> ACT_FOOD,</span>
-<span id="cb50-44">                          <span class="at" style="color: #657422;">time_spent_gov =</span> ACT_GOVSERV,</span>
-<span id="cb50-45">                          <span class="at" style="color: #657422;">time_spent_household_activities =</span> ACT_HHACT,</span>
-<span id="cb50-46">                          <span class="at" style="color: #657422;">time_spent_household_services =</span> ACT_HHSERV,</span>
-<span id="cb50-47">                          <span class="at" style="color: #657422;">time_spent_personal_care =</span> ACT_PCARE,</span>
-<span id="cb50-48">                          <span class="at" style="color: #657422;">time_spent_phone =</span> ACT_PHONE,</span>
-<span id="cb50-49">                          <span class="at" style="color: #657422;">time_spent_personal_care_services =</span> ACT_PROFSERV,</span>
-<span id="cb50-50">                          <span class="at" style="color: #657422;">time_spent_shopping =</span> ACT_PURCH,</span>
-<span id="cb50-51">                          <span class="at" style="color: #657422;">time_spent_religion =</span> ACT_RELIG,</span>
-<span id="cb50-52">                          <span class="at" style="color: #657422;">time_spent_leisure =</span> ACT_SOCIAL,</span>
-<span id="cb50-53">                          <span class="at" style="color: #657422;">time_spent_sports =</span> ACT_SPORTS,</span>
-<span id="cb50-54">                          <span class="at" style="color: #657422;">time_spent_travelling =</span> ACT_TRAVEL,</span>
-<span id="cb50-55">                          <span class="at" style="color: #657422;">time_spent_volunteer =</span> ACT_VOL,</span>
-<span id="cb50-56">                          <span class="at" style="color: #657422;">time_spent_working =</span> ACT_WORK)</span>
-<span id="cb50-57">  <span class="fu" style="color: #4758AB;">return</span>(data)    </span>
-<span id="cb50-58">}</span>
-<span id="cb50-59"></span>
-<span id="cb50-60"><span class="co" style="color: #5E5E5E;"># identify missing values equal to 99, 999, etc</span></span>
-<span id="cb50-61">equalFun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x, value) {</span>
-<span id="cb50-62">  x <span class="sc" style="color: #5E5E5E;">==</span> value</span>
-<span id="cb50-63">}</span>
-<span id="cb50-64"></span>
-<span id="cb50-65"><span class="co" style="color: #5E5E5E;"># identify if the max of a variable is equal to 99, 999, etc</span></span>
-<span id="cb50-66">maxFun <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(x, value) {</span>
-<span id="cb50-67">  <span class="fu" style="color: #4758AB;">max</span>(x, <span class="at" style="color: #657422;">na.rm =</span> T) <span class="sc" style="color: #5E5E5E;">==</span> value</span>
-<span id="cb50-68">}</span>
-<span id="cb50-69"></span>
-<span id="cb50-70"><span class="co" style="color: #5E5E5E;"># convert weird missing values to NA</span></span>
-<span id="cb50-71">convertMissing <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data) {</span>
-<span id="cb50-72">  <span class="co" style="color: #5E5E5E;"># convert missing values to NA</span></span>
-<span id="cb50-73">  data <span class="ot" style="color: #003B4F;">&lt;-</span> data <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-74">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 99 to NA</span></span>
-<span id="cb50-75">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">99</span>), </span>
-<span id="cb50-76">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">99</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-77">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 999 to NA</span></span>
-<span id="cb50-78">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">999</span>), </span>
-<span id="cb50-79">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">999</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-80">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 9999 to NA</span></span>
-<span id="cb50-81">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">9999</span>), </span>
-<span id="cb50-82">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">9999</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-83">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 999.99 to NA</span></span>
-<span id="cb50-84">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="fl" style="color: #AD0000;">999.99</span>), </span>
-<span id="cb50-85">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="fl" style="color: #AD0000;">999.99</span>), <span class="cn" style="color: #8f5902;">NA_real_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-86">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 99999.99 to NA</span></span>
-<span id="cb50-87">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="fl" style="color: #AD0000;">99999.99</span>), </span>
-<span id="cb50-88">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="fl" style="color: #AD0000;">99999.99</span>), <span class="cn" style="color: #8f5902;">NA_real_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-89">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 998 to NA</span></span>
-<span id="cb50-90">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">998</span>), </span>
-<span id="cb50-91">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">998</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-92">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 997 to NA</span></span>
-<span id="cb50-93">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">997</span>), </span>
-<span id="cb50-94">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">997</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb50-95">    <span class="co" style="color: #5E5E5E;"># mutate all missing values coded as 9995 to NA</span></span>
-<span id="cb50-96">    <span class="fu" style="color: #4758AB;">mutate_if</span>(<span class="cf" style="color: #003B4F;">function</span>(x) <span class="fu" style="color: #4758AB;">maxFun</span>(x, <span class="dv" style="color: #AD0000;">9995</span>), </span>
-<span id="cb50-97">              <span class="fu" style="color: #4758AB;">funs</span>(<span class="fu" style="color: #4758AB;">if_else</span>(<span class="fu" style="color: #4758AB;">equalFun</span>(., <span class="dv" style="color: #AD0000;">9995</span>), <span class="cn" style="color: #8f5902;">NA_integer_</span>, .))) </span>
-<span id="cb50-98">  <span class="fu" style="color: #4758AB;">return</span>(data)</span>
-<span id="cb50-99">}</span>
-<span id="cb50-100"></span>
-<span id="cb50-101"><span class="co" style="color: #5E5E5E;"># change numerics to meaningful factors</span></span>
-<span id="cb50-102">convertClass <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(data, <span class="at" style="color: #657422;">path_to_codes =</span> <span class="st" style="color: #20794D;">"data/"</span>) {</span>
-<span id="cb50-103">  <span class="co" style="color: #5E5E5E;"># convert id to a factor</span></span>
-<span id="cb50-104">  data <span class="ot" style="color: #003B4F;">&lt;-</span> data <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">id =</span> <span class="fu" style="color: #4758AB;">as.factor</span>(id))</span>
-<span id="cb50-105">  <span class="co" style="color: #5E5E5E;"># loop through each of the factor variables</span></span>
-<span id="cb50-106">  <span class="cf" style="color: #003B4F;">for</span> (variable <span class="cf" style="color: #003B4F;">in</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"state"</span>, <span class="st" style="color: #20794D;">"occupation_industry"</span>, <span class="st" style="color: #20794D;">"occupation_category"</span>,</span>
-<span id="cb50-107">                       <span class="st" style="color: #20794D;">"education_level"</span>, <span class="st" style="color: #20794D;">"race"</span>, <span class="st" style="color: #20794D;">"marital_status"</span>, <span class="st" style="color: #20794D;">"sex"</span>,</span>
-<span id="cb50-108">                       <span class="st" style="color: #20794D;">"employment_status"</span>, <span class="st" style="color: #20794D;">"family_income"</span>)) {</span>
-<span id="cb50-109">    <span class="co" style="color: #5E5E5E;"># identify the path to the code file</span></span>
-<span id="cb50-110">    path <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">paste0</span>(path_to_codes, variable, <span class="st" style="color: #20794D;">".txt"</span>)</span>
-<span id="cb50-111">    <span class="co" style="color: #5E5E5E;"># read in the code file</span></span>
-<span id="cb50-112">    codes <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read.table</span>(path, <span class="at" style="color: #657422;">sep =</span> <span class="st" style="color: #20794D;">"</span><span class="sc" style="color: #5E5E5E;">\t</span><span class="st" style="color: #20794D;">"</span>)</span>
-<span id="cb50-113">    <span class="co" style="color: #5E5E5E;"># remove the second column (the entries are separated by two \t's)</span></span>
-<span id="cb50-114">    codes <span class="ot" style="color: #003B4F;">&lt;-</span> codes[, <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">2</span>]</span>
-<span id="cb50-115">    <span class="co" style="color: #5E5E5E;"># convert the column names</span></span>
-<span id="cb50-116">    <span class="fu" style="color: #4758AB;">colnames</span>(codes) <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(variable, <span class="fu" style="color: #4758AB;">paste0</span>(variable, <span class="st" style="color: #20794D;">"_name"</span>))</span>
-<span id="cb50-117">    <span class="co" style="color: #5E5E5E;"># add the code to the original data frame</span></span>
-<span id="cb50-118">    data <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">left_join</span>(data, codes, <span class="at" style="color: #657422;">by =</span> variable)</span>
-<span id="cb50-119">    <span class="co" style="color: #5E5E5E;"># remove old variable and replace with new variable</span></span>
-<span id="cb50-120">    data[, variable] <span class="ot" style="color: #003B4F;">&lt;-</span> data[, <span class="fu" style="color: #4758AB;">paste0</span>(variable, <span class="st" style="color: #20794D;">"_name"</span>)]</span>
-<span id="cb50-121">    data <span class="ot" style="color: #003B4F;">&lt;-</span> data[, <span class="sc" style="color: #5E5E5E;">!</span>(<span class="fu" style="color: #4758AB;">colnames</span>(data) <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="fu" style="color: #4758AB;">paste0</span>(variable, <span class="st" style="color: #20794D;">"_name"</span>))]</span>
-<span id="cb50-122">  }</span>
-<span id="cb50-123">  <span class="fu" style="color: #4758AB;">return</span>(data)</span>
-<span id="cb50-124">}</span></code></pre></div>
-</div>
-</section>
-</section>
-</section>
-<section id="analysis-eda.rmd" class="level1">
-<h1>Analysis: <code>eda.Rmd</code></h1>
-<p>Where I go from here depends strongly on what questions I want to ask. If I already know the category of questions I’m planning to ask, and, for example, I know that they fall into two groups, then I will probably make two .Rmd files, one for each question.</p>
-<p>If, however, I just want to play around with the data for a while, as is the case here, I will make a .Rmd file called <code>eda.Rmd</code> (or something along those lines).</p>
-<p>Sometimes I end up separating my initial exploration file into several separate files when I start to go down several diverging paths.</p>
-<p>Regardless of the analysis I decide to conduct, each of my <code>.Rmd</code> files will start with the following code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb51" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
-<span id="cb51-2"><span class="fu" style="color: #4758AB;">source</span>(<span class="st" style="color: #20794D;">"R/load.R"</span>)</span>
-<span id="cb51-3"><span class="fu" style="color: #4758AB;">source</span>(<span class="st" style="color: #20794D;">"R/clean.R"</span>)</span>
-<span id="cb51-4"></span>
-<span id="cb51-5"><span class="co" style="color: #5E5E5E;"># laod the data</span></span>
-<span id="cb51-6">time_use_orig <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">loadData</span>()</span>
-<span id="cb51-7"><span class="co" style="color: #5E5E5E;"># clean the data</span></span>
-<span id="cb51-8">time_use <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">cleanData</span>(time_use_orig)</span></code></pre></div>
-</div>
-<p>The opportunities for analysis are wide open!</p>
-</section>
-<section id="variables" class="level1">
-<h1>List of variables downloaded from ATUX-X</h1>
-<ul>
-<li>CASEID (ATUS Case ID)</li>
-<li>YEAR (Survey year)</li>
-<li>NUMCONTACTS_CPS8 (Number of actual and attempted personal contacts)</li>
-<li>HRHHID_CPS8 (Household ID (CPS))</li>
-<li>HRHHID2_CPS8 (Household ID part 2 (CPS))</li>
-<li>STATEFIP (FIPS State Code)</li>
-<li>HH_SIZE (Number of people in household)</li>
-<li>FAMINCOME (Family income)</li>
-<li>HH_NUMKIDS (Number of children under 18 in household)</li>
-<li>HH_NUMADULTS (Number of adults in household)</li>
-<li>PERNUM (Person number (general))</li>
-<li>LINENO (Person line number)</li>
-<li>WT06 (Person weight, 2006 methodology)</li>
-<li>AGE (Age)</li>
-<li>SEX (Sex)</li>
-<li>RACE (Race)</li>
-<li>HISPAN (Hispanic origin)</li>
-<li>ASIAN (Asian origin)</li>
-<li>MARST (Marital status)</li>
-<li>AGE_CPS8 (Age (CPS))</li>
-<li>SEX_CPS8 (Sex (CPS))</li>
-<li>EDUC (Highest level of school completed)</li>
-<li>EDUCYRS (Years of education)</li>
-<li>SCHLCOLL (Enrollment in school or college)</li>
-<li>SCHLCOLL_CPS8 (Enrollment in school or college (CPS))</li>
-<li>EMPSTAT (Labor force status)</li>
-<li>OCC2 (General occupation category, main job)</li>
-<li>OCC (Detailed occupation category, main job)</li>
-<li>IND2 (General industry classification, main job)</li>
-<li>IND (Detailed industry classification, main job)</li>
-<li>FULLPART (Full time/part time employment status)</li>
-<li>UHRSWORKT (Hours usually worked per week)</li>
-<li>UHRSWORK1 (Hours usually worked per week at main job)</li>
-<li>UHRSWORK2 (Hours usually worked per week at other jobs)</li>
-<li>EARNWEEK (Weekly earnings)</li>
-<li>PAIDHOUR (Hourly or non-hourly pay)</li>
-<li>EARNRPT (Easiest way to report earnings)</li>
-<li>HOURWAGE (Hourly earnings)</li>
-<li>HRSATRATE (Hours worked at hourly rate)</li>
-<li>OTUSUAL (Usually receives overtime, tips, commission at main job)</li>
-<li>OTPAY (Weekly overtime earnings)</li>
-<li>UHRSWORKT_CPS8 (Hours usually worked per week (CPS))</li>
-<li>UHRSWORK1_CPS8 (Hours usually worked per week at main job (CPS))</li>
-<li>UHRSWORK2_CPS8 (Hours usually worked per week at other jobs (CPS))</li>
-<li>HRSWORKT_CPS8 (Hours worked last week (CPS))</li>
-<li>ACT_CAREHH (ACT: Caring for and helping household members)</li>
-<li>ACT_CARENHH (ACT: Caring for and helping non-household members)</li>
-<li>ACT_EDUC (ACT: Educational activities)</li>
-<li>ACT_FOOD (ACT: Eat and drinking)</li>
-<li>ACT_GOVSERV (ACT: Government services and civic obligations)</li>
-<li>ACT_HHACT (ACT: Household activities)</li>
-<li>ACT_HHSERV (ACT: Household services)</li>
-<li>ACT_PCARE (ACT: Personal care)</li>
-<li>ACT_PHONE (ACT: Telephone calls)</li>
-<li>ACT_PROFSERV (ACT: Professional and personal care services)</li>
-<li>ACT_PURCH (ACT: Consumer purchases)</li>
-<li>ACT_RELIG (ACT: Religious and spiritual activities)</li>
-<li>ACT_SOCIAL (ACT: Socializing, relaxing, and leisure)</li>
-<li>ACT_SPORTS (ACT: Sports, exercise, and recreation)</li>
-<li>ACT_TRAVEL (ACT: Traveling)</li>
-<li>ACT_VOL (ACT: Volunteer activities)</li>
-<li>ACT_WORK (ACT: Working and Work-related Activities)</li>
-<li>ERS_ASSOC (ERS: Activities associated with primary eating and drinking (travel and waiting))</li>
-<li>ERS_PRIM (ERS: Primary eating and drinking)</li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>R</category>
-  <category>workflow</category>
-  <guid>https://www.rebeccabarter.com/blog/2017-08-16-data-science-workflow.html</guid>
-  <pubDate>Fri, 18 Aug 2017 06:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

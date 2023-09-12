@@ -4,11 +4,29 @@ about:
   template: solana
 ---
 
-Hi there, I'm Rebecca, welcome to my newly re-vamped website! Below you will find my newest posts as well as quick links to some of my more popular posts. 
+Hi there, I'm Rebecca, welcome to my website! Below you will find my newest posts as well as quick links to some of my more popular posts. 
 
 I'm also available for data science trainings and consulting! [Click here](https://www.rebeccabarter.com/consulting) to learn more.
 
 ## *New posts*
+
+
+::: card
+::: {.card-header style="background-color: white; font-size: 18;"}
+### [An introduction to Python for R Users](https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python/)
+:::
+
+
+::: {#card-img}
+[![](blog/img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg){fig-alt="The python logo on a floating disc"}](https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python/)
+:::
+
+::: card-body
+I have a confession to make: I am now a Python user. Don't judge me, join me! In this post, I introduce Python for data analysis from the perspective of an R (tidyverse) user. This post is a must-read if you are an R user hoping to dip your toes in the Python pool.
+:::
+
+:::
+
 
 ::: card
 ::: {.card-header style="background-color: white; font-size: 18;"}
@@ -30,21 +48,6 @@ Sources for lesser-known and better-known public datasets.
 
 
 
-::: card
-::: {.card-header style="background-color: white; font-size: 18;"}
-### [Thanks, Quarto, for saving my blog!](https://www.rebeccabarter.com/blog/2023-03-21-quarto-website/)
-:::
-
-
-::: {#card-img}
-[![](blog/img/quarto/quarto.jpg){fig-alt="Quarto logo"}](https://www.rebeccabarter.com/blog/2023-03-21-quarto-website/)
-:::
-
-::: card-body
-My old blog broke so I decided to re-make my entire website using quarto, which was disturbingly easy. Welcome to my new and improved blog!
-:::
-
-:::
 
 ------------------------------------------------------------------------
 

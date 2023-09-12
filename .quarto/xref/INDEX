@@ -253,5 +253,8 @@
   },
   "consulting.qmd": {
     "consulting.html": "903f6dba"
+  },
+  "blog/2023-09-11-from_r_to_python.qmd": {
+    "2023-09-11-from_r_to_python.html": "d120f2fd"
   }
 }
