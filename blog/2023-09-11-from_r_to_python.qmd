@@ -90,7 +90,7 @@ import numpy as np
 import matplotlib as plt
 ```
 
-So to use a function from the pandas library, such as `log()`, you need to first specify the package nickname and then the function name, separated by a dot: `np.log()`. The following code will compute the logarithm of 7 using the `log()` function from the NumPy library whose nickname is `np`:
+So to use a function from the NumPy library, such as `log()`, you need to first specify the package nickname and then the function name, separated by a dot: `np.log()`. The following code will compute the logarithm of 7 using the `log()` function from the NumPy library whose nickname is `np`:
 
 ```{python}
 np.log(7)
