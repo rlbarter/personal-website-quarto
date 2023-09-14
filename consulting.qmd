@@ -16,13 +16,9 @@ about:
 
 ---
 
-If you or your company are interested in to hiring me to teach data science workshops or if you need help with a particular data science project, I'm available for short-term consulting!
+If you are looking to improve your own data science skills or are interested in to hiring me to teach a data science workshop at your organization/company, I'm available for consulting!
 
-The kinds of services I offer include:
-
-**Workshops on**
-
-Programming:
+The kinds of topics I love teaching include programming skills such as:
 
 - R
 
@@ -34,7 +30,7 @@ Programming:
 
 - Shell/UNIX
 
-Doing data science:
+As well as more general data science skills including:
 
 - Data cleaning
 
@@ -42,22 +38,4 @@ Doing data science:
 
 - Data science workflows
 
-Workshops can be just a few hours, 1-2 days, or be split up into shorter sessions recurring over several weeks. They can also be remote or in-person, depending on location.
-
-
-**Data science consulting**
-
-I also offer short-term help with:
-
-- Creating impactful data visualization
-
-- Developing a consistent data science workflow
-
-- Preparing complex data for analysis
-
-- Creating an analysis plan
-
-- and more!
-
-
-Interested? Feel free to email me at rlbarter at gmail dot com to see if your needs might be a good fit for my services!
+If any of that sounds like it might be a good fit for you, feel free to get in touch via email at rlbarter at gmail dot com!
