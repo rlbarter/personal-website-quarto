@@ -11,7 +11,7 @@
     "href": "index.html#new-posts",
     "title": "Welcome",
     "section": "New posts",
-    "text": "New posts\n\n\nAn introduction to Python for R Users\n\n\n\n\n\n\n\n\n\nI have a confession to make: I am now a Python user. Don’t judge me, join me! In this post, I introduce Python for data analysis from the perspective of an R (tidyverse) user. This post is a must-read if you are an R user hoping to dip your toes in the Python pool.\n\n\n\n\nA list of public data repositories\n\n\n\n\n\n\n\n\n\nSources for lesser-known and better-known public datasets."
+    "text": "New posts\n\n\nAn introduction to Python for R Users\n\n\n\n\n\nI have a confession to make: I am now a Python user. Don’t judge me, join me! In this post, I introduce Python for data analysis from the perspective of an R (tidyverse) user. This post is a must-read if you are an R user hoping to dip your toes in the Python pool.\n\n\n\n\nA list of public data repositories\n\n\n\n\n\nSources for lesser-known and better-known public datasets."
   },
   {
     "objectID": "index.html#popular-posts",
@@ -907,7 +907,7 @@
     "href": "consulting.html",
     "title": "Consulting and workshops",
     "section": "",
-    "text": "If you are looking to improve your own data science skills or are interested in to hiring me to teach a data science workshop at your organization/company, I’m available for consulting!\nThe kinds of topics I love teaching include programming skills such as:\n\nR\nPython\nSQL\nGit/GitHub\nShell/UNIX\n\nAs well as more general data science skills including:\n\nData cleaning\nData visualization\nData science workflows\n\nIf any of that sounds like it might be a good fit for you, feel free to get in touch via email at rlbarter at gmail dot com!"
+    "text": "I regularly teach multi-day workshops for small and large groups.\nThe kinds of topics I love teaching include programming skills such as:\n\nR\nPython\nSQL\nGit/GitHub\nShell/UNIX\n\nAs well as more general data science skills including:\n\nData cleaning\nData visualization\nData science workflows\n\nFeel free to get in touch via email at rlbarter at gmail dot com!"
   },
   {
     "objectID": "blog/2023-09-11-from_r_to_python.html",

@@ -16,7 +16,7 @@ about:
 
 ---
 
-If you are looking to improve your own data science skills or are interested in to hiring me to teach a data science workshop at your organization/company, I'm available for consulting!
+I regularly teach multi-day workshops for small and large groups.
 
 The kinds of topics I love teaching include programming skills such as:
 
@@ -38,4 +38,4 @@ As well as more general data science skills including:
 
 - Data science workflows
 
-If any of that sounds like it might be a good fit for you, feel free to get in touch via email at rlbarter at gmail dot com!
+Feel free to get in touch via email at rlbarter at gmail dot com!
