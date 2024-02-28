@@ -12,7 +12,7 @@ website:
       - text: "Workshops and consulting"
         file: consulting.qmd 
       - text: "Veridical Data Science"
-        href: www.vdsbook.com
+        href: https://www.vdsbook.com
     right:
       - about.qmd
       - icon: github
