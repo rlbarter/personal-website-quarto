@@ -11,6 +11,8 @@ website:
         file: blog.qmd
       - text: "Workshops and consulting"
         file: consulting.qmd 
+      - text: "Veridical Data Science"
+        href: www.vdsbook.com
     right:
       - about.qmd
       - icon: github
