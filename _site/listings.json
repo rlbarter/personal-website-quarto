@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/blog/2024-04-11-labeling_doctors_notes.html",
       "/blog/2023-09-11-from_r_to_python.html",
       "/blog/2023-03-28-data_sources.html",
       "/blog/2023-03-21-quarto-website.html",

@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.rebeccabarter.com/blog.html</loc>
-    <lastmod>2023-09-12T17:22:43.378Z</lastmod>
+    <lastmod>2024-04-11T22:43:07.471Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/index.html</loc>
-    <lastmod>2024-02-27T01:18:47.855Z</lastmod>
+    <lastmod>2024-04-11T22:36:44.283Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse.html</loc>
@@ -22,14 +22,18 @@
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/consulting.html</loc>
-    <lastmod>2024-02-27T01:21:39.138Z</lastmod>
+    <lastmod>2024-04-11T22:43:07.629Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/about.html</loc>
-    <lastmod>2023-09-12T15:49:42.558Z</lastmod>
+    <lastmod>2024-04-11T22:43:07.471Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python.html</loc>
     <lastmod>2023-09-12T17:22:42.623Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2024-04-11-labeling_doctors_notes.html</loc>
+    <lastmod>2024-04-11T22:31:18.058Z</lastmod>
   </url>
 </urlset>

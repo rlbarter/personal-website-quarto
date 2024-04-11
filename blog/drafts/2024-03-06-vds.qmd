@@ -1,0 +1,62 @@
+---
+title: 'A short summary of "Veridical Data Science: The Practice of Responsible Data Analysis and Decision-Making."'
+author: "Rebecca Barter"
+format:
+  html:
+    toc: true
+    toc-location: left
+categories: [data science]
+date: 2024-03-07
+draft: true
+image: img/vds/vds.png
+description: 'My co-author Bin Yu and I are thrilled to announce the release of our book "Veridical Data Science: The Practice of Responsible Data Analysis and Decision-Making." This post will summarise the main ideas that underpin Veridical Data Science for those of you too lazy to actually read it.'
+editor_options: 
+  chunk_output_type: console
+---
+<p align="center">
+![](img/vds/vds.png){fig-alt='The original VDS tree in which the leaves represent the predictability principle, the trunk represents the computability principle, and the roots represent the stability principle.' width=50% height=50%}
+</p>
+
+After many, many (like, many, many, many) years, ["Veridical Data Science"](https://www.vdsbook.com), the book I co-authored with my PhD advisor and mentor, [Bin Yu](https://binyu.stat.berkeley.edu/), has finally been released into the world. Well, to be honest, no project of this scale is ever truly "done"^[The first time I uttered the phrase "the book is almost done" in response to the question "how's the book going" was probably around 7 years ago (as many of my peers can attest).], but at some point you have to let it walk on it's own two legs, or so to speak. 
+
+The online version of Veridical Data Science is free ([www.vdsbook.com](https://www.vdsbook.com)), but a print version will be [published by MIT Press](https://mitpress.mit.edu/9780262049191/veridical-data-science/) later this year. 
+
+If you've ever written a book, you'll know that the end-product typically bears no resemblance to the initial pages that were pieced together at the beginning of the journey (this is especially true as the veridical data science framework continued to morph throughout the course of writing this book). But fortunately, in this case, the end-product is something that both Bin and I are truly proud of. 
+
+For those of you new to the world of Veridical Data Science (VDS), this post will introduce the fundamental ideas that underlie the VDS framework, which Bin has pioneered throughout her impressive career. ????Write something nice about Bin's achievements here 
+
+
+
+## So what is veridical data science? 
+
+First off, let's get one thing straight: we're not doing "**_vertical_** data science" here, we're doing "**_veridical_** data science". 
+
+The word "*veridical*" means "*truthful*". Put simply, to practice veridical data science is to practice data science as truthfully (and responsibly) as possible, where that truth is in reference to the real-world from which the data came from.
+
+To understand what that means, it's important to realize that the goal of every data science project is to learn something about the real world. To achieve this goal, we collect data, clean and pre-process it, analyze it, and eventually communicate it to whoever might be able to use it to make some kind of real-world decision. However, what we often fail to consider, is the fact that the data that we collect corresponds to a single, distorted, snapshot of reality, which is often captured with imperfect instruments (such as ????) that are subject not to just mechanical imperfections, but human imperfections too. Not only that, but the decisions that we make when we clean and pre-process our data can have a surprising effect on our downstream results, and even the *way* that we present our results can impact how they are interpreted.
+
+The primary goal of VDS is to bring these imperfections to the forefront of every data analysis, rather than to sweep them under the rug. Instead of assuming that your data are a perfect reflection of reality, acknowledge that they aren't and that you could have plausible collected an entirely different dataset (perhaps on different people, or on a different day, or if a different person had performed the survey). This is the predictability principle.
+
+Instead of just cleaning your data using only one potential collection of steps (e.g., aggregating repeated measurements over each two weeks, when you could have chosen to aggregate over every week, or imputing missing values with the mean when you could have used the median), you could instead create several alternative versions of your cleaned dataset and check whether your results change based on which one you use. 
+
+
+
+Let's consider an example. This isn't an example from the book, but I think it conveys the principles of veridical data science quite nicely (and succinctly).
+
+
+????Walk through the NHANES example with the threshold that I taught in Tom's class. 
+
+## OK, so how do you actually practice veridical data science?
+
+
+Your data-driven results are evidence of a real-world phenomena--your task as a veridical data scientist is to strengthen the evidence that supports your results as much as possible.
+
+
+Veridical data science provides some practical tools for investigating the trustworthiness of your data-driven results, embedded in some intuitive explanations of the data science process overall.
+
+
+
+Apart from the VDS framework itself, our book offers intuitive introduction to the entire Data Science Life Cycle, with intuitive explanations and examples to teach practical approaches to data cleaning, data visualization, principal component analysis, clustering, least squares, and the random forest algorithm.
+
+
+

@@ -11,6 +11,32 @@ I'm also available for data science trainings and consulting! [Click here](https
 ## *New posts*
 
 
+
+
+
+::: card
+::: {.card-header style="background-color: white; font-size: 18;"}
+### [AI Tutorial: Using Text Embeddings to Label Synthetic Doctor’s Notes Generated with ChatGPT](https://www.rebeccabarter.com/blog/2024-04-11-labeling_doctors_notes.html)
+:::
+
+
+::: {#card-img}
+[![](blog/img/openai_ehr/doctors_notes_ai_crop.png){fig-alt="An image created by dall-e-3 using the name of this blog post as the prompt. The image contains a brain in the center connected using circuitry to a code console, with various viruses and other things floating around, and a doctor conducting a medical exam of what seems to be another doctor"}](https://www.rebeccabarter.com/blog/2024-04-11-labeling_doctors_notes.html)
+:::
+
+::: card-body
+I've been playing around with OpenAI and ChatGPT in my research, and I thought I'd put together a short tutorial that demonstrates using ChatGPT API to generate synthetic doctor's notes, and then using OpenAI's text embedding models to label the notes according to whether they involve a chronic or acute condition. And yes, I'm fully aware that what I write here will probably be out of date in about 3 hours.
+:::
+
+:::
+
+
+
+
+
+
+
+
 ::: card
 ::: {.card-header style="background-color: white; font-size: 18;"}
 ### [An introduction to Python for R Users](https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python/)
@@ -27,22 +53,6 @@ I have a confession to make: I am now a Python user. Don't judge me, join me! In
 
 :::
 
-
-::: card
-::: {.card-header style="background-color: white; font-size: 18;"}
-### [A list of public data repositories](https://www.rebeccabarter.com/blog/2023-03-28-data_sources.html)
-:::
-
-
-::: {#card-img}
-[![](blog/img/data/ivo-rainha-0rzUepBXHN0-unsplash.jpg){fig-alt="A big beautiful library"}](https://www.rebeccabarter.com/blog/2023-03-28-data_sources.html)
-:::
-
-::: card-body
-Sources for lesser-known and better-known public datasets.
-:::
-
-:::
 
 
 

@@ -1,0 +1,2802 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rebecca Barter">
+<meta name="dcterms.date" content="2024-04-11">
+<meta name="description" content="I’ve been playing around with OpenAI and ChatGPT in my research, and I thought I’d put together a short tutorial that demonstrates using ChatGPT API to generate synthetic doctor’s notes, and then using OpenAI’s text embedding models to label the notes according to whether they involve a chronic or acute condition. And yes, I’m fully aware that what I write here will probably be out of date in about 3 hours.">
+
+<title>Rebecca Barter - AI Tutorial: Using Text Embeddings to Label Synthetic Doctor’s Notes Generated with ChatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-90929425-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Rebecca Barter - AI Tutorial: Using Text Embeddings to Label Synthetic Doctor’s Notes Generated with ChatGPT">
+<meta name="twitter:description" content="I’ve been playing around with OpenAI and ChatGPT in my research, and I thought I’d put together a short tutorial that demonstrates using ChatGPT API to generate synthetic doctor’s notes, and then using OpenAI’s text embedding models to label the notes according to whether they involve a chronic or acute condition. And yes, I’m fully aware that what I write here will probably be out of date in about 3 hours.">
+<meta name="twitter:image" content="https://www.rebeccabarter.com/blog/img/openai_ehr/doctors_notes_ai.png">
+<meta name="twitter:image-height" content="1024">
+<meta name="twitter:image-width" content="1024">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Rebecca Barter</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog archive</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../consulting.html"> 
+<span class="menu-text">Workshops and consulting</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.vdsbook.com"> 
+<span class="menu-text">Veridical Data Science</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Rebecca</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/rlbarter"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/rlbarter"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">AI Tutorial: Using Text Embeddings to Label Synthetic Doctor’s Notes Generated with ChatGPT</h1>
+                  <div>
+        <div class="description">
+          I’ve been playing around with OpenAI and ChatGPT in my research, and I thought I’d put together a short tutorial that demonstrates using ChatGPT API to generate synthetic doctor’s notes, and then using OpenAI’s text embedding models to label the notes according to whether they involve a chronic or acute condition. And yes, I’m fully aware that what I write here will probably be out of date in about 3 hours.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">data science</div>
+                <div class="quarto-category">generative AI</div>
+                <div class="quarto-category">ChatGPT</div>
+                <div class="quarto-category">OpenAI</div>
+                <div class="quarto-category">machine learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Rebecca Barter </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 11, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link active" data-scroll-target="#getting-set-up">Getting set up</a></li>
+  <li><a href="#creating-synthetic-doctors-notes-with-chatgpt" id="toc-creating-synthetic-doctors-notes-with-chatgpt" class="nav-link" data-scroll-target="#creating-synthetic-doctors-notes-with-chatgpt">Creating synthetic doctor’s notes with chatGPT</a></li>
+  <li><a href="#computing-text-embeddings" id="toc-computing-text-embeddings" class="nav-link" data-scroll-target="#computing-text-embeddings">Computing text embeddings</a></li>
+  <li><a href="#computing-the-cosine-distance-from-the-target" id="toc-computing-the-cosine-distance-from-the-target" class="nav-link" data-scroll-target="#computing-the-cosine-distance-from-the-target">Computing the cosine distance from the target</a></li>
+  <li><a href="#zero-shot-binary-classification" id="toc-zero-shot-binary-classification" class="nav-link" data-scroll-target="#zero-shot-binary-classification">Zero-shot Binary classification</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p align="center">
+<img src="img/openai_ehr/doctors_notes_ai.png" style="width:70.0%;height:70.0%" alt="An image created by dall-e-3 using the name of this blog post as the prompt. The image contains a brain in the center connected using circuitry to a code console, with various viruses and other things floating around, and a doctor conducting a medical exam of what seems to be another doctor">
+</p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> If you’re reading this post more than 3 hours after it was posted, some (maybe all) of the information it contains will probably be out of date.</p>
+</blockquote>
+<p>Hello friends, welcome to the new rapidly evolving world of AI. Even the wacky image that you see at the top of this blog was created using AI (specifically, using dall-e-3), just for this blog post!</p>
+<p>Like me, I’m sure you’re dwelling on the question of whether AI is going to take all of our jobs. I think, for now, I’ve settled on the opinion that for those of us who adapt and learn to work <em>with</em> AI, our jobs are pretty safe. However, there is no question that AI is going to fundamentally <em>change</em> our jobs, hopefully for the better. In my day-to-day I have already found that GitHub Copilot has boosted my coding efficiency, chatGPT has boosted my efficiency for mundane writing tasks, and the various other ways that AI has snuck into my workday are probably helping me out in other ways too.</p>
+<p>And, as you’ll see in this blog post, using the tools provided by OpenAI, NLP tasks like generating synthetic text, and labeling mass amounts of text data are now fairly straightforward too.</p>
+<p>In this blog post, I will walk through an example of generating a small collection of synthetic doctor’s notes using chatGPT and then using text OpenAI’s embedding models to automatically label these doctor’s notes in terms of whether they correspond to a patient experiencing a chronic or an acute event. Fortunately, the <a href="https://platform.openai.com/docs/overview">documentation provided on the OpenAI website</a> is very good, and that will certainly be the best point of reference.</p>
+<p>Note that, for now, if you want to use these tools effectively, you’ll want to be fairly proficient in Python (if you’re an R user who is interested in learning Python, check out my <a href="https://rebeccabarter.com/blog/2023-09-11-from_r_to_python">“An introduction to Python for R Users”</a> blog post).</p>
+<section id="getting-set-up" class="level2">
+<h2 class="anchored" data-anchor-id="getting-set-up">Getting set up</h2>
+<p>As usual, the first thing you’ll want to do is to import the libraries you’ll need.</p>
+<div id="617a0085" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial.distance <span class="im">import</span> cosine</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_colwidth'</span>, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then you’ll need to set up your OpenAI API key. An API key is literally a jumble of letters that OpenAI uses to identify you so that they can track your usage. After you create an OpenAI account, see the <a href="https://platform.openai.com/api-keys">OpenAI API keys website</a> for information on creating an API key.</p>
+<p>Once you have created an API key, and you have saved it somewhere on your computer, say in a file called “api_key.txt”, you will need to use it to connect to the OpenAI client.</p>
+<p>To do this, either create a local variable called <code>your_key</code> or read in your key from your text file using code like the following:</p>
+<div id="f1308200" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'api_key.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  your_key <span class="op">=</span> <span class="bu">file</span>.read().strip()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then you can set up your OpenAI client which is how you will connect to the OpenAI API:</p>
+<div id="964ce1d8" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a local variable called `your_key` that contains your OpenAI key.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Try really hard to avoid writing your key in your notebook</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># And when you do, try even harder to avoid uploading it to GitHub</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>your_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that it is <strong>really, really important</strong> that you do not write your API key in plain text in your notebook file, especially if you are going to upload your notebook publicly to GitHub. This would allow someone else to pretend to be you and use your OpenAI account.</p>
+<p>Instead, you will want to only ever define your key in a local variable (that is not saved in your code) or load it in from a file that should <em>not</em> be uploaded to GitHub!</p>
+<p>Once you’re set up, let’s generate some fake doctor’s notes to analyze!</p>
+</section>
+<section id="creating-synthetic-doctors-notes-with-chatgpt" class="level2">
+<h2 class="anchored" data-anchor-id="creating-synthetic-doctors-notes-with-chatgpt">Creating synthetic doctor’s notes with chatGPT</h2>
+<p>The first thing I did was use chatGPT-4 to create a collection of synthetic doctor’s notes.</p>
+<p>Note that at the time of writing, you have to pay to access chatGPT-4 through the API. If you don’t want to pay OpenAI, you can replace <code>model="gpt-4"</code> with <code>model="gpt-3.5-turbo"</code>, which is currently free (but is also less good).</p>
+<p>The following code uses chatGPT-4 to generate 50 doctor’s notes using the prompt:</p>
+<blockquote class="blockquote">
+<p>“Provide a collection of 50 doctors notes that resemble the kind that you would enter into an EHR for your patients on a day-to-day basis. Each note should have around 3 sentences. Each note should appear on a new line. Do not add any numbers or superfluous text.”</p>
+</blockquote>
+<div id="3acd968d" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>completion <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"gpt-4"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>     <span class="st">"content"</span>: <span class="st">"You are a doctor working in a large hospital."</span>},</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"content"</span>: <span class="st">"""Provide a collection of 50 doctors notes that </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">                   resemble the kind that you would enter into an </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">                   EHR for your patients on a day-to-day basis. </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">                   Each note should have around 3 sentences. </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">                   Each note should appear on a new line.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">                   Do not add any numbers or superfluous text."""</span>}</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The text created by ChatGPT can be extracted using <code>completion.choices[0].message.content</code>. But since this is just one big string value, I want to use the <code>.split</code> method to separate each note into a list element.</p>
+<div id="a2324cee" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the notes and place them in a list, where each list element is detected by the presence of a line break ('\n')</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>notes_list <span class="op">=</span> completion.choices[<span class="dv">0</span>].message.content.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since the output provided tended to add additional blank lines between the notes (even when I asked it not to), I used the following code to remove any entries in my <code>notes_list</code> that contain blank strings:</p>
+<div id="e40c54e0" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove any empty notes</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># may or may not be required for you</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>notes_list <span class="op">=</span> [note <span class="cf">for</span> note <span class="kw">in</span> notes_list <span class="cf">if</span> note <span class="op">!=</span> <span class="st">''</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># place the notes in a DataFrame</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>notes_df <span class="op">=</span> pd.DataFrame({<span class="st">'notes'</span>: notes_list}) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s take a look at the notes it created:</p>
+<div id="4a30dead" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the first 5</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>notes_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Patient presented signs of common cold; symptoms include a runny nose and mild fever. Advised rest, hydration, and over-the-counter medication to manage symptoms.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Patient reports difficulty sleeping. Exhibiting signs of insomnia characterized by frequent night time awakenings. Recommended a sleep study to find underlying cause.</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Hypertensive patient presented with higher blood pressure at 160/100. Adjusted medications and emphasized importance of diet and exercise.</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Examined patient for frequent headaches. No alarming neurological signs detected. Recommended reducing caffeine intake and keeping hydrated.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>However, since chatGPT returns a different collection of notes every time, you can load the notes I created above using the following code (if you prefer to follow along with my doctor’s notes, that is):</p>
+<div id="77c934b2" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>notes_df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/rlbarter/personal-website-quarto/main/blog/data/doctors_notes.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you just loaded the notes using the URL above, take a look at the first 5 notes.</p>
+<div id="4a76b0ab" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the first 5</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>notes_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Patient presented signs of common cold; symptoms include a runny nose and mild fever. Advised rest, hydration, and over-the-counter medication to manage symptoms.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Patient reports difficulty sleeping. Exhibiting signs of insomnia characterized by frequent night time awakenings. Recommended a sleep study to find underlying cause.</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Hypertensive patient presented with higher blood pressure at 160/100. Adjusted medications and emphasized importance of diet and exercise.</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Examined patient for frequent headaches. No alarming neurological signs detected. Recommended reducing caffeine intake and keeping hydrated.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="computing-text-embeddings" class="level2">
+<h2 class="anchored" data-anchor-id="computing-text-embeddings">Computing text embeddings</h2>
+<p>My goal in the rest of this post will be to identify whether each note corresponds to a patient with a <em>chronic</em> condition (which I define as a condition that they have been experiencing for more than one month) or an <em>acute</em> condition (e.g., a new condition).</p>
+<p>To do this, I will use something called <strong>text embeddings</strong>. The idea is that I will use OpenAI’s pre-trained text embedding models to embed each note into a numeric 1,536-dimensional that somehow approximately respects semantic distance.</p>
+<p>The equivalent of this in a two-dimensional world would be taking each individual doctor’s note and placing it on a scatterplot so that notes that we might intuitively consider to be more “similar” to one another are closer together in the plot, and notes that we might consider to be more “different” from one another are further apart. Unfortunately, it is unlikely that we would be able to come up with any two quantifiable values that we could use to define the two axes of our scatterplot, such that when we place each note in the scatterplot we achieve our desired property that “similar” notes are closer together. But it turns out that once your space has, say, 1,536 dimensions, this task somehow becomes possible (although what each dimension/axis represents is not necessarily going to be meaningful to us).</p>
+<p>Fortunately, OpenAI has already trained some general text embedding models that we can use to embed each of the doctor’s notes in such a 1,536-dimensional space. In this post, I will be using the “<em>text-embedding-3-small</em>” OpenAI model to compute the text embeddings.</p>
+<p>After computing the embeddings, our task becomes determining how close each doctor’s note is to the embedding of the following text: <em><strong>“Patient presenting with ongoing chronic condition defined as ongoing for more than one month”</strong></em>, which I will call the <strong>target</strong>. The closer a note’s embedding is to the target’s embedding, the more likely the note corresponds to a patient who is presenting with a chronic condition!</p>
+<p>I hear you. That sounds crazy, right? But it works… eerily well! Let me show you.</p>
+<p>First, I need to compute the embeddings for each of the chatGPT-generated doctor’s notes. I can do that using this custom function <code>get_embedding()</code> function that I literally just copy-and-pasted from the OpenAI documentation:</p>
+<div id="743d99c1" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_embedding(text, model<span class="op">=</span><span class="st">"text-embedding-3-small"</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>   text <span class="op">=</span> text.replace(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, <span class="st">" "</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   <span class="cf">return</span> client.embeddings.create(<span class="bu">input</span> <span class="op">=</span> [text], model<span class="op">=</span>model).data[<span class="dv">0</span>].embedding</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function basically takes a string <code>text</code>, and uses the “text-embedding-3-small” model to create a list of 1,536 numbers corresponding to the 1,536-dimensional embedding of the text entry.</p>
+<p>For example, the following code creates an embedding of the text “hello, how are you”:</p>
+<div id="b2a63cff" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>get_embedding(<span class="st">'hello, how are you'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>[0.020681990310549736,
+ -0.03974681720137596,
+ -0.000452458014478907,
+ 0.029285797849297523,
+ -0.013973292894661427,
+ -0.059632860124111176,
+ 0.0007248803740367293,
+ 0.02625361829996109,
+ 0.0012578805908560753,
+ -0.039999499917030334,
+ 0.004143978469073772,
+ -0.032242171466350555,
+ -0.011370671913027763,
+ -0.04505313187837601,
+ -0.005956968758255243,
+ 0.06473702937364578,
+ -0.02131369337439537,
+ 0.05190080404281616,
+ -0.0056916531175374985,
+ 0.02920999377965927,
+ 0.058015696704387665,
+ 0.01499665342271328,
+ 0.009684022516012192,
+ 0.04065646976232529,
+ 0.0349964015185833,
+ 0.025268161669373512,
+ 0.023827875033020973,
+ 0.01146542839705944,
+ 0.02449748106300831,
+ -0.017624542117118835,
+ 0.05356850102543831,
+ -0.03800331428647041,
+ 0.012665665708482265,
+ 0.013291052542626858,
+ 0.002278872299939394,
+ 0.013834318146109581,
+ -0.0029911184683442116,
+ 0.009267098270356655,
+ -0.001953544793650508,
+ -0.060896266251802444,
+ -0.006733964662998915,
+ -0.01929224096238613,
+ 0.0412629060447216,
+ 0.016411669552326202,
+ 0.01106745470315218,
+ 0.0036165055353194475,
+ 0.003145886119455099,
+ -0.018572097644209862,
+ 0.04836326092481613,
+ 0.020088188350200653,
+ 0.02371416985988617,
+ -0.01297520101070404,
+ 0.014529192820191383,
+ 0.13715557754039764,
+ 0.04500259459018707,
+ -0.04282953217625618,
+ 0.036563027650117874,
+ 0.00012782136036548764,
+ 0.005268411710858345,
+ 0.03388460353016853,
+ 0.002237811451777816,
+ -0.04341069981455803,
+ 0.01293729804456234,
+ 0.027264345437288284,
+ -0.0006838195840828121,
+ -0.030422866344451904,
+ -0.013758513145148754,
+ 0.012728836387395859,
+ -0.016828594729304314,
+ 3.400344212423079e-05,
+ 0.02913418971002102,
+ 0.04070700705051422,
+ -0.008610125631093979,
+ -0.018572097644209862,
+ -0.03648722544312477,
+ 0.016007380560040474,
+ -0.0004595646751113236,
+ -0.032823339104652405,
+ 0.01567889377474785,
+ 0.02673371322453022,
+ -0.0628671869635582,
+ -0.023524656891822815,
+ -0.03421308845281601,
+ -0.006399161648005247,
+ -0.032444316893815994,
+ 0.010827407240867615,
+ -0.014794507995247841,
+ 0.01747293397784233,
+ 0.005975920241326094,
+ 0.004292428959161043,
+ -0.02663264237344265,
+ 0.012634080834686756,
+ -0.02045457623898983,
+ 0.005565312225371599,
+ 0.022488662973046303,
+ -0.04763048142194748,
+ 4.67115496576298e-05,
+ 0.02693585865199566,
+ 0.036360882222652435,
+ -0.00024103456235025078,
+ 0.05119329318404198,
+ -0.02443431131541729,
+ -0.0230319295078516,
+ -0.002187275094911456,
+ 0.05336635559797287,
+ 0.03901404142379761,
+ 0.021717984229326248,
+ -0.020290333777666092,
+ -0.014124901965260506,
+ 0.011219063773751259,
+ -0.10142640024423599,
+ -0.002395737450569868,
+ -0.012570910155773163,
+ 0.006550770718604326,
+ 0.04090915247797966,
+ 0.03982262313365936,
+ 0.05958232283592224,
+ -0.04581117630004883,
+ 0.025470305234193802,
+ -0.02701166458427906,
+ 0.007056133821606636,
+ -0.015982111915946007,
+ 0.03939306363463402,
+ -0.04042905569076538,
+ -0.061755385249853134,
+ -0.010941113345324993,
+ -0.014491289854049683,
+ 0.02185695990920067,
+ -0.03727053850889206,
+ -0.006525502540171146,
+ -0.008875441737473011,
+ 0.023082464933395386,
+ 0.009854583069682121,
+ 0.0023704692721366882,
+ -0.028376145288348198,
+ 0.013152077794075012,
+ -0.020745160058140755,
+ 0.03964574262499809,
+ -0.045659568160772324,
+ 0.014327047392725945,
+ 0.061654310673475266,
+ -0.04992988705635071,
+ -0.013632172718644142,
+ 0.01441548578441143,
+ 0.005697970278561115,
+ -0.06215967610478401,
+ -0.0039228820241987705,
+ 0.04992988705635071,
+ 0.010953747667372227,
+ -0.014251242391765118,
+ 0.03524908423423767,
+ 0.012861493974924088,
+ -0.0747937560081482,
+ 0.023309879004955292,
+ 0.002479438204318285,
+ 0.008066860027611256,
+ 0.030448133125901222,
+ -0.021086279302835464,
+ -0.023486755788326263,
+ 0.03287387639284134,
+ 0.013000468723475933,
+ 0.0094060730189085,
+ -0.03125671669840813,
+ -0.04914657399058342,
+ -0.029285797849297523,
+ 0.00018635268497746438,
+ -0.021490570157766342,
+ 0.04257684946060181,
+ 0.0014047517906874418,
+ 0.017422396689653397,
+ -0.03153466433286667,
+ 0.03924145549535751,
+ -0.04664502665400505,
+ -0.02923526242375374,
+ 0.0100061921402812,
+ -0.02749175950884819,
+ 0.028805702924728394,
+ -0.01360690500587225,
+ -0.05020783469080925,
+ 0.003398567670956254,
+ 0.023865777999162674,
+ 0.02221071347594261,
+ 0.019608093425631523,
+ -0.015249335207045078,
+ -0.013291052542626858,
+ 0.016310598701238632,
+ -0.025167088955640793,
+ 0.010656846687197685,
+ -0.028199266642332077,
+ 0.017460299655795097,
+ 0.010770553722977638,
+ 0.0555899553000927,
+ 0.004349282011389732,
+ 0.018799511715769768,
+ 0.025697719305753708,
+ -0.04399186745285988,
+ 0.07878612726926804,
+ -0.0081489821895957,
+ -0.04550795629620552,
+ 0.023385683074593544,
+ -0.008824905380606651,
+ -0.008212151937186718,
+ 0.00013364487676881254,
+ -0.02683478593826294,
+ 0.0020340869668871164,
+ 0.007744691334664822,
+ -0.02515445463359356,
+ 0.06332200765609741,
+ 0.008654344826936722,
+ -0.0013494776794686913,
+ 0.04816111549735069,
+ -0.020568283274769783,
+ 0.003951308783143759,
+ 0.04667029157280922,
+ -0.009046001359820366,
+ -0.03171154111623764,
+ 0.04404240474104881,
+ 0.03380879759788513,
+ 0.00862907711416483,
+ 0.004924132954329252,
+ -0.06377683579921722,
+ 0.04295587167143822,
+ 0.08070650696754456,
+ -0.02221071347594261,
+ 0.026278886944055557,
+ 0.012071863748133183,
+ 0.027087468653917313,
+ 0.005540044046938419,
+ 0.013316321186721325,
+ -0.003521749982610345,
+ 0.007605716586112976,
+ 0.028780434280633926,
+ 0.025621915236115456,
+ -0.021440034732222557,
+ -0.03997423127293587,
+ 0.011484378948807716,
+ 0.015779966488480568,
+ -0.04282953217625618,
+ 0.019140630960464478,
+ -0.00490834005177021,
+ -0.021819056943058968,
+ -0.026657909154891968,
+ -0.02341095171868801,
+ 0.017510835081338882,
+ 0.03393514081835747,
+ -0.005634800065308809,
+ 0.021149450913071632,
+ -0.0350722074508667,
+ -0.00835744384676218,
+ 0.011901304125785828,
+ -0.003910247702151537,
+ 0.01939331367611885,
+ 0.014781873673200607,
+ -0.041338711977005005,
+ -0.003625981044024229,
+ -0.002013556659221649,
+ -0.008231103420257568,
+ 0.004658817313611507,
+ 0.00835744384676218,
+ -0.02357519418001175,
+ -0.028881506994366646,
+ -0.037523217499256134,
+ -0.008104762993752956,
+ -0.03054920583963394,
+ -0.021149450913071632,
+ -0.045836444944143295,
+ -0.015552553348243237,
+ 0.01571679674088955,
+ 0.012002376839518547,
+ 0.02059355191886425,
+ 0.04214729368686676,
+ -0.0374726839363575,
+ 0.03459211066365242,
+ 0.01058735977858305,
+ -0.022981392219662666,
+ 0.02759283222258091,
+ 0.02728961408138275,
+ 0.008679613471031189,
+ 0.03075135126709938,
+ -0.008603808470070362,
+ -0.0325959287583828,
+ -0.009791412390768528,
+ 0.003357506822794676,
+ -0.02835087664425373,
+ -0.043056946247816086,
+ 0.030877692624926567,
+ -0.024901771917939186,
+ -0.02213490940630436,
+ 0.035678643733263016,
+ 0.019191168248653412,
+ 0.01446602214127779,
+ -0.00023274344857782125,
+ -0.002964271232485771,
+ -0.028805702924728394,
+ 0.0007979211513884366,
+ 0.01111799106001854,
+ 0.036739904433488846,
+ -0.049980420619249344,
+ 0.01627269573509693,
+ -0.012949932366609573,
+ 0.052456703037023544,
+ 0.004175563808530569,
+ 0.013240516185760498,
+ -0.01747293397784233,
+ -0.0157546978443861,
+ 0.04368865117430687,
+ 0.021402131766080856,
+ -0.0054516056552529335,
+ 0.0010115160839632154,
+ 0.0004481150535866618,
+ -0.03982262313365936,
+ 0.03297495096921921,
+ 0.05766194313764572,
+ -0.02741595357656479,
+ -0.014604996889829636,
+ -0.010833724401891232,
+ 0.02855302207171917,
+ 0.0026926384307444096,
+ 0.004750414285808802,
+ -0.034263625741004944,
+ 0.020201895385980606,
+ -0.0313577875494957,
+ -0.016866497695446014,
+ -0.018812146037817,
+ -0.032444316893815994,
+ -0.014289145357906818,
+ 0.024825967848300934,
+ -0.003780748462304473,
+ -0.04176827147603035,
+ -0.021490570157766342,
+ -0.0008843856048770249,
+ -0.06908315420150757,
+ 0.006279137916862965,
+ -0.005394752137362957,
+ 0.04414347559213638,
+ 0.008717515505850315,
+ -0.03236851468682289,
+ 0.033303435891866684,
+ 0.002240970032289624,
+ 0.014920849353075027,
+ -0.015186164528131485,
+ -0.0399489626288414,
+ -0.019936578348279,
+ -0.051218561828136444,
+ -0.003907089587301016,
+ -0.019090095534920692,
+ 0.01955755613744259,
+ 0.002414688700810075,
+ -0.031281981617212296,
+ -0.021920129656791687,
+ 0.018989022821187973,
+ 0.01154754962772131,
+ -0.0017545579466968775,
+ -0.027643367648124695,
+ -0.012659348547458649,
+ -0.0206314530223608,
+ 0.07332820445299149,
+ -0.0028174000326544046,
+ -0.013253150507807732,
+ 0.025280794128775597,
+ 0.0007900248165242374,
+ -0.008420614525675774,
+ 2.5046078008017503e-05,
+ -0.024067923426628113,
+ 0.04245050996541977,
+ 0.022804515436291695,
+ -0.06023929640650749,
+ -0.008572223596274853,
+ 0.018445758149027824,
+ 0.049197107553482056,
+ 0.025204990059137344,
+ 0.0005176024860702455,
+ 0.0021714826580137014,
+ 0.03476898744702339,
+ -0.06498970836400986,
+ 0.02979116141796112,
+ 0.037220001220703125,
+ 0.004434562288224697,
+ 0.0020909402519464493,
+ 0.011724426411092281,
+ 0.0931384414434433,
+ 0.03727053850889206,
+ -0.013948025181889534,
+ -0.025722987949848175,
+ 0.027062200009822845,
+ 0.00029196569812484086,
+ -0.009791412390768528,
+ -0.006696062628179789,
+ -0.03974681720137596,
+ 0.033758264034986496,
+ 0.08611389249563217,
+ -0.012867811135947704,
+ 0.015514650382101536,
+ -0.037801168859004974,
+ 0.0338340662419796,
+ 0.007668886799365282,
+ 0.028022389858961105,
+ 0.0259756688028574,
+ -0.04942452162504196,
+ -0.04308221489191055,
+ 0.03171154111623764,
+ -0.055135127156972885,
+ 0.009551364928483963,
+ -0.004949401132762432,
+ 0.014807142317295074,
+ 0.035880789160728455,
+ -0.03792750835418701,
+ -0.011105356737971306,
+ 0.04760521650314331,
+ 0.012166619300842285,
+ -0.0026942177210003138,
+ -0.05745979771018028,
+ 0.03643668815493584,
+ 0.060694120824337006,
+ -0.010220970958471298,
+ -0.018281513825058937,
+ -0.027820244431495667,
+ -0.02971535734832287,
+ -0.0034522623755037785,
+ -0.0050504738464951515,
+ 0.025167088955640793,
+ 0.012318228371441364,
+ 0.026607373729348183,
+ 0.02683478593826294,
+ -0.031004033982753754,
+ 0.019026925787329674,
+ 0.025760889053344727,
+ -0.04502786323428154,
+ 0.03600712865591049,
+ -0.06888100504875183,
+ -0.03355611860752106,
+ 0.0016124245012179017,
+ 0.009835631586611271,
+ 0.014327047392725945,
+ 0.009785095229744911,
+ -0.017864590510725975,
+ 0.02855302207171917,
+ 0.015640990808606148,
+ 0.013569002039730549,
+ 0.003704944159835577,
+ 0.029563747346401215,
+ -0.027087468653917313,
+ -0.037801168859004974,
+ -0.048060040920972824,
+ -0.009349219501018524,
+ -0.01725815422832966,
+ 0.004706195089966059,
+ 0.020151358097791672,
+ -0.01653801091015339,
+ -0.012810957618057728,
+ -0.039797354489564896,
+ 0.03161047026515007,
+ 0.013303686864674091,
+ 0.018243612721562386,
+ 0.00651918537914753,
+ 0.01388485450297594,
+ -0.027138004079461098,
+ -0.006377052050083876,
+ 0.017662445083260536,
+ -0.005874847527593374,
+ -0.0029579540714621544,
+ -0.00447878148406744,
+ -0.034920599311590195,
+ 0.06140163168311119,
+ 0.00862907711416483,
+ -0.008003690280020237,
+ -0.012539324350655079,
+ -0.004687243606895208,
+ -0.005878006108105183,
+ -0.011730743572115898,
+ 0.003411201760172844,
+ 0.003979735542088747,
+ 0.044320352375507355,
+ 0.013960658572614193,
+ -0.03719473257660866,
+ -0.03140832483768463,
+ -0.027466490864753723,
+ 0.020543014630675316,
+ 0.013240516185760498,
+ -0.02327197603881359,
+ -0.013695343397557735,
+ 0.02025243081152439,
+ 0.0024004753213375807,
+ 0.04816111549735069,
+ -0.01360690500587225,
+ 0.019519655033946037,
+ -0.002253604121506214,
+ 0.014832410030066967,
+ -0.06049197539687157,
+ 0.03178734704852104,
+ 0.018129905685782433,
+ 0.045634299516677856,
+ 0.04022691026329994,
+ -0.013695343397557735,
+ -0.03676517307758331,
+ 0.05013203248381615,
+ -0.03724526986479759,
+ -0.00802895799279213,
+ -0.007321449462324381,
+ -0.019759701564908028,
+ -0.00988616794347763,
+ -0.024585921317338943,
+ -0.000546818773727864,
+ 0.002975326031446457,
+ 0.07534965872764587,
+ 0.019987115636467934,
+ -0.007908934727311134,
+ -0.02797185443341732,
+ 0.004289270378649235,
+ -0.04237470403313637,
+ 0.005915908142924309,
+ 0.006209650542587042,
+ -0.02289295382797718,
+ -0.016222158446907997,
+ -0.007005597464740276,
+ 0.02595040202140808,
+ 0.01771298050880432,
+ 0.03219163790345192,
+ -0.010239922441542149,
+ -0.050814270973205566,
+ 0.025647183880209923,
+ 0.010378897190093994,
+ 0.018824780359864235,
+ -0.013392125256359577,
+ -0.02563454955816269,
+ 0.006449698004871607,
+ -0.05948125198483467,
+ -0.027921317145228386,
+ -0.01785195618867874,
+ 0.018167806789278984,
+ 0.014693435281515121,
+ -0.03727053850889206,
+ -0.02776970900595188,
+ 0.012596177868545055,
+ -0.00855958927422762,
+ -0.013569002039730549,
+ 0.055893171578645706,
+ -0.02739068679511547,
+ 0.006822403520345688,
+ -0.06468649208545685,
+ 0.014314413070678711,
+ 0.04141451418399811,
+ -0.003040075534954667,
+ -0.014377583749592304,
+ -0.007902617566287518,
+ 0.01255827583372593,
+ 0.01733395829796791,
+ -0.013720611110329628,
+ 0.014554460532963276,
+ 0.014440753497183323,
+ 0.018951119855046272,
+ -0.0007438315078616142,
+ -0.015097726136446,
+ 0.004245051182806492,
+ 0.004570378456264734,
+ 0.006569721736013889,
+ -0.02741595357656479,
+ -0.03168627247214317,
+ 0.023688901215791702,
+ 0.03547649830579758,
+ -0.03229270875453949,
+ -0.014743971638381481,
+ -0.005846420768648386,
+ 0.0059853955172002316,
+ 0.006525502540171146,
+ 0.04712511971592903,
+ -0.0026926384307444096,
+ -0.0008496419177390635,
+ -0.004990461748093367,
+ -0.011692841537296772,
+ -0.04543215408921242,
+ 0.0009396597160957754,
+ -0.013177345506846905,
+ -0.08060543239116669,
+ 0.03340451046824455,
+ 0.007706788834184408,
+ 0.00399868655949831,
+ 0.021187352016568184,
+ -0.02203383669257164,
+ 0.016121085733175278,
+ -0.012463520281016827,
+ -0.03840760514140129,
+ -0.022147543728351593,
+ 0.0014797666808590293,
+ -0.03643668815493584,
+ 0.030448133125901222,
+ 0.0022630796302109957,
+ 0.014655533246695995,
+ 0.028856240212917328,
+ 0.05250723659992218,
+ 0.0012602495262399316,
+ -0.0028237169608473778,
+ 0.029058385640382767,
+ -0.02749175950884819,
+ 0.015640990808606148,
+ -0.04328436031937599,
+ -0.032722268253564835,
+ -0.02883097156882286,
+ -0.006446539424359798,
+ 0.011162210255861282,
+ -0.023082464933395386,
+ -0.0059032742865383625,
+ -0.0058053601533174515,
+ -0.0521029494702816,
+ 0.02055564895272255,
+ -0.003995527978986502,
+ -0.019759701564908028,
+ 0.009317634627223015,
+ -0.024585921317338943,
+ -0.049879349768161774,
+ -0.021048378199338913,
+ -0.003600712865591049,
+ 0.01647484116256237,
+ -0.04368865117430687,
+ 0.0026452606543898582,
+ 0.019671263173222542,
+ -0.019683897495269775,
+ 0.013227881863713264,
+ -0.0014758185716345906,
+ -0.0006309144082479179,
+ -0.042399972677230835,
+ 0.009159708395600319,
+ 0.016424303874373436,
+ 0.021528473123908043,
+ 0.03423835709691048,
+ 0.01139594055712223,
+ -0.018685804679989815,
+ -0.019279606640338898,
+ -0.03843287378549576,
+ 0.016904398798942566,
+ 0.01715708151459694,
+ 0.01257722731679678,
+ 0.00628861365839839,
+ -0.01911536417901516,
+ -0.008332176133990288,
+ -0.012387716211378574,
+ 0.0033827750012278557,
+ -0.02645576372742653,
+ 0.04495205730199814,
+ -0.03269699960947037,
+ 0.024863870814442635,
+ 0.0015310925664380193,
+ 0.019443849101662636,
+ -0.023448852822184563,
+ 0.029816430062055588,
+ 0.006396003067493439,
+ -0.013922756537795067,
+ 0.0100061921402812,
+ -0.016386402770876884,
+ -0.01237508188933134,
+ 0.031105106696486473,
+ -0.026379959657788277,
+ -0.020025016739964485,
+ -0.028502484783530235,
+ 0.004845169838517904,
+ 0.021098913624882698,
+ -0.042197827249765396,
+ 0.019848139956593513,
+ -0.0049367668107151985,
+ 0.0067402818240225315,
+ 0.014743971638381481,
+ 0.03734634071588516,
+ 0.013126809149980545,
+ 0.007195108570158482,
+ -0.005631641484797001,
+ 0.019709166139364243,
+ 0.028325608000159264,
+ -0.012962566688656807,
+ -0.006165431346744299,
+ -0.01204659603536129,
+ -0.013758513145148754,
+ -0.004668292589485645,
+ 0.05265884846448898,
+ -0.037017855793237686,
+ 0.036259811371564865,
+ -0.014301778748631477,
+ -0.014390217140316963,
+ -0.0026373642031103373,
+ -0.0060296147130429745,
+ -0.023549925535917282,
+ -0.03661356493830681,
+ 0.018205709755420685,
+ -0.034162554889917374,
+ -0.002649998292326927,
+ 0.0009459767607040703,
+ 0.038938235491514206,
+ 0.06498970836400986,
+ -0.016727522015571594,
+ -0.02779497765004635,
+ 0.0223370548337698,
+ -0.018951119855046272,
+ -0.0023657316341996193,
+ 0.0200123842805624,
+ 0.020429307594895363,
+ 0.029487943276762962,
+ 0.01567889377474785,
+ 0.023284610360860825,
+ 0.030827155336737633,
+ 0.03724526986479759,
+ -0.01245720311999321,
+ -0.014339681714773178,
+ -0.05020783469080925,
+ 0.009159708395600319,
+ -0.003430152777582407,
+ 0.003888138337060809,
+ -0.0002218860317952931,
+ -0.028376145288348198,
+ 0.017346592620015144,
+ 0.023966850712895393,
+ 0.05291152745485306,
+ -0.017763517796993256,
+ 0.015236700884997845,
+ -0.0033038121182471514,
+ -0.005919066723436117,
+ -0.004374550189822912,
+ 0.019001657143235207,
+ -0.0017719297902658582,
+ -0.016790693625807762,
+ 0.005116802640259266,
+ -0.007984738796949387,
+ -0.011503330431878567,
+ -0.0035185914020985365,
+ -0.03388460353016853,
+ -0.026986395940184593,
+ 0.005028363782912493,
+ -0.02523025870323181,
+ -0.03229270875453949,
+ -0.021124182268977165,
+ 0.013430027291178703,
+ -0.013164712116122246,
+ 0.010707383044064045,
+ -0.0272138100117445,
+ 0.01049892045557499,
+ 0.02409319207072258,
+ 0.020163992419838905,
+ 0.012640397064387798,
+ -0.009551364928483963,
+ -0.00644338084384799,
+ -0.03633561357855797,
+ -0.029260531067848206,
+ -0.008142665028572083,
+ 0.015742063522338867,
+ 0.020366137847304344,
+ 0.0010249398183077574,
+ 0.010606310330331326,
+ 0.011225380003452301,
+ 0.007624667603522539,
+ 0.009747193194925785,
+ -0.03181261569261551,
+ -0.012804640457034111,
+ 0.004769365303218365,
+ 0.00830690748989582,
+ -0.020947305485606194,
+ 0.022842416539788246,
+ -0.011743377894163132,
+ -0.04894442856311798,
+ 0.01647484116256237,
+ 0.009494511410593987,
+ 0.011143258772790432,
+ 0.014150169678032398,
+ 0.01977233588695526,
+ 0.018963754177093506,
+ -0.0009965130593627691,
+ 0.006702379789203405,
+ -0.002929527312517166,
+ 0.011452794075012207,
+ -0.028856240212917328,
+ 0.004219783004373312,
+ -0.022867685183882713,
+ 0.03294968232512474,
+ 0.05508458986878395,
+ -0.022349689155817032,
+ -0.006557087879627943,
+ -0.024901771917939186,
+ 0.04502786323428154,
+ -0.017447665333747864,
+ -0.021819056943058968,
+ 0.02011345513164997,
+ -0.040681738406419754,
+ -0.0010296775726601481,
+ 0.022943489253520966,
+ 0.019671263173222542,
+ -0.0050346809439361095,
+ 0.021263157948851585,
+ -0.0057074460200965405,
+ -0.012090815231204033,
+ -0.0011962894350290298,
+ -0.012292960658669472,
+ 0.029159458354115486,
+ -0.0006060410523787141,
+ 0.02031560055911541,
+ -0.01542621199041605,
+ 0.015502016991376877,
+ -0.044118206948041916,
+ -0.007409888319671154,
+ 0.022589735686779022,
+ 0.007814179174602032,
+ -0.009412390179932117,
+ -0.0090586356818676,
+ 0.02271607704460621,
+ -0.028224535286426544,
+ -0.004188197664916515,
+ 0.002675266470760107,
+ -0.015224066562950611,
+ 0.019949212670326233,
+ -0.01637376844882965,
+ -0.0326717309653759,
+ 0.011073771864175797,
+ 0.012103448621928692,
+ -0.02059355191886425,
+ -0.00830690748989582,
+ 0.014604996889829636,
+ -0.015565186738967896,
+ 0.024762798100709915,
+ 0.014402851462364197,
+ -0.03178734704852104,
+ 0.020429307594895363,
+ 0.004017637576907873,
+ 0.037624292075634,
+ 0.00696769542992115,
+ 0.057813551276922226,
+ 0.016310598701238632,
+ -0.032722268253564835,
+ 0.004052381496876478,
+ 0.0035312254913151264,
+ 0.006816086359322071,
+ 0.00017786415992304683,
+ -0.030726084485650063,
+ -0.01891321875154972,
+ -0.020126089453697205,
+ 0.009715607389807701,
+ -0.013948025181889534,
+ -0.011332769878208637,
+ -0.00497782789170742,
+ 0.0064812833443284035,
+ 0.03570391237735748,
+ -0.013177345506846905,
+ -0.002182537456974387,
+ -0.015552553348243237,
+ -0.013442661613225937,
+ 0.002740016207098961,
+ -0.017182350158691406,
+ 0.0411112979054451,
+ -0.008654344826936722,
+ -0.01685386337339878,
+ 0.041237637400627136,
+ 0.006301247514784336,
+ -0.036840979009866714,
+ 0.003932357300072908,
+ 0.009980923496186733,
+ -0.005675860680639744,
+ 0.02089676819741726,
+ 0.06493917107582092,
+ 0.01785195618867874,
+ -0.009153391234576702,
+ 0.007460424676537514,
+ -0.029083652421832085,
+ -0.014200706034898758,
+ 0.035602837800979614,
+ -0.018989022821187973,
+ -0.017750883474946022,
+ 0.022021202370524406,
+ 0.03292441368103027,
+ -0.005682177841663361,
+ 0.017359226942062378,
+ -0.01637376844882965,
+ -0.00912812352180481,
+ -0.016007380560040474,
+ -0.016121085733175278,
+ 0.027744440361857414,
+ -0.02701166458427906,
+ 0.0036607247311621904,
+ -0.02069462463259697,
+ -0.024990210309624672,
+ 0.02817399986088276,
+ 0.03666410222649574,
+ -0.04495205730199814,
+ 0.005634800065308809,
+ -0.03342977538704872,
+ -0.020568283274769783,
+ 0.033859334886074066,
+ -0.0026547361630946398,
+ 0.010113581083714962,
+ 0.014781873673200607,
+ 0.007371985819190741,
+ -0.004090283531695604,
+ 0.038255997002124786,
+ 0.03350558131933212,
+ -0.0020656720735132694,
+ 0.016209525987505913,
+ 0.033859334886074066,
+ -0.0010202019475400448,
+ -0.010922162793576717,
+ -0.001951965386979282,
+ 0.013910122215747833,
+ -0.00596328591927886,
+ -0.05569102615118027,
+ -0.0019803920295089483,
+ -0.021010475233197212,
+ 0.00425452645868063,
+ -0.0124256182461977,
+ 0.003106404561549425,
+ -0.03075135126709938,
+ -0.022905588150024414,
+ 0.003079557092860341,
+ 0.01771298050880432,
+ 0.004879913758486509,
+ 0.01921643689274788,
+ 0.011762328445911407,
+ -0.006784501019865274,
+ -0.025520842522382736,
+ -0.03901404142379761,
+ 0.033202365040779114,
+ 0.03651249408721924,
+ -0.01949438638985157,
+ 0.056853361427783966,
+ -0.015363042242825031,
+ 0.015312505885958672,
+ 0.0073530348017811775,
+ -0.015186164528131485,
+ -0.004355599172413349,
+ 0.008591175079345703,
+ 0.00958926696330309,
+ 0.011534915305674076,
+ 0.020985208451747894,
+ -0.01925433799624443,
+ -0.02549557387828827,
+ 0.026127278804779053,
+ -0.0447499118745327,
+ 0.01547674834728241,
+ -0.0005452395416796207,
+ 0.034920599311590195,
+ -0.0223370548337698,
+ 0.030245987698435783,
+ 0.04232417047023773,
+ 0.015742063522338867,
+ -0.007100353017449379,
+ 0.018850047141313553,
+ -0.019418582320213318,
+ -0.021528473123908043,
+ -0.018925853073596954,
+ 0.025242893025279045,
+ 0.018951119855046272,
+ 0.031105106696486473,
+ 0.03782643750309944,
+ 0.014213340356945992,
+ -0.0230319295078516,
+ 0.0040207961574196815,
+ 0.0049367668107151985,
+ -0.013733245432376862,
+ -0.010170434601604939,
+ 0.03380879759788513,
+ 0.008660661987960339,
+ 0.02573562227189541,
+ -0.01134540420025587,
+ -0.025861961767077446,
+ 0.049980420619249344,
+ -0.005249460227787495,
+ 0.010890576988458633,
+ 0.03858448192477226,
+ -0.014743971638381481,
+ -0.011263282969594002,
+ -0.022589735686779022,
+ -0.003392250509932637,
+ -0.02824980393052101,
+ 0.008869124576449394,
+ -0.00402395473793149,
+ 0.00573271419852972,
+ 0.0229561235755682,
+ 0.0387108214199543,
+ -0.022084372118115425,
+ 0.003357506822794676,
+ 0.008534321561455727,
+ -0.007409888319671154,
+ 0.027163272723555565,
+ -0.01154754962772131,
+ 0.007270913105458021,
+ 0.016045281663537025,
+ 0.025647183880209923,
+ -0.014263876713812351,
+ 0.03254539147019386,
+ 0.025242893025279045,
+ 0.03461737930774689,
+ 0.014478656463325024,
+ -0.036461956799030304,
+ 0.00034664757549762726,
+ 0.0006245973636396229,
+ 0.026102010160684586,
+ -0.013316321186721325,
+ -0.012261374853551388,
+ 0.004469305742532015,
+ -0.011768645606935024,
+ 0.02317090332508087,
+ 0.02327197603881359,
+ -0.011206429451704025,
+ -0.01527460291981697,
+ -0.00888807512819767,
+ -0.02693585865199566,
+ 0.017308689653873444,
+ 0.006279137916862965,
+ ...]</code></pre>
+</div>
+</div>
+<p>Next, I can apply this function to each of the notes stored in the <code>notes</code> column of the <code>notes_df</code> DataFrame, and save it in a new column of the DataFrame called <code>embedding</code>:</p>
+<div id="37e646e5" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>notes_df[<span class="st">'embedding'</span>] <span class="op">=</span> notes_df[<span class="st">'notes'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: get_embedding(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below, I show the first 5 rows. You can see that there is a new column containing a collection of 1,536-length lists corresponding to the note’s embedding.</p>
+<div id="a766c6a6" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>notes_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+<th data-quarto-table-cell-role="th">embedding</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Patient presented signs of common cold; symptoms include a runny nose and mild fever. Advised rest, hydration, and over-the-counter medication to manage symptoms.</td>
+<td>[0.007875490933656693, -0.0006737920339219272, -0.048676371574401855, 0.016742711886763573, -0.01964789256453514, 0.007379627320915461, -0.0036548112984746695, 0.01582098752260208, -0.00981811247766018, 0.05731024220585823, -0.05661020055413246, 0.05338999629020691, -0.0089722266420722, 0.005787027534097433, 0.009333916008472443, 0.002053461503237486, 0.020791297778487206, -0.013055814430117607, -0.03626226261258125, 0.06151050329208374, -0.0013227908639237285, 0.06081046164035797, 0.021164653822779655, 0.0037043977063149214, -0.004646540153771639, 0.009497258812189102, 0.006889596581459045, -0.02360313944518566, 0.04398607835173607, -0.06272391229867935, 0.02380148507654667, -0.01809612847864628, 0.003272704314440489, -0.017582762986421585, 0.030848590657114983, 0.023124776780605316, 0.022611411288380623, -0.046296220272779465, -0.006352896336466074, -0.006597911473363638, -0.023031437769532204, -0.01648602820932865, -0.01208742056041956, -0.006551241967827082, -0.030731918290257454, 0.0008546366589143872, 0.04699626564979553, -0.018119463697075844, 0.004751546308398247, -0.02417484112083912, 0.010763171128928661, -0.026694998145103455, 0.006452069152146578, 0.008348020724952221, 0.010535657405853271, 0.02921515703201294, 0.02755838632583618, 0.012624121271073818, -0.013405836187303066, 0.0015488466015085578, 0.0514298751950264, -0.03217867389321327, 0.02334645763039589, 0.013347499072551727, -0.004766130819916725, -0.013499175198376179, 0.03761567920446396, 0.01333583239465952, 0.026461651548743248, 0.010774838738143444, 0.006154550705105066, -0.028328433632850647, 0.025574930012226105, 0.003345625475049019, -0.025994954630732536, 0.04412608593702316, 0.019204530864953995, -0.041139233857393265, 0.024034833535552025, 0.014700917527079582, 0.0011288204696029425, -0.012075753882527351, 0.043052684515714645, -0.0011660102754831314, -0.023159777745604515, -0.05987706780433655, -0.033765438944101334, -0.023778149858117104, 0.027441712096333504, -0.031735312193632126, 0.031525298953056335, 0.03994916006922722, 0.006761255208402872, -0.028771795332431793, -0.013347499072551727, -0.02634497731924057, 0.02550492435693741, 0.02359147183597088, -0.03294872120022774, 0.03000853955745697, ...]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Patient reports difficulty sleeping. Exhibiting signs of insomnia characterized by frequent night time awakenings. Recommended a sleep study to find underlying cause.</td>
+<td>[-0.0345405712723732, -0.010776856914162636, -0.010913430713117123, 0.01344623975455761, -0.0371975414454937, 0.01843736506998539, 0.022373152896761894, -0.01380629651248455, 0.06128406524658203, -0.0055250017903745174, -0.02246006391942501, 0.03488821163773537, -0.060837097465991974, 0.019294051453471184, -0.005022164434194565, 0.017419274896383286, 0.014824386686086655, -0.016761241480708122, -0.030120572075247765, 0.0056708864867687225, 0.036700911819934845, 0.03622911125421524, -0.006679664831608534, -0.0573606938123703, 0.024992873892188072, 0.01998933218419552, 0.030319223180413246, -0.023142928257584572, 0.029872257262468338, -0.03113866224884987, 0.004680731799453497, -0.020436298102140427, 0.014042195864021778, -0.020846018567681313, -0.02521635591983795, 0.04705563187599182, 0.04226315766572952, 0.006909355986863375, -0.010733402334153652, -0.015283768996596336, -0.006704496685415506, -0.02394995093345642, 0.01163354329764843, -0.01688539795577526, -0.030865514650940895, -0.037445854395627975, -0.023502985015511513, -0.040425632148981094, 0.07345148175954819, 0.03406877443194389, -0.022149669006466866, 0.016016297042369843, 0.0220627598464489, -0.022075176239013672, 0.038935743272304535, -0.040624283254146576, 0.05368563532829285, 0.010013289749622345, -0.003945099655538797, 0.031188324093818665, 0.03250439092516899, 0.03357214480638504, 0.04186585545539856, 0.007896406576037407, 0.0016187013825401664, -0.0722595751285553, 0.01103137992322445, 0.01600388064980507, 0.008777923882007599, 0.043728217482566833, -0.005543625447899103, 0.010950678028166294, 0.005773316603153944, 0.05368563532829285, 0.01149076223373413, 0.024744559079408646, 0.006235802546143532, -0.028754839673638344, -0.00626994576305151, 0.009876716881990433, -0.02686764858663082, 0.006273049861192703, 0.009839469566941261, 0.046385183930397034, 0.0031737720128148794, -0.02080877125263214, -0.047105297446250916, -0.06217799708247185, 0.01106862723827362, -0.05676473677158356, 0.021963434293866158, -0.0022767353802919388, -0.00857306458055973, 0.015159611590206623, 0.005546729080379009, -0.050954174250364304, -0.0011461274698376656, 0.02709113247692585, -0.00894553679972887, 0.04352956265211105, ...]</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+<td>[-0.017208361998200417, 0.006888406351208687, -0.005633207969367504, 0.04822390526533127, -0.014728333801031113, 0.025873279199004173, -0.03370814397931099, -0.0009527865331619978, 0.03423452004790306, -0.010254159569740295, -0.04486321285367012, -0.008685161359608173, 0.01806878112256527, 0.019941454753279686, 0.028039507567882538, 0.016347944736480713, 0.0295174028724432, -0.05652441084384918, -0.020892975851893425, 0.009252025745809078, 0.053163718432188034, 0.015467280521988869, 0.02342361770570278, -0.0332222618162632, 0.04615890234708786, -0.051422636955976486, 0.01870650239288807, -0.00034986119135282934, -0.023038960993289948, -0.024010727182030678, 0.047697532922029495, -0.0066960775293409824, 0.03565167635679245, -0.026075730100274086, -0.035894621163606644, 0.06778070330619812, 0.03374863415956497, 0.0055269212462008, -0.015720345079898834, -0.02858612686395645, 0.009727786295115948, 0.024597834795713425, 0.019010178744792938, -0.020235009491443634, -0.007941152900457382, 0.025245679542422295, 0.008472587913274765, -0.02548862062394619, 0.02113591879606247, 0.0035783271305263042, 0.0027204395737499, 0.03320201858878136, 0.021115673705935478, -0.01451575942337513, 0.006088723428547382, -0.05980411916971207, -0.02872784249484539, -0.0322909876704216, 0.03806084766983986, 0.025144454091787338, 0.004529848229140043, 0.03957923501729965, 0.06259794533252716, 0.05907529592514038, -0.010821023024618626, -0.07883454114198685, 0.05713176354765892, 0.040915410965681076, 0.044458311051130295, -0.02583278901875019, 0.013078355230391026, 0.02773583121597767, -0.010238975286483765, 0.02148008532822132, 0.07474502921104431, 0.00839666835963726, 0.08215474337339401, -0.026865290477871895, 0.010861513204872608, -0.0009135616128332913, 0.004243885632604361, 0.019081037491559982, 0.005435817874968052, 0.03941727057099342, 0.014819436706602573, 0.02615671046078205, -0.0274321548640728, -0.034760892391204834, 0.02696651592850685, 0.00028643698897212744, 0.001967573771253228, 0.011448622681200504, 0.04247428849339485, -0.0023927215952426195, -0.006756812799721956, -0.03441672399640083, 0.001920756883919239, 0.03672466799616814, -0.031015543267130852, 0.02471930719912052, ...]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Hypertensive patient presented with higher blood pressure at 160/100. Adjusted medications and emphasized importance of diet and exercise.</td>
+<td>[-0.01908160373568535, -0.007425420451909304, 0.017478106543421745, 0.0633997693657875, -0.03739846125245094, 0.0564923994243145, -0.014924848452210426, 0.03949534147977829, -0.022670967504382133, -0.008227168582379818, 0.0023235275875777006, 0.01861288957297802, -0.05338408425450325, 0.021585524082183838, 0.032809995114803314, 0.0043664430268108845, 0.05175592005252838, -0.01282796822488308, -0.01846487447619438, 0.010040352120995522, -0.01032404787838459, -0.01255044061690569, 0.03727511689066887, -0.03327871114015579, -0.01349403616040945, -0.02069743350148201, 0.026494689285755157, -0.05005374550819397, 0.042801011353731155, -0.04746348410844803, 0.04080280661582947, -0.02429913356900215, 0.025137884542346, 0.0548148974776268, -0.005189776886254549, -0.0036479535046964884, 0.0019658245146274567, -0.0015927032800391316, 0.022905325517058372, 0.0035554443020373583, -0.0008025189745239913, -0.028912268579006195, -0.020956460386514664, 0.0659160241484642, -0.03490687534213066, 0.02893693745136261, 0.017613787204027176, -0.03764515370130539, 0.0155539121478796, 0.02130182832479477, -0.019982028752565384, 0.010428891517221928, -0.023115012794733047, 0.019328294321894646, 0.03290867432951927, 0.015183874405920506, 0.03014572709798813, 0.020487746223807335, -0.007838629186153412, 0.031132493168115616, 0.014184772968292236, -0.013975084759294987, 0.022300930693745613, 0.025729944929480553, -0.04578598216176033, -0.02073443867266178, 0.015072863548994064, -0.011446495540440083, 0.03140385448932648, 0.021425174549221992, -0.014949517324566841, -0.030022380873560905, -0.030269071459770203, 0.05358143895864487, -0.0035708623472601175, -0.022892991080880165, -0.005436468403786421, -0.03009638749063015, -0.003157653845846653, 0.055308278650045395, -0.029603004455566406, -0.02204190380871296, -0.009065920487046242, 0.04381244629621506, 0.009756657294929028, -0.06902433931827545, 0.0014246446080505848, 9.824304288486019e-05, -0.005482723005115986, -0.08269105851650238, 0.0053686280734837055, 0.005710912868380547, -0.0006240529473870993, 0.004471287131309509, -0.03041708655655384, 0.003200824838131666, -0.04183891415596008, 0.03251396492123604, -0.0017438019858673215, -0.0027629469987004995, ...]</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Examined patient for frequent headaches. No alarming neurological signs detected. Recommended reducing caffeine intake and keeping hydrated.</td>
+<td>[-0.010823288932442665, 0.03450469672679901, -0.0003536372387316078, 0.01706509292125702, -0.033481039106845856, 0.030859481543302536, -0.00017135703819803894, 0.05228135362267494, -0.010186624713242054, 0.017614372074604034, 0.003529740497469902, 0.021334487944841385, -0.02444290742278099, 0.054828010499477386, -0.012496092356741428, -0.005037136375904083, 0.008351534605026245, -0.02938641607761383, -0.005436611827462912, 0.02893700636923313, 0.03158353269100189, 0.06366640329360962, 0.05123273283243179, 0.015329872258007526, 0.0488358773291111, 0.01000561285763979, 0.010242801159620285, -0.041695255786180496, 0.03263215348124504, -0.022308209910988808, 0.02629048004746437, -0.00510579627007246, -0.018038814887404442, 0.03467946499586105, -0.005889142397791147, 0.022645266726613045, 0.025504013523459435, -0.004253789782524109, -0.013145240023732185, -0.0078896414488554, 0.016728036105632782, -0.020210962742567062, 0.016815422102808952, 0.01926220953464508, -0.015641963109374046, -0.046139419078826904, 0.02104736492037773, -0.03822481259703636, 0.051582273095846176, 0.006853501312434673, -0.039173565804958344, 0.012858116999268532, 0.02134697139263153, 0.013245109468698502, 0.014643273316323757, -0.010473747737705708, 0.003486047964543104, -0.024005981162190437, 0.06111975014209747, 0.02057298831641674, 0.052980437874794006, -0.003170836716890335, 0.02688969485461712, 0.030260268598794937, -0.03732599318027496, -0.037800367921590805, 0.03233254700899124, -0.04114597663283348, 0.06072027608752251, -0.013956675305962563, -0.019536849111318588, 0.005062103737145662, 0.04409210756421089, 0.004054052289575338, 0.008794702589511871, -0.013170207850635052, 0.05472814291715622, -0.06970847398042679, -0.025416627526283264, 0.05397912487387657, -0.0226327832788229, 0.025591399520635605, 0.008863362483680248, 0.04014728590846062, -0.012508576735854149, -0.05412892997264862, -0.029186679050326347, -0.03198300674557686, -0.015254970639944077, -0.03430495783686638, -0.024230685085058212, 0.012764490209519863, 0.010411330498754978, 0.012957986444234848, -0.016128823161125183, -0.012021715752780437, 0.015854183584451675, 0.00357655412517488, -0.015666930004954338, 0.02527930773794651, ...]</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Since I will want to compute the cosine distance to the “target” (<em>“Patient presenting with ongoing chronic condition defined as ongoing for more than one month”</em>), I will also need to compute the embedding of the label.</p>
+<div id="64fc6f16" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">'Patient presenting with ongoing chronic condition defined as ongoing for more than one month'</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute embedding of the target</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>target_embedding <span class="op">=</span> get_embedding(target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="computing-the-cosine-distance-from-the-target" class="level2">
+<h2 class="anchored" data-anchor-id="computing-the-cosine-distance-from-the-target">Computing the cosine distance from the target</h2>
+<p>Now that I have all of my embeddings, I need to compute the <em>cosine distance</em> from each doctor’s note’s embedding to this target embedding. Below, I compute and save this cosine distance in a new column of <code>notes_df</code> called <code>cosine_dist</code> (note that a <em>lower</em> <code>cosine_dist</code> value corresponds to a doctor’s note that is more similar to the target: <em>“Patient presenting with ongoing chronic condition defined as ongoing for more than one month”</em>).</p>
+<div id="c472bd7e" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>notes_df[<span class="st">'cosine_dist'</span>] <span class="op">=</span> notes_df.embedding.<span class="bu">apply</span>(<span class="kw">lambda</span> x: cosine(x, target_embedding))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can see that the final column in <code>notes_df</code> is now the cosine distance:</p>
+<div id="2824d660" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>notes_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+<th data-quarto-table-cell-role="th">embedding</th>
+<th data-quarto-table-cell-role="th">cosine_dist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Patient presented signs of common cold; symptoms include a runny nose and mild fever. Advised rest, hydration, and over-the-counter medication to manage symptoms.</td>
+<td>[0.007875490933656693, -0.0006737920339219272, -0.048676371574401855, 0.016742711886763573, -0.01964789256453514, 0.007379627320915461, -0.0036548112984746695, 0.01582098752260208, -0.00981811247766018, 0.05731024220585823, -0.05661020055413246, 0.05338999629020691, -0.0089722266420722, 0.005787027534097433, 0.009333916008472443, 0.002053461503237486, 0.020791297778487206, -0.013055814430117607, -0.03626226261258125, 0.06151050329208374, -0.0013227908639237285, 0.06081046164035797, 0.021164653822779655, 0.0037043977063149214, -0.004646540153771639, 0.009497258812189102, 0.006889596581459045, -0.02360313944518566, 0.04398607835173607, -0.06272391229867935, 0.02380148507654667, -0.01809612847864628, 0.003272704314440489, -0.017582762986421585, 0.030848590657114983, 0.023124776780605316, 0.022611411288380623, -0.046296220272779465, -0.006352896336466074, -0.006597911473363638, -0.023031437769532204, -0.01648602820932865, -0.01208742056041956, -0.006551241967827082, -0.030731918290257454, 0.0008546366589143872, 0.04699626564979553, -0.018119463697075844, 0.004751546308398247, -0.02417484112083912, 0.010763171128928661, -0.026694998145103455, 0.006452069152146578, 0.008348020724952221, 0.010535657405853271, 0.02921515703201294, 0.02755838632583618, 0.012624121271073818, -0.013405836187303066, 0.0015488466015085578, 0.0514298751950264, -0.03217867389321327, 0.02334645763039589, 0.013347499072551727, -0.004766130819916725, -0.013499175198376179, 0.03761567920446396, 0.01333583239465952, 0.026461651548743248, 0.010774838738143444, 0.006154550705105066, -0.028328433632850647, 0.025574930012226105, 0.003345625475049019, -0.025994954630732536, 0.04412608593702316, 0.019204530864953995, -0.041139233857393265, 0.024034833535552025, 0.014700917527079582, 0.0011288204696029425, -0.012075753882527351, 0.043052684515714645, -0.0011660102754831314, -0.023159777745604515, -0.05987706780433655, -0.033765438944101334, -0.023778149858117104, 0.027441712096333504, -0.031735312193632126, 0.031525298953056335, 0.03994916006922722, 0.006761255208402872, -0.028771795332431793, -0.013347499072551727, -0.02634497731924057, 0.02550492435693741, 0.02359147183597088, -0.03294872120022774, 0.03000853955745697, ...]</td>
+<td>0.697187</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Patient reports difficulty sleeping. Exhibiting signs of insomnia characterized by frequent night time awakenings. Recommended a sleep study to find underlying cause.</td>
+<td>[-0.0345405712723732, -0.010776856914162636, -0.010913430713117123, 0.01344623975455761, -0.0371975414454937, 0.01843736506998539, 0.022373152896761894, -0.01380629651248455, 0.06128406524658203, -0.0055250017903745174, -0.02246006391942501, 0.03488821163773537, -0.060837097465991974, 0.019294051453471184, -0.005022164434194565, 0.017419274896383286, 0.014824386686086655, -0.016761241480708122, -0.030120572075247765, 0.0056708864867687225, 0.036700911819934845, 0.03622911125421524, -0.006679664831608534, -0.0573606938123703, 0.024992873892188072, 0.01998933218419552, 0.030319223180413246, -0.023142928257584572, 0.029872257262468338, -0.03113866224884987, 0.004680731799453497, -0.020436298102140427, 0.014042195864021778, -0.020846018567681313, -0.02521635591983795, 0.04705563187599182, 0.04226315766572952, 0.006909355986863375, -0.010733402334153652, -0.015283768996596336, -0.006704496685415506, -0.02394995093345642, 0.01163354329764843, -0.01688539795577526, -0.030865514650940895, -0.037445854395627975, -0.023502985015511513, -0.040425632148981094, 0.07345148175954819, 0.03406877443194389, -0.022149669006466866, 0.016016297042369843, 0.0220627598464489, -0.022075176239013672, 0.038935743272304535, -0.040624283254146576, 0.05368563532829285, 0.010013289749622345, -0.003945099655538797, 0.031188324093818665, 0.03250439092516899, 0.03357214480638504, 0.04186585545539856, 0.007896406576037407, 0.0016187013825401664, -0.0722595751285553, 0.01103137992322445, 0.01600388064980507, 0.008777923882007599, 0.043728217482566833, -0.005543625447899103, 0.010950678028166294, 0.005773316603153944, 0.05368563532829285, 0.01149076223373413, 0.024744559079408646, 0.006235802546143532, -0.028754839673638344, -0.00626994576305151, 0.009876716881990433, -0.02686764858663082, 0.006273049861192703, 0.009839469566941261, 0.046385183930397034, 0.0031737720128148794, -0.02080877125263214, -0.047105297446250916, -0.06217799708247185, 0.01106862723827362, -0.05676473677158356, 0.021963434293866158, -0.0022767353802919388, -0.00857306458055973, 0.015159611590206623, 0.005546729080379009, -0.050954174250364304, -0.0011461274698376656, 0.02709113247692585, -0.00894553679972887, 0.04352956265211105, ...]</td>
+<td>0.583531</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+<td>[-0.017208361998200417, 0.006888406351208687, -0.005633207969367504, 0.04822390526533127, -0.014728333801031113, 0.025873279199004173, -0.03370814397931099, -0.0009527865331619978, 0.03423452004790306, -0.010254159569740295, -0.04486321285367012, -0.008685161359608173, 0.01806878112256527, 0.019941454753279686, 0.028039507567882538, 0.016347944736480713, 0.0295174028724432, -0.05652441084384918, -0.020892975851893425, 0.009252025745809078, 0.053163718432188034, 0.015467280521988869, 0.02342361770570278, -0.0332222618162632, 0.04615890234708786, -0.051422636955976486, 0.01870650239288807, -0.00034986119135282934, -0.023038960993289948, -0.024010727182030678, 0.047697532922029495, -0.0066960775293409824, 0.03565167635679245, -0.026075730100274086, -0.035894621163606644, 0.06778070330619812, 0.03374863415956497, 0.0055269212462008, -0.015720345079898834, -0.02858612686395645, 0.009727786295115948, 0.024597834795713425, 0.019010178744792938, -0.020235009491443634, -0.007941152900457382, 0.025245679542422295, 0.008472587913274765, -0.02548862062394619, 0.02113591879606247, 0.0035783271305263042, 0.0027204395737499, 0.03320201858878136, 0.021115673705935478, -0.01451575942337513, 0.006088723428547382, -0.05980411916971207, -0.02872784249484539, -0.0322909876704216, 0.03806084766983986, 0.025144454091787338, 0.004529848229140043, 0.03957923501729965, 0.06259794533252716, 0.05907529592514038, -0.010821023024618626, -0.07883454114198685, 0.05713176354765892, 0.040915410965681076, 0.044458311051130295, -0.02583278901875019, 0.013078355230391026, 0.02773583121597767, -0.010238975286483765, 0.02148008532822132, 0.07474502921104431, 0.00839666835963726, 0.08215474337339401, -0.026865290477871895, 0.010861513204872608, -0.0009135616128332913, 0.004243885632604361, 0.019081037491559982, 0.005435817874968052, 0.03941727057099342, 0.014819436706602573, 0.02615671046078205, -0.0274321548640728, -0.034760892391204834, 0.02696651592850685, 0.00028643698897212744, 0.001967573771253228, 0.011448622681200504, 0.04247428849339485, -0.0023927215952426195, -0.006756812799721956, -0.03441672399640083, 0.001920756883919239, 0.03672466799616814, -0.031015543267130852, 0.02471930719912052, ...]</td>
+<td>0.748090</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Hypertensive patient presented with higher blood pressure at 160/100. Adjusted medications and emphasized importance of diet and exercise.</td>
+<td>[-0.01908160373568535, -0.007425420451909304, 0.017478106543421745, 0.0633997693657875, -0.03739846125245094, 0.0564923994243145, -0.014924848452210426, 0.03949534147977829, -0.022670967504382133, -0.008227168582379818, 0.0023235275875777006, 0.01861288957297802, -0.05338408425450325, 0.021585524082183838, 0.032809995114803314, 0.0043664430268108845, 0.05175592005252838, -0.01282796822488308, -0.01846487447619438, 0.010040352120995522, -0.01032404787838459, -0.01255044061690569, 0.03727511689066887, -0.03327871114015579, -0.01349403616040945, -0.02069743350148201, 0.026494689285755157, -0.05005374550819397, 0.042801011353731155, -0.04746348410844803, 0.04080280661582947, -0.02429913356900215, 0.025137884542346, 0.0548148974776268, -0.005189776886254549, -0.0036479535046964884, 0.0019658245146274567, -0.0015927032800391316, 0.022905325517058372, 0.0035554443020373583, -0.0008025189745239913, -0.028912268579006195, -0.020956460386514664, 0.0659160241484642, -0.03490687534213066, 0.02893693745136261, 0.017613787204027176, -0.03764515370130539, 0.0155539121478796, 0.02130182832479477, -0.019982028752565384, 0.010428891517221928, -0.023115012794733047, 0.019328294321894646, 0.03290867432951927, 0.015183874405920506, 0.03014572709798813, 0.020487746223807335, -0.007838629186153412, 0.031132493168115616, 0.014184772968292236, -0.013975084759294987, 0.022300930693745613, 0.025729944929480553, -0.04578598216176033, -0.02073443867266178, 0.015072863548994064, -0.011446495540440083, 0.03140385448932648, 0.021425174549221992, -0.014949517324566841, -0.030022380873560905, -0.030269071459770203, 0.05358143895864487, -0.0035708623472601175, -0.022892991080880165, -0.005436468403786421, -0.03009638749063015, -0.003157653845846653, 0.055308278650045395, -0.029603004455566406, -0.02204190380871296, -0.009065920487046242, 0.04381244629621506, 0.009756657294929028, -0.06902433931827545, 0.0014246446080505848, 9.824304288486019e-05, -0.005482723005115986, -0.08269105851650238, 0.0053686280734837055, 0.005710912868380547, -0.0006240529473870993, 0.004471287131309509, -0.03041708655655384, 0.003200824838131666, -0.04183891415596008, 0.03251396492123604, -0.0017438019858673215, -0.0027629469987004995, ...]</td>
+<td>0.644881</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Examined patient for frequent headaches. No alarming neurological signs detected. Recommended reducing caffeine intake and keeping hydrated.</td>
+<td>[-0.010823288932442665, 0.03450469672679901, -0.0003536372387316078, 0.01706509292125702, -0.033481039106845856, 0.030859481543302536, -0.00017135703819803894, 0.05228135362267494, -0.010186624713242054, 0.017614372074604034, 0.003529740497469902, 0.021334487944841385, -0.02444290742278099, 0.054828010499477386, -0.012496092356741428, -0.005037136375904083, 0.008351534605026245, -0.02938641607761383, -0.005436611827462912, 0.02893700636923313, 0.03158353269100189, 0.06366640329360962, 0.05123273283243179, 0.015329872258007526, 0.0488358773291111, 0.01000561285763979, 0.010242801159620285, -0.041695255786180496, 0.03263215348124504, -0.022308209910988808, 0.02629048004746437, -0.00510579627007246, -0.018038814887404442, 0.03467946499586105, -0.005889142397791147, 0.022645266726613045, 0.025504013523459435, -0.004253789782524109, -0.013145240023732185, -0.0078896414488554, 0.016728036105632782, -0.020210962742567062, 0.016815422102808952, 0.01926220953464508, -0.015641963109374046, -0.046139419078826904, 0.02104736492037773, -0.03822481259703636, 0.051582273095846176, 0.006853501312434673, -0.039173565804958344, 0.012858116999268532, 0.02134697139263153, 0.013245109468698502, 0.014643273316323757, -0.010473747737705708, 0.003486047964543104, -0.024005981162190437, 0.06111975014209747, 0.02057298831641674, 0.052980437874794006, -0.003170836716890335, 0.02688969485461712, 0.030260268598794937, -0.03732599318027496, -0.037800367921590805, 0.03233254700899124, -0.04114597663283348, 0.06072027608752251, -0.013956675305962563, -0.019536849111318588, 0.005062103737145662, 0.04409210756421089, 0.004054052289575338, 0.008794702589511871, -0.013170207850635052, 0.05472814291715622, -0.06970847398042679, -0.025416627526283264, 0.05397912487387657, -0.0226327832788229, 0.025591399520635605, 0.008863362483680248, 0.04014728590846062, -0.012508576735854149, -0.05412892997264862, -0.029186679050326347, -0.03198300674557686, -0.015254970639944077, -0.03430495783686638, -0.024230685085058212, 0.012764490209519863, 0.010411330498754978, 0.012957986444234848, -0.016128823161125183, -0.012021715752780437, 0.015854183584451675, 0.00357655412517488, -0.015666930004954338, 0.02527930773794651, ...]</td>
+<td>0.688291</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>And that’s it! Let’s take a look at the notes in order of smallest to largest <code>cosine_dist</code>.</p>
+<p>Ideally, I will see that the notes at the top of the rearranged DataFrame correspond to patients with chronic conditions, and the notes at the bottom correspond to patients with acute conditions.</p>
+<p>The top 5 notes are:</p>
+<div id="12207d28" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'display.max_colwidth'</span>, <span class="va">None</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>notes_df.sort_values(<span class="st">'cosine_dist'</span>)[[<span class="st">'notes'</span>, <span class="st">'cosine_dist'</span>]].head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+<th data-quarto-table-cell-role="th">cosine_dist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">43</td>
+<td>Patient with chronic bronchitis showed increasingly frequent flare-ups. Reinforced importance of smoking cessation and upgraded prescribed inhalers.</td>
+<td>0.483188</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>Patient visited for follow-up on hypertension medication. Blood pressure readings stable. Emphasized continued adherence to treatment.</td>
+<td>0.547638</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">27</td>
+<td>Patient reported persistent cough and difficulty breathing. Referred for radiological imaging to rule out pneumonia or tuberculosis.</td>
+<td>0.550634</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">22</td>
+<td>Patient with a history of heart disease complained of palpitations. Recommended further cardiology work-up and emphasized continued adherence to treatment.</td>
+<td>0.558663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">31</td>
+<td>Chronic back pain patient showed improvement after physiotherapy. Recommended continuing sessions and daily exercises at home.</td>
+<td>0.565519</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Those all seem like patients with chronic conditions to me!</p>
+<p>And the bottom 5 notes are:</p>
+<div id="5fc2f589" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>notes_df.sort_values(<span class="st">'cosine_dist'</span>)[[<span class="st">'notes'</span>, <span class="st">'cosine_dist'</span>]].tail(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+<th data-quarto-table-cell-role="th">cosine_dist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">39</td>
+<td>Child patient presented with red, itchy eyes. Diagnosed as viral conjunctivitis. Instructed parents about proper eye care and hand hygiene.</td>
+<td>0.743466</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">16</td>
+<td>Patient suffered a minor burn in the kitchen. Prescribed topical ointment and advised on wound care.</td>
+<td>0.745391</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>Patient presented with severe knee pain. Suspected ligament tear. Recommended MRI scan.</td>
+<td>0.746433</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+<td>0.748090</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">49</td>
+<td>Patient presented with dislocated shoulder. After successful relocation, advised sling use and gentle mobility exercises for rehabilitation.</td>
+<td>0.748190</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>These definitely seem like new/acute conditions!</p>
+<p>If you’re interested in looking at all of the distances, see the following output (remember that the smaller the distance, the closer the note to the chronic condition target):</p>
+<div id="6e83479f" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>notes_df.sort_values(<span class="st">'cosine_dist'</span>)[[<span class="st">'notes'</span>, <span class="st">'cosine_dist'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+<th data-quarto-table-cell-role="th">cosine_dist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">43</td>
+<td>Patient with chronic bronchitis showed increasingly frequent flare-ups. Reinforced importance of smoking cessation and upgraded prescribed inhalers.</td>
+<td>0.483188</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>Patient visited for follow-up on hypertension medication. Blood pressure readings stable. Emphasized continued adherence to treatment.</td>
+<td>0.547638</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">27</td>
+<td>Patient reported persistent cough and difficulty breathing. Referred for radiological imaging to rule out pneumonia or tuberculosis.</td>
+<td>0.550634</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">22</td>
+<td>Patient with a history of heart disease complained of palpitations. Recommended further cardiology work-up and emphasized continued adherence to treatment.</td>
+<td>0.558663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">31</td>
+<td>Chronic back pain patient showed improvement after physiotherapy. Recommended continuing sessions and daily exercises at home.</td>
+<td>0.565519</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>Asthmatic patient presented with increased shortness of breath. Stepped-up asthma control medication.</td>
+<td>0.578419</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11</td>
+<td>Patient admitted for chronic fatigue. Bloodwork ordered to rule out anemia, thyroid disorders, and diabetes. Recommended nutritional counseling.</td>
+<td>0.580687</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Patient reports difficulty sleeping. Exhibiting signs of insomnia characterized by frequent night time awakenings. Recommended a sleep study to find underlying cause.</td>
+<td>0.583531</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Patient came in for annual physical. All markers within normal limits. Encouraged to continue healthy lifestyle for prevention of non-communicable diseases.</td>
+<td>0.592007</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>Patient managing COPD came in for routine check-up. Oxygen levels stable. Expressed importance of avoiding respiratory irritants.</td>
+<td>0.597322</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">35</td>
+<td>Patient presented with swollen (oedemic) ankles. Adjusted diuretic medication dosage and recommended follow-up visit next week.</td>
+<td>0.598728</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">30</td>
+<td>Elderly patient presented with signs of Parkinson's disease. Referred to a neurologist for specialized care and management.</td>
+<td>0.601647</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>Patient complained of periodic blurry vision. Referred to ophthalmology for proper ocular examination and management.</td>
+<td>0.607228</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">24</td>
+<td>Patient managed for rheumatoid arthritis reported increased inflammation in joints. Adjusted medication and recommended physiotherapy for managing symptoms.</td>
+<td>0.610967</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>Patient presented with severe migraine episodes. Prescribed stronger painkillers and referred to a neurologist for a complete neurological work-up.</td>
+<td>0.613839</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41</td>
+<td>Patient presented with painful and swollen joints. Diagnosed as gout and recommended dietary adjustment along with pain management.</td>
+<td>0.618245</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25</td>
+<td>Elderly patient with a history of diabetes complained of numbness in feet. Diagnosed peripheral neuropathy, referred to podiatrist for further management.</td>
+<td>0.619704</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>Elderly patient exhibited signs of Alzheimer's. Informed family and referred to neurology specialist for comprehensive management.</td>
+<td>0.619889</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>Patient presented with chest pain. Preliminary assessment ruled out heart conditions. Recommended gastroenterology consult to check for possible reflux disease.</td>
+<td>0.625152</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">46</td>
+<td>Patient with anxiety showed improvement with recent medication schedule. Encouraged continued therapy and stress management techniques.</td>
+<td>0.626963</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>Patient reports persistent vertigo. Referred to an Ear, Nose, and Throat (ENT) specialist for detailed evaluation to rule out Meniere's disease.</td>
+<td>0.628280</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">42</td>
+<td>Patient reported sleep apnea symptoms. Advised to undergo a sleep study, prescribed initial treatment using CPAP device at night during sleep.</td>
+<td>0.636255</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">48</td>
+<td>Child patient presented with symptoms of ADHD. Referred to pediatric psychiatrist for cognitive and behavioral evaluation plus treatment.</td>
+<td>0.636682</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">44</td>
+<td>Patient with history of stroke presented with dizziness. Follow-up brain scan scheduled to rule out recurrence.</td>
+<td>0.637395</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>Patient came in for weight management consultation. Diet plan adjusted and encouraged increased physical activity.</td>
+<td>0.639904</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Hypertensive patient presented with higher blood pressure at 160/100. Adjusted medications and emphasized importance of diet and exercise.</td>
+<td>0.644881</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>Historically anxious patient reported increased panic attacks recently. Referred to psychiatrist for therapeutic support, prescribed low-dose anxiolytic.</td>
+<td>0.645849</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">45</td>
+<td>Patient reported feeling low, indicating depression. Counseled and referred to mental health services for further treatment and support.</td>
+<td>0.647704</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>Elderly patient with poor vision due to cataracts. Scheduled for ophthalmology consultation.</td>
+<td>0.648220</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">38</td>
+<td>Patient with history of irritable bowel syndrome showed signs of relief with diet modification. Reinforced importance of hydration and fiber intake.</td>
+<td>0.657894</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>Teenage patient came in with signs of acne. Prescribed topical retinoid and advised consistent skin care routine.</td>
+<td>0.658439</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Patient returned for post-operative wound check. Incision healing well with no signs of infection. Advised continued wound care protocol and scheduled follow-up in a week.</td>
+<td>0.660693</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Arthritic patient reports increased joint pain. Advised gentle physical therapy and adjustment of pain medication.</td>
+<td>0.661807</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">14</td>
+<td>Patient presented with signs of depression. Recommended seeking a psychologist for cognitive behavioral therapy and prescribed low dose antidepressant.</td>
+<td>0.666589</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">52</td>
+<td>Elderly patient with hearing difficulty. Scheduled an appointment for audiology consultation and potential hearing aids.</td>
+<td>0.667571</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Routine consultation with patient managing type II diabetes. Blood glucose levels fairly controlled. Advised to keep monitoring sugar levels and follow diet regimen.</td>
+<td>0.669839</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">21</td>
+<td>Patient has concerning mole on the back. Scheduled for dermatology consult to rule out potential skin cancer.</td>
+<td>0.675400</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>Patient suffering from high fevers and weight loss. Ordered comprehensive bloodwork to assess for possible infectious disease.</td>
+<td>0.676904</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">53</td>
+<td>Patient presented with signs of Bell's Palsy. Referred to neurologist and prescribed corticosteroid medication to reduce inflammation.</td>
+<td>0.682327</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Examined patient for frequent headaches. No alarming neurological signs detected. Recommended reducing caffeine intake and keeping hydrated.</td>
+<td>0.688291</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">50</td>
+<td>Pregnant patient at full term demonstrated normal signs. Advised to prepare for labor and familiarize with signs of onset.</td>
+<td>0.696364</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Patient presented signs of common cold; symptoms include a runny nose and mild fever. Advised rest, hydration, and over-the-counter medication to manage symptoms.</td>
+<td>0.697187</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">33</td>
+<td>Pregnant patient showed normal progression in second trimester. Advised rest, proper nutrition and regular exercise.</td>
+<td>0.702353</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">47</td>
+<td>Type 1 diabetic patient showed increased blood sugar levels. Insulin doses were adjusted, advised dietary check.</td>
+<td>0.707895</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">40</td>
+<td>Patient showed symptoms of urinary tract infection. Collected sample for testing and started preliminary antibiotic treatment.</td>
+<td>0.710449</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Patient presented with symptoms of influenza including fever, cough, and body aches. Prescribed antiviral medication and recommended rest and plenty of fluids.</td>
+<td>0.715153</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">23</td>
+<td>Post-surgical patient reported redness and discomfort around stitches. Diagnosed with a mild post-operative infection. Prescribed antibiotics and wound care guidance.</td>
+<td>0.726964</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>Rash observed on patient's arm. Allergenic contact dermatitis suspected. Prescribed topical steroid and recommended patch test.</td>
+<td>0.730986</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>Postnatal patient showed healthy recovery from C-section. Wound healing well without signs of infection.</td>
+<td>0.742733</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>Child patient presented with red, itchy eyes. Diagnosed as viral conjunctivitis. Instructed parents about proper eye care and hand hygiene.</td>
+<td>0.743466</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>Patient suffered a minor burn in the kitchen. Prescribed topical ointment and advised on wound care.</td>
+<td>0.745391</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26</td>
+<td>Patient presented with severe knee pain. Suspected ligament tear. Recommended MRI scan.</td>
+<td>0.746433</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+<td>0.748090</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">49</td>
+<td>Patient presented with dislocated shoulder. After successful relocation, advised sling use and gentle mobility exercises for rehabilitation.</td>
+<td>0.748190</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>It definitely seems like it did a pretty good job here (although to be fair, OpenAI did all the hard lifting!)</p>
+</section>
+<section id="zero-shot-binary-classification" class="level2">
+<h2 class="anchored" data-anchor-id="zero-shot-binary-classification">Zero-shot Binary classification</h2>
+<p>The above approach provides each doctor’s note with a score (cosine distance) relative to a target (<em>“Patient presenting with ongoing chronic condition defined as ongoing for more than one month”</em>). But if I wanted to use this to create a binary label, I would need to come up with a threshold so that everyone whose cosine distance to the target is below, say 0.6, is classified as “presenting with a chronic condition”, in which case, everyone whose cosine distance to the target is above 0.6 is classified as “presenting with an acute condition”.</p>
+<p>That approach sounds okay, but it turns out that there’s a (hypothetically) better way.</p>
+<p>Instead of just computing the distance to a single target, I can compute two distances for each doctor’s note:</p>
+<ol type="1">
+<li><p>the distance to a positive label (corresponding to the original target: <em>“Patient presenting with ongoing chronic condition defined as ongoing for more than one month”</em>)</p></li>
+<li><p>the distance to a negative label (<em>“Patient presenting with acute or new condition”</em>)</p></li>
+</ol>
+<p>Then, each note is classified based on which label text its embedding is closest to.</p>
+<p>The code for doing this is very similar to the code above.</p>
+<p>Fortunately, I don’t need to recompute the embeddings for the notes, but I do need to compute the embedding for the new negative label.</p>
+<div id="2e7d35b3" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Patient presenting with ongoing chronic condition defined as ongoing for more than one month'</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Patient presenting with acute or new condition'</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute embedding of the labels</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>label_embeddings <span class="op">=</span> [get_embedding(label) <span class="cf">for</span> label <span class="kw">in</span> labels]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then I need to compute the difference between the cosine distance to the first label and the cosine distance to the second label (to determine which label the note is closest to).</p>
+<div id="07a57747" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the difference in the cosine distances to the two labels for each note</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>notes_df[<span class="st">'cosine_score_binary'</span>] <span class="op">=</span> [cosine(x, label_embeddings[<span class="dv">1</span>]) <span class="op">-</span> cosine(x, label_embeddings[<span class="dv">0</span>]) <span class="cf">for</span> x <span class="kw">in</span> notes_df[<span class="st">'embedding'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I have saved this <code>cosine_score_binary</code> in a new column in the DataFrame:</p>
+<div id="c320562d" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>notes_df[[<span class="st">'notes'</span>, <span class="st">'cosine_score_binary'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+<th data-quarto-table-cell-role="th">cosine_score_binary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Patient presented signs of common cold; symptoms include a runny nose and mild fever. Advised rest, hydration, and over-the-counter medication to manage symptoms.</td>
+<td>-0.097242</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Patient reports difficulty sleeping. Exhibiting signs of insomnia characterized by frequent night time awakenings. Recommended a sleep study to find underlying cause.</td>
+<td>0.061629</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+<td>-0.074738</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Hypertensive patient presented with higher blood pressure at 160/100. Adjusted medications and emphasized importance of diet and exercise.</td>
+<td>-0.009268</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Examined patient for frequent headaches. No alarming neurological signs detected. Recommended reducing caffeine intake and keeping hydrated.</td>
+<td>-0.013830</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>A positive <code>cosine_score_binary</code> value means that the note is closer to the first label, <em>“Patient presenting with ongoing chronic condition defined as ongoing for more than one month”</em> (i.e., the distance to the second label is greater than the distance to the first label), and a negative value means that the note is closer to the second label, <em>“Patient presenting with acute or new condition”</em>.</p>
+<p>I can use this to create a binary classification for each note.</p>
+<div id="ec23a536" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>notes_df[<span class="st">'chronic_assessment'</span>] <span class="op">=</span> [<span class="st">'chronic'</span> <span class="cf">if</span> score <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'acute'</span> <span class="cf">for</span> score <span class="kw">in</span> notes_df[<span class="st">'cosine_score_binary'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then I can view the results in descending order of the <code>cosine_score_binary</code> so that the first notes are those that are deemed most <em>chronic</em> and least <em>acute</em>:</p>
+<div id="4a2a2395" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>notes_df[[<span class="st">'notes'</span>, <span class="st">'cosine_score_binary'</span>, <span class="st">'chronic_assessment'</span>]].sort_values(<span class="st">'cosine_score_binary'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">notes</th>
+<th data-quarto-table-cell-role="th">cosine_score_binary</th>
+<th data-quarto-table-cell-role="th">chronic_assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">31</td>
+<td>Chronic back pain patient showed improvement after physiotherapy. Recommended continuing sessions and daily exercises at home.</td>
+<td>0.110414</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">43</td>
+<td>Patient with chronic bronchitis showed increasingly frequent flare-ups. Reinforced importance of smoking cessation and upgraded prescribed inhalers.</td>
+<td>0.091766</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19</td>
+<td>Patient visited for follow-up on hypertension medication. Blood pressure readings stable. Emphasized continued adherence to treatment.</td>
+<td>0.081715</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Patient reports difficulty sleeping. Exhibiting signs of insomnia characterized by frequent night time awakenings. Recommended a sleep study to find underlying cause.</td>
+<td>0.061629</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Routine consultation with patient managing type II diabetes. Blood glucose levels fairly controlled. Advised to keep monitoring sugar levels and follow diet regimen.</td>
+<td>0.055009</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>Patient admitted for chronic fatigue. Bloodwork ordered to rule out anemia, thyroid disorders, and diabetes. Recommended nutritional counseling.</td>
+<td>0.053559</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>Patient complained of periodic blurry vision. Referred to ophthalmology for proper ocular examination and management.</td>
+<td>0.049252</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Patient came in for annual physical. All markers within normal limits. Encouraged to continue healthy lifestyle for prevention of non-communicable diseases.</td>
+<td>0.045713</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25</td>
+<td>Elderly patient with a history of diabetes complained of numbness in feet. Diagnosed peripheral neuropathy, referred to podiatrist for further management.</td>
+<td>0.037681</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>Patient managing COPD came in for routine check-up. Oxygen levels stable. Expressed importance of avoiding respiratory irritants.</td>
+<td>0.035781</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">27</td>
+<td>Patient reported persistent cough and difficulty breathing. Referred for radiological imaging to rule out pneumonia or tuberculosis.</td>
+<td>0.030508</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18</td>
+<td>Patient reports persistent vertigo. Referred to an Ear, Nose, and Throat (ENT) specialist for detailed evaluation to rule out Meniere's disease.</td>
+<td>0.028819</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>Patient managed for rheumatoid arthritis reported increased inflammation in joints. Adjusted medication and recommended physiotherapy for managing symptoms.</td>
+<td>0.026801</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">30</td>
+<td>Elderly patient presented with signs of Parkinson's disease. Referred to a neurologist for specialized care and management.</td>
+<td>0.019938</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Patient returned for post-operative wound check. Incision healing well with no signs of infection. Advised continued wound care protocol and scheduled follow-up in a week.</td>
+<td>0.018720</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">42</td>
+<td>Patient reported sleep apnea symptoms. Advised to undergo a sleep study, prescribed initial treatment using CPAP device at night during sleep.</td>
+<td>0.014099</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>Patient with a history of heart disease complained of palpitations. Recommended further cardiology work-up and emphasized continued adherence to treatment.</td>
+<td>0.009364</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>Elderly patient exhibited signs of Alzheimer's. Informed family and referred to neurology specialist for comprehensive management.</td>
+<td>0.007949</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">15</td>
+<td>Asthmatic patient presented with increased shortness of breath. Stepped-up asthma control medication.</td>
+<td>0.002814</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">32</td>
+<td>Patient came in for weight management consultation. Diet plan adjusted and encouraged increased physical activity.</td>
+<td>0.001463</td>
+<td>chronic</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">33</td>
+<td>Pregnant patient showed normal progression in second trimester. Advised rest, proper nutrition and regular exercise.</td>
+<td>0.000649</td>
+<td>chronic</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12</td>
+<td>Elderly patient with poor vision due to cataracts. Scheduled for ophthalmology consultation.</td>
+<td>-0.000179</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>Teenage patient came in with signs of acne. Prescribed topical retinoid and advised consistent skin care routine.</td>
+<td>-0.000709</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41</td>
+<td>Patient presented with painful and swollen joints. Diagnosed as gout and recommended dietary adjustment along with pain management.</td>
+<td>-0.004671</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">21</td>
+<td>Patient has concerning mole on the back. Scheduled for dermatology consult to rule out potential skin cancer.</td>
+<td>-0.007328</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Hypertensive patient presented with higher blood pressure at 160/100. Adjusted medications and emphasized importance of diet and exercise.</td>
+<td>-0.009268</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">38</td>
+<td>Patient with history of irritable bowel syndrome showed signs of relief with diet modification. Reinforced importance of hydration and fiber intake.</td>
+<td>-0.011980</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Examined patient for frequent headaches. No alarming neurological signs detected. Recommended reducing caffeine intake and keeping hydrated.</td>
+<td>-0.013830</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>Patient presented with severe migraine episodes. Prescribed stronger painkillers and referred to a neurologist for a complete neurological work-up.</td>
+<td>-0.015010</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">52</td>
+<td>Elderly patient with hearing difficulty. Scheduled an appointment for audiology consultation and potential hearing aids.</td>
+<td>-0.015633</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">45</td>
+<td>Patient reported feeling low, indicating depression. Counseled and referred to mental health services for further treatment and support.</td>
+<td>-0.018623</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>Patient presented with swollen (oedemic) ankles. Adjusted diuretic medication dosage and recommended follow-up visit next week.</td>
+<td>-0.020730</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">47</td>
+<td>Type 1 diabetic patient showed increased blood sugar levels. Insulin doses were adjusted, advised dietary check.</td>
+<td>-0.020986</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>Rash observed on patient's arm. Allergenic contact dermatitis suspected. Prescribed topical steroid and recommended patch test.</td>
+<td>-0.030286</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>Postnatal patient showed healthy recovery from C-section. Wound healing well without signs of infection.</td>
+<td>-0.032995</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Arthritic patient reports increased joint pain. Advised gentle physical therapy and adjustment of pain medication.</td>
+<td>-0.033021</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">48</td>
+<td>Child patient presented with symptoms of ADHD. Referred to pediatric psychiatrist for cognitive and behavioral evaluation plus treatment.</td>
+<td>-0.038751</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">53</td>
+<td>Patient presented with signs of Bell's Palsy. Referred to neurologist and prescribed corticosteroid medication to reduce inflammation.</td>
+<td>-0.042732</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">46</td>
+<td>Patient with anxiety showed improvement with recent medication schedule. Encouraged continued therapy and stress management techniques.</td>
+<td>-0.048093</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">44</td>
+<td>Patient with history of stroke presented with dizziness. Follow-up brain scan scheduled to rule out recurrence.</td>
+<td>-0.053002</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>Patient presented with signs of depression. Recommended seeking a psychologist for cognitive behavioral therapy and prescribed low dose antidepressant.</td>
+<td>-0.057786</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>Patient suffering from high fevers and weight loss. Ordered comprehensive bloodwork to assess for possible infectious disease.</td>
+<td>-0.059315</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>Patient suffered a minor burn in the kitchen. Prescribed topical ointment and advised on wound care.</td>
+<td>-0.062896</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>Post-surgical patient reported redness and discomfort around stitches. Diagnosed with a mild post-operative infection. Prescribed antibiotics and wound care guidance.</td>
+<td>-0.068201</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Patient came in with complaints of stomachache. Upon examination, no obvious signs of appendicitis or gallstones were found. Recommended patient to undergo an ultrasound to assess internal organs.</td>
+<td>-0.074738</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>Child patient presented with red, itchy eyes. Diagnosed as viral conjunctivitis. Instructed parents about proper eye care and hand hygiene.</td>
+<td>-0.077558</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>Patient presented with chest pain. Preliminary assessment ruled out heart conditions. Recommended gastroenterology consult to check for possible reflux disease.</td>
+<td>-0.080826</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26</td>
+<td>Patient presented with severe knee pain. Suspected ligament tear. Recommended MRI scan.</td>
+<td>-0.081825</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>Historically anxious patient reported increased panic attacks recently. Referred to psychiatrist for therapeutic support, prescribed low-dose anxiolytic.</td>
+<td>-0.083702</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">49</td>
+<td>Patient presented with dislocated shoulder. After successful relocation, advised sling use and gentle mobility exercises for rehabilitation.</td>
+<td>-0.091579</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Patient presented signs of common cold; symptoms include a runny nose and mild fever. Advised rest, hydration, and over-the-counter medication to manage symptoms.</td>
+<td>-0.097242</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Patient presented with symptoms of influenza including fever, cough, and body aches. Prescribed antiviral medication and recommended rest and plenty of fluids.</td>
+<td>-0.100791</td>
+<td>acute</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">40</td>
+<td>Patient showed symptoms of urinary tract infection. Collected sample for testing and started preliminary antibiotic treatment.</td>
+<td>-0.101196</td>
+<td>acute</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50</td>
+<td>Pregnant patient at full term demonstrated normal signs. Advised to prepare for labor and familiarize with signs of onset.</td>
+<td>-0.101702</td>
+<td>acute</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>While the results aren’t perfect, they’re certainly pretty impressive! Especially given how little code we had to write to achieve it!</p>
+<p>Hopefully, this tutorial has given you some ideas to try in your own work. But keep in mind that this is a rapidly evolving field, and the specific pieces of code used here may or may not work in the future as things continue to shift.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="rlbarter/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

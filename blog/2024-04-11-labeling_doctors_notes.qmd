@@ -1,0 +1,331 @@
+---
+title: "AI Tutorial: Using Text Embeddings to Label Synthetic Doctor's Notes Generated with ChatGPT"
+author: "Rebecca Barter"
+format:
+  html:
+    toc: true
+    toc-location: left
+categories: [data science, generative AI, ChatGPT, OpenAI, machine learning]
+date: 2024-04-11
+image: img/openai_ehr/doctors_notes_ai.png
+description: "I've been playing around with OpenAI and ChatGPT in my research, and I thought I'd put together a short tutorial that demonstrates using ChatGPT API to generate synthetic doctor's notes, and then using OpenAI's text embedding models to label the notes according to whether they involve a chronic or acute condition. And yes, I'm fully aware that what I write here will probably be out of date in about 3 hours."
+editor_options: 
+  chunk_output_type: console
+---
+<p align="center">
+![](img/openai_ehr/doctors_notes_ai.png){fig-alt='An image created by dall-e-3 using the name of this blog post as the prompt. The image contains a brain in the center connected using circuitry to a code console, with various viruses and other things floating around, and a doctor conducting a medical exam of what seems to be another doctor' width=70% height=70%}
+</p>
+
+> **Warning:** If you're reading this post more than 3 hours after it was posted, some (maybe all) of the information it contains will probably be out of date.
+
+
+Hello friends, welcome to the new rapidly evolving world of AI. Even the wacky image that you see at the top of this blog was created using AI (specifically, using dall-e-3), just for this blog post! 
+
+Like me, I'm sure you're dwelling on the question of whether AI is going to take all of our jobs. I think, for now, I've settled on the opinion that for those of us who adapt and learn to work *with* AI, our jobs are pretty safe. However, there is no question that AI is going to fundamentally *change* our jobs, hopefully for the better. In my day-to-day I have already found that GitHub Copilot has boosted my coding efficiency, chatGPT has boosted my efficiency for mundane writing tasks, and the various other ways that AI has snuck into my workday are probably helping me out in other ways too. 
+
+And, as you'll see in this blog post, using the tools provided by OpenAI, NLP tasks like generating synthetic text, and labeling mass amounts of text data are now fairly straightforward too.
+
+In this blog post, I will walk through an example of generating a small collection of synthetic doctor's notes using chatGPT and then using text OpenAI's embedding models to automatically label these doctor's notes in terms of whether they correspond to a patient experiencing a chronic or an acute event. Fortunately, the [documentation provided on the OpenAI website](https://platform.openai.com/docs/overview) is very good, and that will certainly be the best point of reference. 
+
+
+
+Note that, for now, if you want to use these tools effectively, you'll want to be fairly proficient in Python (if you're an R user who is interested in learning Python, check out my ["An introduction to Python for R Users"](https://rebeccabarter.com/blog/2023-09-11-from_r_to_python) blog post).
+
+## Getting set up
+
+As usual, the first thing you'll want to do is to import the libraries you'll need.
+
+```{python}
+import pandas as pd
+from scipy.spatial.distance import cosine
+from openai import OpenAI
+
+pd.set_option('display.max_colwidth', None)
+```
+
+
+
+```{python}
+#| echo: false
+with open('../../tokens_keys/openai.txt', 'r') as file:
+  your_key = file.read().strip()
+```
+
+
+Then you'll need to set up your OpenAI API key. An API key is literally a jumble of letters that OpenAI uses to identify you so that they can track your usage. After you create an OpenAI account, see the [OpenAI API keys website](https://platform.openai.com/api-keys) for information on creating an API key. 
+
+
+
+Once you have created an API key, and you have saved it somewhere on your computer, say in a file called "api_key.txt", you will need to use it to connect to the OpenAI client. 
+
+To do this, either create a local variable called `your_key` or read in your key from your text file using code like the following:
+
+```{python}
+#| eval: false
+with open('api_key.txt', 'r') as file:
+  your_key = file.read().strip()
+
+```
+
+Then you can set up your OpenAI client which is how you will connect to the OpenAI API:
+
+```{python}
+# Define a local variable called `your_key` that contains your OpenAI key.
+# Try really hard to avoid writing your key in your notebook
+# And when you do, try even harder to avoid uploading it to GitHub
+client = OpenAI(api_key=your_key)
+```
+
+Note that it is **really, really important** that you do not write your API key in plain text in your notebook file, especially if you are going to upload your notebook publicly to GitHub. This would allow someone else to pretend to be you and use your OpenAI account.
+
+Instead, you will want to only ever define your key in a local variable (that is not saved in your code) or load it in from a file that should *not* be uploaded to GitHub!
+
+
+Once you're set up, let's generate some fake doctor's notes to analyze!
+
+
+## Creating synthetic doctor's notes with chatGPT
+
+The first thing I did was use chatGPT-4 to create a collection of synthetic doctor's notes.
+
+Note that at the time of writing, you have to pay to access chatGPT-4 through the API. If you don't want to pay OpenAI, you can replace `model="gpt-4"` with `model="gpt-3.5-turbo"`, which is currently free (but is also less good). 
+
+The following code uses chatGPT-4 to generate 50 doctor's notes using the prompt: 
+
+> "Provide a collection of 50 doctors notes that resemble the kind that you would enter into an EHR for your patients on a day-to-day basis. Each note should have around 3 sentences. Each note should appear on a new line. Do not add any numbers or superfluous text."
+
+```{python}
+#| eval: false
+completion = client.chat.completions.create(
+  model="gpt-4",
+  messages=[
+    {"role": "system", 
+     "content": "You are a doctor working in a large hospital."},
+    {"role": "user",
+     "content": """Provide a collection of 50 doctors notes that 
+                   resemble the kind that you would enter into an 
+                   EHR for your patients on a day-to-day basis. 
+                   Each note should have around 3 sentences. 
+                   Each note should appear on a new line.
+                   Do not add any numbers or superfluous text."""}
+  ]
+)
+```
+
+The text created by ChatGPT can be extracted using `completion.choices[0].message.content`. But since this is just one big string value, I want to use the `.split` method to separate each note into a list element.
+
+```{python}
+#| eval: false
+# extract the notes and place them in a list, where each list element is detected by the presence of a line break ('\n')
+notes_list = completion.choices[0].message.content.split('\n')
+```
+
+Since the output provided tended to add additional blank lines between the notes (even when I asked it not to), I used the following code to remove any entries in my `notes_list` that contain blank strings:
+
+```{python}
+#| eval: false
+# remove any empty notes
+# may or may not be required for you
+notes_list = [note for note in notes_list if note != '']
+# place the notes in a DataFrame
+notes_df = pd.DataFrame({'notes': notes_list}) 
+```
+
+
+```{python}
+#| echo: false
+#| eval: false
+# save the results in a .csv file on my computer 
+pd.DataFrame(notes_df.to_csv("data/doctors_notes.csv"))
+```
+
+Let's take a look at the notes it created:
+
+
+```{python}
+#| echo: false
+notes_df = pd.read_csv("data/doctors_notes.csv", index_col=0)
+```
+
+
+```{python}
+# look at the first 5
+notes_df.head(5)
+```
+
+
+However, since chatGPT returns a different collection of notes every time, you can load the notes I created above using the following code (if you prefer to follow along with my doctor's notes, that is):
+
+```{python}
+notes_df = pd.read_csv("https://raw.githubusercontent.com/rlbarter/personal-website-quarto/main/blog/data/doctors_notes.csv", index_col=0)
+```
+
+If you just loaded the notes using the URL above, take a look at the first 5 notes.
+
+```{python}
+# look at the first 5
+notes_df.head(5)
+```
+
+
+## Computing text embeddings
+
+My goal in the rest of this post will be to identify whether each note corresponds to a patient with a *chronic* condition (which I define as a condition that they have been experiencing for more than one month) or an *acute* condition (e.g., a new condition). 
+
+To do this, I will use something called **text embeddings**. The idea is that I will use OpenAI's pre-trained text embedding models to embed each note into a numeric 1,536-dimensional that somehow approximately respects semantic distance. 
+
+The equivalent of this in a two-dimensional world would be taking each individual doctor's note and placing it on a scatterplot so that notes that we might intuitively consider to be more "similar" to one another are closer together in the plot, and notes that we might consider to be more "different" from one another are further apart. Unfortunately, it is unlikely that we would be able to come up with any two quantifiable values that we could use to define the two axes of our scatterplot, such that when we place each note in the scatterplot we achieve our desired property that "similar" notes are closer together. But it turns out that once your space has, say, 1,536 dimensions, this task somehow becomes possible (although what each dimension/axis represents is not necessarily going to be meaningful to us). 
+
+
+Fortunately, OpenAI has already trained some general text embedding models that we can use to embed each of the doctor's notes in such a 1,536-dimensional space. In this post, I will be using the "*text-embedding-3-small*" OpenAI model to compute the text embeddings. 
+
+
+
+
+After computing the embeddings, our task becomes determining how close each doctor's note is to the embedding of the following text: _**"Patient presenting with ongoing chronic condition defined as ongoing for more than one month"**_, which I will call the **target**. The closer a note's embedding is to the target's embedding, the more likely the note corresponds to a patient who is presenting with a chronic condition! 
+
+I hear you. That sounds crazy, right? But it works... eerily well! Let me show you. 
+
+First, I need to compute the embeddings for each of the chatGPT-generated doctor's notes. I can do that using this custom function `get_embedding()` function that I literally just copy-and-pasted from the OpenAI documentation:
+
+```{python}
+def get_embedding(text, model="text-embedding-3-small"):
+   text = text.replace("\n", " ")
+   return client.embeddings.create(input = [text], model=model).data[0].embedding
+```
+
+This function basically takes a string `text`, and uses the "text-embedding-3-small" model to create a list of 1,536 numbers corresponding to the 1,536-dimensional embedding of the text entry.
+
+For example, the following code creates an embedding of the text "hello, how are you":
+
+```{python}
+get_embedding('hello, how are you')
+```
+
+Next, I can apply this function to each of the notes stored in the `notes` column of the `notes_df` DataFrame, and save it in a new column of the DataFrame called `embedding`:
+
+
+```{python}
+notes_df['embedding'] = notes_df['notes'].apply(lambda x: get_embedding(x))
+```
+
+Below, I show the first 5 rows. You can see that there is a new column containing a collection of 1,536-length lists corresponding to the note's embedding.
+
+```{python}
+notes_df.head(5)
+```
+
+Since I will want to compute the cosine distance to the "target" (*"Patient presenting with ongoing chronic condition defined as ongoing for more than one month"*), I will also need to compute the embedding of the label. 
+
+
+```{python}
+target = 'Patient presenting with ongoing chronic condition defined as ongoing for more than one month'
+# Compute embedding of the target
+target_embedding = get_embedding(target)
+```
+
+## Computing the cosine distance from the target
+
+Now that I have all of my embeddings, I need to compute the *cosine distance* from each doctor's note's embedding to this target embedding. Below, I compute and save this cosine distance in a new column of `notes_df` called `cosine_dist` (note that a *lower* `cosine_dist` value corresponds to a doctor's note that is more similar to the target: *"Patient presenting with ongoing chronic condition defined as ongoing for more than one month"*). 
+
+
+```{python}
+notes_df['cosine_dist'] = notes_df.embedding.apply(lambda x: cosine(x, target_embedding))
+```
+
+You can see that the final column in `notes_df` is now the cosine distance:
+
+```{python}
+notes_df.head(5)
+```
+
+And that's it! Let's take a look at the notes in order of smallest to largest `cosine_dist`. 
+
+Ideally, I will see that the notes at the top of the rearranged DataFrame correspond to patients with chronic conditions, and the notes at the bottom correspond to patients with acute conditions.
+
+The top 5 notes are:
+
+
+```{python}
+pd.set_option('display.max_colwidth', None)
+notes_df.sort_values('cosine_dist')[['notes', 'cosine_dist']].head(5)
+```
+
+Those all seem like patients with chronic conditions to me!
+
+And the bottom 5 notes are:
+
+```{python}
+notes_df.sort_values('cosine_dist')[['notes', 'cosine_dist']].tail(5)
+```
+
+These definitely seem like new/acute conditions!
+
+If you're interested in looking at all of the distances, see the following output (remember that the smaller the distance, the closer the note to the chronic condition target):
+
+```{python}
+notes_df.sort_values('cosine_dist')[['notes', 'cosine_dist']]
+```
+
+It definitely seems like it did a pretty good job here (although to be fair, OpenAI did all the hard lifting!)
+
+## Zero-shot Binary classification
+
+The above approach provides each doctor's note with a score (cosine distance) relative to a target (*"Patient presenting with ongoing chronic condition defined as ongoing for more than one month"*). But if I wanted to use this to create a binary label, I would need to come up with a threshold so that everyone whose cosine distance to the target is below, say 0.6, is classified as "presenting with a chronic condition", in which case, everyone whose cosine distance to the target is above 0.6 is classified as "presenting with an acute condition". 
+
+That approach sounds okay, but it turns out that there's a (hypothetically) better way. 
+
+Instead of just computing the distance to a single target, I can compute two distances for each doctor's note: 
+
+1. the distance to a positive label (corresponding to the original target: *"Patient presenting with ongoing chronic condition defined as ongoing for more than one month"*)
+
+2. the distance to a negative label (*"Patient presenting with acute or new condition"*)
+
+Then, each note is classified based on which label text its embedding is closest to.
+
+The code for doing this is very similar to the code above. 
+
+Fortunately, I don't need to recompute the embeddings for the notes, but I do need to compute the embedding for the new negative label. 
+
+
+
+```{python}
+labels = [
+  'Patient presenting with ongoing chronic condition defined as ongoing for more than one month',
+  'Patient presenting with acute or new condition'
+]
+# Compute embedding of the labels
+label_embeddings = [get_embedding(label) for label in labels]
+```
+
+Then I need to compute the difference between the cosine distance to the first label and the cosine distance to the second label (to determine which label the note is closest to).
+
+
+```{python}
+# compute the difference in the cosine distances to the two labels for each note
+notes_df['cosine_score_binary'] = [cosine(x, label_embeddings[1]) - cosine(x, label_embeddings[0]) for x in notes_df['embedding']]
+```
+
+I have saved this `cosine_score_binary` in a new column in the DataFrame:
+
+```{python}
+notes_df[['notes', 'cosine_score_binary']].head()
+```
+
+A positive `cosine_score_binary` value means that the note is closer to the first label, *"Patient presenting with ongoing chronic condition defined as ongoing for more than one month"* (i.e., the distance to the second label is greater than the distance to the first label), and a negative value means that the note is closer to the second label, *"Patient presenting with acute or new condition"*.
+
+I can use this to create a binary classification for each note.
+
+```{python}
+notes_df['chronic_assessment'] = ['chronic' if score > 0 else 'acute' for score in notes_df['cosine_score_binary']]
+```
+
+Then I can view the results in descending order of the `cosine_score_binary` so that the first notes are those that are deemed most *chronic* and least *acute*:
+
+```{python}
+notes_df[['notes', 'cosine_score_binary', 'chronic_assessment']].sort_values('cosine_score_binary', ascending=False)
+```
+
+While the results aren't perfect, they're certainly pretty impressive! Especially given how little code we had to write to achieve it!
+
+Hopefully, this tutorial has given you some ideas to try in your own work. But keep in mind that this is a rapidly evolving field, and the specific pieces of code used here may or may not work in the future as things continue to shift. 
