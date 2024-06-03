@@ -218,7 +218,7 @@ My general workflow involves loading the original data and saving it as an objec
 
 ```{r message=FALSE, warning=FALSE}
 # to download the data directly:
-gapminder_orig <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
+gapminder_orig <- read.csv("https://raw.githubusercontent.com/rlbarter/personal-website-quarto/main/blog/data/gapminder.csv")
 # define a copy of the original dataset that we will clean and play with 
 gapminder <- gapminder_orig
 ```

@@ -2,38 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.rebeccabarter.com/blog.html</loc>
-    <lastmod>2024-04-11T22:43:07.471Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.517Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/index.html</loc>
-    <lastmod>2024-04-11T22:36:44.283Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.667Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse.html</loc>
-    <lastmod>2023-03-24T17:27:08.242Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.531Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_pt2.html</loc>
-    <lastmod>2023-03-24T17:27:37.247Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.533Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2023-03-28-data_sources.html</loc>
-    <lastmod>2023-03-28T16:48:46.358Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.535Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/consulting.html</loc>
-    <lastmod>2024-04-11T22:43:07.629Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.667Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/about.html</loc>
-    <lastmod>2024-04-11T22:43:07.471Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.517Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python.html</loc>
-    <lastmod>2023-09-12T17:22:42.623Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.535Z</lastmod>
   </url>
   <url>
     <loc>https://www.rebeccabarter.com/blog/2024-04-11-labeling_doctors_notes.html</loc>
-    <lastmod>2024-04-11T22:31:18.058Z</lastmod>
+    <lastmod>2024-06-03T08:58:55.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2019-08-19_purrr.html</loc>
+    <lastmod>2024-06-03T09:01:16.193Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-07-05-ip-weighting.html</loc>
+    <lastmod>2024-06-03T08:58:55.519Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2018-05-23-instrumental_variables.html</loc>
+    <lastmod>2024-06-03T08:58:55.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-06-27-colors.html</loc>
+    <lastmod>2024-06-03T08:58:55.519Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-02-02-superheat-example.html</loc>
+    <lastmod>2024-06-03T08:58:55.518Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-03-7-docathon.html</loc>
+    <lastmod>2024-06-03T08:58:55.518Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2.html</loc>
+    <lastmod>2024-06-03T08:58:55.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2020-07-09-across.html</loc>
+    <lastmod>2024-06-03T08:58:55.534Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2020-03-25_machine_learning.html</loc>
+    <lastmod>2024-06-03T08:58:55.534Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-04-20-interactive.html</loc>
+    <lastmod>2024-06-03T08:58:55.519Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial.html</loc>
+    <lastmod>2024-06-03T08:58:55.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-08-16-data-science-workflow.html</loc>
+    <lastmod>2024-06-03T08:58:55.520Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2019-03-07_reproducible_pipeline.html</loc>
+    <lastmod>2024-06-03T08:58:55.531Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2020-07-30-applied-statistics-universities.html</loc>
+    <lastmod>2024-06-03T08:58:55.534Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-02-05-superheat-cran.html</loc>
+    <lastmod>2024-06-03T08:58:55.518Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2019-01-23_scoped-verbs.html</loc>
+    <lastmod>2024-06-03T08:58:55.531Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-02-17-anova.html</loc>
+    <lastmod>2024-06-03T08:58:55.518Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf.html</loc>
+    <lastmod>2024-06-03T08:58:55.534Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars.html</loc>
+    <lastmod>2024-06-03T08:58:55.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2018-12-04_hypothesis_testing.html</loc>
+    <lastmod>2024-06-03T08:58:55.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-11-17-caret_tutorial.html</loc>
+    <lastmod>2024-06-03T08:58:55.521Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2023-03-21-quarto-website.html</loc>
+    <lastmod>2024-06-03T08:58:55.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2020-02-03_blogger.html</loc>
+    <lastmod>2024-06-03T08:58:55.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2019-06-06_pre_processing.html</loc>
+    <lastmod>2024-06-03T08:58:55.531Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-02-02-how-to-present-good.html</loc>
+    <lastmod>2024-06-03T08:58:55.518Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-06-29-website.html</loc>
+    <lastmod>2024-06-03T08:58:55.519Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rebeccabarter.com/blog/2017-07-05-confounding.html</loc>
+    <lastmod>2024-06-03T08:58:55.519Z</lastmod>
   </url>
 </urlset>

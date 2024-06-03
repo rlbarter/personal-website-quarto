@@ -2465,6 +2465,7 @@ font-style: inherit;">False</span>)</span></code></pre></div>
 
 
 
+
 <p><img src="https://www.rebeccabarter.com/blog/img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg" class="img-fluid" alt="The python logo on a floating disc"></p>
 <p>I have a confession to make: I am now a Python user. To be fair, I’ve used Python here and there over the years, but it was never my primary language (that has always been R). This year was the first time I had to actually sit down and really <em>use</em> Python for real projects. In fact, not only did I have to use Python, but I also had to <em>teach</em> Python. For those of you who teach, you’ll know that the best way to make sure you know something really well is to teach it. The end result is that I now consider myself a Python user. (But don’t worry, I’m still an R Lady at heart.)</p>
 <p>Why did I decide to learn Python? I’ve been using R my whole data science life, and while I still think that R (with the tidyverse) is still the best language for data wrangling and data visualization, there is no denying that as a data scientist these days, Python is a required skill. If you’re doing machine learning, Python is still light-years ahead of R. If you’re working with software engineers, they’re going to be much happier working with you if you use Python. If you’re looking for a job, you’re going to be much more employable if you’re already comfortable with Python.</p>
@@ -3635,7 +3636,11 @@ Name: gdpPercap, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb119" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1">gdp_by_continent.plot()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>By default a line plot is created and the row index is used as the x-axis labels by default. The DataFrame’s <code>plot()</code> method here acts as a wrapper for the matplotlib library’s plotting function.</p>
@@ -3643,7 +3648,11 @@ Name: gdpPercap, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb120" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1">gdp_by_continent.plot.bar()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-61-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-61-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Again, the row index of the Series object is used as the x-axis labels by default.</p>
@@ -3659,7 +3668,11 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'lifeExp'</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-62-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python_files/figure-html/unnamed-chunk-62-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>While these built-in pandas plots are fine, I personally prefer the look of the seaborn library and the workflow of the plotly express library, neither of which I’ve covered in this post (and neither of which are as good as ggplot2 in my opinion). I recommend you look into both of these libraries (and more!) to figure out the data visualization workflow you prefer!</p>
@@ -3686,6 +3699,7 @@ font-style: inherit;">'lifeExp'</span>)</span></code></pre></div>
 
 
 
+
 <p><img src="https://www.rebeccabarter.com/blog/img/data/ivo-rainha-0rzUepBXHN0-unsplash.jpg" class="img-fluid" alt="A large, beautiful library"></p>
 <p>I spend a lot of my time developing educational materials for data science, and since I always teach from a real-data perspective, this means that I spend a lot of my time looking for datasets. This blog post summarizes the first places I go when looking for a new dataset to play around with.</p>
 <p>While there are big data repositories like Kaggle, UCI Machine Learning repository, and data.gov, I often find more useful datasets in smaller, more curated repositories, which are often compiled by just one person, rather than being a massive repository of open datasets.</p>
@@ -3693,61 +3707,37 @@ font-style: inherit;">'lifeExp'</span>)</span></code></pre></div>
 <h1>My go-to smaller, more curated repositories</h1>
 <section id="tidy-tuesday" class="level2">
 <h2 class="anchored" data-anchor-id="tidy-tuesday">Tidy Tuesday</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://github.com/rfordatascience/tidytuesday"><img src="https://www.rebeccabarter.com/blog/img/data/tidy_tuesday.png" class="img-fluid figure-img" alt="Tidy Tuesday logo"></a></p>
-</figure>
-</div>
+<p><a href="https://github.com/rfordatascience/tidytuesday"><img src="https://www.rebeccabarter.com/blog/img/data/tidy_tuesday.png" class="img-fluid" alt="Tidy Tuesday logo"></a></p>
 <p>Link: <a href="https://github.com/rfordatascience/tidytuesday">https://github.com/rfordatascience/tidytuesday</a></p>
 <p>Tidy Tuesday is much more than “just a data repository”. Tidy Tuesday is an entire community, originally brought together by <a href="https://themockup.blog/">Tom Mock</a> to help people improve their data analysis and visualization skills using R. Tidy Tuesday provides weekly data sets and data exploration challenges, with thousands of participants from all around the world sharing their work, offering feedback, and collaborating on projects. Whether you are a seasoned data professional or just starting out, Tidy Tuesday is an excellent resource for learning and growth in the data science field.</p>
 </section>
 <section id="data-is-plural" class="level2">
 <h2 class="anchored" data-anchor-id="data-is-plural">Data is plural</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://www.data-is-plural.com/"><img src="https://www.rebeccabarter.com/blog/img/data/data_is_plural.png" class="img-fluid figure-img" alt="Data is plural homepage"></a></p>
-</figure>
-</div>
+<p><a href="https://www.data-is-plural.com/"><img src="https://www.rebeccabarter.com/blog/img/data/data_is_plural.png" class="img-fluid" alt="Data is plural homepage"></a></p>
 <p>Link: <a href="https://www.data-is-plural.com/">https://www.data-is-plural.com/</a></p>
 <p>“<em>Data is Plural</em>” is a weekly newsletter of “useful/curious datasets”, published by <a href="https://www.jsvine.com/">Jeremy Singer-Vine</a>. The Data is Plural newsletter is delivered each week straight to your inbox and typically features a curated collection of recent and relevant high-quality and diverse datasets from a wide range of domains, including economics, sports, politics, science, and more.</p>
 </section>
 <section id="flowingdata" class="level2">
 <h2 class="anchored" data-anchor-id="flowingdata">FlowingData</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://flowingdata.com/"><img src="https://www.rebeccabarter.com/blog/img/data/flowing_data.png" class="img-fluid figure-img" alt="Flowing data homepage"></a></p>
-</figure>
-</div>
+<p><a href="https://flowingdata.com/"><img src="https://www.rebeccabarter.com/blog/img/data/flowing_data.png" class="img-fluid" alt="Flowing data homepage"></a></p>
 <p>Link: <a href="https://flowingdata.com/">https://flowingdata.com/</a></p>
 <p>While it is not technically a data repository, <a href="https://flowingdata.com/about">Nathan Yau’s</a> website <a href="https://flowingdata.com/">FlowingData</a> contains a range of detailed visualizations and analyses of a range of interesting datasets, and he always provides a reference to the datasets that underlie his articles. Yau also offers a range of courses and tutorials for readers who are intersted in improving their data visualization and analysis skills</p>
 </section>
 <section id="fivethirtyeight" class="level2">
 <h2 class="anchored" data-anchor-id="fivethirtyeight">FiveThirtyEight</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://github.com/fivethirtyeight/data"><img src="https://www.rebeccabarter.com/blog/img/data/five_thirty_eight.jpg" class="img-fluid figure-img" alt="FiveThirtyEight Logo"></a></p>
-</figure>
-</div>
+<p><a href="https://github.com/fivethirtyeight/data"><img src="https://www.rebeccabarter.com/blog/img/data/five_thirty_eight.jpg" class="img-fluid" alt="FiveThirtyEight Logo"></a></p>
 <p>Link: <a href="https://data.fivethirtyeight.com/">https://data.fivethirtyeight.com/</a> (gihub repo: <a href="https://github.com/fivethirtyeight/data">https://github.com/fivethirtyeight/data</a>)</p>
 <p><a href="https://fivethirtyeight.com/">FiveThirtyEight</a>, originally a blog created by Nate Silver, and now a large journalism site provides copies of the data that underlies their data-driven articles on <a href="https://github.com/fivethirtyeight/data">github</a>. Since FiveThirtyEight’s initial focus was political polls and elections (and I guess since Nate Silver is into sports), much of their data tends to be political and sports-related, but there are also other data goodies to be found in their repo too.</p>
 </section>
 <section id="propublica" class="level2">
 <h2 class="anchored" data-anchor-id="propublica">ProPublica</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://www.propublica.org/datastore/"><img src="https://www.rebeccabarter.com/blog/img/data/pro_publica.png" class="img-fluid figure-img" alt="ProPublica Data Store homepage"></a></p>
-</figure>
-</div>
+<p><a href="https://www.propublica.org/datastore/"><img src="https://www.rebeccabarter.com/blog/img/data/pro_publica.png" class="img-fluid" alt="ProPublica Data Store homepage"></a></p>
 <p>Link: <a href="https://www.propublica.org/datastore/datasets">https://www.propublica.org/datastore/datasets</a></p>
 <p>ProPublica, a non-profit investigative journalism outfit, provides a large number of datasets for free (and even more for a premium membership fee). I honestly haven’t used this resource much myself, but I’ve been aware of it, and it seems to have some fairly interesting datasets at first glance!</p>
 </section>
 <section id="inbuilt-datasets-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="inbuilt-datasets-in-r">Inbuilt datasets in R</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html"><img src="https://www.rebeccabarter.com/blog/img/data/r.png" class="img-fluid figure-img" alt="The page displaying the list of datasets from the &quot;Datasets&quot; R package"></a></p>
-</figure>
-</div>
+<p><a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html"><img src="https://www.rebeccabarter.com/blog/img/data/r.png" class="img-fluid" alt="The page displaying the list of datasets from the &quot;Datasets&quot; R package"></a></p>
 <p>Link: <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html">https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html</a></p>
 <p>Sometimes, when I need something quick-and-dirty, the inbuilt datasets in R will do the job! You can look at the list of datasets available in R by typing <code>data()</code> in R. They are also listed <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html">here</a>.</p>
 <p>There are also several packages that import datasets along with their functions, including ggplot2. You can look at the specific packages that are loaded with a package using the <code>package</code> argument in the <code>data()</code> function, for example:</p>
@@ -3767,51 +3757,31 @@ font-style: inherit;">"ggplot2"</span>)</span></code></pre></div>
 <p>In addition to these smaller more curated data repositories, there are also several very large data repositories created by Google, Amazon, etc. However, due to the sheer volume of data available on these websites, I personally find these resources to be the most helpful when I already know what I’m looking for.</p>
 <section id="uci-machine-learning-repository" class="level2">
 <h2 class="anchored" data-anchor-id="uci-machine-learning-repository">UCI Machine Learning repository</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://archive.ics.uci.edu/ml/index.php"><img src="https://www.rebeccabarter.com/blog/img/data/uci.png" class="img-fluid figure-img" alt="UCI Machine Learning Repository Logo"></a></p>
-</figure>
-</div>
+<p><a href="https://archive.ics.uci.edu/ml/index.php"><img src="https://www.rebeccabarter.com/blog/img/data/uci.png" class="img-fluid" alt="UCI Machine Learning Repository Logo"></a></p>
 <p>Link: <a href="https://archive.ics.uci.edu/ml/index.php">https://archive.ics.uci.edu/ml/index.php</a></p>
 <p>The UCI Machine Learning repository is a public dataset repository maintained by the Machine Learning Group at the University of California, Irvine. The datasets are typically organized into the type of machine learning problem they can be used for, but they come from various domains, including biology, finance, social sciences, and engineering. If I’m being honest, the UCI Machine Learning repository is fairly “old-school”, and much of what you can find on the UCI ML repository can also now be found on Kaggle.</p>
 </section>
 <section id="kaggle" class="level2">
 <h2 class="anchored" data-anchor-id="kaggle">Kaggle</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://www.kaggle.com/"><img src="https://www.rebeccabarter.com/blog/img/data/kaggle.png" class="img-fluid figure-img" alt="Kaggle Logo"></a></p>
-</figure>
-</div>
+<p><a href="https://www.kaggle.com/"><img src="https://www.rebeccabarter.com/blog/img/data/kaggle.png" class="img-fluid" alt="Kaggle Logo"></a></p>
 <p>Link: <a href="https://www.kaggle.com/">https://www.kaggle.com/</a></p>
 <p>Kaggle began as a machine learning competition platform, and by nature of machine learning competitions, kaggle has also ended up being a place that hosts a wide range of datasets that are particularly well-suited to machine learning applications (the datasets for all past challenges can be downloaded from the Kaggle Website).</p>
 </section>
 <section id="google-dataset-search" class="level2">
 <h2 class="anchored" data-anchor-id="google-dataset-search">Google Dataset Search</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://datasetsearch.research.google.com/"><img src="https://www.rebeccabarter.com/blog/img/data/google.png" class="img-fluid figure-img" alt="Google Dataset Searchbar"></a></p>
-</figure>
-</div>
+<p><a href="https://datasetsearch.research.google.com/"><img src="https://www.rebeccabarter.com/blog/img/data/google.png" class="img-fluid" alt="Google Dataset Searchbar"></a></p>
 <p>Link: <a href="https://datasetsearch.research.google.com/">https://datasetsearch.research.google.com/</a></p>
 <p>Google Dataset Search is… well… Google but for datasets. As a search engine specifically designed for finding datasets, it provides access to a wide range of datasets from various sources and domains, including research publications and government databases. My issue with Google Dataset Search, however, is that you basically already need to know what you’re looking for in order to search for it. It is a great resource for people looking for datasets on specific topics though.</p>
 </section>
 <section id="amazon-web-services-registry-of-open-data" class="level2">
 <h2 class="anchored" data-anchor-id="amazon-web-services-registry-of-open-data">Amazon Web Services Registry of Open Data</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://registry.opendata.aws/"><img src="https://www.rebeccabarter.com/blog/img/data/amazon.png" class="img-fluid figure-img" alt="AWS logo"></a></p>
-</figure>
-</div>
+<p><a href="https://registry.opendata.aws/"><img src="https://www.rebeccabarter.com/blog/img/data/amazon.png" class="img-fluid" alt="AWS logo"></a></p>
 <p>Link: <a href="https://registry.opendata.aws/">https://registry.opendata.aws/</a></p>
 <p>Amazon Web Services provides access to a large collection of public datasets that can be used for research and development projects. As far as I can tell, the focus is on medical and environmental datasets. These datasets are hosted on the Amazon cloud infrastructure, and can be accessed using Amazon Web Services tools.</p>
 </section>
 <section id="data.gov" class="level2">
 <h2 class="anchored" data-anchor-id="data.gov">data.gov</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://data.gov/"><img src="https://www.rebeccabarter.com/blog/img/data/datagov.png" class="img-fluid figure-img" alt="Data.gov logo"></a></p>
-</figure>
-</div>
+<p><a href="https://data.gov/"><img src="https://www.rebeccabarter.com/blog/img/data/datagov.png" class="img-fluid" alt="Data.gov logo"></a></p>
 <p>Link: <a href="https://data.gov/">https://data.gov/</a></p>
 <p>data.gov is a government-owned online platform that provides public access to a vast collection of datasets from different federal agencies in the United States, which includes demographic data, weather data, environmental data, and economic data, among others.</p>
 <!-- # Domain-specific datasets -->
@@ -3840,6 +3810,7 @@ font-style: inherit;">"ggplot2"</span>)</span></code></pre></div>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2023-03-21-quarto-website.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3883,6 +3854,7 @@ font-style: inherit;">"ggplot2"</span>)</span></code></pre></div>
 
 
 
+
 <p>I graduated with a PhD from UC Berkeley’s statistics department in December. My PhD dissertation consisted of three 100% applied projects (one of which was a piece of open-source software). This is, unfortunately, incredibly rare.</p>
 <p>Over the past few years, I’ve had a number of current and prospective statistics PhD students both at Berkeley and outside Berkeley get in touch with me to ask me how I made my way through a statistics PhD by working only on applied projects. My answer is always as follows: <em>I got lucky</em>. I ended up with an incredibly supportive and advisor, Bin Yu, who went out of her way to find applied projects for me, and was comfortable letting me spend time doing non-conventional things (like learn D3.js, work on my blog, and she even recruited me to be the co-author on a book on Data Science that she wanted to write based on her data science philosophy that she has developed throughout her career). I got a lot out of my PhD, and I’m incredibly grateful to Bin for her guidance. If you’re interested in Bin’s work, I recommend reading her paper, <a href="https://www.pnas.org/content/117/8/3920">Veridical Data Science</a>, which reflects the philosophy that underlies our book.</p>
 <p>Unfortunately, my experience is definitely not the norm, even in my own department. I’ve had so many upsetting conversations with fellow applied stats grad students about how they feel lost and unsupported, about how they’re struggling to find applied projects to work on, and when they do finally find a project, they end up having to fight to justify that their project is “statistical enough” to count towards their dissertation. I’ve had these conversations with students from a wide range of statistics departments, not just my own. I actually think that the Berkeley statistics department is a little better than a many other statistics departments on this front - at least at Berkeley it’s <em>possible</em> to graduate with purely applied projects, even if it’s not easy.</p>
@@ -3908,6 +3880,7 @@ font-style: inherit;">"ggplot2"</span>)</span></code></pre></div>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2020-07-09-across.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -4458,6 +4431,7 @@ font-style: inherit;">where</span>(is.numeric)))</span></code></pre></div>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2020-03-25_machine_learning.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -5313,7 +5287,7 @@ font-style: inherit;">x =</span> triceps))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-03-25_machine_learning_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-03-25_machine_learning_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -5930,7 +5904,11 @@ font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.rebeccabarter.com/blog/2020-03-25_machine_learning_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2020-03-25_machine_learning_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>If you’re familiar with purrr, you could use purrr functions to extract the predictions column using <code>pull()</code>. The following code does almost the same thing as <code>collect_predictions()</code>. You could similarly have done this with the <code>.metrics</code> column.</p>
@@ -6137,6 +6115,7 @@ font-style: inherit;">$</span>variable.importance</span></code></pre></div>
 
 
 
+
 <p>This was my second year attending rstudio::conf() as a diversity scholar (and my first time as a <a href="http://www.rebeccabarter.com/blog/2020-02-03_blogger/">speaker</a>), and I was yet again blown away by the friendliness of the community and the quality of the talks. Over the course of the week, I met so many wonderful and talented humans, and learnt so many incredibly useful things. This post is all about the little tips and tricks that I picked up from watching many fantastic presentations, attendees live tweeting, and having many insightful conversations.</p>
 <section id="tip-1-tidy-evaluation" class="level1">
 <h1>Tip 1: Tidy evaluation</h1>
@@ -6218,13 +6197,13 @@ font-style: inherit;">"percbelowpoverty"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The above code didn’t throw an error, but this is literally plotting the <em>word</em> “popdensity” against the <em>word</em> “percbelowpoverty”, which isn’t what I wanted to do!</p>
-<p>The secret to providing column names as arguments to a function is…. tidy eval! Fortunately even without understanding <em>why</em> it works (something about delaying evaluation until later in the execution path blah blah blah), you can use tidy eval. The way you do this is to envelop your arguments within the function in curly braces <code>{{ }}</code>:</p>
+<p>The secret to providing column names as arguments to a function is…. tidy eval! Fortunately even without understanding <em>why</em> it works (something about delaying evaluation until later in the execution path blah blah blah), you can use tidy eval. The way you do this is to envelop your arguments within the function in curly braces <code>{ }</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">plotMidwestTidy <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -6255,7 +6234,7 @@ font-style: inherit;">plotMidwestTidy</span>(popdensity, percbelowpoverty)</span
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6272,7 +6251,7 @@ font-style: inherit;">"percbelowpoverty"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6309,7 +6288,7 @@ font-style: inherit;">"percbelowpoverty"</span>) </span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6522,7 +6501,7 @@ font-style: inherit;">x =</span> cut))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6617,7 +6596,7 @@ font-style: inherit;">"identity"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6645,7 +6624,7 @@ font-style: inherit;">y =</span> average_price))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6704,7 +6683,7 @@ font-style: inherit;">"#F0E6EF"</span>))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2020-02-05_rstudio_conf_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -6730,6 +6709,7 @@ font-style: inherit;">"#F0E6EF"</span>))</span></code></pre></div>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2020-02-03_blogger.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -6831,6 +6811,7 @@ font-style: inherit;">"https://raw.githubusercontent.com/adashofdata/muffin-cupc
 
 
 
+
 <blockquote class="blockquote">
 <p>“It was on the corner of the street that he noticed the first sign of something peculiar - a cat reading a map” - J.K. Rowling</p>
 </blockquote>
@@ -6838,7 +6819,7 @@ font-style: inherit;">"https://raw.githubusercontent.com/adashofdata/muffin-cupc
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/purrr/cat_map.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/purrr/cat_map.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -7316,7 +7297,7 @@ font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">read.csv</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv"</span>)</span>
+font-style: inherit;">"https://raw.githubusercontent.com/rlbarter/personal-website-quarto/main/blog/data/gapminder.csv"</span>)</span>
 <span id="cb31-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># define a copy of the original dataset that we will clean and play with </span></span>
@@ -7337,13 +7318,13 @@ font-style: inherit;">dim</span>(gapminder)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">head</span>(gapminder)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      country year      pop continent lifeExp gdpPercap
-1 Afghanistan 1952  8425333      Asia  28.801  779.4453
-2 Afghanistan 1957  9240934      Asia  30.332  820.8530
-3 Afghanistan 1962 10267083      Asia  31.997  853.1007
-4 Afghanistan 1967 11537966      Asia  34.020  836.1971
-5 Afghanistan 1972 13079460      Asia  36.088  739.9811
-6 Afghanistan 1977 14880372      Asia  38.438  786.1134</code></pre>
+<pre><code>      country continent year lifeExp      pop gdpPercap
+1 Afghanistan      Asia 1952  28.801  8425333  779.4453
+2 Afghanistan      Asia 1957  30.332  9240934  820.8530
+3 Afghanistan      Asia 1962  31.997 10267083  853.1007
+4 Afghanistan      Asia 1967  34.020 11537966  836.1971
+5 Afghanistan      Asia 1972  36.088 13079460  739.9811
+6 Afghanistan      Asia 1977  38.438 14880372  786.1134</code></pre>
 </div>
 </div>
 <p>Since <code>gapminder</code> is a data frame, the <code>map_</code> functions will iterate over each column. An example of simple usage of the <code>map_</code> functions is to summarize each column. For instance, you can identify the type of each column by applying the <code>class()</code> function to each column. Since the output of the <code>class()</code> function is a character, we will use the <code>map_chr()</code> function:</p>
@@ -7357,8 +7338,8 @@ font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map_chr</span>(class)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    country        year         pop   continent     lifeExp   gdpPercap 
-"character"   "integer"   "numeric" "character"   "numeric"   "numeric" </code></pre>
+<pre><code>    country   continent        year     lifeExp         pop   gdpPercap 
+"character" "character"   "integer"   "numeric"   "integer"   "numeric" </code></pre>
 </div>
 </div>
 <p>I frequently do this to get a quick snapshot of each column type of a new dataset directly in the console. As a habit, I usually pipe in the data using <code>%&gt;%</code>, rather than provide it as an argument. Remember that the pipe places the object to the left of the pipe in the first argument of the function to the right.</p>
@@ -7373,8 +7354,8 @@ font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map_dbl</span>(n_distinct)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  country      year       pop continent   lifeExp gdpPercap 
-      142        12      1704         5      1626      1704 </code></pre>
+<pre><code>  country continent      year   lifeExp       pop gdpPercap 
+      142         5        12      1626      1704      1704 </code></pre>
 </div>
 </div>
 <p>If you want to do something a little more complicated, such return a few different summaries of each column in a data frame, you can use <code>map_df()</code>. When things are getting a little bit more complicated, you typically need to define an anonymous function that you want to apply to each column. Using the tilde-dot notation, the anonymous function below calculates the number of distinct entries and the type of the current column (which is accessible as <code>.x</code>), and then combines them into a two-column data frame. Once it has iterated through each of the columns, the <code>map_df</code> function combines the data frames row-wise into a single data frame.</p>
@@ -7400,10 +7381,10 @@ font-style: inherit;">class</span>(.x))))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  n_distinct     class
 1        142 character
-2         12   integer
-3       1704   numeric
-4          5 character
-5       1626   numeric
+2          5 character
+3         12   integer
+4       1626   numeric
+5       1704   integer
 6       1704   numeric</code></pre>
 </div>
 </div>
@@ -7435,10 +7416,10 @@ font-style: inherit;">"variable"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   variable n_distinct     class
 1   country        142 character
-2      year         12   integer
-3       pop       1704   numeric
-4 continent          5 character
-5   lifeExp       1626   numeric
+2 continent          5 character
+3      year         12   integer
+4   lifeExp       1626   numeric
+5       pop       1704   integer
 6 gdpPercap       1704   numeric</code></pre>
 </div>
 </div>
@@ -7515,10 +7496,10 @@ font-style: inherit;">"variable"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   variable n_distinct     class
 1   country        142 character
-2      year         12   integer
-3       pop       1704   numeric
-4 continent          5 character
-5   lifeExp       1626   numeric
+2 continent          5 character
+3      year         12   integer
+4   lifeExp       1626   numeric
+5       pop       1704   integer
 6 gdpPercap       1704   numeric</code></pre>
 </div>
 </div>
@@ -7707,7 +7688,11 @@ font-style: inherit;">glue</span>(.x, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">" "</span>, .y))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-19_purrr_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-19_purrr_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This seems to have worked. So you can then copy-and-paste the code into the <code>map2</code> function</p>
@@ -7773,13 +7758,21 @@ font-style: inherit;">" "</span>, .y))</span>
 background-color: null;
 font-style: inherit;">1</span>]]</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-19_purrr_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-19_purrr_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb57" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1">plot_list[[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">22</span>]]</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-19_purrr_files/figure-html/unnamed-chunk-32-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-19_purrr_files/figure-html/unnamed-chunk-32-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><code>pmap()</code> allows you to iterate over an arbitrary number of objects (i.e.&nbsp;more than two).</p>
@@ -7825,19 +7818,19 @@ background-color: null;
 font-style: inherit;">1</span>]]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 396 × 5
-   country      year      pop lifeExp gdpPercap
-   &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1 Afghanistan  1952  8425333    28.8      779.
- 2 Afghanistan  1957  9240934    30.3      821.
- 3 Afghanistan  1962 10267083    32.0      853.
- 4 Afghanistan  1967 11537966    34.0      836.
- 5 Afghanistan  1972 13079460    36.1      740.
- 6 Afghanistan  1977 14880372    38.4      786.
- 7 Afghanistan  1982 12881816    39.9      978.
- 8 Afghanistan  1987 13867957    40.8      852.
- 9 Afghanistan  1992 16317921    41.7      649.
-10 Afghanistan  1997 22227415    41.8      635.
-# … with 386 more rows</code></pre>
+   country      year lifeExp      pop gdpPercap
+   &lt;chr&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan  1952    28.8  8425333      779.
+ 2 Afghanistan  1957    30.3  9240934      821.
+ 3 Afghanistan  1962    32.0 10267083      853.
+ 4 Afghanistan  1967    34.0 11537966      836.
+ 5 Afghanistan  1972    36.1 13079460      740.
+ 6 Afghanistan  1977    38.4 14880372      786.
+ 7 Afghanistan  1982    39.9 12881816      978.
+ 8 Afghanistan  1987    40.8 13867957      852.
+ 9 Afghanistan  1992    41.7 16317921      649.
+10 Afghanistan  1997    41.8 22227415      635.
+# ℹ 386 more rows</code></pre>
 </div>
 </div>
 <p>Using dplyr <code>pluck()</code> function, this can be written as</p>
@@ -7857,19 +7850,19 @@ background-color: null;
 font-style: inherit;">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 396 × 5
-   country      year      pop lifeExp gdpPercap
-   &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1 Afghanistan  1952  8425333    28.8      779.
- 2 Afghanistan  1957  9240934    30.3      821.
- 3 Afghanistan  1962 10267083    32.0      853.
- 4 Afghanistan  1967 11537966    34.0      836.
- 5 Afghanistan  1972 13079460    36.1      740.
- 6 Afghanistan  1977 14880372    38.4      786.
- 7 Afghanistan  1982 12881816    39.9      978.
- 8 Afghanistan  1987 13867957    40.8      852.
- 9 Afghanistan  1992 16317921    41.7      649.
-10 Afghanistan  1997 22227415    41.8      635.
-# … with 386 more rows</code></pre>
+   country      year lifeExp      pop gdpPercap
+   &lt;chr&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan  1952    28.8  8425333      779.
+ 2 Afghanistan  1957    30.3  9240934      821.
+ 3 Afghanistan  1962    32.0 10267083      853.
+ 4 Afghanistan  1967    34.0 11537966      836.
+ 5 Afghanistan  1972    36.1 13079460      740.
+ 6 Afghanistan  1977    38.4 14880372      786.
+ 7 Afghanistan  1982    39.9 12881816      978.
+ 8 Afghanistan  1987    40.8 13867957      852.
+ 9 Afghanistan  1992    41.7 16317921      649.
+10 Afghanistan  1997    41.8 22227415      635.
+# ℹ 386 more rows</code></pre>
 </div>
 </div>
 <p>Similarly, the 5th entry in the <code>data</code> column corresponds to the entire gapminder dataset for Oceania.</p>
@@ -7885,19 +7878,19 @@ background-color: null;
 font-style: inherit;">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 24 × 5
-   country    year      pop lifeExp gdpPercap
-   &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1 Australia  1952  8691212    69.1    10040.
- 2 Australia  1957  9712569    70.3    10950.
- 3 Australia  1962 10794968    70.9    12217.
- 4 Australia  1967 11872264    71.1    14526.
- 5 Australia  1972 13177000    71.9    16789.
- 6 Australia  1977 14074100    73.5    18334.
- 7 Australia  1982 15184200    74.7    19477.
- 8 Australia  1987 16257249    76.3    21889.
- 9 Australia  1992 17481977    77.6    23425.
-10 Australia  1997 18565243    78.8    26998.
-# … with 14 more rows</code></pre>
+   country    year lifeExp      pop gdpPercap
+   &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Australia  1952    69.1  8691212    10040.
+ 2 Australia  1957    70.3  9712569    10950.
+ 3 Australia  1962    70.9 10794968    12217.
+ 4 Australia  1967    71.1 11872264    14526.
+ 5 Australia  1972    71.9 13177000    16789.
+ 6 Australia  1977    73.5 14074100    18334.
+ 7 Australia  1982    74.7 15184200    19477.
+ 8 Australia  1987    76.3 16257249    21889.
+ 9 Australia  1992    77.6 17481977    23425.
+10 Australia  1997    78.8 18565243    26998.
+# ℹ 14 more rows</code></pre>
 </div>
 </div>
 <p>You might be asking at this point <em>why</em> you would ever want to nest your data frame? It just doesn’t seem like that useful a thing to do… until you realise that you now have the power to use dplyr manipulations on more complex objects that can be stored in a list.</p>
@@ -8163,19 +8156,19 @@ font-style: inherit;">1</span>)</span>
 <span id="cb76-3">.x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 396 × 5
-   country      year      pop lifeExp gdpPercap
-   &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1 Afghanistan  1952  8425333    28.8      779.
- 2 Afghanistan  1957  9240934    30.3      821.
- 3 Afghanistan  1962 10267083    32.0      853.
- 4 Afghanistan  1967 11537966    34.0      836.
- 5 Afghanistan  1972 13079460    36.1      740.
- 6 Afghanistan  1977 14880372    38.4      786.
- 7 Afghanistan  1982 12881816    39.9      978.
- 8 Afghanistan  1987 13867957    40.8      852.
- 9 Afghanistan  1992 16317921    41.7      649.
-10 Afghanistan  1997 22227415    41.8      635.
-# … with 386 more rows</code></pre>
+   country      year lifeExp      pop gdpPercap
+   &lt;chr&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan  1952    28.8  8425333      779.
+ 2 Afghanistan  1957    30.3  9240934      821.
+ 3 Afghanistan  1962    32.0 10267083      853.
+ 4 Afghanistan  1967    34.0 11537966      836.
+ 5 Afghanistan  1972    36.1 13079460      740.
+ 6 Afghanistan  1977    38.4 14880372      786.
+ 7 Afghanistan  1982    39.9 12881816      978.
+ 8 Afghanistan  1987    40.8 13867957      852.
+ 9 Afghanistan  1992    41.7 16317921      649.
+10 Afghanistan  1997    41.8 22227415      635.
+# ℹ 386 more rows</code></pre>
 </div>
 </div>
 <p>Then to calculate the average life expectancy for Asia, I could write</p>
@@ -8425,44 +8418,44 @@ font-style: inherit;">5</span>))</span>
 <span id="cb91-4">gapminder_list</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$Africa
-            country year      pop continent lifeExp gdpPercap
-1            Gambia 1967   439593    Africa  35.857  734.7829
-2      Sierra Leone 1967  2662190    Africa  34.113 1206.0435
-3           Namibia 1997  1774766    Africa  58.909 3899.5243
-4 Equatorial Guinea 1992   387838    Africa  47.545 1132.0550
-5     Cote d'Ivoire 2002 16252726    Africa  46.832 1648.8008
+            country continent year lifeExp      pop gdpPercap
+1            Gambia    Africa 1967  35.857   439593  734.7829
+2      Sierra Leone    Africa 1967  34.113  2662190 1206.0435
+3           Namibia    Africa 1997  58.909  1774766 3899.5243
+4 Equatorial Guinea    Africa 1992  47.545   387838 1132.0550
+5     Cote d'Ivoire    Africa 2002  46.832 16252726 1648.8008
 
 $Americas
-             country year     pop continent lifeExp gdpPercap
-1 Dominican Republic 1997 7992357  Americas  69.957  3614.101
-2        Puerto Rico 1987 3444468  Americas  74.630 12281.342
-3           Honduras 1992 5077347  Americas  66.399  3081.695
-4            Uruguay 2007 3447496  Americas  76.384 10611.463
-5         Costa Rica 1962 1345187  Americas  62.842  3460.937
+             country continent year lifeExp     pop gdpPercap
+1 Dominican Republic  Americas 1997  69.957 7992357  3614.101
+2        Puerto Rico  Americas 1987  74.630 3444468 12281.342
+3           Honduras  Americas 1992  66.399 5077347  3081.695
+4            Uruguay  Americas 2007  76.384 3447496 10611.463
+5         Costa Rica  Americas 1962  62.842 1345187  3460.937
 
 $Asia
-     country year       pop continent lifeExp gdpPercap
-1    Lebanon 1967   2186894      Asia  63.870 6006.9830
-2      Nepal 1962  10332057      Asia  39.393  652.3969
-3 Yemen Rep. 1992  13367997      Asia  55.599 1879.4967
-4      India 1972 567000000      Asia  50.651  724.0325
-5   Cambodia 1952   4693836      Asia  39.417  368.4693
+      country continent year lifeExp       pop gdpPercap
+1     Lebanon      Asia 1967  63.870   2186894 6006.9830
+2       Nepal      Asia 1962  39.393  10332057  652.3969
+3 Yemen, Rep.      Asia 1992  55.599  13367997 1879.4967
+4       India      Asia 1972  50.651 567000000  724.0325
+5    Cambodia      Asia 1952  39.417   4693836  368.4693
 
 $Europe
-         country year      pop continent lifeExp gdpPercap
-1 United Kingdom 2002 59912431    Europe  78.471  29479.00
-2         Greece 1997 10502372    Europe  77.869  18747.70
-3        Belgium 2002 10311970    Europe  78.320  30485.88
-4        Croatia 2002  4481020    Europe  74.876  11628.39
-5    Netherlands 1967 12596822    Europe  73.820  15363.25
+         country continent year lifeExp      pop gdpPercap
+1 United Kingdom    Europe 2002  78.471 59912431  29479.00
+2         Greece    Europe 1997  77.869 10502372  18747.70
+3        Belgium    Europe 2002  78.320 10311970  30485.88
+4        Croatia    Europe 2002  74.876  4481020  11628.39
+5    Netherlands    Europe 1967  73.820 12596822  15363.25
 
 $Oceania
-      country year      pop continent lifeExp gdpPercap
-1   Australia 1982 15184200   Oceania  74.740  19477.01
-2 New Zealand 1997  3676187   Oceania  77.550  21050.41
-3 New Zealand 2007  4115771   Oceania  80.204  25185.01
-4   Australia 2007 20434176   Oceania  81.235  34435.37
-5 New Zealand 1952  1994794   Oceania  69.390  10556.58</code></pre>
+      country continent year lifeExp      pop gdpPercap
+1   Australia   Oceania 1982  74.740 15184200  19477.01
+2 New Zealand   Oceania 1997  77.550  3676187  21050.41
+3 New Zealand   Oceania 2007  80.204  4115771  25185.01
+4   Australia   Oceania 2007  81.235 20434176  34435.37
+5 New Zealand   Oceania 1952  69.390  1994794  10556.58</code></pre>
 </div>
 </div>
 <section id="keepdiscard-select_if-for-lists" class="level2">
@@ -8488,28 +8481,28 @@ background-color: null;
 font-style: inherit;">70</span>})</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$Americas
-             country year     pop continent lifeExp gdpPercap
-1 Dominican Republic 1997 7992357  Americas  69.957  3614.101
-2        Puerto Rico 1987 3444468  Americas  74.630 12281.342
-3           Honduras 1992 5077347  Americas  66.399  3081.695
-4            Uruguay 2007 3447496  Americas  76.384 10611.463
-5         Costa Rica 1962 1345187  Americas  62.842  3460.937
+             country continent year lifeExp     pop gdpPercap
+1 Dominican Republic  Americas 1997  69.957 7992357  3614.101
+2        Puerto Rico  Americas 1987  74.630 3444468 12281.342
+3           Honduras  Americas 1992  66.399 5077347  3081.695
+4            Uruguay  Americas 2007  76.384 3447496 10611.463
+5         Costa Rica  Americas 1962  62.842 1345187  3460.937
 
 $Europe
-         country year      pop continent lifeExp gdpPercap
-1 United Kingdom 2002 59912431    Europe  78.471  29479.00
-2         Greece 1997 10502372    Europe  77.869  18747.70
-3        Belgium 2002 10311970    Europe  78.320  30485.88
-4        Croatia 2002  4481020    Europe  74.876  11628.39
-5    Netherlands 1967 12596822    Europe  73.820  15363.25
+         country continent year lifeExp      pop gdpPercap
+1 United Kingdom    Europe 2002  78.471 59912431  29479.00
+2         Greece    Europe 1997  77.869 10502372  18747.70
+3        Belgium    Europe 2002  78.320 10311970  30485.88
+4        Croatia    Europe 2002  74.876  4481020  11628.39
+5    Netherlands    Europe 1967  73.820 12596822  15363.25
 
 $Oceania
-      country year      pop continent lifeExp gdpPercap
-1   Australia 1982 15184200   Oceania  74.740  19477.01
-2 New Zealand 1997  3676187   Oceania  77.550  21050.41
-3 New Zealand 2007  4115771   Oceania  80.204  25185.01
-4   Australia 2007 20434176   Oceania  81.235  34435.37
-5 New Zealand 1952  1994794   Oceania  69.390  10556.58</code></pre>
+      country continent year lifeExp      pop gdpPercap
+1   Australia   Oceania 1982  74.740 15184200  19477.01
+2 New Zealand   Oceania 1997  77.550  3676187  21050.41
+3 New Zealand   Oceania 2007  80.204  4115771  25185.01
+4   Australia   Oceania 2007  81.235 20434176  34435.37
+5 New Zealand   Oceania 1952  69.390  1994794  10556.58</code></pre>
 </div>
 </div>
 <p><code>discard()</code> does the opposite of <code>keep()</code>: it discards any elements that satisfy your logical condition.</p>
@@ -8560,32 +8553,32 @@ font-style: inherit;">%&gt;%</span></span>
 background-color: null;
 font-style: inherit;">reduce</span>(rbind)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              country year       pop continent lifeExp  gdpPercap
-1              Gambia 1967    439593    Africa  35.857   734.7829
-2        Sierra Leone 1967   2662190    Africa  34.113  1206.0435
-3             Namibia 1997   1774766    Africa  58.909  3899.5243
-4   Equatorial Guinea 1992    387838    Africa  47.545  1132.0550
-5       Cote d'Ivoire 2002  16252726    Africa  46.832  1648.8008
-6  Dominican Republic 1997   7992357  Americas  69.957  3614.1013
-7         Puerto Rico 1987   3444468  Americas  74.630 12281.3419
-8            Honduras 1992   5077347  Americas  66.399  3081.6946
-9             Uruguay 2007   3447496  Americas  76.384 10611.4630
-10         Costa Rica 1962   1345187  Americas  62.842  3460.9370
-11            Lebanon 1967   2186894      Asia  63.870  6006.9830
-12              Nepal 1962  10332057      Asia  39.393   652.3969
-13         Yemen Rep. 1992  13367997      Asia  55.599  1879.4967
-14              India 1972 567000000      Asia  50.651   724.0325
-15           Cambodia 1952   4693836      Asia  39.417   368.4693
-16     United Kingdom 2002  59912431    Europe  78.471 29478.9992
-17             Greece 1997  10502372    Europe  77.869 18747.6981
-18            Belgium 2002  10311970    Europe  78.320 30485.8838
-19            Croatia 2002   4481020    Europe  74.876 11628.3890
-20        Netherlands 1967  12596822    Europe  73.820 15363.2514
-21          Australia 1982  15184200   Oceania  74.740 19477.0093
-22        New Zealand 1997   3676187   Oceania  77.550 21050.4138
-23        New Zealand 2007   4115771   Oceania  80.204 25185.0091
-24          Australia 2007  20434176   Oceania  81.235 34435.3674
-25        New Zealand 1952   1994794   Oceania  69.390 10556.5757</code></pre>
+<pre><code>              country continent year lifeExp       pop  gdpPercap
+1              Gambia    Africa 1967  35.857    439593   734.7829
+2        Sierra Leone    Africa 1967  34.113   2662190  1206.0435
+3             Namibia    Africa 1997  58.909   1774766  3899.5243
+4   Equatorial Guinea    Africa 1992  47.545    387838  1132.0550
+5       Cote d'Ivoire    Africa 2002  46.832  16252726  1648.8008
+6  Dominican Republic  Americas 1997  69.957   7992357  3614.1013
+7         Puerto Rico  Americas 1987  74.630   3444468 12281.3419
+8            Honduras  Americas 1992  66.399   5077347  3081.6946
+9             Uruguay  Americas 2007  76.384   3447496 10611.4630
+10         Costa Rica  Americas 1962  62.842   1345187  3460.9370
+11            Lebanon      Asia 1967  63.870   2186894  6006.9830
+12              Nepal      Asia 1962  39.393  10332057   652.3969
+13        Yemen, Rep.      Asia 1992  55.599  13367997  1879.4967
+14              India      Asia 1972  50.651 567000000   724.0325
+15           Cambodia      Asia 1952  39.417   4693836   368.4693
+16     United Kingdom    Europe 2002  78.471  59912431 29478.9992
+17             Greece    Europe 1997  77.869  10502372 18747.6981
+18            Belgium    Europe 2002  78.320  10311970 30485.8838
+19            Croatia    Europe 2002  74.876   4481020 11628.3890
+20        Netherlands    Europe 1967  73.820  12596822 15363.2514
+21          Australia   Oceania 1982  74.740  15184200 19477.0093
+22        New Zealand   Oceania 1997  77.550   3676187 21050.4138
+23        New Zealand   Oceania 2007  80.204   4115771 25185.0091
+24          Australia   Oceania 2007  81.235  20434176 34435.3674
+25        New Zealand   Oceania 1952  69.390   1994794 10556.5757</code></pre>
 </div>
 </div>
 </section>
@@ -8776,11 +8769,12 @@ font-style: inherit;">c</span>(lm_tidy))</span></code></pre></div>
 
 
 
+
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyverse_all.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyverse_all.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -8802,7 +8796,7 @@ font-style: inherit;">c</span>(lm_tidy))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyverse.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyverse.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -13163,7 +13157,7 @@ font-style: inherit;">ggplot</span>(gapminder)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13188,7 +13182,7 @@ font-style: inherit;">ggplot</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13234,7 +13228,7 @@ font-style: inherit;">y =</span> lifeExp))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13297,7 +13291,7 @@ font-style: inherit;">"loess"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13357,7 +13351,7 @@ font-style: inherit;">"loess"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13421,7 +13415,7 @@ font-style: inherit;">geom_line</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13435,7 +13429,7 @@ font-style: inherit;">geom_line</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13541,7 +13535,7 @@ font-style: inherit;">y =</span> avg_lifeExp))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13605,7 +13599,7 @@ font-style: inherit;">group =</span> continent))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13641,7 +13635,7 @@ font-style: inherit;">"cornflowerblue"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13672,7 +13666,7 @@ font-style: inherit;">col  =</span> continent))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13722,7 +13716,7 @@ font-style: inherit;">"blue"</span>))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13760,7 +13754,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13813,7 +13807,7 @@ font-style: inherit;">colour =</span> continent))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13848,7 +13842,7 @@ font-style: inherit;">3</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13880,7 +13874,7 @@ font-style: inherit;">fill =</span> continent))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -13921,7 +13915,7 @@ font-style: inherit;">2</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -14113,7 +14107,7 @@ font-style: inherit;">"top"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -14127,7 +14121,7 @@ font-style: inherit;">"top"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -14157,11 +14151,12 @@ font-style: inherit;">"top"</span>)</span></code></pre></div>
 
 
 
+
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyverse_all.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyverse_all.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -14199,7 +14194,7 @@ font-style: inherit;">&lt;-</span> gapminder_orig</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyr.jpg" width="180" height="200" class="figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tidyr.jpg" class="quarto-figure quarto-figure-center figure-img" width="180" height="200"></p>
 </figure>
 </div>
 </div>
@@ -14482,7 +14477,7 @@ font-style: inherit;">"_"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/purrr.jpg" width="180" height="200" class="figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/purrr.jpg" class="quarto-figure quarto-figure-center figure-img" width="180" height="200"></p>
 </figure>
 </div>
 </div>
@@ -14700,7 +14695,7 @@ font-style: inherit;">10</span>))</span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/readr.png" width="180" height="200" class="figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/readr.png" class="quarto-figure quarto-figure-center figure-img" width="180" height="200"></p>
 </figure>
 </div>
 </div>
@@ -14744,7 +14739,7 @@ font-style: inherit;">"2010-10-01 21:45"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tibble.png" width="180" height="200" class="figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/tibble.png" class="quarto-figure quarto-figure-center figure-img" width="180" height="200"></p>
 </figure>
 </div>
 </div>
@@ -14762,7 +14757,7 @@ font-style: inherit;">"2010-10-01 21:45"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/lubridate.png" width="180" height="200" class="figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/lubridate.png" class="quarto-figure quarto-figure-center figure-img" width="180" height="200"></p>
 </figure>
 </div>
 </div>
@@ -14872,7 +14867,7 @@ font-style: inherit;">"August 1st 2019, 11:23:33 am"</span>)</span></code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/forcats.png" width="180" height="200" class="figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/forcats.png" class="quarto-figure quarto-figure-center figure-img" width="180" height="200"></p>
 </figure>
 </div>
 </div>
@@ -15032,7 +15027,7 @@ font-style: inherit;">as.factor</span>(year)))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -15072,7 +15067,7 @@ font-style: inherit;">as.factor</span>(year)))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -15336,7 +15331,7 @@ font-style: inherit;">element_blank</span>())</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2019-08-05_base_r_to_tidyverse_pt2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -15348,7 +15343,7 @@ font-style: inherit;">element_blank</span>())</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/stringr.jpg" width="180" height="200" class="figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/tidyverse/stringr.jpg" class="quarto-figure quarto-figure-center figure-img" width="180" height="200"></p>
 </figure>
 </div>
 </div>
@@ -15468,6 +15463,7 @@ font-style: inherit;">"banana"</span>)</span></code></pre></div>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2019-06-06_pre_processing.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -16280,6 +16276,7 @@ font-style: inherit;">bake</span>(prepped_recipe, muffin_cupcake_test)</span>
 
 
 
+
 <p>When you’re learning to code and perform data analysis, it can be overwhelming to figure out how to structure your projects. To help data scientists develop a reproducible and consistent workflow, I’ve put together a short GitHub-based document with some guiding advice: <a href="https://github.com/rlbarter/reproducibility-workflow">https://github.com/rlbarter/reproducibility-workflow</a></p>
 <p>If you’re interested in contributing or improving this document, please get in touch, or even better, submit a pull request <a href="https://github.com/rlbarter/reproducibility-workflow">https://github.com/rlbarter/reproducibility-workflow</a>!</p>
 <p>The document as of writing is shown below.</p>
@@ -16376,6 +16373,7 @@ font-style: inherit;">bake</span>(prepped_recipe, muffin_cupcake_test)</span>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2019-01-23_scoped-verbs.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -17439,13 +17437,14 @@ font-style: inherit;">summarise_all</span>(n_distinct)</span></code></pre></div>
 
 
 
+
 <p>Many years ago I taught a stats class for which one of the topics was hypothesis testing. Many of the students had a hard time remembering what situation each test was designed for, so I made a flowchart to help piece together the wild world of hypothesis tests.</p>
 <p>While the flowchart isn’t pretty (if I made it today, it would be much more attractive), I feel like it might be useful for others, so here it is:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/hypothesis_testing/Hypothesis_testing_flow_mean.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/hypothesis_testing/Hypothesis_testing_flow_mean.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -17469,17 +17468,15 @@ font-style: inherit;">summarise_all</span>(n_distinct)</span></code></pre></div>
 
 
 
+
 <p>At some point in your life you have probably found yourself standing face-to-face with a beast known as a grouped bar chart. Perhaps it was in a research paper where the authors were trying to compare the results of several models across different datasets, or it was in a talk given by a colleague who was trying to compare the popularity of different products among distinct groups of consumers.</p>
 <p>The first time you encountered a grouped bar chart you might have thought “what a neat way to put so much information in a single plot!”. However, the moment you started trying to see whether the orange bar always does better than the green bar but worse than the blue bar.</p>
 <p>In the example below (made with ggplot2), I show a simple grouped bar chart comparing research funding success rates across a variety of disciplines with the data split into two categories for each discipline: males and females. This data came from Rafael Irizarry’s excellent R package, <code>dslabs</code>, containing datasets for teaching data science.</p>
-<div class="cell">
-
-</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -17494,7 +17491,7 @@ font-style: inherit;">summarise_all</span>(n_distinct)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -17508,7 +17505,7 @@ font-style: inherit;">summarise_all</span>(n_distinct)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -17541,6 +17538,7 @@ font-style: inherit;">summarise_all</span>(n_distinct)</span></code></pre></div>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -17747,7 +17745,7 @@ font-style: inherit;">element_blank</span>()) </span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -17869,7 +17867,7 @@ font-style: inherit;">element_blank</span>()) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18036,7 +18034,7 @@ font-style: inherit;">6</span>) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18147,7 +18145,7 @@ font-style: inherit;">2.1</span>)) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18267,7 +18265,7 @@ font-style: inherit;">"grey60"</span>) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18430,7 +18428,7 @@ font-style: inherit;">"#468189"</span>) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -18617,7 +18615,7 @@ font-style: inherit;">0</span>)) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -18648,6 +18646,7 @@ font-style: inherit;">0</span>)) </span>
 
 
 
+
 <p>Suppose, as many do, that we want to estimate the effect of an action (or treatment) on an outcome. As an example, we might be interested in estimating the effect of receiving a drug vs not receiving a drug on the incidence of heart disease. In an ideal futuristic world, we would take each individual in our population and split them into two identical humans: one who receives the treatment and the other who doesn’t. Since these two humans are 100% identical in every way other than the treatment received, any difference we subsequently observe in their outcome (i.e.&nbsp;development of heart disease) must be due to the effect of the treatment alone.</p>
 <p>Unfortunately, since our humble 21st-century technology does not yet posses a human-duplication machine, the natural thing to do is to split our existing population of humans <em>randomly</em> into two groups: those who are to receive the drug (the treatment group) and those who won’t (the control group).</p>
 <p>Since there was nothing special about how we determined who gets the drug and who doesn’t, <em>on average</em>, there should be no difference between the treatment group and control group other than in the treatment itself. Thus, comparing the incidence of heart disease in the treatment group and in the control group should give us a reasonable estimate of the average effect of the treatment in the population.</p>
@@ -18668,7 +18667,7 @@ font-style: inherit;">0</span>)) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/iv/abo.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/abo.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -18685,7 +18684,7 @@ font-style: inherit;">0</span>)) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag2.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -18695,7 +18694,7 @@ font-style: inherit;">0</span>)) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag3.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -18707,7 +18706,7 @@ font-style: inherit;">0</span>)) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag5.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -18752,6 +18751,7 @@ font-style: inherit;">0</span>)) </span>
 
 
 
+
 <p>An interactive Jupyter Notebook version of this tutorial can be found at https://github.com/rlbarter/ggplot2-thw. Feel free to download it and use for your own learning or teaching adventures!</p>
 <section id="useful-resources-for-learning-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="useful-resources-for-learning-ggplot2">Useful resources for learning ggplot2</h2>
@@ -18775,7 +18775,7 @@ font-style: inherit;">0</span>)) </span>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18839,7 +18839,7 @@ font-style: inherit;">y =</span> lifeExp))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18871,7 +18871,7 @@ font-style: inherit;">geom_point</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18908,7 +18908,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18954,7 +18954,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -18986,7 +18986,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19028,7 +19028,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19053,7 +19053,7 @@ font-style: inherit;">geom_boxplot</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19078,7 +19078,7 @@ font-style: inherit;">3</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19142,7 +19142,7 @@ font-style: inherit;">"grey30"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19196,7 +19196,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19233,7 +19233,7 @@ font-style: inherit;">scale_x_log10</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19297,7 +19297,7 @@ font-style: inherit;">120000</span>))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19372,7 +19372,7 @@ font-style: inherit;">"Continent"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19497,7 +19497,7 @@ font-style: inherit;">"1250"</span>)) </span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19637,7 +19637,7 @@ font-style: inherit;">~</span>continent)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19795,7 +19795,7 @@ font-style: inherit;">"Avenir"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -19991,7 +19991,7 @@ font-style: inherit;">"grey85"</span>))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
