@@ -556,7 +556,7 @@ ga('send', {
 <pre><code>RangeIndex(start=0, stop=4, step=1)</code></pre>
 </div>
 </div>
-<p>This is a “RangeIndex” object that spans from 0 to 2 (<em>not inclusive</em>) with a step-size of 1 and corresponds to the row index of the DataFrame.</p>
+<p>This is a “RangeIndex” object that spans from 0 to 4 (<em>not inclusive</em>) with a step-size of 1 and corresponds to the row index of the DataFrame.</p>
 <p>Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using <code>list()</code> (which is a function in python for creating lists).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(pandas_df.index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -595,14 +595,14 @@ dtype: int64</code></pre>
 <p>It is important to note that these <code>mean()</code> and <code>sum()</code> methods are not standalone functions. If we try to apply them to our DataFrame as we would do for regular functions, we get errors:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mean(pandas_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>name 'mean' is not defined</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>NameError: name 'mean' is not defined</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(pandas_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>unsupported operand type(s) for +: 'int' and 'str'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>TypeError: unsupported operand type(s) for +: 'int' and 'str'</code></pre>
 </div>
 </div>
 <p>Since they are “methods”, these <code>mean()</code> and <code>sum()</code> method functions are specific to the DataFrame type object and must be applied using the <code>pandas_df.fun()</code> dot syntax.</p>
@@ -610,8 +610,8 @@ dtype: int64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>py_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>py_list.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>'list' object has no attribute 'mean'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>AttributeError: 'list' object has no attribute 'mean'</code></pre>
 </div>
 </div>
 <p>Sometimes the errors in Python are even helpful! Thanks Python!</p>
@@ -685,8 +685,8 @@ Name: a, dtype: int64</code></pre>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pandas_df[<span class="st">'a'</span>].columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>'Series' object has no attribute 'columns'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>AttributeError: 'Series' object has no attribute 'columns'</code></pre>
 </div>
 </div>
 </section>
@@ -978,7 +978,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>pandas_df.query(<span class="st">'a &gt; 1'</span>).groupby(<span class="st">'cat'</span>)[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x120ac8940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x11f377b50&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>

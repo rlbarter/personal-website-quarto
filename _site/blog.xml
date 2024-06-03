@@ -2887,7 +2887,7 @@ font-style: inherit;"># print the pandas column names</span></span>
 <pre><code>RangeIndex(start=0, stop=4, step=1)</code></pre>
 </div>
 </div>
-<p>This is a “RangeIndex” object that spans from 0 to 2 (<em>not inclusive</em>) with a step-size of 1 and corresponds to the row index of the DataFrame.</p>
+<p>This is a “RangeIndex” object that spans from 0 to 4 (<em>not inclusive</em>) with a step-size of 1 and corresponds to the row index of the DataFrame.</p>
 <p>Both the column and row indexes of pandas DataFrames are special index objects that can be coerced to a python list using <code>list()</code> (which is a function in python for creating lists).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><span class="bu" style="color: null;
@@ -2932,16 +2932,16 @@ dtype: int64</code></pre>
 <p>It is important to note that these <code>mean()</code> and <code>sum()</code> methods are not standalone functions. If we try to apply them to our DataFrame as we would do for regular functions, we get errors:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1">mean(pandas_df)</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>name 'mean' is not defined</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>NameError: name 'mean' is not defined</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">sum</span>(pandas_df)</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>unsupported operand type(s) for +: 'int' and 'str'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>TypeError: unsupported operand type(s) for +: 'int' and 'str'</code></pre>
 </div>
 </div>
 <p>Since they are “methods”, these <code>mean()</code> and <code>sum()</code> method functions are specific to the DataFrame type object and must be applied using the <code>pandas_df.fun()</code> dot syntax.</p>
@@ -2957,8 +2957,8 @@ font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>]</span>
 <span id="cb46-2">py_list.mean()</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>'list' object has no attribute 'mean'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>AttributeError: 'list' object has no attribute 'mean'</code></pre>
 </div>
 </div>
 <p>Sometimes the errors in Python are even helpful! Thanks Python!</p>
@@ -3046,8 +3046,8 @@ font-style: inherit;">'a'</span>].index</span></code></pre></div>
 <div class="sourceCode cell-code" id="cb60" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1">pandas_df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'a'</span>].columns</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre style="color: red;"><code>'Series' object has no attribute 'columns'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>AttributeError: 'Series' object has no attribute 'columns'</code></pre>
 </div>
 </div>
 </section>
@@ -3549,7 +3549,7 @@ font-style: inherit;">'cat'</span>)[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x120ac8940&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x11f377b50&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>
