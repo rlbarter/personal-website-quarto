@@ -253,10 +253,9 @@ background-color: null;
 font-style: inherit;">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -287,7 +286,6 @@ font-style: inherit;">5</span>)</span></code></pre></div>
 </tbody>
 </table>
 
-</div>
 </div>
 </div>
 </div>
@@ -313,10 +311,9 @@ background-color: null;
 font-style: inherit;">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -347,7 +344,6 @@ font-style: inherit;">5</span>)</span></code></pre></div>
 </tbody>
 </table>
 
-</div>
 </div>
 </div>
 </div>
@@ -1426,10 +1422,9 @@ background-color: null;
 font-style: inherit;">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1466,7 +1461,6 @@ font-style: inherit;">5</span>)</span></code></pre></div>
 </tbody>
 </table>
 
-</div>
 </div>
 </div>
 </div>
@@ -1507,10 +1501,9 @@ background-color: null;
 font-style: inherit;">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1556,7 +1549,6 @@ font-style: inherit;">5</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
-</div>
 <p>And that’s it! Let’s take a look at the notes in order of smallest to largest <code>cosine_dist</code>.</p>
 <p>Ideally, I will see that the notes at the top of the rearranged DataFrame correspond to patients with chronic conditions, and the notes at the bottom correspond to patients with acute conditions.</p>
 <p>The top 5 notes are:</p>
@@ -1577,10 +1569,9 @@ background-color: null;
 font-style: inherit;">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1620,7 +1611,6 @@ font-style: inherit;">5</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
-</div>
 <p>Those all seem like patients with chronic conditions to me!</p>
 <p>And the bottom 5 notes are:</p>
 <div id="5fc2f589" class="cell" data-execution_count="21">
@@ -1635,10 +1625,9 @@ background-color: null;
 font-style: inherit;">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1678,7 +1667,6 @@ font-style: inherit;">5</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
-</div>
 <p>These definitely seem like new/acute conditions!</p>
 <p>If you’re interested in looking at all of the distances, see the following output (remember that the smaller the distance, the closer the note to the chronic condition target):</p>
 <div id="6e83479f" class="cell" data-execution_count="22">
@@ -1691,10 +1679,9 @@ background-color: null;
 font-style: inherit;">'cosine_dist'</span>]]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1979,7 +1966,6 @@ font-style: inherit;">'cosine_dist'</span>]]</span></code></pre></div>
 </div>
 </div>
 </div>
-</div>
 <p>It definitely seems like it did a pretty good job here (although to be fair, OpenAI did all the hard lifting!)</p>
 </section>
 <section id="zero-shot-binary-classification" class="level2">
@@ -2052,10 +2038,9 @@ background-color: null;
 font-style: inherit;">'cosine_score_binary'</span>]].head()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -2092,7 +2077,6 @@ font-style: inherit;">'cosine_score_binary'</span>]].head()</span></code></pre><
 </tbody>
 </table>
 
-</div>
 </div>
 </div>
 </div>
@@ -2144,10 +2128,9 @@ background-color: null;
 font-style: inherit;">False</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -2484,7 +2467,6 @@ font-style: inherit;">False</span>)</span></code></pre></div>
 </tbody>
 </table>
 
-</div>
 </div>
 </div>
 </div>
@@ -15429,7 +15411,7 @@ font-style: inherit;">"banana"</span>)</span></code></pre></div>
 </div>
 </div>
 <p>My friend Sara Stoudt <a href="https://twitter.com/sastoudt">@sastoudt</a> wrote a wrote a very useful post for the tidyverse website comparing stringr with its Base R equivalents (https://stringr.tidyverse.org/articles/from-base.html). She provides the following useful table (hers is a bit longer - I’m just showing the parts I find most useful):</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 38%">
 <col style="width: 29%">

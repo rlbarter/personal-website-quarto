@@ -265,5 +265,17 @@
   },
   "blog/2024-10-14-copilot.qmd": {
     "2024-10-14-copilot.html": "7a5a0134"
+  },
+  "drafts/2024-03-06-vds.qmd": {
+    "2024-03-06-vds.html": "8059ad58"
+  },
+  "drafts/2023-03-31-data_usefulness.qmd": {
+    "2023-03-31-data_usefulness.html": "596c8b38"
+  },
+  "drafts/2023-03-29-random_variables.qmd": {
+    "2023-03-29-random_variables.html": "bf0971a4"
+  },
+  "drafts/2023-03-29-ai.qmd": {
+    "2023-03-29-ai.html": "47d57ca4"
   }
 }
