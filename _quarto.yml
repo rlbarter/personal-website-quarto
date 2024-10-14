@@ -3,6 +3,12 @@ project:
 
 website:
   title: "Rebecca Barter"
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "**Learn Python with me!** Join my full-day virtual workshop, _Python for R Users_, on November 13th hosted by Instats. [Register now!](https://instats.org/seminar/python-for-r-users2)"
+    type: info
+    position: below-navbar
   navbar:
     left:
       - text: "Home"

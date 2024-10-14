@@ -16,6 +16,27 @@ about:
 
 ---
 
+
+## Upcoming public workshops
+
+
+
+
+::: card
+::: {.card-header style="background-color: white; font-size: 18;"}
+### [Python for R Users](https://instats.org/seminar/python-for-r-users2)
+
+
+**Date: November 13, 2024** 9:00am - 4:00pm PST
+
+**Registration**: [Register via Instats](https://instats.org/seminar/python-for-r-users2)
+
+:::
+:::
+
+## Information
+
+
 I am available for consulting for a wide range of projects and I regularly teach multi-day workshops for small and large groups.
 
 The kinds of topics I love teaching include programming skills such as:

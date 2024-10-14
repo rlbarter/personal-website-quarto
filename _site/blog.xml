@@ -2505,54 +2505,6 @@ font-style: inherit;">False</span>)</span></code></pre></div>
   <media:content url="https://www.rebeccabarter.com/blog/img/openai_ehr/doctors_notes_ai.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
-  <title>A short summary of “Veridical Data Science: The Practice of Responsible Data Analysis and Decision-Making.”</title>
-  <dc:creator>Rebecca Barter</dc:creator>
-  <link>https://www.rebeccabarter.com/blog/drafts/2024-03-06-vds.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p align="center">
-<img src="https://www.rebeccabarter.com/blog/drafts/img/vds/vds.png" style="width:50.0%;height:50.0%" alt="The original VDS tree in which the leaves represent the predictability principle, the trunk represents the computability principle, and the roots represent the stability principle.">
-</p>
-<p>After many, many (like, many, many, many) years, <a href="https://www.vdsbook.com">“Veridical Data Science”</a>, the book I co-authored with my PhD advisor and mentor, <a href="https://binyu.stat.berkeley.edu/">Bin Yu</a>, has finally been released into the world. Well, to be honest, no project of this scale is ever truly “done”<sup>1</sup>, but at some point you have to let it walk on it’s own two legs, or so to speak.</p>
-<p>The online version of Veridical Data Science is free (<a href="https://www.vdsbook.com">www.vdsbook.com</a>), but a print version will be <a href="https://mitpress.mit.edu/9780262049191/veridical-data-science/">published by MIT Press</a> later this year.</p>
-<p>If you’ve ever written a book, you’ll know that the end-product typically bears no resemblance to the initial pages that were pieced together at the beginning of the journey (this is especially true as the veridical data science framework continued to morph throughout the course of writing this book). But fortunately, in this case, the end-product is something that both Bin and I are truly proud of.</p>
-<p>For those of you new to the world of Veridical Data Science (VDS), this post will introduce the fundamental ideas that underlie the VDS framework, which Bin has pioneered throughout her impressive career. ????Write something nice about Bin’s achievements here</p>
-<section id="so-what-is-veridical-data-science" class="level2">
-<h2 class="anchored" data-anchor-id="so-what-is-veridical-data-science">So what is veridical data science?</h2>
-<p>First off, let’s get one thing straight: we’re not doing “<strong><em>vertical</em></strong> data science” here, we’re doing “<strong><em>veridical</em></strong> data science”.</p>
-<p>The word “<em>veridical</em>” means “<em>truthful</em>”. Put simply, to practice veridical data science is to practice data science as truthfully (and responsibly) as possible, where that truth is in reference to the real-world from which the data came from.</p>
-<p>To understand what that means, it’s important to realize that the goal of every data science project is to learn something about the real world. To achieve this goal, we collect data, clean and pre-process it, analyze it, and eventually communicate it to whoever might be able to use it to make some kind of real-world decision. However, what we often fail to consider, is the fact that the data that we collect corresponds to a single, distorted, snapshot of reality, which is often captured with imperfect instruments (such as ????) that are subject not to just mechanical imperfections, but human imperfections too. Not only that, but the decisions that we make when we clean and pre-process our data can have a surprising effect on our downstream results, and even the <em>way</em> that we present our results can impact how they are interpreted.</p>
-<p>The primary goal of VDS is to bring these imperfections to the forefront of every data analysis, rather than to sweep them under the rug. Instead of assuming that your data are a perfect reflection of reality, acknowledge that they aren’t and that you could have plausible collected an entirely different dataset (perhaps on different people, or on a different day, or if a different person had performed the survey). This is the predictability principle.</p>
-<p>Instead of just cleaning your data using only one potential collection of steps (e.g., aggregating repeated measurements over each two weeks, when you could have chosen to aggregate over every week, or imputing missing values with the mean when you could have used the median), you could instead create several alternative versions of your cleaned dataset and check whether your results change based on which one you use.</p>
-<p>Let’s consider an example. This isn’t an example from the book, but I think it conveys the principles of veridical data science quite nicely (and succinctly).</p>
-<p>????Walk through the NHANES example with the threshold that I taught in Tom’s class.</p>
-</section>
-<section id="ok-so-how-do-you-actually-practice-veridical-data-science" class="level2">
-<h2 class="anchored" data-anchor-id="ok-so-how-do-you-actually-practice-veridical-data-science">OK, so how do you actually practice veridical data science?</h2>
-<p>Your data-driven results are evidence of a real-world phenomena–your task as a veridical data scientist is to strengthen the evidence that supports your results as much as possible.</p>
-<p>Veridical data science provides some practical tools for investigating the trustworthiness of your data-driven results, embedded in some intuitive explanations of the data science process overall.</p>
-<p>Apart from the VDS framework itself, our book offers intuitive introduction to the entire Data Science Life Cycle, with intuitive explanations and examples to teach practical approaches to data cleaning, data visualization, principal component analysis, clustering, least squares, and the random forest algorithm.</p>
-
-
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>The first time I uttered the phrase “the book is almost done” in response to the question “how’s the book going” was probably around 7 years ago (as many of my peers can attest).↩︎</p></li>
-</ol>
-</section></div> ]]></description>
-  <category>data science</category>
-  <guid>https://www.rebeccabarter.com/blog/drafts/2024-03-06-vds.html</guid>
-  <pubDate>Thu, 07 Mar 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://www.rebeccabarter.com/blog/drafts/img/vds/vds.png" medium="image" type="image/png"/>
-</item>
-<item>
   <title>An introduction to Python for R Users</title>
   <dc:creator>Rebecca Barter</dc:creator>
   <link>https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python.html</link>
@@ -3785,350 +3737,6 @@ font-style: inherit;">'lifeExp'</span>)</span></code></pre></div>
   <guid>https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python.html</guid>
   <pubDate>Tue, 12 Sep 2023 07:00:00 GMT</pubDate>
   <media:content url="https://www.rebeccabarter.com/blog/img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>The four “C”s for assessing data usefulness</title>
-  <dc:creator>Rebecca Barter</dc:creator>
-  <link>https://www.rebeccabarter.com/blog/drafts/2023-03-31-data_usefulness.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><img src="https://www.rebeccabarter.com/blog/drafts/img/data_usefulness/four_c.jpg" class="img-fluid" alt="A logo for the data usefulness"></p>
-<section id="what-is-data-usefulness" class="level1">
-<h1>What is “data usefulness”?</h1>
-<p>Every data science project starts with a real-world question and a dataset that can (hopefully!) be used to find some insights that answer the question. But all datasets are not made equal, and the ability of your particular dataset to lead us to a reliable and trustworthy answer depends not just on your data analysis skills, but also on the <em>usefulness</em> of the data that you’re working with.</p>
-<p>“<em>Data usefulness</em>” is a proxy for how well the data reflects the underlying reality it is intended to represent as well as how easy it is to work with. Data usefulness should always be evaluated in the context of the particular problem that you’re trying to solve or question you’re trying to answer. After all, if your data is not reflecting reality, or isn’t relevant to the problem you’re trying to solve, then it’s not going to be of much use now, is it?</p>
-<p>Examples of data that has low usefulness include data whose values <em>don’t accurately reflect</em> the real-world quantities they are supposed to capture (e.g., measuring the temperature with a broken thermometer), data that is <em>missing relevant</em> data points (e.g., a “public opinion” survey that was only taken by one your own followers on social media), data that is <em>inconsistent</em> (e.g., state being recorded in inconsistent ways, such as “California”, “CA”, “Cali”), and data that is <em>outdated</em> (e.g., using polls from 2023 to predict the outcome of an election in 2024). While the inconsistent formatting is often easy to fix, the other issues aren’t.</p>
-<p>In this blog post, I will introduce the <strong>four “C”s</strong> for assessing data quality. The <em>four “C”s</em> are:</p>
-<ol type="1">
-<li><p><strong>Correct</strong>ness: Are the values in the data <em>correct</em>, i.e., are they accurately reflecting the real-world quantities they were designed to capture?</p></li>
-<li><p><strong>Complete</strong>ness: Does the data contain all of the relevant information needed to answer your question?</p></li>
-<li><p><strong>Consist</strong>ency: Was the data collected and formatted in a consistent way?</p></li>
-<li><p><strong>Currency</strong>: Is the data up-to-date and relevant to the situation that you plan to apply it to? And are the observations in your data reflective of the population of interest?</p></li>
-</ol>
-<p>These measures are more <em>qualitative</em> than they are <em>quantitative</em>, but they can be really helpful for giving you a sense of your data’s potential to provide insights for your real-world problem.</p>
-</section>
-<section id="the-four-cs-for-assessing-data-quality" class="level1">
-<h1>The four “C”s for assessing data quality</h1>
-<p>By way of an example, let’s assess the usefulness of the CDC’s <a href="https://www.cdc.gov/nchs/nhanes/index.htm">NHANES survey data</a> for answering the question of “<em>is a relationship between inactivity and depression?</em>”. If you’re interested, the specific version of the data that I’m using can be downloaded from <a href="https://www.kaggle.com/datasets/cdc/national-health-and-nutrition-examination-survey">Kaggle</a>.</p>
-<section id="correctness" class="level2">
-<h2 class="anchored" data-anchor-id="correctness">Correctness</h2>
-<p><em>Correctness is a measure of whether the values reported in the data are an accurate reflection of the real-world quantity they are designed to measure.</em></p>
-<p>Let’s focus on the <code>PAD680</code> variable from the <code>questionnaire.csv</code> file in the NHANES data, which contains the responses to the question of “<em>How much time do you usually spend sitting on a typical day?</em>” The answers to this question are reported in minutes, and range from 0 to 1200. While there are also encoded options for “don’t know” (<code>9999</code>) and “refused” (<code>7777</code>), around 30% of the values are missing (<code>NA</code>).</p>
-<p>The table below shows the distribution of the types of responses for this variable, where we categorize a non-missing value that is less than 1200 as “reported”. Note that fewer than 1% have a “don’t know” or “refused” response.</p>
-<p>The histogram in Figure @ref(fig:inactivity-hist) shows the distribution of the participants answers to the question “<em>How much time do you usually spend sitting on a typical day?</em>” (in minutes), for the participants whose answer was reported in the data. A</p>
-<div class="cell" data-caption="A histogram showing the distribution of responses to the NHANES question 'How much time do you usually spend sitting on a typical day?', with a ghost column added to convey the number of missing values.">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">question <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">|&gt;</span></span>
-<span id="cb1-2">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">missing =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">is.na</span>(PAD680)) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">|&gt;</span></span>
-<span id="cb1-3">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">PAD680 =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">if_else</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">is.na</span>(PAD680), <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">200</span>, PAD680)) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">|&gt;</span></span>
-<span id="cb1-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">filter</span>(PAD680 <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1200</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">|&gt;</span></span>
-<span id="cb1-5">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-6">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">geom_histogram</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">x =</span> PAD680, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> missing), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">bins =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">20</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-7">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">geom_vline</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">xintercept =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">linetype =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"dashed"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-8">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">x =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">200</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1500</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">label =</span> lab), </span>
-<span id="cb1-9">            <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">tribble</span>(<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span>x, <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span>y, <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span>lab,</span>
-<span id="cb1-10">                    <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">200</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1500</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Missing values (NA)"</span>),</span>
-<span id="cb1-11">            <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">angle =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">90</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">hjust =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"center"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">vjust =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"center"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">nudge_x =</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">12.5</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-12">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-13">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>)) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-14">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">scale_fill_manual</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey20"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey70"</span>), <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">guide =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-15">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Number of responses"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Answer to the question 'How much time do you usually spend sitting on a typical day?'"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb1-16">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"transparent"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">colour =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span>),  </span>
-<span id="cb1-17">        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"transparent"</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">colour =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">NA</span>))</span></code></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://www.rebeccabarter.com/blog/drafts/2023-03-31-data_usefulness_files/figure-html/inactivity-hist-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>How well do you think this variable (<code>PAD680</code>) is reflecting reality?</strong></p>
-<p>To answer this question, we need to first ask what is this variable trying to capture? The question being asked is “How much time do you usually spend sitting on a typical day?”, so clearly this variable is trying to capture is the amount of time each person included in the dataset spends sitting in a typical day (note that the question specifically says that this should not include time sleeping).</p>
-<p>Let’s start with the 30% of values that are missing. Do you think that these values are reflecting reality? They definitely are <em>not</em> reflecting reality: they are not at all capturing the amount of time each person spent sitting in a typical day.</p>
-<p>Presumably these values are missing because the individual didn’t have a good estimate of how much time they spent sitting on any given day, but this begs the question of why are these values are recorded as missing, rather than “refused” or “don’t know”? Fewer than 1% of answers were “refused” or “don’t know”, which implies a potential inconsistency in the way that the data are being collected by the survey takers. We’ll get to consistency below.</p>
-<p>Okay, so in this case the missing values aren’t reflecting reality, and so are not considered “correct”, but what about the non-missing values. Do you think that these values are “correct” in the sense that they are accurately reflecting the actual amount of time each person in the study spends sitting on a typical day? Since this data was not collected by <em>observing</em> how much each person sits on a typical day, and it’s really hard to actually guess exactly how much time you spend sitting on a typical day (try it for yourself), these values are, at best, vague ball-park figures that are deeply influenced by flawed self-perception and a fear of being judged on their answer.</p>
-<p>In this case, even the non-missing values are unlikely to be “correct”. Don’t lose all hope yet, however! This doesn’t mean that you can’t analyze your data, it just means that you need to be careful to remember and communicate that the results are based on self-reported measures of inactivity that are not perfectly accurate reflections of reality, which should serve as a reminder not to take any specific numeric conclusions that you arrive at too seriously (e.g., people who spend more than half of their waking hours sitting are more likely to be depressed). General trends, however, are likely to be .</p>
-<p>If you want to <em>test</em> the stability of your conclusions to your data, check out Bin Yu’s <a href="https://www.pnas.org/doi/10.1073/pnas.1901326117"><em>Veridical Data Science</em></a> framework (and keep an eye out for the “Veridical Data Science” book written by Bin Yu and myself!) for advice on how to do that.</p>
-</section>
-<section id="completeness" class="level2">
-<h2 class="anchored" data-anchor-id="completeness">Completeness</h2>
-<p>Completeness is a measure</p>
-</section>
-<section id="consistency" class="level2">
-<h2 class="anchored" data-anchor-id="consistency">Consistency</h2>
-</section>
-<section id="currency" class="level2">
-<h2 class="anchored" data-anchor-id="currency">Currency</h2>
-</section>
-</section>
-<section id="can-data-cleaning-help" class="level1">
-<h1>Can data cleaning help?</h1>
-<p>While data cleaning can address consistency (e.g., by reformatting inconsistently recorded data values) correctness to some extent (e.g., by replacing invalid or incorrect values with more correct values when they are known), data cleaning cannot fix a lack of completeness or currency.</p>
-
-
-</section>
-
- ]]></description>
-  <category>data science</category>
-  <category>data</category>
-  <category>data usefulness</category>
-  <guid>https://www.rebeccabarter.com/blog/drafts/2023-03-31-data_usefulness.html</guid>
-  <pubDate>Mon, 03 Apr 2023 07:00:00 GMT</pubDate>
-  <media:content url="https://www.rebeccabarter.com/blog/drafts/img/data_usefulness/four_c.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Random Variables</title>
-  <dc:creator>Rebecca Barter</dc:creator>
-  <link>https://www.rebeccabarter.com/blog/drafts/2023-03-29-random_variables.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>A few short months ago, we each got out of bed, and without knowing it, stepped into a brave new world. A world in which many of the tasks that used to be our day-to-day focus, such as editing, writing, and summarizing documents and code, can now be done by a computer. While we still need to be at the helm, setting the course for these tasks, we no longer need to do all of the minute tasks, like copy-editing, scaling up our code, and summarizing what we did. That’s all taken care for us by ChatGPT (and by all of the other software that is looming on the horizon). After writing a rough version of this entire blog post (Without worrying about grammar and wording), I used ChatGPT to smooth it out, probably saving me an hour of minute tasks.</p>
-<p>Perhaps, like me, when you first started playing with ChatGPT, you felt an eerie sense of dread start to well up in your chest. A dread that said “<em>This is it. It’s here. Holy crap. What is this world that are we about to step into?</em>”.</p>
-<p>But the fact of the matter is, it’s here. We can’t fight it. We can either adapt to a world with it, or we can resist it and get left behind.</p>
-<p>As a data science educator, I’ve been doing a lot of thinking myself about what this means for my own career. And I’ve tepidly arrived at a conclusion that this has the potential to ultimately be a good thing for the field of data science. But to get there, we have a lot of work to do. Now that tasks such as writing and scaling up code and fitting models can now be done for us, this leaves us to focus on the more important tasks in data science: critical thinking. The thing that computers can’t do for us. And frankly, this is also the thing that most data science educators have been ignoring up until now. Because of the steep learning curve that is required of the coding and the theoretical mathematical and statistical side of data science, most existing books and courses focus on these, without taking the next step of teaching how to actually <em>think</em> with data. How to connect our data, and the insights we glean from it, to <em>reality</em>.</p>
-<p>This is where I plan to pivot.</p>
-<p>There used to be a day when the prevailing opinion was that you should not use statistical and machine learning models if you didn’t possess a mastery of the theoretical underpinnings of the techniques. Many of us have moved on from that notion: in my opinion, so long as you understand when it is and when it is not appropriate to use these techniques, you don’t need to know how to derive all of the asymptotic results that underlie them. I believe that coding will be come similar: since ChatGPT can write much of your code for you, while you do need to be able to check the code and output to ensure that it is doing what you intended, future data scientists may not need to be code masters in the same way that they do today. Especially once we are flush with applications that allow people to simply use the English language to analyze their data: “<em>Computer, please create a scatterplot of age versus diabetes incidence… Actually can you change that to a barplot?</em>”</p>
-<p>Too many data scientists today are data “doers” rather than data “thinkers”. They know how to work with data but they don’t take the time to pause and think about how their data and insights is connected to the real world. Rather than standing on the precipice of our doom, we are standing on the precipice of opportunity. Or at least, that is what I am choosing to believe, because, quite frankly, I don’t like the alternative.</p>
-
-
-
- ]]></description>
-  <category>data science</category>
-  <category>artificial intelligence</category>
-  <category>chatGPT</category>
-  <guid>https://www.rebeccabarter.com/blog/drafts/2023-03-29-random_variables.html</guid>
-  <pubDate>Tue, 28 Mar 2023 07:00:00 GMT</pubDate>
-  <media:content url="https://www.rebeccabarter.com/blog/drafts/img/data/data.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Data science in the age of AI</title>
-  <dc:creator>Rebecca Barter</dc:creator>
-  <link>https://www.rebeccabarter.com/blog/drafts/2023-03-29-ai.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>A few short months ago, we each got out of bed, and unknowingly stepped into a brave new world. A world in which many of the tasks that used to be our day-to-day focus, such as editing, writing, and summarizing documents and code, can now be done by a computer. While we still need to be at the helm, setting the course for these tasks, we no longer need to do all of the minute tasks, like copy-editing, scaling up our code, and summarizing what we did. That’s all taken care for us by ChatGPT (and by all of the other software that is looming on the horizon). After writing a rough version of this entire blog post (without worrying about grammar and wording), I used ChatGPT to smooth it out, probably saving me an hour of minute tasks.</p>
-<p>Perhaps, like me, when you first started playing with ChatGPT, you felt an eerie sense of dread begin to well up. A dread that said “<em>This is it. It’s here. Holy crap. What is this world that are we about to step into?</em>”.</p>
-<p>But the fact of the matter is, it’s here. We can’t fight it. We can either adapt to a world with it, or we can resist it and get left behind.</p>
-<p>As a data science educator, I’ve been doing a lot of thinking myself about what this means for my own career. And I’ve tepidly arrived at a conclusion that this has the potential to ultimately be a good thing for the field of data science. But to get there, we have a lot of work to do. Now that tasks such as writing and scaling up code and fitting models can now be done for us, this leaves us to focus on the more important tasks in data science: critical thinking. The thing that computers can’t do for us. And frankly, this is also the thing that most data science educators have been ignoring up until now. Because of the steep learning curve that is required of the coding and the theoretical mathematical and statistical side of data science, most existing books and courses focus on these, without taking the next step of teaching how to actually <em>think</em> with data. How to connect our data, and the insights we glean from it, to <em>reality</em>.</p>
-<p>This is where I plan to pivot.</p>
-<p>There used to be a day when the prevailing opinion was that you should not use statistical and machine learning models if you didn’t possess a mastery of the theoretical underpinnings of the techniques. Many of us have moved on from that notion: in my opinion, so long as you understand when it is and when it is not appropriate to use these techniques, you don’t need to know how to derive all of the asymptotic results that underlie them. I believe that coding will be come similar: since ChatGPT can write much of your code for you, while you do need to be able to check the code and output to ensure that it is doing what you intended, future data scientists may not need to be code masters in the same way that they do today. Especially once we are flush with applications that allow people to simply use the English language to analyze their data: “<em>Computer, please create a scatterplot of age versus diabetes incidence… Actually can you change that to a barplot?</em>”</p>
-<p>Too many data scientists today are data “doers” rather than data “thinkers”. They know how to work with data but they don’t take the time to pause and think about how their data and insights is connected to the real world. Rather than standing on the precipice of our doom, we are standing on the precipice of opportunity. Or at least, that is what I am choosing to believe, because, quite frankly, I don’t like the alternative.</p>
-
-
-
- ]]></description>
-  <category>data science</category>
-  <category>artificial intelligence</category>
-  <category>chatGPT</category>
-  <guid>https://www.rebeccabarter.com/blog/drafts/2023-03-29-ai.html</guid>
-  <pubDate>Tue, 28 Mar 2023 07:00:00 GMT</pubDate>
-  <media:content url="https://www.rebeccabarter.com/blog/drafts/img/data/data.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>A list of public data repositories</title>
@@ -17890,6 +17498,1320 @@ font-style: inherit;">summarise_all</span>(n_distinct)</span></code></pre></div>
   <category>tidyverse</category>
   <guid>https://www.rebeccabarter.com/blog/2019-01-23_scoped-verbs.html</guid>
   <pubDate>Wed, 23 Jan 2019 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Which hypothesis test should I use? A flowchart</title>
+  <dc:creator>Rebecca Barter</dc:creator>
+  <link>https://www.rebeccabarter.com/blog/2018-12-04_hypothesis_testing.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Many years ago I taught a stats class for which one of the topics was hypothesis testing. Many of the students had a hard time remembering what situation each test was designed for, so I made a flowchart to help piece together the wild world of hypothesis tests.</p>
+<p>While the flowchart isn’t pretty (if I made it today, it would be much more attractive), I feel like it might be useful for others, so here it is:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/img/hypothesis_testing/Hypothesis_testing_flow_mean.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>(if you all like it - I’ll make a pretty version!)</p>
+
+
+
+ ]]></description>
+  <category>statistics</category>
+  <category>hypothesis testing</category>
+  <guid>https://www.rebeccabarter.com/blog/2018-12-04_hypothesis_testing.html</guid>
+  <pubDate>Tue, 04 Dec 2018 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Alternatives to grouped bar charts</title>
+  <dc:creator>Rebecca Barter</dc:creator>
+  <link>https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>At some point in your life you have probably found yourself standing face-to-face with a beast known as a grouped bar chart. Perhaps it was in a research paper where the authors were trying to compare the results of several models across different datasets, or it was in a talk given by a colleague who was trying to compare the popularity of different products among distinct groups of consumers.</p>
+<p>The first time you encountered a grouped bar chart you might have thought “what a neat way to put so much information in a single plot!”. However, the moment you started trying to see whether the orange bar always does better than the green bar but worse than the blue bar.</p>
+<p>In the example below (made with ggplot2), I show a simple grouped bar chart comparing research funding success rates across a variety of disciplines with the data split into two categories for each discipline: males and females. This data came from Rafael Irizarry’s excellent R package, <code>dslabs</code>, containing datasets for teaching data science.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Even in this simple example, I find it really difficult to compare male and female funding success rates across genders. Are the males having more success than the females overall? It’s genuinely hard to tell unless I examine each discipline closely and see that men are doing better in the first two groups, but not the two after that, and then I think they are doing a bit better in the categories after that, but now I’m having a hard time and I really want to stop looking at this plot now…</p>
+<p>Fortunately, people such as Ann K. Emery (in <a href="http://annkemery.com/clustered-bar-chart/">her post on grouped bar charts</a>) have thought about how to represent this information in a better way. Below I will show 2 alternative approaches (slope charts and horizontal dot plots).</p>
+<p>While these are not necessarily “standard” plot types (as in there is no specific <code>geom_</code> for them), true freedom in visualization comes with the realization that most plots are just arrangements of circles and lines in space. When you truly embrace this idea, you can make any type of figure you want! By means of demonstration, in my <a href="../2018-05-29_getting_fancy_ggplot2/index.html">next post I show the ggplot2 R code for making each plot</a>.</p>
+<section id="slope-plots" class="level1">
+<h1>Slope plots</h1>
+<p>The first alternative is similar to parallel coordinates plots for multi-variate data visualization. The slope plot contains two axes (or three or four, depending on how many groups you have), one for each group (male and female). The disciplines are each represented by a line connecting the male success rates to the female success rates in as coded by their y-position. This plot makes it very clear for which disciplines women have greater funding success than men (the upward sloping, darker colored lines) and it also makes it very clear which disciplines have higher funding success rates overall (Physics and Chemical sciences).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What we see much more clearly is that the number of disciplines in which men are more successful is similar to the number of disciplines in which women are more successful. The discipline with the most similar success rates between men and women is the Chemical sciences. All of this information was very difficult to obtain from the grouped bar chart!</p>
+</section>
+<section id="horizontal-dot-plots" class="level1">
+<h1>Horizontal dot plots</h1>
+<p>Another alternative is the horizontal dot plot: In this case each discipline is again represented by a line, but instead of coding the success rates as the y-position at the end of the discipline slope, the success rate is coded as the x-position along the discipline-specific horizontal line. I have ordered the disciplines by the women’s funding success rate.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For me, the horizontal dot plot highlights that in the disciplines with lower funding rates overall (the bottom few rows), men have higher success rates.</p>
+<p>Regardless of your preference, it is fairly clear that both the slope plot and the horizontal dot plots are easier to digest than the grouped bar plot!</p>
+</section>
+<section id="code" class="level1">
+<h1>Code</h1>
+<p>My <a href="../2018-05-29_getting_fancy_ggplot2/index.html">next post</a> shows the ggplot2 code that I wrote to produce the three plots in this post.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li><p>The research funding data comes from Rafael Irizarry’s <code>dslabs</code> R package</p></li>
+<li><p>The slope and dot plot ideas for this post come from <a href="http://annkemery.com/clustered-bar-chart/">Ann K. Emery’s post</a> on the same topic.</p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>visualization</category>
+  <guid>https://www.rebeccabarter.com/blog/2018-05-29_alternatives_dodged_bars.html</guid>
+  <pubDate>Tue, 29 May 2018 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Getting fancy with ggplot2: code for alternatives to grouped bar charts</title>
+  <dc:creator>Rebecca Barter</dc:creator>
+  <link>https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Here I provide the code I used to create the figures from my <a href="../2018-05-29_alternatives_dodged_bars/index.html">previous post on alternatives to grouped bar charts</a>. You are encouraged to play with them yourself!</p>
+<p>The key to creating unique and creative visualizations using libraries such as ggplot (or even just straight SVG) is (1) to move away from thinking of data visualization only as the default plot types (bar plots, boxplots, scatterplots, etc), and (2) to realise that most visualizations are essentially lines and circles that you can arrange however you desire in space. Drawing a picture on paper before beginning to code your data viz is a great way to create customized visualizations for each dataset.</p>
+<section id="bars" class="level1">
+<h1>Bars</h1>
+<p>First, I load in the libraries (the data comes from the <code>dslabs</code> library), and convert the data to long-form for creating the grouped bar charts.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># load in libraries</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dslabs)</span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># combine male and female success rates into single data frame</span></span>
+<span id="cb1-5">success_rates <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(</span>
+<span id="cb1-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># male success rates</span></span>
+<span id="cb1-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">transmute</span>(research_funding_rates, </span>
+<span id="cb1-8">            discipline, </span>
+<span id="cb1-9">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">success =</span> success_rates_men, </span>
+<span id="cb1-10">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">gender =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Male"</span>),</span>
+<span id="cb1-11">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># female success rates</span></span>
+<span id="cb1-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">transmute</span>(research_funding_rates, </span>
+<span id="cb1-13">            discipline, </span>
+<span id="cb1-14">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">success =</span> success_rates_women, </span>
+<span id="cb1-15">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">gender =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Female"</span>)) </span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># print the data</span></span>
+<span id="cb2-2">success_rates</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            discipline success gender
+1    Chemical sciences    26.5   Male
+2    Physical sciences    19.3   Male
+3              Physics    26.9   Male
+4           Humanities    14.3   Male
+5   Technical sciences    15.9   Male
+6    Interdisciplinary    11.4   Male
+7  Earth/life sciences    24.4   Male
+8      Social sciences    15.3   Male
+9     Medical sciences    18.8   Male
+10   Chemical sciences    25.6 Female
+11   Physical sciences    23.1 Female
+12             Physics    22.2 Female
+13          Humanities    19.3 Female
+14  Technical sciences    21.0 Female
+15   Interdisciplinary    21.8 Female
+16 Earth/life sciences    14.3 Female
+17     Social sciences    11.5 Female
+18    Medical sciences    11.2 Female</code></pre>
+</div>
+</div>
+<p>I used <code>geom_bar()</code> to create a grouped bar chart containing the data. I grouped by gender by setting <code>fill = gender</code> within the <code>aes()</code> function.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># make grouped bar plot</span></span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(success_rates) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add bar for each discipline colored by gender</span></span>
+<span id="cb4-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_bar</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> discipline, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> gender),</span>
+<span id="cb4-5">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">stat =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"identity"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dodge"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># name axes and remove gap between bars and y-axis</span></span>
+<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Success Rate"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_discrete</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Discipline"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#468189"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9DBEBB"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-10">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># remove grey theme</span></span>
+<span id="cb4-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_classic</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-12">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># rotate x-axis and remove superfluous axis elements</span></span>
+<span id="cb4-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">angle =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">90</span>, </span>
+<span id="cb4-14">                                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>),</span>
+<span id="cb4-15">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.line =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb4-16">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.ticks.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()) </span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="slope-plot" class="level1">
+<h1>Slope plot</h1>
+<p>To create the sloped chart, it ends up being easier to keep the data in its original wide form.</p>
+<p>The first element I add is the slopes from men to women using <code>geom_segment()</code>. Each slope is colored based on whether men or women are more successful.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">gg_slope <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> research_funding_rates <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add a variable for when men are more successful than women (for colours)</span></span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">men_more_successful =</span> success_rates_men <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> success_rates_women) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-5">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add a line segment that goes from men to women for each discipline</span></span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, </span>
+<span id="cb5-7">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success_rates_men, </span>
+<span id="cb5-8">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> success_rates_women,</span>
+<span id="cb5-9">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> discipline,</span>
+<span id="cb5-10">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> men_more_successful), </span>
+<span id="cb5-11">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-12">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># set the colors</span></span>
+<span id="cb5-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#468189"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9DBEBB"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">guide =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>)  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-14">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># remove all axis stuff</span></span>
+<span id="cb5-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb5-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.line =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb5-17">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb5-18">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb5-19">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.ticks =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()) </span>
+<span id="cb5-20">gg_slope</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Next, I add a left and right axis at the start and end of the slopes.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">gg_slope <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> gg_slope <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add vertical lines that act as axis for men</span></span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, </span>
+<span id="cb6-4">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(research_funding_rates<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>success_rates_men) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>,</span>
+<span id="cb6-5">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(research_funding_rates<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>success_rates_men) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb6-6">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey70"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-7">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add vertical lines that act as axis for women</span></span>
+<span id="cb6-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, </span>
+<span id="cb6-9">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(research_funding_rates<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>success_rates_men) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>,</span>
+<span id="cb6-10">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(research_funding_rates<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>success_rates_men) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb6-11">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey70"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-12">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the words "men" and "women" above their axes</span></span>
+<span id="cb6-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> label),</span>
+<span id="cb6-14">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, </span>
+<span id="cb6-15">                              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(research_funding_rates<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>success_rates_men),</span>
+<span id="cb6-16">                              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"men"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"women"</span>)),</span>
+<span id="cb6-17">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey30"</span>,</span>
+<span id="cb6-18">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>) </span>
+<span id="cb6-19">gg_slope  </span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I also need to add an identifier for each discipline’s slope. I do this by annotating the plot with text.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">gg_slope <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> gg_slope <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the label and success rate for each discipline next the men axis</span></span>
+<span id="cb7-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.03</span>, </span>
+<span id="cb7-4">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success_rates_men, </span>
+<span id="cb7-5">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(discipline, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">", "</span>, </span>
+<span id="cb7-6">                               <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(success_rates_men, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%"</span>)),</span>
+<span id="cb7-7">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey30"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-8">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the success rate next to each point on the women axis</span></span>
+<span id="cb7-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.08</span>, </span>
+<span id="cb7-10">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success_rates_women, </span>
+<span id="cb7-11">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(success_rates_women, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%"</span>)),</span>
+<span id="cb7-12">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey30"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-13">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># set the limits of the x-axis so that the labels are not cut off</span></span>
+<span id="cb7-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.1</span>)) </span>
+<span id="cb7-15">gg_slope</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, I decide to add points (for aesthetic purposes). Behind each circle, I add a slightly larger white circle to act as a border and to give a slight “gap” look.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">gg_slope <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> gg_slope <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb8-2">  </span>
+<span id="cb8-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the white outline for the points at each rate for men</span></span>
+<span id="cb8-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, </span>
+<span id="cb8-5">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success_rates_men), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.5</span>,</span>
+<span id="cb8-6">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-7">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the white outline for the points at each rate for women</span></span>
+<span id="cb8-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, </span>
+<span id="cb8-9">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success_rates_women), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.5</span>,</span>
+<span id="cb8-10">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-11">  </span>
+<span id="cb8-12">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the actual points at each rate for men</span></span>
+<span id="cb8-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, </span>
+<span id="cb8-14">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success_rates_men), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,</span>
+<span id="cb8-15">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey60"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-16">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the actual points at each rate for men</span></span>
+<span id="cb8-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, </span>
+<span id="cb8-18">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> success_rates_women), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,</span>
+<span id="cb8-19">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey60"</span>) </span>
+<span id="cb8-20">gg_slope</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="horizontal-dots" class="level1">
+<h1>Horizontal dots</h1>
+<p>To create the horizontal dot plot, I again keep the data in its original wide-form but I arrange the disciplines in order of women’s success rate (this will make the plot easier to read).</p>
+<p>The first things I do to create the dot plot is add the horizontal discipline lines and the points for the success rates of men and women.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">gg_dot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> research_funding_rates <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb9-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># rearrange the factor levels for discipline by rates for women</span></span>
+<span id="cb9-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(success_rates_women) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb9-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">discipline =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fct_inorder</span>(discipline)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb9-5">  </span>
+<span id="cb9-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-7">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># remove axes and superfluous grids</span></span>
+<span id="cb9-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_classic</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb9-10">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.ticks.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb9-11">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.line =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-12">  </span>
+<span id="cb9-13">  </span>
+<span id="cb9-14">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add a dummy point for scaling purposes</span></span>
+<span id="cb9-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> discipline), </span>
+<span id="cb9-16">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb9-17">  </span>
+<span id="cb9-18">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the horizontal discipline lines</span></span>
+<span id="cb9-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey80"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-20">  </span>
+<span id="cb9-21">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add a point for each male success rate</span></span>
+<span id="cb9-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> success_rates_men, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> discipline), </span>
+<span id="cb9-23">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9DBEBB"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb9-24">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add a point for each female success rate</span></span>
+<span id="cb9-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> success_rates_women, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> discipline),</span>
+<span id="cb9-26">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#468189"</span>) </span>
+<span id="cb9-27">gg_dot</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since I really like to annotate my figures with text so that the audience can work less hard, I add the success rate on top of each dot. I also prefer to annotate features my plot directly instead of using legends, so I also add a label for men and women.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">gg_dot <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> gg_dot <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb10-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the text (%) for each male success rate</span></span>
+<span id="cb10-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> success_rates_men, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> discipline, </span>
+<span id="cb10-4">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(success_rates_men, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))),</span>
+<span id="cb10-5">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add the text (%) for each female success rate</span></span>
+<span id="cb10-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> success_rates_women, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> discipline, </span>
+<span id="cb10-8">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">round</span>(success_rates_women, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))),</span>
+<span id="cb10-9">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-10">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add a label above the first two points</span></span>
+<span id="cb10-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> label, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> label),</span>
+<span id="cb10-12">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25.6</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">26.5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, </span>
+<span id="cb10-13">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"women"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"men"</span>)), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9DBEBB"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#468189"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">guide =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-15">  </span>
+<span id="cb10-16">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># manually specify the x-axis</span></span>
+<span id="cb10-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>), </span>
+<span id="cb10-18">                     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"15%"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"20%"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"25%"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-19">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># manually set the spacing above and below the plot</span></span>
+<span id="cb10-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_discrete</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)) </span>
+<span id="cb10-21">gg_dot</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li><p>The research funding data comes from Rafael Irizarry’s <code>dslabs</code> R package</p></li>
+<li><p>The slope and dot plot ideas for this post come from <a href="http://annkemery.com/clustered-bar-chart/">Ann K. Emery’s post</a> on the same topic.</p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>visualization</category>
+  <guid>https://www.rebeccabarter.com/blog/2018-05-29_getting_fancy_ggplot2.html</guid>
+  <pubDate>Tue, 29 May 2018 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Understanding Instrumental Variables</title>
+  <dc:creator>Rebecca Barter</dc:creator>
+  <link>https://www.rebeccabarter.com/blog/2018-05-23-instrumental_variables.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Suppose, as many do, that we want to estimate the effect of an action (or treatment) on an outcome. As an example, we might be interested in estimating the effect of receiving a drug vs not receiving a drug on the incidence of heart disease. In an ideal futuristic world, we would take each individual in our population and split them into two identical humans: one who receives the treatment and the other who doesn’t. Since these two humans are 100% identical in every way other than the treatment received, any difference we subsequently observe in their outcome (i.e.&nbsp;development of heart disease) must be due to the effect of the treatment alone.</p>
+<p>Unfortunately, since our humble 21st-century technology does not yet posses a human-duplication machine, the natural thing to do is to split our existing population of humans <em>randomly</em> into two groups: those who are to receive the drug (the treatment group) and those who won’t (the control group).</p>
+<p>Since there was nothing special about how we determined who gets the drug and who doesn’t, <em>on average</em>, there should be no difference between the treatment group and control group other than in the treatment itself. Thus, comparing the incidence of heart disease in the treatment group and in the control group should give us a reasonable estimate of the average effect of the treatment in the population.</p>
+<section id="unobserved-confounding-in-observational-studies" class="level1">
+<h1>Unobserved confounding in observational studies</h1>
+<p>While the randomized experiment is a perfectly reasonable thing to do in many situations, unfortunately there are many more scenarios where we can’t just randomly assign the treatment. For instance in the case of the effect of organ transplants on survival, it is probably not the best idea to randomly assign transplants to people. Instead, those who receive transplants first are those who need it the most. Such a study is necessarily observational: we simply observe who happened to receive a transplant based on the existing system.</p>
+<p>It is highly likely that there will be fairly extreme differences between those who receive a transplant earlier and those who receive one later; namely that those who are transplanted earlier are much sicker than those who are transplanted later. Thus, differences in survival between those who receive a transplant within a month (our definition of the treatment group) and those who receive a transplant in more than one month (our definition of the control group) cannot be attributable solely to the time of the transplant itself, but also to the fact that the earlier transplantees were sicker at the start of the study. Thus sickness is a <em>confounder</em>: something that is different between the treatment and control groups other than the treatment itself that also affects the outcome.</p>
+<p>If you’d like to quickly brush up on your causal inference, the fundamental issue associated with making causal inferences, and in particular, the troubles that arise in the presence of confounding, you might like to take a peak at my <a href="../2017-07-05-confounding/index.html">earlier post</a> on this topic.</p>
+<p>If a confounder is observable, you can adapt your estimator using methods such as matching or regression adjustment to obtain an unbiased treatment effect estimate. The key issue that I will explore in this post is what to do when you have <em>unobserved confounding</em>. For example, what if we cannot quantitatively measure “sickness” (the variable that determines whether you will be transplanted soon or not) and so transplants between blood-type compatible donors and recipients are assigned primarily based on sickness <em>as measured by a doctor’s intuition</em> (a fundamentally unmeasurable quantity). Note that this isn’t actually how transplants are allocated, but it will serve nicely for instrumental variables explanation purposes.</p>
+</section>
+<section id="what-is-an-instrument-and-can-i-play-it" class="level1">
+<h1>What is an instrument and can I play it?</h1>
+<p>In most situations, if you have an unobservable confounder, there isn’t too much you can do to get around it since changes in the treatment will necessarily also change the confounder (in ways we cannot measure), <em>both</em> of which will in turn change the outcome. In this case, there is no way to measure the effect of the treatment alone (i.e.&nbsp;in isolation from the confounder) on the outcome.</p>
+<p>In a few situations, however, you will have an instrument. An instrument, it turns out, is not a tuba, a piano, nor a flute, but rather <strong>an instrument is a magical measurable quantity that happens to be correlated with the treatment, and is only related to the outcome via the treatment</strong> (the instrument has no influence on the outcome except via the fact that it influences the treatment which inturn influences the outcome). The second part of this definition (that the instrument is only related to the outcome via the treatment) is called the <strong>exclusion restriction</strong>.</p>
+<p>In our transplant setting, a particularly nice instrument is blood type. Patients with blood type AB can receive organs from donors with any blood type (and donors with blood type AB can only donate to recipients with blood type AB), whereas patients with blood type O can only receive organs from donors with blood type O (but donors with blood type O can donate to recipients of any blood type). The result is that patients with blood type O will, in general, need to wait longer for a transplant than patients of a similar sickness level with blood type AB.</p>
+<p>Since this is a lot to explain in words, below you will find a picture that demonstrates how recipients with blood type AB have a larger pool of potential donors than do recipients with blood type O. An arrow from a donor blood type to a recipient blood type implies that donors with the specified blood type can donate organs to the corresponding recipient blood type. Since we will focus only on blood types AB and O (pretending that blood types A and B don’t exist for technical convenience), these two blood types have been enclosed in a snug little box within the diagram.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/abo.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The idea behind instrumental variables is that the <em>changes in treatment</em> that are <em>caused by the instrument</em> are unconfounded (since changes in the instrument will change the treatment but not the outcome or confounders) and can thus be used to estimate the treatment effect (among those individuals who are influenced by the instrument). This idea will be explained in great detail in the next section, but for now I will try to convince you that blood type is indeed an instrument.</p>
+<p>Clearly blood type will affect the treatment (whether or not the patient is transplanted within a month), but for blood type to be an instrument, we also need to make sure that blood type has no effect on the outcome (other than through it’s effect on the treatment). That is, we need to check the exclusion restriction. It turns out that, unfortunately, the exclusion restriction is <strong>uncheckable</strong> (similarly to how it is impossible to check that there are no unobserved confounders). The exclusion restriction will forever remain a critical assumption that will need to be backed up by domain knowledge.</p>
+<p>In the blood type case, it is easy to find faults in the exclusion restriction assumption: it is well-known that blood type and race are correlated, and that race and life-expectancy are correlated (implying that blood type and survival might be related via race). However, to keep things simple, we will define our outcome to be a binary variable corresponding to whether or not death occurs <em>within 1 year</em>. It is highly unlikely that blood type will be related to such a short term survival outcome, even via correlation with race. Moreover, blood type is more-or-less randomly assigned (given your parent’s blood type). In this case, the exclusion restriction is fairly plausible, but in many IV setups, a lot of care will need to be taken to back up the exclusion restriction assumption.</p>
+<p>Now that we (hopefully) understand <em>what</em> an instrument is, the next question is how to use it (don’t worry if you have no idea why instruments are useful yet, it’s not at all obvious!).</p>
+</section>
+<section id="how-do-instruments-work" class="level1">
+<h1>How do instruments work?</h1>
+<p>Our big question is whether there is an effect of being transplanted within one month (the treatment) on death within 1 year (the outcome). However, our standard approaches to estimating the treatment effect are foiled by the presence of unobserved confounding by sickness, a feature that we cannot accurately quantify. If we could accurately measure an individual’s level of sickness then we could adjust for it using regression adjustment or matching techniques. In our case, however, sickness is defined based on doctor intuition (an unmeasurable quantity), so these traditional approaches to dealing with confounding cannot help us.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Fortunately, we have an instrument (blood type) which modifies the treatment (time to transplantation) without modifying any confounders (the exclusion restriction says that the instrument has no effect on the outcome in any way except through the treatment - this would not be true if the instrument was correlated with a confounder). The exclusion restriction is embodied by the lack of an arrow between the instrument (blood type) and the outcome (death within 1 year) in the graph below.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, since the instrument affects the outcome solely through the treatment, any observed difference between the outcome (survival) between different levels of the instrument (blood types) must be due to the subsequent differences in the treatment (wait time).</p>
+<p>It turns out that the effect of having blood type AB versus blood type O is that an individual is 7% less likely to die within 1 year. Since under the exclusion restriction there is no direct effect of blood type on death within 1 year (except via the treatment), this must be due to the difference in transplant wait time (the treatment) between the blood types.</p>
+<p>Since patients with blood type AB are 23% more likely to be transplanted within 1 month than patients with blood type O, we can conclude that the effect of a 23% increase in the chance of being transplanted within 1 month is a 7% decrease in the chance of death within one year.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.rebeccabarter.com/blog/img/iv/dag5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Mathematically, to scale up the effect of “being 23% more likely to be transplanted within a month” to the effect of “being 100% more likely to be transplanted within a month” (i.e.&nbsp;of being transplanted within a month vs not being transplanted within a month) is equal to</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Ctextrm%7BEffect%20of%20AB%20vs%20O%20on%20death%20in%201%20year%7D%7D%7B%5Ctextrm%7BEffect%20of%20AB%20vs%20O%20on%20transplantation%20in%201%20month%7D%7D%20=%20%5Cfrac%7B-0.07%7D%7B0.23%7D%20=%20-0.3"></p>
+<p>That is, being transplanted within 1 month decreases the chance of death within 1 year by 30%!</p>
+<p>It is important to note that since we are estimating the effect of changes in the treatment that were caused by the instrument only (rather than the effects of arbitrary changes in the treatment), the instrumental variables treatment effect estimate is not for the entire population, but only for those who are influenced in some way by the instrument (the “compliers”). Thus this estimate is called the Local Average Treatment Effect (LATE).</p>
+<p>The estimator above is often referred to as the <strong>Wald estimator</strong> and can be written as</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctextrm%7BWald%20estimator%7D%20=%20%5Cfrac%7B%5Ctextrm%7BCov(outcome,%20instrument)%7D%7D%7B%5Ctextrm%7BCov(treatment,%20instrument)%7D%7D"></p>
+<p>In practice, IV is often implemented in a two-stage lease squares (2SLS) procedure that can be shown quite easily to be equivalent to the Wald estimator in simple cases (i.e.&nbsp;when not adjusting for other variables).</p>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<ul>
+<li><p>The resource that I found to be most useful was Chapter 10.5 of Andrew Gelman and Jennifer Hill’s book <a href="http://www.stat.columbia.edu/~gelman/arm/chap10.pdf">Data Analysis Using Regression and Multilevel/Hierarchical Models</a></p></li>
+<li><p>The series of YouTube videos by Ben Lambert were also really helpful https://youtu.be/NLgB2WGGKUw</p></li>
+</ul>
+</section>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<ul>
+<li><p>It turns out that you can quantify sickness in the context of liver transplantation using something called the MELD score (model for end-stage liver disease score). But even if we know current MELD score, <em>future</em> MELD score will still be a confounder since if your MELD rapidly increases then you are getting sicker faster and will be transplanted sooner.</p></li>
+<li><p>If there is anything that is unclear in this post, please feel free to ask questions in the comments section so that I can improve it.</p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>causal inference</category>
+  <category>statistics</category>
+  <guid>https://www.rebeccabarter.com/blog/2018-05-23-instrumental_variables.html</guid>
+  <pubDate>Wed, 23 May 2018 07:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
