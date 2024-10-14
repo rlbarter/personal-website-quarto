@@ -16,16 +16,16 @@ I'm also available for data science trainings and consulting! [Click here](https
 
 ::: card
 ::: {.card-header style="background-color: white; font-size: 18;"}
-### [AI Tutorial: Using Text Embeddings to Label Synthetic Doctor’s Notes Generated with ChatGPT](https://www.rebeccabarter.com/blog/2024-04-11-labeling_doctors_notes.html)
+### [Code Like a Pro with AI using GitHub Copilot](https://www.rebeccabarter.com/blog/2024-10-14-copilot.html)
 :::
 
 
 ::: {#card-img}
-[![](blog/img/openai_ehr/doctors_notes_ai_crop.png){fig-alt="An image created by dall-e-3 using the name of this blog post as the prompt. The image contains a brain in the center connected using circuitry to a code console, with various viruses and other things floating around, and a doctor conducting a medical exam of what seems to be another doctor"}](https://www.rebeccabarter.com/blog/2024-04-11-labeling_doctors_notes.html)
+[![](blog/img/copilot/copilot_logo.png){fig-alt="The GitHub Copilot Logo"}](https://www.rebeccabarter.com/blog/2024-10-14-copilot.html)
 :::
 
 ::: card-body
-I've been playing around with OpenAI and ChatGPT in my research, and I thought I'd put together a short tutorial that demonstrates using ChatGPT API to generate synthetic doctor's notes, and then using OpenAI's text embedding models to label the notes according to whether they involve a chronic or acute condition. And yes, I'm fully aware that what I write here will probably be out of date in about 3 hours.
+Ever wished there was a version of ChatGPT to help you write R code right inside your favorite IDE, like RStudio or VS Code? Good news—there is, and it’s called GitHub Copilot! This post contains a video of my hour-long presentation on GitHub Copilot for R Ladies Philly.
 :::
 
 :::

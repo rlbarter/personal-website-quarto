@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rebecca Barter">
+<meta name="dcterms.date" content="2024-10-14">
+<meta name="description" content="Ever wished there was a version of ChatGPT to help you write R code right inside your favorite IDE, like RStudio or VS Code? Good news—there is, and it’s called GitHub Copilot! This post contains a video of my hour-long presentation on GitHub Copilot for R Ladies Philly.">
 
-<title>Welcome – Rebecca Barter</title>
+<title>Code Like a Pro with AI using GitHub Copilot – Rebecca Barter</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +26,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,20 +85,23 @@ ga('send', {
 </script>
 
 
-<link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="Welcome – Rebecca Barter">
-<meta name="twitter:description" content="Rebecca Barter’s blog">
-<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../styles.css">
+<meta name="twitter:title" content="Code Like a Pro with AI using GitHub Copilot – Rebecca Barter">
+<meta name="twitter:description" content="Ever wished there was a version of ChatGPT to help you write R code right inside your favorite IDE, like RStudio or VS Code? Good news—there is, and it’s called GitHub Copilot! This post contains a video of my hour-long presentation on GitHub Copilot for R Ladies Philly.">
+<meta name="twitter:image" content="https://www.rebeccabarter.com/blog/img/copilot/copilot_logo.png">
+<meta name="twitter:image-height" content="496">
+<meta name="twitter:image-width" content="2285">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Rebecca Barter</span>
     </a>
   </div>
@@ -105,15 +112,15 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../blog.html"> 
 <span class="menu-text">Blog archive</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./consulting.html"> 
+    <a class="nav-link" href="../consulting.html"> 
 <span class="menu-text">Workshops and consulting</span></a>
   </li>  
   <li class="nav-item">
@@ -123,7 +130,7 @@ ga('send', {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About Rebecca</span></a>
   </li>  
   <li class="nav-item compact">
@@ -137,7 +144,7 @@ ga('send', {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="./index.xml"> <i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../index.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -149,128 +156,75 @@ ga('send', {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Code Like a Pro with AI using GitHub Copilot</h1>
+                  <div>
+        <div class="description">
+          Ever wished there was a version of ChatGPT to help you write R code right inside your favorite IDE, like RStudio or VS Code? Good news—there is, and it’s called GitHub Copilot! This post contains a video of my hour-long presentation on GitHub Copilot for R Ladies Philly.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">data science</div>
+                <div class="quarto-category">AI</div>
+                <div class="quarto-category">GitHub Copilot</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
     
-<!-- main -->
-<div class="quarto-about-solana column-body">
-  <div class="about-entity">
-    <div class="entity-contents">
-      <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Welcome</h1>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header> 
-      <div class="about-contents"><main class="content" id="quarto-document-content">
-<p>Hi there, I’m Rebecca, welcome to my website! Below you will find my newest posts as well as quick links to some of my more popular posts.</p>
-<p>I’m also available for data science trainings and consulting! <a href="https://www.rebeccabarter.com/consulting">Click here</a> to learn more.</p>
-<section id="new-posts" class="level2">
-<h2 data-anchor-id="new-posts"><em>New posts</em></h2>
-<div class="card">
-<section id="code-like-a-pro-with-ai-using-github-copilot" class="level3 card-header" style="background-color: white; font-size: 18;">
-<h3 data-anchor-id="code-like-a-pro-with-ai-using-github-copilot"><a href="https://www.rebeccabarter.com/blog/2024-10-14-copilot.html">Code Like a Pro with AI using GitHub Copilot</a></h3>
-</section>
-<div id="card-img">
-<p><a href="https://www.rebeccabarter.com/blog/2024-10-14-copilot.html"><img src="blog/img/copilot/copilot_logo.png" class="img-fluid" alt="The GitHub Copilot Logo"></a></p>
-</div>
-<div class="card-body">
-<p>Ever wished there was a version of ChatGPT to help you write R code right inside your favorite IDE, like RStudio or VS Code? Good news—there is, and it’s called GitHub Copilot! This post contains a video of my hour-long presentation on GitHub Copilot for R Ladies Philly.</p>
-</div>
-</div>
-<div class="card">
-<section id="an-introduction-to-python-for-r-users" class="level3 card-header" style="background-color: white; font-size: 18;">
-<h3 data-anchor-id="an-introduction-to-python-for-r-users"><a href="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python/">An introduction to Python for R Users</a></h3>
-</section>
-<div id="card-img">
-<p><a href="https://www.rebeccabarter.com/blog/2023-09-11-from_r_to_python/"><img src="blog/img/python/rubaitul-azad-ZIPFteu-R8k-unsplash.jpg" class="img-fluid" alt="The python logo on a floating disc"></a></p>
-</div>
-<div class="card-body">
-<p>I have a confession to make: I am now a Python user. Don’t judge me, join me! In this post, I introduce Python for data analysis from the perspective of an R (tidyverse) user. This post is a must-read if you are an R user hoping to dip your toes in the Python pool.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="popular-posts" class="level2">
-<h2 data-anchor-id="popular-posts"><em>Popular posts</em></h2>
-<div class="grid">
-<div class="g-col-6">
-<section id="r" class="level3 sec-head">
-<h3 data-anchor-id="r">R</h3>
-</section>
-<div class="card">
-<div class="card-header" style="background-color: white; font-size: 18;">
-<p><a href="https://www.rebeccabarter.com/blog/2019-08-19_purrr/"><strong>Learn to purrr</strong></a></p>
-</div>
-<div class="card-body">
-<p>Purrr is the tidyverse’s answer to apply functions for iteration. It’s one of those packages that you might have heard of, but seemed too complicated to sit down and learn. Starting with map functions, and taking you on a journey that will harness the power of the list, this post will have you purrring in no time.</p>
-</div>
-</div>
-<p>
-</p>
-<div class="card">
-<div class="card-header" style="background-color: white; font-size: 18;">
-<p><a href="https://www.rebeccabarter.com/blog/2020-03-25_machine_learning/"><strong>Tidymodels: Tidymodels: tidy machine learning in R</strong></a></p>
-</div>
-<div class="card-body">
-<p>The tidyverse’s take on machine learning is finally here. Tidymodels forms the basis of tidy machine learning, and this post provides a whirlwind tour to get you started.</p>
-</div>
-</div>
-<p>
-</p>
-<div class="card">
-<div class="card-header" style="background-color: white; font-size: 18;">
-<p><a href="https://www.rebeccabarter.com/blog/2020-07-09-across/"><strong>Across: applying dplyr functions simultaneously across multiple columns</strong></a></p>
-</div>
-<div class="card-body">
-<p>With the introduction of dplyr 1.0.0, there are a few new features: the biggest of which is across() which supersedes the scoped versions of dplyr functions.</p>
-</div>
-</div>
-</div>
-<div class="g-col-6">
-<section id="statistics" class="level3 sec-head">
-<h3 data-anchor-id="statistics">Statistics</h3>
-</section>
-<div class="card">
-<div class="card-header" style="background-color: white; font-size: 18;">
-<p><a href="https://www.rebeccabarter.com/blog/2017-07-05-ip-weighting/"><strong>The intuition behind inverse probability weighting in causal inference</strong></a></p>
-</div>
-<div class="card-body">
-<p>Removing confounding can be done via a variety methods including IP-weighting. This post provides a summary of the intuition behind IP-weighting.</p>
-</div>
-</div>
-<p>
-</p>
-<div class="card">
-<div class="card-header" style="background-color: white; font-size: 18;">
-<p><a href="https://www.rebeccabarter.com/blog/2017-07-05-confounding/"><strong>Confounding in causal inference: what is it, and what to do about it?</strong></a></p>
-</div>
-<div class="card-body">
-<p>An introduction to the field of causal inference and the issues surrounding confounding.</p>
-</div>
-</div>
-<p>
-</p>
-<div class="card">
-<div class="card-header" style="background-color: white; font-size: 18;">
-<p><a href="https://www.rebeccabarter.com/blog/2018-05-23-instrumental_variables/"><strong>Understanding Instrumental Variables</strong></a></p>
-</div>
-<div class="card-body">
-<p>Instrumental variables is one of the most mystical concepts in causal inference. For some reason, most of the existing explanations are overly complicated and focus on specific nuanced aspects of generating IV estimates without really providing the intuition for why it makes sense. In this post, you will not find too many technical details, but rather a narrative introducing instruments and why they are useful.</p>
-</div>
-</div>
-</div>
-</div>
+  
+  <div class="quarto-title-meta">
 
-
-</section>
-</main></div>
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Rebecca Barter </p>
+            </div>
     </div>
-  </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 14, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p align="center">
+<img src="img/copilot/copilot_logo.png" style="width:95.0%;height:70.0%" alt="The GitHub Copilot Logo">
+</p>
+<p>I’ve been wanting to produce some helpful content about how to use GitHub Copilot for a while, but unfortunately, it doesn’t lend itself well to a written medium. Fortunately for me, I was asked by Shannon Pileggi and and Jenny Luong to give a presentation on GitHub Copilot for R Ladies Philly! So rather than writing a blog post, I am sharing the recording of that hour-long session.</p>
+<p>In this talk, I’ll demonstrate Copilot’s powerful AI tools, including advanced code completion (it can write entire multi-line functions from a single comment!) and a chatbot that can “see” your whole code file. Copilot can save you time and brain juice, even if you’re already an R pro. While GitHub Copilot is proprietary software owned by Microsoft, meaning it comes with a cost and is only fully available in VS Code (which is also owned by Microsoft), a “light” version with more limited functionality is supported in RStudio. To get started, you’ll need a GitHub account, you should have VS Code and RStudio installed, and have an active GitHub Copilot subscription. During the live demo, I’ll also provide resources to help you kick off your Copilot journey.</p>
+<p>The GitHub repo containing the materials I cover in the talk can be found <a href="https://github.com/rlbarter/ai-copilot-demo">here</a>.</p>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Lihg6il9SzE?si=IxILtexQupQCk5zi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
 </div>
- <!-- /main -->
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -291,6 +245,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
@@ -683,6 +644,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
+</script>
+<script src="https://utteranc.es/client.js" repo="rlbarter/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 

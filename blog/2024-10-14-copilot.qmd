@@ -1,0 +1,27 @@
+---
+title: "Code Like a Pro with AI using GitHub Copilot"
+author: "Rebecca Barter"
+format:
+  html:
+    toc: true
+    toc-location: left
+categories: [data science, AI, GitHub Copilot, R]
+date: 2024-10-14
+image: img/copilot/copilot_logo.png
+description: "Ever wished there was a version of ChatGPT to help you write R code right inside your favorite IDE, like RStudio or VS Code? Good news—there is, and it’s called GitHub Copilot! This post contains a video of my hour-long presentation on GitHub Copilot for R Ladies Philly."
+editor_options: 
+  chunk_output_type: console
+---
+<p align="center">
+![](img/copilot/copilot_logo.png){fig-alt='The GitHub Copilot Logo' width=95% height=70%}
+</p>
+
+I've been wanting to produce some helpful content about how to use GitHub Copilot for a while, but unfortunately, it doesn't lend itself well to a written medium. Fortunately for me, I was asked by Shannon Pileggi and and Jenny Luong to give a presentation on GitHub Copilot for R Ladies Philly! So rather than writing a blog post, I am sharing the recording of that hour-long session.
+
+In this talk, I’ll demonstrate Copilot's powerful AI tools, including advanced code completion (it can write entire multi-line functions from a single comment!) and a chatbot that can "see" your whole code file. Copilot can save you time and brain juice, even if you're already an R pro. While GitHub Copilot is proprietary software owned by Microsoft, meaning it comes with a cost and is only fully available in VS Code (which is also owned by Microsoft), a "light" version with more limited functionality is supported in RStudio. To get started, you’ll need a GitHub account, you should have VS Code and RStudio installed, and have an active GitHub Copilot subscription. During the live demo, I’ll also provide resources to help you kick off your Copilot journey.
+
+The GitHub repo containing the materials I cover in the talk can be found [here](https://github.com/rlbarter/ai-copilot-demo).
+
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Lihg6il9SzE?si=IxILtexQupQCk5zi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
