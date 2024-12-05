@@ -11,8 +11,6 @@ description: "Purrr is the tidyverse's answer to apply functions for iteration. 
 ---
 
 
-> "It was on the corner of the street that he noticed the first sign of something peculiar - a cat reading a map"
-- J.K. Rowling
 
 
 ```{r echo = FALSE, fig.align = "center"}
@@ -23,7 +21,7 @@ knitr::include_graphics("img/purrr/cat_map.jpg")
 
 Purrr is one of those tidyverse packages that you keep hearing about, and you know you should probably learn it, but you just never seem to get around to it. 
 
-At it's core, purrr is all about iteration. Purrr introduces map functions (the tidyverse's answer to base R's apply functions, but more in line with functional programming practices) as well as some new functions for manipulating lists. To get a quick snapshot of any tidyverse package, a nice place to go is the [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf). I find these particularly useful after I've already got the basics of a package down, because I inevitably realise that there are a bunch of functionalities I knew nothing about.
+At it's core, purrr is all about iteration. Purrr introduces map functions (the tidyverse's answer to base R's apply functions, but more in line with functional programming practices) as well as some new functions for manipulating lists. To get a quick snapshot of any tidyverse package, a nice place to go is the [cheatsheet](https://rstudio.github.io/cheatsheets/purrr.pdf). I find these particularly useful after I've already got the basics of a package down, because I inevitably realise that there are a bunch of functionalities I knew nothing about.
 
 Another useful resource for learning about purrr is [Jenny Bryan's tutorial](https://jennybc.github.io/purrr-tutorial/). Jenny's tutorial is fantastic, but is a lot longer than mine. This post is a lot shorter and my goal is to get you up and running with purrr very quickly.
 

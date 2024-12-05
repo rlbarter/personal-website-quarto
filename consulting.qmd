@@ -17,31 +17,37 @@ about:
 ---
 
 
-## Upcoming public workshops
+## Upcoming live workshops
 
 
 
 
-::: card
-::: {.card-header style="background-color: white; font-size: 18;"}
-### [Python for R Users](https://instats.org/seminar/python-for-r-users2)
-
-
-**Date: November 13, 2024** 9:00am - 4:00pm PST
-
-**Registration**: [Register via Instats](https://instats.org/seminar/python-for-r-users2)
-
-:::
-:::
 
 ::: card
 ::: {.card-header style="background-color: white; font-size: 18;"}
 ### [Introduction to R for Data Analysis](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014)
 
+Learn the basics of the R programming language and the tidyverse. Beginner-friendly!
+
 
 **Date: January 15-16, 2025** 9:00am - 3:00pm PST
 
 **Registration**: [Register via Instats](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014)
+
+:::
+:::
+
+
+## On-demand (pre-recorded) workshops
+
+
+::: card
+::: {.card-header style="background-color: white; font-size: 18;"}
+### [Python for R Users](https://instats.org/seminar/python-for-r-users3)
+
+An introduction to Python from an R user's perspective.
+
+**Registration**: [Register via Instats](https://instats.org/seminar/python-for-r-users3)
 
 :::
 :::

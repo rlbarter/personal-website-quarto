@@ -536,14 +536,21 @@
     "href": "consulting.html",
     "title": "Consulting and workshops",
     "section": "",
-    "text": "Date: November 13, 2024 9:00am - 4:00pm PST\nRegistration: Register via Instats\n\n\n\n\n\nDate: January 15-16, 2025 9:00am - 3:00pm PST\nRegistration: Register via Instats"
+    "text": "Learn the basics of the R programming language and the tidyverse. Beginner-friendly!\nDate: January 15-16, 2025 9:00am - 3:00pm PST\nRegistration: Register via Instats"
   },
   {
-    "objectID": "consulting.html#upcoming-public-workshops",
-    "href": "consulting.html#upcoming-public-workshops",
+    "objectID": "consulting.html#upcoming-live-workshops",
+    "href": "consulting.html#upcoming-live-workshops",
     "title": "Consulting and workshops",
     "section": "",
-    "text": "Date: November 13, 2024 9:00am - 4:00pm PST\nRegistration: Register via Instats\n\n\n\n\n\nDate: January 15-16, 2025 9:00am - 3:00pm PST\nRegistration: Register via Instats"
+    "text": "Learn the basics of the R programming language and the tidyverse. Beginner-friendly!\nDate: January 15-16, 2025 9:00am - 3:00pm PST\nRegistration: Register via Instats"
+  },
+  {
+    "objectID": "consulting.html#on-demand-pre-recorded-workshops",
+    "href": "consulting.html#on-demand-pre-recorded-workshops",
+    "title": "Consulting and workshops",
+    "section": "On-demand (pre-recorded) workshops",
+    "text": "On-demand (pre-recorded) workshops\n\n\nPython for R Users\nAn introduction to Python from an R user’s perspective.\nRegistration: Register via Instats"
   },
   {
     "objectID": "consulting.html#information",
@@ -662,7 +669,7 @@
     "href": "blog/2019-08-19_purrr.html",
     "title": "Learn to purrr",
     "section": "",
-    "text": "“It was on the corner of the street that he noticed the first sign of something peculiar - a cat reading a map” - J.K. Rowling\nPurrr is one of those tidyverse packages that you keep hearing about, and you know you should probably learn it, but you just never seem to get around to it.\nAt it’s core, purrr is all about iteration. Purrr introduces map functions (the tidyverse’s answer to base R’s apply functions, but more in line with functional programming practices) as well as some new functions for manipulating lists. To get a quick snapshot of any tidyverse package, a nice place to go is the cheatsheet. I find these particularly useful after I’ve already got the basics of a package down, because I inevitably realise that there are a bunch of functionalities I knew nothing about.\nAnother useful resource for learning about purrr is Jenny Bryan’s tutorial. Jenny’s tutorial is fantastic, but is a lot longer than mine. This post is a lot shorter and my goal is to get you up and running with purrr very quickly.\nWhile the workhorse of dplyr is the data frame, the workhorse of purrr is the list. If you aren’t familiar with lists, hopefully this will help you understand what they are:\nHere is an example of a list that has three elements: a single number, a vector and a data frame\nmy_first_list &lt;- list(my_number = 5,\n                      my_vector = c(\"a\", \"b\", \"c\"),\n                      my_dataframe = data.frame(a = 1:3, b = c(\"q\", \"b\", \"z\"), c = c(\"bananas\", \"are\", \"so very great\")))\nmy_first_list\n\n$my_number\n[1] 5\n\n$my_vector\n[1] \"a\" \"b\" \"c\"\n\n$my_dataframe\n  a b             c\n1 1 q       bananas\n2 2 b           are\n3 3 z so very great\nNote that a data frame is actually a special case of a list where each element of the list is a vector of the same length."
+    "text": "Purrr is one of those tidyverse packages that you keep hearing about, and you know you should probably learn it, but you just never seem to get around to it.\nAt it’s core, purrr is all about iteration. Purrr introduces map functions (the tidyverse’s answer to base R’s apply functions, but more in line with functional programming practices) as well as some new functions for manipulating lists. To get a quick snapshot of any tidyverse package, a nice place to go is the cheatsheet. I find these particularly useful after I’ve already got the basics of a package down, because I inevitably realise that there are a bunch of functionalities I knew nothing about.\nAnother useful resource for learning about purrr is Jenny Bryan’s tutorial. Jenny’s tutorial is fantastic, but is a lot longer than mine. This post is a lot shorter and my goal is to get you up and running with purrr very quickly.\nWhile the workhorse of dplyr is the data frame, the workhorse of purrr is the list. If you aren’t familiar with lists, hopefully this will help you understand what they are:\nHere is an example of a list that has three elements: a single number, a vector and a data frame\nmy_first_list &lt;- list(my_number = 5,\n                      my_vector = c(\"a\", \"b\", \"c\"),\n                      my_dataframe = data.frame(a = 1:3, b = c(\"q\", \"b\", \"z\"), c = c(\"bananas\", \"are\", \"so very great\")))\nmy_first_list\n\n$my_number\n[1] 5\n\n$my_vector\n[1] \"a\" \"b\" \"c\"\n\n$my_dataframe\n  a b             c\n1 1 q       bananas\n2 2 b           are\n3 3 z so very great\nNote that a data frame is actually a special case of a list where each element of the list is a vector of the same length."
   },
   {
     "objectID": "blog/2019-08-19_purrr.html#simplest-usage-repeated-looping-with-map",

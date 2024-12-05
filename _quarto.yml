@@ -6,7 +6,7 @@ website:
   announcement: 
     icon: info-circle
     dismissable: true
-    content: "**Learn Python with me!** Join my full-day virtual workshop, _Python for R Users_, on November 13th hosted by Instats. [Register now!](https://instats.org/seminar/python-for-r-users2)"
+    content: "**Learn R with me!** Register for my 2-day live virtual workshop, [_Introduction to R for Data Analysis_](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014), on Jan 15-16."    
     type: info
     position: below-navbar
   navbar:
