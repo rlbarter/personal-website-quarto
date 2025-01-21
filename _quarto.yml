@@ -1,14 +1,16 @@
 project:
   type: website
 
+# add to website section for announcements
+# announcement: 
+#   icon: info-circle
+#   dismissable: true
+#   content: "**Learn R with me!** Register for my 2-day live virtual workshop, [_Introduction to R for Data Analysis_](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014), on Jan 15-16."    
+#   type: info
+#   position: below-navbar
+
 website:
   title: "Rebecca Barter"
-  announcement: 
-    icon: info-circle
-    dismissable: true
-    content: "**Learn R with me!** Register for my 2-day live virtual workshop, [_Introduction to R for Data Analysis_](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014), on Jan 15-16."    
-    type: info
-    position: below-navbar
   navbar:
     left:
       - text: "Home"
@@ -17,8 +19,12 @@ website:
         file: blog.qmd
       - text: "Workshops and consulting"
         file: consulting.qmd 
-      - text: "Veridical Data Science"
-        href: https://www.vdsbook.com
+      - text: "Books"
+        menu:
+          - text: "Veridical Data Science"
+            href: https://www.vdsbook.com
+          - text: "The R Workshop"
+            href: https://www.r-workshop.org
     right:
       - about.qmd
       - icon: github

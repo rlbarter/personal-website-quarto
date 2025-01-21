@@ -2992,7 +2992,7 @@ font-style: inherit;">4</span>]</span>
 </div>
 </div>
 <p>Sometimes the errors in Python are even helpful! Thanks Python!</p>
-<p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don’t be scare. You’ll get used to it. I hope.</p>
+<p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don’t be scared. You’ll get used to it. I hope.</p>
 </section>
 <section id="extracting-columns" class="level3">
 <h3 class="anchored" data-anchor-id="extracting-columns">Extracting columns</h3>
@@ -3050,7 +3050,7 @@ font-style: inherit;">'a'</span>])</span></code></pre></div>
 </section>
 <section id="series" class="level3">
 <h3 class="anchored" data-anchor-id="series">Series</h3>
-<p>A pandas <strong>Series</strong> is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there will be has two attributes printed out at the bottom: the <code>Name</code> (if indeed there is a name) and <code>dtype</code> (type).</p>
+<p>A pandas <strong>Series</strong> is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there are two attributes printed out at the bottom: the <code>Name</code> (if indeed there is a name) and <code>dtype</code> (type).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1">pandas_df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3579,7 +3579,7 @@ font-style: inherit;">'cat'</span>)[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'b'</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x11f377b50&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1560996a0&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>

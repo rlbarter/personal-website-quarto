@@ -155,10 +155,21 @@ ga('send', {
     <a class="nav-link" href="../consulting.html"> 
 <span class="menu-text">Workshops and consulting</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://www.vdsbook.com"> 
-<span class="menu-text">Veridical Data Science</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-books" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Books</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-books">    
+        <li>
+    <a class="dropdown-item" href="https://www.vdsbook.com">
+ <span class="dropdown-text">Veridical Data Science</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="https://www.r-workshop.org">
+ <span class="dropdown-text">The R Workshop</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -186,9 +197,6 @@ ga('send', {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <div id="quarto-announcement" data-announcement-id="c09cf054e6f3d49ca1d64250a8cb0715" class="alert alert-info hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
-<p><strong>Learn R with me!</strong> Register for my 2-day live virtual workshop, <a href="https://instats.org/seminar/introduction-to-r-for-data-analysis-2014"><em>Introduction to R for Data Analysis</em></a>, on Jan 15-16.</p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
@@ -618,7 +626,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Sometimes the errors in Python are even helpful! Thanks Python!</p>
-<p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don’t be scare. You’ll get used to it. I hope.</p>
+<p>Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don’t be scared. You’ll get used to it. I hope.</p>
 </section>
 <section id="extracting-columns" class="level3">
 <h3 class="anchored" data-anchor-id="extracting-columns">Extracting columns</h3>
@@ -668,7 +676,7 @@ Name: a, dtype: int64</code></pre>
 </section>
 <section id="series" class="level3">
 <h3 class="anchored" data-anchor-id="series">Series</h3>
-<p>A pandas <strong>Series</strong> is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there will be has two attributes printed out at the bottom: the <code>Name</code> (if indeed there is a name) and <code>dtype</code> (type).</p>
+<p>A pandas <strong>Series</strong> is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there are two attributes printed out at the bottom: the <code>Name</code> (if indeed there is a name) and <code>dtype</code> (type).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pandas_df[<span class="st">'a'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -981,7 +989,7 @@ Name: b, dtype: float64</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>pandas_df.query(<span class="st">'a &gt; 1'</span>).groupby(<span class="st">'cat'</span>)[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x11f377b50&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.SeriesGroupBy object at 0x1560996a0&gt;</code></pre>
 </div>
 </div>
 <p>We can use the <code>pd.Series()</code> function to force the grouped Series object back into a regular ungrouped Series (<code>pd.Series()</code> is used to define Series objects on the fly just as <code>pd.DataFrame()</code> is used to define DataFrames on the fly – this is what I used at the beginning of this tutorial).</p>

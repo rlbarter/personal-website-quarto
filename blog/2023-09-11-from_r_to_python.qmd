@@ -264,7 +264,7 @@ py_list.mean()
 
 Sometimes the errors in Python are even helpful! Thanks Python!
 
-Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don't be scare. You'll get used to it. I hope. 
+Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don't be scared. You'll get used to it. I hope. 
 
 
 ### Extracting columns
@@ -303,7 +303,7 @@ which tells us that this column is a pandas "Series" object.
 
 ### Series
 
-A pandas **Series** is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there will be has two attributes printed out at the bottom: the `Name` (if indeed there is a name) and `dtype` (type). 
+A pandas **Series** is like a one-dimensional DataFrame, and you can recognize that your object is a Series because there are two attributes printed out at the bottom: the `Name` (if indeed there is a name) and `dtype` (type). 
 
 ```{python}
 pandas_df['a']

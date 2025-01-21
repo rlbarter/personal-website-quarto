@@ -21,25 +21,38 @@ about:
 
 
 
+I have no public live workshops on the calendar right now, but check back soon for more offerings!
+
+<!-- ::: card -->
+<!-- ::: {.card-header style="background-color: white; font-size: 18;"} -->
+<!-- ### [Introduction to R for Data Analysis](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014) -->
+
+<!-- Learn the basics of the R programming language and the tidyverse. Beginner-friendly! -->
 
 
-::: card
-::: {.card-header style="background-color: white; font-size: 18;"}
-### [Introduction to R for Data Analysis](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014)
+<!-- **Date: January 15-16, 2025** 9:00am - 3:00pm PST -->
 
-Learn the basics of the R programming language and the tidyverse. Beginner-friendly!
+<!-- **Registration**: [Register via Instats](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014) -->
 
-
-**Date: January 15-16, 2025** 9:00am - 3:00pm PST
-
-**Registration**: [Register via Instats](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014)
-
-:::
-:::
+<!-- ::: -->
+<!-- ::: -->
 
 
 ## On-demand (pre-recorded) workshops
 
+Below you will find links to register for recordings of past workshops I've done on Instats.
+
+<!-- ::: card -->
+<!-- ::: {.card-header style="background-color: white; font-size: 18;"} -->
+<!-- ### [Introduction to R for Data Analysis](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014) -->
+
+
+<!-- **Date: January 15-16, 2025** 9:00am - 3:00pm PST -->
+
+<!-- **Registration**: [Register via Instats](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014) -->
+
+<!-- ::: -->
+<!-- ::: -->
 
 ::: card
 ::: {.card-header style="background-color: white; font-size: 18;"}
