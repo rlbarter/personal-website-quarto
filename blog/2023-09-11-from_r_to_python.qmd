@@ -266,7 +266,6 @@ Sometimes the errors in Python are even helpful! Thanks Python!
 
 Coming from R where a function is always just a function, this method vs function thing was quite confusing at first. Don't be scared. You'll get used to it. I hope. 
 
-
 ### Extracting columns
 
 While you can create a pandas DataFrame using a dictionary containing list entries (as we did earlier), the columns of a DataFrame themselves, when extracted, are a "Series" type object (rather than a list).

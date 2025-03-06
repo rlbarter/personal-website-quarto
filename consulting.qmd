@@ -42,17 +42,16 @@ I have no public live workshops on the calendar right now, but check back soon f
 
 Below you will find links to register for recordings of past workshops I've done on Instats.
 
-<!-- ::: card -->
-<!-- ::: {.card-header style="background-color: white; font-size: 18;"} -->
-<!-- ### [Introduction to R for Data Analysis](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014) -->
+::: card
+::: {.card-header style="background-color: white; font-size: 18;"}
+### [Introduction to R for Data Analysis](https://instats.org/seminar/introduction-to-r-for-data-analysis3)
 
+An Introduction to R with the Tidyverse
 
-<!-- **Date: January 15-16, 2025** 9:00am - 3:00pm PST -->
+**Registration**: [Register via Instats](https://instats.org/seminar/introduction-to-r-for-data-analysis3)
 
-<!-- **Registration**: [Register via Instats](https://instats.org/seminar/introduction-to-r-for-data-analysis-2014) -->
-
-<!-- ::: -->
-<!-- ::: -->
+:::
+:::
 
 ::: card
 ::: {.card-header style="background-color: white; font-size: 18;"}
